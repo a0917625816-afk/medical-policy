@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="全台健康保險商品大全：收錄保發中心登錄的 5,000 多張醫療相關保單，含已停售舊保單、所有條款版本、白話解讀與台灣現況說明。">
+<meta name="description" content="全台健康保險與傷害保險商品大全：收錄保發中心登錄的一萬多張保單，含已停售舊保單、所有條款版本、保單代號、白話解讀與台灣現況說明。">
 <style>[hidden]{display:none!important}body{margin:0;font-size:14px}img{max-width:100%}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
 <title>醫療險保單大全</title>
 
@@ -220,6 +220,7 @@ html.big{font-size:20px}
 .links a b{color:var(--accent)} .links a span{font-size:.92rem;color:var(--muted)}
 .dispute{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
 @media (max-width:600px){.brand small{display:none}.brand h1{font-size:1.2rem}.head{flex-wrap:wrap}.demo-tag{display:none}}
+.cd{font-family:var(--mono);font-weight:600;color:var(--accent);letter-spacing:.03em}
 </style>
 </head>
 <body>
@@ -320,15 +321,15 @@ html.big{font-size:20px}
   <!-- 找保單 -->
   <section data-view="find" hidden>
     <div class="intro">
-      <span class="eyebrow">全台健康保險商品</span>
+      <span class="eyebrow">全台健康保險與傷害保險商品</span>
       <h2>找到你手上的那一張保單</h2>
-      <p class="lead">收錄保險事業發展中心登錄的健康保險商品，壽險公司與產險公司都有，包含已停售和已合併公司的舊保單。</p>
+      <p class="lead">收錄保險事業發展中心登錄的健康保險與傷害保險（意外險）商品，壽險公司與產險公司都有，包含已停售和已合併公司的舊保單。</p>
     </div>
     <div class="stats" id="stats"></div>
     <div><p class="fine" style="margin-bottom:8px">從發生的情況找</p><div class="scen" id="scen" role="group" aria-label="依情況找"></div></div>
     <div class="search">
       <label for="q" class="fine">輸入保單上的商品名稱，只記得幾個字也可以，例如「安心」「實支」「防癌」</label>
-      <input id="q" type="search" placeholder="搜尋商品名稱、保險公司或商品編號" autocomplete="off">
+      <input id="q" type="search" placeholder="搜尋商品名稱、保險公司或保單代號（例如 HSV）" autocomplete="off">
       <div class="filters">
         <select id="f-co" aria-label="保險公司"><option value="">全部保險公司</option></select>
         <select id="f-type" aria-label="險種"><option value="">全部險種</option></select>
@@ -383,7 +384,8 @@ const TYPE_INFO = [
   {k:10,n:"豁免保費",pays:"符合條件後免繳保費",d:"本身不給付醫療費用，而是在發生特定狀況後，免繳其他保單的保費。"},
   {k:11,n:"海外醫療",pays:"在國外生病就醫",d:"多附加在旅平險，補海外突發疾病的醫療費用。"},
   {k:12,n:"傳染病",pays:"確診法定傳染病",d:"依條款列出的傳染病給付，多為短期保單。"},
-  {k:13,n:"其他健康保險",pays:"依各商品條款",d:"其他無法從名稱判斷類別的健康保險，請看條款。"}
+  {k:13,n:"其他健康保險",pays:"依各商品條款",d:"其他無法從名稱判斷類別的健康保險，請看條款。"},
+  {k:14,n:"傷害險（意外身故失能）",pays:"意外造成身故或失能才賠",d:"生病不賠。依失能等級表給付，保費通常依職業等級計算。"}
 ];
 const LEARN_TYPES=[0,1,2,3,4,5,6,7];
 const SCEN=[
@@ -392,10 +394,10 @@ const SCEN=[
   {k:"cancer",n:"罹癌",d:"確診癌症",t:[4,5,6]},
   {k:"major",n:"重大傷病",d:"拿到重大傷病卡",t:[5,6]},
   {k:"care",n:"長期照顧",d:"失能、失智、臥床",t:[7,8]},
-  {k:"acc",n:"意外受傷",d:"跌倒、車禍",t:[9,1]}
+  {k:"acc",n:"意外受傷",d:"跌倒、車禍",t:[9,14,1]}
 ];
 let scen="";
-const MAP_TYPES=[0,1,2,3,4,5,6,7,8,9];
+const MAP_TYPES=[0,1,2,3,4,5,6,7,8,9,14];
 const FORMS=["主約","附約","附加條款"], TERMS=["","一年期","定期","終身"];
 const CO = {"101":"臺灣產物","102":"兆豐產物","103":"華山產物","105":"富邦產物","106":"和泰產物","107":"泰安產物","108":"明台產物","109":"南山產物","110":"第一產物","111":"國華產物","112":"旺旺友聯產物","113":"新光產物","114":"華南產物","115":"國泰世紀產物","117":"新安東京海上產物","118":"中國信託產物","128":"裕利安宜產物","129":"美國國際產物","130":"科法斯產物","131":"美國環球產物","132":"美商安達產物","133":"美商聯邦產物","142":"亞洲保險","144":"三井住友產物","146":"法國巴黎產物","196":"漁船產物保險合作社","197":"聯合保證","201":"臺銀人壽","202":"台灣人壽","203":"保誠人壽","204":"國泰人壽","205":"凱基人壽（原中國人壽）","206":"南山人壽","207":"國華人壽","208":"新光人壽","209":"富邦人壽","210":"國寶人壽","211":"三商美邦人壽","212":"朝陽人壽","215":"幸福人壽","216":"遠雄人壽","217":"宏泰人壽","218":"安聯人壽","220":"中華郵政","221":"第一金人壽","222":"合作金庫人壽","252":"安泰人壽","254":"中國信託人壽","255":"台新人壽","256":"安達國際人壽（原康健人壽）","257":"友邦人壽","258":"宏利人壽","261":"元大人壽","262":"環球瑞泰人壽","264":"全球人壽","267":"法國巴黎人壽","269":"安達保險","270":"安達人壽","271":"匯豐人壽","272":"蘇黎世國際人壽","314":"中國輸出入銀行"};
 
@@ -435,15 +437,15 @@ const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(mine))}catch(e){}};
 fetch("policies.json").then(r=>r.json()).then(rows=>{
   P=rows.map((r,i)=>{const vers=r[6].split(";").map(v=>{const [id,s,e]=v.split(",");return {id,s,e:e||null}});
     const last=vers[vers.length-1];
-    return {i,co:r[0],name:r[1],type:r[2],form:r[3],term:r[4],grp:r[5],vers,s:vers[0].s,e:last.e,
-      key:(r[1]+(CO[r[0]]||"")+vers.map(v=>v.id).join(" ")).toLowerCase()}});
+    return {i,co:r[0],name:r[1],type:r[2],form:r[3],term:r[4],grp:r[5],vers,s:vers[0].s,e:last.e,codes:r[7]?r[7].split(" "):[],
+      key:(r[1]+(CO[r[0]]||"")+" "+(r[7]||"")+" "+vers.map(v=>v.id).join(" ")).toLowerCase()}});
   boot();
 }).catch(()=>{$("#count").textContent="保單資料載入失敗，請重新整理頁面。";$("#ver-tag").textContent="載入失敗"});
 
 function boot(){
   const nv=P.reduce((a,p)=>a+p.vers.length,0), ncos=new Set(P.map(p=>p.co)).size;
   $("#ver-tag").textContent="資料：保發中心 115/10";
-  $("#stats").innerHTML=`<div class="stat"><b>${P.length.toLocaleString()}</b><span>張健康保險商品</span></div><div class="stat"><b>${nv.toLocaleString()}</b><span>個條款版本（含修訂）</span></div><div class="stat"><b>${ncos}</b><span>家保險公司（含已合併）</span></div>`;
+  $("#stats").innerHTML=`<div class="stat"><b>${P.length.toLocaleString()}</b><span>張健康與傷害保險商品</span></div><div class="stat"><b>${nv.toLocaleString()}</b><span>個條款版本（含修訂）</span></div><div class="stat"><b>${ncos}</b><span>家保險公司（含已合併）</span></div>`;
   const cos=[...new Set(P.map(p=>p.co))].sort();
   const life=cos.filter(c=>c>="200"), prop=cos.filter(c=>c<"200");
   $("#f-co").innerHTML+=`<optgroup label="人壽保險公司">${life.map(c=>`<option value="${c}">${CO[c]||c}</option>`).join("")}</optgroup><optgroup label="產物保險公司">${prop.map(c=>`<option value="${c}">${CO[c]||c}</option>`).join("")}</optgroup>`;
@@ -472,7 +474,7 @@ function renderList(recompute=true){
       if(era){const y=yr(p.s); if(era==="80"&&!(y<90)) return false; if(era==="90"&&!(y>=90&&y<100)) return false; if(era==="100"&&!(y>=100&&y<110)) return false; if(era==="110"&&y<110) return false;}
       return q.every(w=>p.key.includes(w));
     });
-    if(q.length) lastRes.sort((a,b)=>(a.name.length-b.name.length));
+    if(q.length){const qq=q.join("").toUpperCase(); lastRes.sort((a,b)=>((b.codes.some(c=>c.startsWith(qq))?1:0)-(a.codes.some(c=>c.startsWith(qq))?1:0))||(a.name.length-b.name.length));}
     else lastRes.sort((a,b)=>(a.e?1:0)-(b.e?1:0)||b.s.localeCompare(a.s));
   }
   const sc=SCEN.find(x=>x.k===scen);
@@ -482,7 +484,7 @@ function renderList(recompute=true){
 }
 function card(p){
   return `<a class="card" href="#p${p.i}">
-    <span class="t"><b>${esc(p.name)}</b><span>${CO[p.co]||p.co}・${TYPE_INFO[p.type].n}・${FORMS[p.form]}${p.term?"・"+TERMS[p.term]:""}${p.grp?"・團體":""}</span><span>民國 ${yr(p.s)} 年開賣${p.e?`，${yr(p.e)} 年停售`:""}・${p.vers.length} 個版本</span></span>
+    <span class="t"><b>${esc(p.name)}</b><span>${p.codes.length?`<span class="cd">${p.codes.join(" / ")}</span> `:""}${CO[p.co]||p.co}・${TYPE_INFO[p.type].n}・${FORMS[p.form]}${p.term?"・"+TERMS[p.term]:""}${p.grp?"・團體":""}</span><span>民國 ${yr(p.s)} 年開賣${p.e?`，${yr(p.e)} 年停售`:""}・${p.vers.length} 個版本</span></span>
     <span class="side">${p.e?`<span class="pill off">已停售</span>`:`<span class="pill on">現售中</span>`}${D&&D[p.i]?`<span class="mini">有白話解讀</span>`:""}</span></a>`;
 }
 
@@ -527,7 +529,7 @@ function renderDetail(i){
       <div class="d-head">
         <div class="row">${p.e?`<span class="pill off">已停售</span>`:`<span class="pill on">現售中</span>`}<span class="badge">${TYPE_INFO[p.type].n}</span>${p.grp?`<span class="badge">團體保險</span>`:""}</div>
         <h2>${esc(p.name)}</h2>
-        <span class="co">${CO[p.co]||p.co}</span>
+        <span class="co">${CO[p.co]||p.co}${p.codes.length?`・保單代號（參考）：<b class="cd">${p.codes.join(" / ")}</b>`:""}</span>
       </div>
       <dl class="facts" style="margin:0">
         <div class="fact"><dt>首次開賣</dt><dd>民國 ${fmtD(p.s)}</dd></div>
