@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="全台健康保險商品大全：收錄保發中心登錄的 5,000 多張醫療相關保單，含已停售舊保單、所有條款版本、白話解讀與台灣現況說明。">
+<style>[hidden]{display:none!important}body{margin:0;font-size:14px}img{max-width:100%}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+<title>醫療險保單大全</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700;900&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: 平板優先的查詢工具。頂部固定分頁列，內容區單欄閱讀寬度，清單像索引卡，詳細頁像保單檔案。 */
+:root{
+  --bg:#f2f6f5; --surface:#ffffff; --ink:#16302a; --muted:#5a6e69; --line:#d4dfdb;
+  --accent:#1d6b58; --accent-ink:#ffffff; --accent-soft:#e0efe9;
+  --warn:#9a6311; --warn-soft:#f5ead6; --gap:#b23a2f; --gap-soft:#f7e3e0;
+  --display:"Noto Serif TC","Songti TC","PMingLiU",serif;
+  --body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e1614; --surface:#15201d; --ink:#e4eeea; --muted:#94a9a3; --line:#2a3b36;
+  --accent:#5fc4a4; --accent-ink:#06231b; --accent-soft:#17362e;
+  --warn:#e2b45f; --warn-soft:#382c16; --gap:#f08a7e; --gap-soft:#3a1d1a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1614; --surface:#15201d; --ink:#e4eeea; --muted:#94a9a3; --line:#2a3b36;
+  --accent:#5fc4a4; --accent-ink:#06231b; --accent-soft:#17362e;
+  --warn:#e2b45f; --warn-soft:#382c16; --gap:#f08a7e; --gap-soft:#3a1d1a; color-scheme:dark}
+
+html{font-size:17px}
+@media (max-width:600px){html{font-size:18px}}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1rem;line-height:1.7}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+.wrap{max-width:880px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1.3;margin:0}
+p{margin:0}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+/* header */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+.head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:14px 10px}
+.brand{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.brand h1{font-size:1.45rem;font-weight:900;letter-spacing:.04em}
+.brand small{color:var(--muted);font-size:.8rem}
+.demo-tag{font-size:.75rem;font-weight:700;color:var(--warn);background:var(--warn-soft);padding:2px 10px;border-radius:99px;white-space:nowrap}
+nav{display:flex;gap:4px;padding-bottom:10px;overflow-x:auto}
+nav a{flex:1;text-align:center;text-decoration:none;color:var(--muted);font-weight:700;padding:10px 12px;border-radius:8px;white-space:nowrap;font-size:.95rem}
+nav a[aria-current="page"]{background:var(--accent);color:var(--accent-ink)}
+nav a:not([aria-current="page"]):hover{background:var(--accent-soft);color:var(--ink)}
+
+main{padding-block:28px 64px}
+section[data-view]{display:grid;gap:28px}
+.eyebrow{font-size:.8rem;font-weight:700;letter-spacing:.12em;color:var(--accent)}
+.lead{color:var(--muted);max-width:40em}
+.intro{display:grid;gap:8px}
+.intro h2{font-size:1.75rem;font-weight:900}
+
+/* learn */
+.types{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:600px){.types{grid-template-columns:1fr}}
+.type{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:grid;gap:6px;align-content:start}
+.type h3{font-size:1.15rem}
+.type .pays{font-size:.85rem;color:var(--accent);font-weight:700}
+.type p{color:var(--muted);font-size:.95rem}
+.compare{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+table{border-collapse:collapse;width:100%;font-size:.95rem}
+th,td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+th{font-size:.82rem;color:var(--muted);font-weight:700;letter-spacing:.06em;background:var(--accent-soft)}
+td.num{font-variant-numeric:tabular-nums;font-weight:700;white-space:nowrap}
+.notes{display:grid;gap:12px;counter-reset:n}
+.note{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start}
+.note b.n{font-family:var(--display);font-size:1.5rem;color:var(--warn);line-height:1.2}
+.note h3{font-family:var(--body);font-size:1.05rem}
+.note p{color:var(--muted);font-size:.95rem}
+
+/* find */
+.scen{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media (max-width:600px){.scen{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.scen button{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;text-align:left;cursor:pointer;display:grid;gap:2px}
+.scen button b{font-size:1.05rem}
+.scen button span{font-size:.82rem;color:var(--muted)}
+.scen button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);box-shadow:inset 0 0 0 1px var(--accent)}
+.search{display:grid;gap:10px}
+.search input{width:100%;box-sizing:border-box;padding:14px 16px;border:1.5px solid var(--line);border-radius:var(--r);background:var(--surface);font-size:1.05rem}
+.search input:focus{border-color:var(--accent);outline:none}
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.filters select{padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);font-size:.92rem}
+.count{font-size:.9rem;color:var(--muted)}
+.toggle{display:inline-flex;align-items:center;gap:8px;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);font-size:.92rem;cursor:pointer}
+.toggle input{width:18px;height:18px;accent-color:var(--accent)}
+.vers{display:grid;gap:6px}
+.vers a,.vers div{display:flex;justify-content:space-between;gap:12px;padding:10px 14px;border:1px solid var(--line);border-radius:8px;text-decoration:none;color:inherit;font-size:.95rem}
+.vers .cur{background:var(--accent-soft);border-color:transparent;font-weight:700}
+.docs{display:flex;flex-wrap:wrap;gap:8px}
+.docs span{padding:8px 14px;border:1px dashed var(--line);border-radius:8px;color:var(--muted);font-size:.9rem}
+.list{display:grid;gap:10px}
+.card{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:16px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;text-decoration:none;color:inherit}
+.card:hover{border-color:var(--accent)}
+.code{font-family:var(--mono);font-weight:600;font-size:.88rem;border:1.5px solid var(--ink);border-radius:6px;padding:4px 8px;letter-spacing:.06em;min-width:3.6em;text-align:center}
+.card .t{display:grid;gap:2px;min-width:0}
+.card .t b{font-size:1.05rem;line-height:1.45}
+.card .t span{font-size:.85rem;color:var(--muted)}
+.pill{font-size:.78rem;font-weight:700;padding:3px 10px;border-radius:99px;white-space:nowrap}
+.on{background:var(--accent-soft);color:var(--accent)}
+.off{background:var(--warn-soft);color:var(--warn)}
+@media (max-width:600px){.card{grid-template-columns:minmax(0,1fr) auto}.card .code{display:none}}
+.empty{padding:28px;text-align:center;color:var(--muted);background:var(--surface);border:1px dashed var(--line);border-radius:var(--r)}
+
+/* detail */
+.back{color:var(--accent);text-decoration:none;font-weight:700;font-size:.95rem}
+.dossier{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.d-head{padding:22px 22px 18px;display:grid;gap:10px;border-bottom:1px solid var(--line)}
+.d-head .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.d-head h2{font-size:1.6rem;font-weight:900}
+.d-head .co{color:var(--muted)}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:600px){.facts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.fact{padding:14px 22px;border-bottom:1px solid var(--line);display:grid;gap:2px}
+.fact dt{font-size:.78rem;color:var(--muted);letter-spacing:.06em}
+.fact dd{margin:0;font-weight:700}
+.d-body{padding:22px;display:grid;gap:26px}
+.d-body h3{font-size:1.15rem;margin-bottom:10px}
+.unit{font-size:.88rem;color:var(--muted);margin-bottom:10px}
+.d-body .compare{border-radius:8px}
+.read{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:600px){.read{grid-template-columns:1fr}}
+.read > div{border-radius:8px;padding:16px;display:grid;gap:8px;align-content:start}
+.good{background:var(--accent-soft)}
+.care{background:var(--warn-soft)}
+.read h4{margin:0;font-size:1rem}
+.good h4{color:var(--accent)} .care h4{color:var(--warn)}
+.read ul,.excl{margin:0;padding-left:1.2em;display:grid;gap:4px;font-size:.95rem}
+.fit{font-size:1.02rem}
+.actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{background:var(--accent);color:var(--accent-ink);border:0;border-radius:8px;padding:12px 20px;font-weight:700;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+.btn[disabled]{opacity:.55;cursor:default}
+.fine{font-size:.82rem;color:var(--muted)}
+
+/* mine */
+.mine-list{display:grid;gap:10px}
+.mine-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 16px}
+.mine-row .t{display:grid;min-width:0}
+.mine-row .t span{font-size:.82rem;color:var(--muted)}
+.step{display:flex;align-items:center;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.step button{background:var(--accent-soft);border:0;width:38px;height:38px;font-size:1.2rem;cursor:pointer;color:var(--accent);font-weight:700}
+.step output{min-width:3.2em;text-align:center;font-variant-numeric:tabular-nums;font-weight:700;font-size:.92rem}
+.x{background:none;border:0;color:var(--muted);cursor:pointer;font-size:.88rem;padding:6px}
+.x:hover{color:var(--gap)}
+@media (max-width:600px){.mine-row{grid-template-columns:minmax(0,1fr) auto}.mine-row .x{grid-column:1/-1;justify-self:start;padding:0}}
+.sum{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:600px){.sum{grid-template-columns:1fr}}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;display:grid;gap:4px}
+.tile .lab{font-size:.88rem;color:var(--muted);font-weight:500}
+.tile .val{font-family:var(--display);font-size:1.7rem;font-weight:900;font-variant-numeric:tabular-nums;line-height:1.2}
+.tile .val small{font-family:var(--body);font-size:.85rem;font-weight:500;color:var(--muted);margin-left:4px}
+.tile.zero{background:var(--gap-soft);border-color:transparent}
+.tile.zero .val{color:var(--gap);font-size:1.15rem}
+.add-hint{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.disclaim{border-top:1px solid var(--line);padding-top:16px;font-size:.82rem;color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){.card,.scen button,nav a{transition:border-color .15s,background .15s}}
+
+/* v3 additions */
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media (max-width:600px){.stat{padding:10px}.stat b{font-size:1.15rem}.stat span{font-size:.72rem}}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:grid;gap:2px}
+.stat b{font-family:var(--display);font-size:1.6rem;font-weight:900;font-variant-numeric:tabular-nums;line-height:1.2}
+.stat span{font-size:.85rem;color:var(--muted)}
+.more{justify-self:center}
+.badge{font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:6px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.vers{max-height:420px;overflow:auto}
+.vers div span:last-child{font-variant-numeric:tabular-nums;color:var(--muted);white-space:nowrap}
+.vers .cur span:last-child{color:inherit}
+.pid{font-family:var(--mono);font-size:.8rem;color:var(--muted);word-break:break-all}
+.pending{background:var(--warn-soft);border-radius:8px;padding:16px;display:grid;gap:6px}
+.pending h4{margin:0;color:var(--warn);font-size:1rem}
+.how{margin:0;padding-left:1.3em;display:grid;gap:4px;font-size:.95rem}
+.copy{background:none;border:1px solid var(--line);border-radius:6px;padding:4px 10px;cursor:pointer;font-size:.82rem;color:var(--accent)}
+.map{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (max-width:600px){.map{grid-template-columns:1fr}}
+.cell{border-radius:var(--r);padding:14px 16px;display:grid;gap:4px;border:1px solid var(--line);background:var(--surface)}
+.cell .lab{font-weight:700}
+.cell .who{font-size:.85rem;color:var(--muted)}
+.cell.zero{background:var(--gap-soft);border-color:transparent}
+.cell.zero .who{color:var(--gap)}
+.cell.has .lab::before{content:"✓ ";color:var(--accent)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{background:var(--accent-soft);color:var(--ink);border-radius:8px;padding:6px 12px;font-size:.92rem}
+.kv{margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+@media (max-width:600px){.kv{grid-template-columns:1fr}}
+.kv div{border:1px solid var(--line);border-radius:8px;padding:10px 14px;display:grid;gap:2px}
+.kv dt{font-size:.8rem;color:var(--muted)} .kv dd{margin:0;font-weight:700}
+.now{background:var(--accent-soft);border-radius:8px;padding:16px;display:grid;gap:8px}
+.now h3{margin:0}
+
+.head-r{display:flex;gap:8px;align-items:center}
+.fsbtn{white-space:nowrap;background:var(--surface);border:1px solid var(--line);border-radius:99px;padding:3px 12px;font-size:.8rem;cursor:pointer;color:var(--ink)}
+.fsbtn[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+html.big{font-size:20px}
+@media (max-width:600px){html.big{font-size:21px}}
+.card .side{display:grid;gap:6px;justify-items:end}
+.mini{font-size:.72rem;color:var(--muted);white-space:nowrap}
+.finddate{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin-bottom:10px}
+.finddate label{font-weight:700;font-size:.92rem}
+.finddate input{padding:9px 12px;border:1.5px solid var(--line);border-radius:8px;background:var(--surface);width:11em;font-size:1rem}
+.vers .hit{outline:3px solid var(--warn);outline-offset:-1px;background:var(--warn-soft)}
+.tools{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:grid;gap:12px}
+.tools h3{margin:0;font-size:1.15rem}
+.summary{white-space:pre-wrap;font-family:var(--body);margin:0;background:var(--bg);border-radius:8px;padding:14px;font-size:.95rem;line-height:1.7}
+.gloss{margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (max-width:600px){.gloss{grid-template-columns:1fr}}
+.gloss div{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;display:grid;gap:4px}
+.gloss dt{font-weight:700} .gloss dd{margin:0;color:var(--muted);font-size:.95rem}
+.links{display:grid;gap:10px}
+.links a{display:grid;gap:2px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;text-decoration:none;color:inherit}
+.links a b{color:var(--accent)} .links a span{font-size:.92rem;color:var(--muted)}
+.dispute{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
+@media (max-width:600px){.brand small{display:none}.brand h1{font-size:1.2rem}.head{flex-wrap:wrap}.demo-tag{display:none}}
+</style>
+</head>
+<body>
+
+
+<header>
+  <div class="wrap">
+    <div class="head">
+      <div class="brand"><h1>醫療險保單大全</h1><small>從以前到現在，找到你手上的那一張</small></div>
+      <div class="head-r"><button type="button" class="fsbtn" id="fs" aria-pressed="false">放大字</button><span class="demo-tag" id="ver-tag">資料載入中</span></div>
+    </div>
+    <nav aria-label="分頁">
+      <a href="#learn" data-tab="learn">醫療險觀念</a>
+      <a href="#find" data-tab="find">找保單</a>
+      <a href="#mine" data-tab="mine">我的保單</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- 觀念 -->
+  <section data-view="learn" hidden>
+    <div class="intro">
+      <span class="eyebrow">先搞懂再查</span>
+      <h2>醫療險有哪幾種？各自賠什麼？</h2>
+      <p class="lead">同樣叫「醫療險」，賠的方式可能完全不同。先認識這八類，再去看自己手上的保單屬於哪一種。</p>
+    </div>
+    <div class="types" id="types"></div>
+
+    <div class="intro">
+      <span class="eyebrow">最常被問的比較</span>
+      <h2>住院日額 vs 實支實付</h2>
+    </div>
+    <div class="compare">
+      <table>
+        <thead><tr><th></th><th>住院日額型</th><th>實支實付型</th></tr></thead>
+        <tbody>
+          <tr><td>怎麼賠</td><td>住院一天給固定金額</td><td>依醫療收據，在限額內實報實銷</td></tr>
+          <tr><td>要不要收據</td><td>只要住院證明</td><td>需要收據</td></tr>
+          <tr><td>適合補什麼</td><td>住院期間的收入損失、看護費</td><td>自費藥材、自費手術、病房差額</td></tr>
+          <tr><td>舊保單常見狀況</td><td>日額固定，不會隨物價調整</td><td>雜費、手術限額偏低</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="intro">
+      <span class="eyebrow">翻出舊保單時</span>
+      <h2>三個要特別留意的地方</h2>
+    </div>
+    <div class="notes">
+      <div class="note"><b class="n">一</b><div><h3>限額是當年的物價</h3><p>十幾年前的實支實付，雜費限額可能只有幾萬元。現在自費藥材、達文西手術動輒十萬以上，舊限額常常不夠。</p></div></div>
+      <div class="note"><b class="n">二</b><div><h3>「終身」不等於「無限」</h3><p>不少終身醫療險有給付總額或住院天數上限，領到上限就結束。要看條款裡的「累計給付上限」。</p></div></div>
+      <div class="note"><b class="n">三</b><div><h3>附約跟著主約走</h3><p>醫療保障多半是附約。主約繳費期滿、減額繳清或解約時，附約可能跟著終止，續保條件也要看清楚。</p></div></div>
+    </div>
+  <div class="intro">
+      <span class="eyebrow">第一步</span>
+      <h2>先找出自己有哪些保單</h2>
+      <p class="lead">不記得買過哪些保單，可以用壽險公會的「保險存摺」一次查詢各家公司的保單。用自然人憑證、晶片金融卡或行動身分識別登入。</p>
+    </div>
+    <div class="links">
+      <a href="https://insurtech.lia-roc.org.tw/" target="_blank" rel="noopener"><b>保險存摺（壽險公會）</b><span>查詢自己是要保人或被保險人的保單，可看到保險公司、商品、生效日、保額等。</span></a>
+      <a href="https://insprod.tii.org.tw/Query.aspx" target="_blank" rel="noopener"><b>保險商品查詢（保發中心）</b><span>用商品名稱查官方條款、費率表，本站的保單資料也來自這裡。</span></a>
+    </div>
+
+    <div class="intro">
+      <span class="eyebrow">理賠前先知道</span>
+      <h2>醫療險最常見的理賠爭議</h2>
+      <p class="lead">金融消費評議中心 2026 年第 1 季統計，人壽保險理賠申訴最多的是「必要性醫療」，其次是理賠金額認定、遲延給付和手術認定。</p>
+    </div>
+    <div class="dispute"><table>
+      <thead><tr><th>爭議類型</th><th>申訴件數</th><th>白話說</th></tr></thead>
+      <tbody>
+        <tr><td>必要性醫療</td><td class="num">278</td><td>保險公司認為住院或治療不是醫療上必要，例如可以門診處理卻住院。</td></tr>
+        <tr><td>理賠金額認定</td><td class="num">167</td><td>雙方對給付項目或金額計算看法不同。</td></tr>
+        <tr><td>遲延給付</td><td class="num">167</td><td>理賠時間拖太久。</td></tr>
+        <tr><td>手術認定</td><td class="num">101</td><td>做的處置算不算條款定義的手術，或對應手術表的哪一項。</td></tr>
+        <tr><td>投保前已患疾病</td><td class="num">84</td><td>保險公司認為疾病在投保前就已存在。</td></tr>
+      </tbody></table></div>
+    <p class="fine">資料來源：金融消費評議中心統計，經濟日報 2026/7/30 報導。</p>
+
+    <div class="notes">
+      <div class="note"><b class="n">✓</b><div><h3>住院時請醫師寫清楚住院原因</h3><p>診斷證明書上寫明住院的醫療必要性，可以減少「必要性醫療」的爭議。</p></div></div>
+      <div class="note"><b class="n">✓</b><div><h3>收據正本先留給實支實付</h3><p>2024 年 10 月以後投保的實支實付要收據正本，多張保單時先確認哪張要正本、哪些可用副本。</p></div></div>
+      <div class="note"><b class="n">✓</b><div><h3>理賠有爭議可以申請評議</h3><p>先向保險公司申訴；保險公司 30 天內沒有處理或你不接受處理結果，可以在 60 天內向金融消費評議中心申請評議，也可以撥金管會 1998 金融服務專線諮詢。</p></div></div>
+    </div>
+    <div class="links">
+      <a href="https://www.foi.org.tw/" target="_blank" rel="noopener"><b>金融消費評議中心</b><span>理賠爭議的申訴與評議管道。</span></a>
+    </div>
+
+    <div class="intro">
+      <span class="eyebrow">名詞小辭典</span>
+      <h2>保單上的專有名詞</h2>
+    </div>
+    <dl class="gloss" id="gloss"></dl>
+  
+  </section>
+
+  <!-- 找保單 -->
+  <section data-view="find" hidden>
+    <div class="intro">
+      <span class="eyebrow">全台健康保險商品</span>
+      <h2>找到你手上的那一張保單</h2>
+      <p class="lead">收錄保險事業發展中心登錄的健康保險商品，壽險公司與產險公司都有，包含已停售和已合併公司的舊保單。</p>
+    </div>
+    <div class="stats" id="stats"></div>
+    <div><p class="fine" style="margin-bottom:8px">從發生的情況找</p><div class="scen" id="scen" role="group" aria-label="依情況找"></div></div>
+    <div class="search">
+      <label for="q" class="fine">輸入保單上的商品名稱，只記得幾個字也可以，例如「安心」「實支」「防癌」</label>
+      <input id="q" type="search" placeholder="搜尋商品名稱、保險公司或商品編號" autocomplete="off">
+      <div class="filters">
+        <select id="f-co" aria-label="保險公司"><option value="">全部保險公司</option></select>
+        <select id="f-type" aria-label="險種"><option value="">全部險種</option></select>
+        <select id="f-term" aria-label="保障期間"><option value="">全部保障期間</option><option value="1">一年期</option><option value="2">定期</option><option value="3">終身</option></select>
+        <select id="f-form" aria-label="主約或附約"><option value="">主約＋附約</option><option value="0">只看主約</option><option value="1">只看附約</option><option value="2">只看附加條款</option></select>
+        <select id="f-era" aria-label="開賣年代"><option value="">全部年代</option><option value="80">民國 80 年代</option><option value="90">民國 90 年代</option><option value="100">民國 100～109 年</option><option value="110">民國 110 年後</option></select>
+        <label class="toggle"><input type="checkbox" id="f-off" checked> 包含已停售</label>
+        <label class="toggle"><input type="checkbox" id="f-grp"> 包含團體保險</label>
+      </div>
+    </div>
+    <p class="count" id="count"></p>
+    <div class="list" id="list"></div>
+    <button class="btn ghost more" id="more" hidden>顯示更多</button>
+  </section>
+
+  <!-- 詳細 -->
+  <section data-view="detail" hidden id="detail"></section>
+
+  <!-- 我的保單 -->
+  <section data-view="mine" hidden>
+    <div class="intro">
+      <span class="eyebrow">把手上的保單放在一起看</span>
+      <h2>我的保單有哪些保障？還缺什麼？</h2>
+      <p class="lead">在保單頁按「加入我的保單」。下面會依險種排列，標出目前沒有保障的類別。清單只存在你這台裝置的瀏覽器裡。</p>
+    </div>
+    <div class="add-hint"><span class="count" id="mine-count"></span><a class="btn ghost" href="#find" style="text-decoration:none">＋ 加入保單</a></div>
+    <div class="mine-list" id="mine-list"></div>
+    <div class="intro"><h2 style="font-size:1.3rem">保障地圖</h2></div>
+    <div class="map" id="map"></div>
+    <div id="mine-tools" class="tools" hidden>
+      <h3>分享給客戶或家人</h3>
+      <pre id="summary" class="summary"></pre>
+      <div class="actions"><button class="btn" type="button" id="sum-copy">複製文字摘要（貼 LINE 用）</button><button class="btn ghost" type="button" id="mine-share">複製這份清單的連結</button></div>
+      <p id="mine-out" class="fine" aria-live="polite"></p>
+    </div>
+    <p class="disclaim">險種依商品名稱自動判讀，僅供參考。各項給付金額與條件以保單條款為準。</p>
+  </section>
+</main>
+
+<script>
+const TYPE_INFO = [
+  {k:0,n:"住院日額",pays:"住院一天給固定金額",d:"不看花多少錢，只看住幾天。加護病房、燒燙傷病房通常另有加給。"},
+  {k:1,n:"實支實付",pays:"依收據實報實銷",d:"重點看三項限額：病房費（每天）、住院雜費（每次）、手術費（每次）。"},
+  {k:2,n:"手術險",pays:"依手術項目給付倍數",d:"條款附一張手術表，不同手術乘上不同倍數。舊保單的手術表常沒有新式手術。"},
+  {k:3,n:"終身／綜合醫療",pays:"住院、手術等合在一張",d:"常見於終身醫療險，多以日額為基礎，加上手術、出院療養等項目，通常有累計給付上限。"},
+  {k:4,n:"癌症險（防癌險）",pays:"確診癌症才賠",d:"看初次罹癌一次金、住院、化療放療。舊式防癌險多以住院日額為主。"},
+  {k:5,n:"重大傷病險",pays:"領到重大傷病卡給一次金",d:"以健保重大傷病範圍為準，範圍較廣，認定相對明確。"},
+  {k:6,n:"重大疾病／特定傷病",pays:"符合條款定義給一次金",d:"只賠條款列出的疾病，且要符合嚴重程度。早期常見七項重大疾病。"},
+  {k:7,n:"長照",pays:"符合狀態後按月給付",d:"看「生理功能障礙或認知功能障礙」是否達到條款標準。"},
+  {k:8,n:"失能",pays:"依失能等級給付",d:"依條款的失能等級表，按等級一次或分期給付。"},
+  {k:9,n:"意外醫療",pays:"意外受傷才賠",d:"生病不賠。分為實支實付型與日額型。"},
+  {k:10,n:"豁免保費",pays:"符合條件後免繳保費",d:"本身不給付醫療費用，而是在發生特定狀況後，免繳其他保單的保費。"},
+  {k:11,n:"海外醫療",pays:"在國外生病就醫",d:"多附加在旅平險，補海外突發疾病的醫療費用。"},
+  {k:12,n:"傳染病",pays:"確診法定傳染病",d:"依條款列出的傳染病給付，多為短期保單。"},
+  {k:13,n:"其他健康保險",pays:"依各商品條款",d:"其他無法從名稱判斷類別的健康保險，請看條款。"}
+];
+const LEARN_TYPES=[0,1,2,3,4,5,6,7];
+const SCEN=[
+  {k:"hosp",n:"住院",d:"生病或受傷住院",t:[0,1,3]},
+  {k:"surg",n:"開刀",d:"住院或門診手術",t:[1,2,3]},
+  {k:"cancer",n:"罹癌",d:"確診癌症",t:[4,5,6]},
+  {k:"major",n:"重大傷病",d:"拿到重大傷病卡",t:[5,6]},
+  {k:"care",n:"長期照顧",d:"失能、失智、臥床",t:[7,8]},
+  {k:"acc",n:"意外受傷",d:"跌倒、車禍",t:[9,1]}
+];
+let scen="";
+const MAP_TYPES=[0,1,2,3,4,5,6,7,8,9];
+const FORMS=["主約","附約","附加條款"], TERMS=["","一年期","定期","終身"];
+const CO = {"101":"臺灣產物","102":"兆豐產物","103":"華山產物","105":"富邦產物","106":"和泰產物","107":"泰安產物","108":"明台產物","109":"南山產物","110":"第一產物","111":"國華產物","112":"旺旺友聯產物","113":"新光產物","114":"華南產物","115":"國泰世紀產物","117":"新安東京海上產物","118":"中國信託產物","128":"裕利安宜產物","129":"美國國際產物","130":"科法斯產物","131":"美國環球產物","132":"美商安達產物","133":"美商聯邦產物","142":"亞洲保險","144":"三井住友產物","146":"法國巴黎產物","196":"漁船產物保險合作社","197":"聯合保證","201":"臺銀人壽","202":"台灣人壽","203":"保誠人壽","204":"國泰人壽","205":"凱基人壽（原中國人壽）","206":"南山人壽","207":"國華人壽","208":"新光人壽","209":"富邦人壽","210":"國寶人壽","211":"三商美邦人壽","212":"朝陽人壽","215":"幸福人壽","216":"遠雄人壽","217":"宏泰人壽","218":"安聯人壽","220":"中華郵政","221":"第一金人壽","222":"合作金庫人壽","252":"安泰人壽","254":"中國信託人壽","255":"台新人壽","256":"安達國際人壽（原康健人壽）","257":"友邦人壽","258":"宏利人壽","261":"元大人壽","262":"環球瑞泰人壽","264":"全球人壽","267":"法國巴黎人壽","269":"安達保險","270":"安達人壽","271":"匯豐人壽","272":"蘇黎世國際人壽","314":"中國輸出入銀行"};
+
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmtD=d=>d?`${+d.slice(0,3)}/${d.slice(3,5)}/${d.slice(5,7)}`:"";
+const yr=d=>+d.slice(0,3);
+let P=[];  // {i,co,name,type,form,term,grp,vers:[{id,s,e}],s,e,key}
+
+$("#types").innerHTML=LEARN_TYPES.map(k=>{const t=TYPE_INFO[k];return `<div class="type"><h3>${t.n}</h3><span class="pays">${t.pays}</span><p>${t.d}</p></div>`}).join("");
+
+/* ---------- 字體大小 ---------- */
+const applyFs=v=>{document.documentElement.classList.toggle("big",v);$("#fs").setAttribute("aria-pressed",v);$("#fs").textContent=v?"一般字":"放大字";};
+let big=false; try{big=localStorage.getItem("mpe-big")==="1"}catch(e){}
+applyFs(big);
+$("#fs").addEventListener("click",()=>{big=!big;applyFs(big);try{localStorage.setItem("mpe-big",big?"1":"0")}catch(e){}});
+
+/* ---------- 名詞小辭典 ---------- */
+const GLOSS=[
+  ["等待期","投保後的一段期間（醫療險多為 30 天、癌症險多為 90 天），這段期間發生的疾病不賠；意外通常不受限。"],
+  ["保證續保","只要按時繳費，保險公司不能因為你理賠過或身體變差而拒絕續保，但保費仍可能隨年齡調整。"],
+  ["實支實付","依醫療收據，在限額內實報實銷。重點看病房費、住院雜費、手術費三個限額。"],
+  ["副本理賠","用收據影本向第二家保險公司申請。2024 年 10 月 1 日起新投保的實支實付改為正本理賠、合計不超過實際花費；之前的保單依原條款。"],
+  ["日額型","住院一天給固定金額，不看實際花費，不需要收據明細。"],
+  ["主約／附約","附約要附加在主約上，主約終止時附約通常一起終止。"],
+  ["停售","保險公司不再賣這張商品給新客戶。已經買的人，保單仍然有效。"],
+  ["必要性醫療","保險公司審核理賠時，會看住院或治療是否為醫療上必要。這是目前醫療險最常見的理賠爭議。"]
+];
+$("#gloss").innerHTML=GLOSS.map(g=>`<div><dt>${g[0]}</dt><dd>${g[1]}</dd></div>`).join("");
+
+/* ---------- 我的保單（存在這台裝置） ---------- */
+const KEY="mpe-mine-v3";
+let mine=[]; try{mine=JSON.parse(localStorage.getItem(KEY))||[]}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(mine))}catch(e){}};
+
+/* ---------- 載入資料 ---------- */
+fetch("policies.json").then(r=>r.json()).then(rows=>{
+  P=rows.map((r,i)=>{const vers=r[6].split(";").map(v=>{const [id,s,e]=v.split(",");return {id,s,e:e||null}});
+    const last=vers[vers.length-1];
+    return {i,co:r[0],name:r[1],type:r[2],form:r[3],term:r[4],grp:r[5],vers,s:vers[0].s,e:last.e,
+      key:(r[1]+(CO[r[0]]||"")+vers.map(v=>v.id).join(" ")).toLowerCase()}});
+  boot();
+}).catch(()=>{$("#count").textContent="保單資料載入失敗，請重新整理頁面。";$("#ver-tag").textContent="載入失敗"});
+
+function boot(){
+  const nv=P.reduce((a,p)=>a+p.vers.length,0), ncos=new Set(P.map(p=>p.co)).size;
+  $("#ver-tag").textContent="資料：保發中心 115/10";
+  $("#stats").innerHTML=`<div class="stat"><b>${P.length.toLocaleString()}</b><span>張健康保險商品</span></div><div class="stat"><b>${nv.toLocaleString()}</b><span>個條款版本（含修訂）</span></div><div class="stat"><b>${ncos}</b><span>家保險公司（含已合併）</span></div>`;
+  const cos=[...new Set(P.map(p=>p.co))].sort();
+  const life=cos.filter(c=>c>="200"), prop=cos.filter(c=>c<"200");
+  $("#f-co").innerHTML+=`<optgroup label="人壽保險公司">${life.map(c=>`<option value="${c}">${CO[c]||c}</option>`).join("")}</optgroup><optgroup label="產物保險公司">${prop.map(c=>`<option value="${c}">${CO[c]||c}</option>`).join("")}</optgroup>`;
+  $("#f-type").innerHTML+=TYPE_INFO.map(t=>`<option value="${t.k}">${t.n}</option>`).join("");
+  $("#scen").innerHTML=SCEN.map(x=>`<button type="button" data-s="${x.k}" aria-pressed="false"><b>${x.n}</b><span>${x.d}</span></button>`).join("");
+  $("#scen").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;scen=scen===b.dataset.s?"":b.dataset.s;document.querySelectorAll("#scen button").forEach(x=>x.setAttribute("aria-pressed",x.dataset.s===scen));shown=30;renderList();});
+  ["q","f-co","f-type","f-term","f-form","f-era","f-off","f-grp"].forEach(id=>$("#"+id).addEventListener("input",()=>{shown=30;renderList()}));
+  $("#more").addEventListener("click",()=>{shown+=30;renderList(false)});
+  route();
+}
+
+let shown=30, lastRes=[];
+function renderList(recompute=true){
+  if(recompute){
+    const q=$("#q").value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+    const co=$("#f-co").value, ft=$("#f-type").value, term=$("#f-term").value, form=$("#f-form").value, era=$("#f-era").value;
+    const off=$("#f-off").checked, grp=$("#f-grp").checked;
+    lastRes=P.filter(p=>{
+      if(!grp && p.grp) return false;
+      if(!off && p.e) return false;
+      if(co && p.co!==co) return false;
+      if(ft!=="" && p.type!==+ft) return false;
+      if(scen && !SCEN.find(x=>x.k===scen).t.includes(p.type)) return false;
+      if(term && p.term!==+term) return false;
+      if(form!=="" && p.form!==+form) return false;
+      if(era){const y=yr(p.s); if(era==="80"&&!(y<90)) return false; if(era==="90"&&!(y>=90&&y<100)) return false; if(era==="100"&&!(y>=100&&y<110)) return false; if(era==="110"&&y<110) return false;}
+      return q.every(w=>p.key.includes(w));
+    });
+    if(q.length) lastRes.sort((a,b)=>(a.name.length-b.name.length));
+    else lastRes.sort((a,b)=>(a.e?1:0)-(b.e?1:0)||b.s.localeCompare(a.s));
+  }
+  const sc=SCEN.find(x=>x.k===scen);
+  $("#count").textContent=(sc?`「${sc.n}」時可能用得到的保單，`:"")+`找到 ${lastRes.length.toLocaleString()} 張保單`+(lastRes.length>shown?`，先顯示 ${shown} 張`:"");
+  $("#list").innerHTML=lastRes.length?lastRes.slice(0,shown).map(card).join(""):`<div class="empty">找不到符合的保單。試試只輸入名稱中的兩三個字，或勾選「包含團體保險」、放寬篩選。</div>`;
+  $("#more").hidden=lastRes.length<=shown;
+}
+function card(p){
+  return `<a class="card" href="#p${p.i}">
+    <span class="t"><b>${esc(p.name)}</b><span>${CO[p.co]||p.co}・${TYPE_INFO[p.type].n}・${FORMS[p.form]}${p.term?"・"+TERMS[p.term]:""}${p.grp?"・團體":""}</span><span>民國 ${yr(p.s)} 年開賣${p.e?`，${yr(p.e)} 年停售`:""}・${p.vers.length} 個版本</span></span>
+    <span class="side">${p.e?`<span class="pill off">已停售</span>`:`<span class="pill on">現售中</span>`}${D&&D[p.i]?`<span class="mini">有白話解讀</span>`:""}</span></a>`;
+}
+
+/* ---------- 條款整理與台灣現況 ---------- */
+let D=null;
+fetch("details.json").then(r=>r.json()).then(j=>{D=j; if(/^#p\d+$/.test(location.hash)) renderDetail(+location.hash.slice(2)); if(!$("#list").hidden&&P.length) renderList(false);}).catch(()=>{D={}});
+const TW_NOW={
+  1:{t:"實支實付的新制",b:"2024 年 10 月 1 日起新投保的實支實付醫療險回歸「損害填補」：理賠要用收據正本，同一次醫療由各家保險公司依實際支出分攤，合計不超過實際花費。新制不溯及既往，之前生效的保單仍依原條款，所以條款允許副本理賠的舊保單更要好好保留。",s:"工商時報，2024/6/17"},
+  0:{t:"住院天數變短、自費變多",b:"微創、達文西等手術普及，加上許多治療改在門診完成，住院時間常比以前短，自費醫材、自費藥物的選擇卻越來越多。只靠日額型，可能「住得短、領得少、自費卻很多」，最好搭配實支實付。",s:"一般醫療趨勢說明，個案以實際醫療情況為準"},
+  3:{t:"終身醫療當基本盤",b:"終身醫療適合當作晚年的基本住院保障，但多半有累計給付上限，日額也不會隨物價調整。現在許多治療不必長時間住院，自費項目卻增加，建議搭配實支實付補自費。",s:"一般醫療趨勢說明，個案以實際醫療情況為準"},
+  4:{t:"台灣癌症現況",b:"依國健署 2025 年 12 月公布的癌症登記報告，民國 112 年新診斷癌症 13 萬 8,051 人，平均每 3 分 48 秒就有一人罹癌，前三名是肺癌、大腸癌、女性乳癌。現在癌症治療多改在門診進行（門診化療、口服或注射標靶藥、免疫治療），部分新藥健保有給付條件限制、需要自費，所以確診一次金通常比住院日額實用。",s:"國民健康署癌症登記報告（2025/12/30 發布）"},
+  2:{t:"門診手術越來越多",b:"白內障、內視鏡、部分骨科手術現在常在門診完成。手術險要看條款附表與是否給付門診手術，表上沒有的新式手術可能要比照近似項目或不賠。",s:"一般醫療趨勢說明，個案以實際醫療情況為準"}
+};
+function detailBlock(p){
+  const x=D&&D[p.i];
+  const now=TW_NOW[p.type]?`<div class="now"><h3>對照台灣現況：${TW_NOW[p.type].t}</h3><p>${TW_NOW[p.type].b}</p><p class="fine">資料來源：${TW_NOW[p.type].s}</p></div>`:"";
+  if(D===null) return `<div class="pending"><h4>條款重點載入中…</h4></div>`+now;
+  if(!x) return `<div class="pending"><h4>條款重點整理中</h4><p>這張保單的條款還沒整理（可能是早期掃描檔或團體保險），請先依下方步驟查看官方條款。</p></div>`+now;
+  return `
+    ${x.items.length?`<div><h3>給付項目</h3><div class="chips">${x.items.map(i=>`<span>${esc(i)}</span>`).join("")}</div></div>`:""}
+    ${x.facts.length?`<div><h3>條款重點</h3><dl class="kv">${x.facts.map(f=>`<div><dt>${f[0]}</dt><dd>${esc(f[1])}</dd></div>`).join("")}</dl></div>`:""}
+    <div><h3>白話解讀</h3><div class="read">
+      <div class="good"><h4>這張的強項</h4>${x.good.length?`<ul>${x.good.map(g=>`<li>${esc(g)}</li>`).join("")}</ul>`:`<p class="fine">條款中沒有找到特別的加值項目。</p>`}</div>
+      <div class="care"><h4>要特別注意</h4>${x.care.length?`<ul>${x.care.map(g=>`<li>${esc(g)}</li>`).join("")}</ul>`:`<p class="fine">請依條款確認給付條件。</p>`}</div>
+    </div></div>
+    ${now}
+    ${x.excl.length?`<div><h3>哪些情況不賠（條款節錄）</h3><ul class="excl">${x.excl.map(e=>`<li>${esc(e)}</li>`).join("")}</ul></div>`:""}
+    <p class="fine">以上依保發中心登錄的最新版條款自動整理，不同版本的內容可能不同，實際權益以你那一版的保單條款為準。</p>`;
+}
+
+function copyText(t,out,msg){
+  const done=()=>{out.textContent=msg};
+  try{navigator.clipboard.writeText(t).then(done,()=>{out.textContent=t})}catch(e){out.textContent=t}
+}
+
+function renderDetail(i){
+  const p=P[i]; if(!p) return false;
+  const has=mine.includes(p.vers[0].id);
+  $("#detail").innerHTML=`
+    <a class="back" href="#find">← 回到保單列表</a>
+    <article class="dossier">
+      <div class="d-head">
+        <div class="row">${p.e?`<span class="pill off">已停售</span>`:`<span class="pill on">現售中</span>`}<span class="badge">${TYPE_INFO[p.type].n}</span>${p.grp?`<span class="badge">團體保險</span>`:""}</div>
+        <h2>${esc(p.name)}</h2>
+        <span class="co">${CO[p.co]||p.co}</span>
+      </div>
+      <dl class="facts" style="margin:0">
+        <div class="fact"><dt>首次開賣</dt><dd>民國 ${fmtD(p.s)}</dd></div>
+        <div class="fact"><dt>最新版本停售</dt><dd>${p.e?"民國 "+fmtD(p.e):"尚未停售"}</dd></div>
+        <div class="fact"><dt>條款版本數</dt><dd>${p.vers.length} 個</dd></div>
+        <div class="fact"><dt>主約／附約</dt><dd>${FORMS[p.form]}</dd></div>
+        <div class="fact"><dt>保障期間</dt><dd>${p.term?TERMS[p.term]:"依條款"}</dd></div>
+        <div class="fact"><dt>險種</dt><dd>${TYPE_INFO[p.type].n}</dd></div>
+      </dl>
+      <div class="d-body">
+        <div><h3>這類保單怎麼賠</h3><p class="fit">${TYPE_INFO[p.type].pays}。${TYPE_INFO[p.type].d}</p><p class="fine" style="margin-top:6px">險種由商品名稱自動判讀，實際內容以條款為準。</p></div>
+        ${detailBlock(p)}
+        <div><h3>所有版本</h3><p class="unit">同一張商品修訂過條款就會有新版本。輸入保單上的「投保日期」（契約生效日），就會標出你的那一版。</p>
+          <div class="finddate"><label for="dt">投保日期（民國）</label><input id="dt" inputmode="numeric" placeholder="例如 105/03/12" autocomplete="off"><span id="dt-out" class="fine" aria-live="polite"></span></div>
+          <div class="vers" id="vers">${p.vers.map((v,k)=>`<div data-k="${k}" class="${k===p.vers.length-1?"cur":""}"><span>${k===0?"初版":"第 "+k+" 次修訂"}<br><span class="pid">${v.id}</span></span><span>${fmtD(v.s)} ～ ${v.e?fmtD(v.e):"現在"}</span></div>`).join("")}</div></div>
+        <div><h3>查看官方條款</h3>
+          <ol class="how">
+            <li>打開保險事業發展中心「<a href="https://insprod.tii.org.tw/Query.aspx" target="_blank" rel="noopener">保險商品查詢</a>」</li>
+            <li>在「關鍵字查詢」貼上商品名稱 <button class="copy" type="button" id="cp">複製名稱</button></li>
+            <li>輸入驗證碼後查詢，依投保日期點進你的那一版，就能下載保單條款、費率表</li>
+          </ol></div>
+        <div class="actions"><button class="btn" id="add" ${has?"disabled":""}>${has?"已在我的保單裡":"加入我的保單"}</button><button class="btn ghost" type="button" id="share">複製這張保單的連結</button><span id="share-out" class="fine" aria-live="polite"></span></div>
+        <p class="fine">資料來源：財團法人保險事業發展中心保險商品資料庫。實際權益以保單條款為準。</p>
+      </div>
+    </article>`;
+  $("#dt").addEventListener("input",e=>{
+    const m=e.target.value.match(/(\d{2,3})\D*(\d{1,2})\D*(\d{1,2})/); const out=$("#dt-out");
+    document.querySelectorAll("#vers > div").forEach(d=>d.classList.remove("hit"));
+    if(!m){out.textContent="";return;}
+    const d=String(+m[1]).padStart(3,"0")+String(+m[2]).padStart(2,"0")+String(+m[3]).padStart(2,"0");
+    const k=p.vers.findIndex(v=>v.s<=d&&(!v.e||d<=v.e));
+    if(k<0){out.textContent="這個日期不在任何版本的銷售期間內，請確認日期或商品名稱。";return;}
+    const el=document.querySelector(`#vers > div[data-k="${k}"]`); el.classList.add("hit"); el.scrollIntoView({block:"nearest"});
+    out.textContent=`你的是「${k===0?"初版":"第 "+k+" 次修訂"}」。`+(k!==p.vers.length-1?"上面的條款重點是依較新的版本整理，細節可能和你的版本不同。":"");
+  });
+  $("#share").addEventListener("click",()=>copyText(location.href,$("#share-out"),"已複製連結，可以貼到 LINE 傳給客戶。"));
+  $("#cp").addEventListener("click",e=>{const b=e.currentTarget; navigator.clipboard.writeText(p.name).then(()=>b.textContent="已複製",()=>b.textContent=p.name);});
+  if(!has) $("#add").addEventListener("click",e=>{mine.push(p.vers[0].id);save();const b=e.currentTarget;b.textContent="已加入，查看我的保單 →";b.onclick=()=>{location.hash="mine"}},{once:true});
+  return true;
+}
+
+function renderMine(){
+  const list=mine.map(id=>P.find(p=>p.vers[0].id===id)).filter(Boolean);
+  const gaps=MAP_TYPES.filter(k=>!list.some(p=>p.type===k));
+  $("#mine-tools").hidden=!list.length;
+  $("#summary").textContent=list.length?`我目前的醫療保障（共 ${list.length} 張）：\n`+list.map(p=>`・${p.name}（${CO[p.co]||p.co}，${TYPE_INFO[p.type].n}）`).join("\n")+`\n\n還沒有的保障：${gaps.map(k=>TYPE_INFO[k].n).join("、")||"無"}`:"";
+  $("#mine-count").textContent=list.length?`目前有 ${list.length} 張保單`:"";
+  $("#mine-list").innerHTML=list.length?list.map(p=>`<div class="mine-row"><a class="t" href="#p${p.i}" style="text-decoration:none;color:inherit"><b>${esc(p.name)}</b><span>${CO[p.co]||p.co}・${TYPE_INFO[p.type].n}</span></a><span></span><button class="x" type="button" data-rm="${p.vers[0].id}">移除</button></div>`).join("")
+    :`<div class="empty">還沒有加入保單。到「找保單」搜尋保單上的商品名稱，打開後按「加入我的保單」。</div>`;
+  $("#map").innerHTML=MAP_TYPES.map(k=>{const ps=list.filter(p=>p.type===k||(k===3&&false));
+    return ps.length?`<div class="cell has"><span class="lab">${TYPE_INFO[k].n}</span><span class="who">${ps.map(p=>esc(p.name)).join("、")}</span></div>`
+      :`<div class="cell zero"><span class="lab">${TYPE_INFO[k].n}</span><span class="who">目前沒有這類保單</span></div>`}).join("");
+}
+$("#mine-share").addEventListener("click",()=>{const ids=mine.map(id=>P.findIndex(p=>p.vers[0].id===id)).filter(i=>i>=0);copyText(location.href.split("#")[0]+"#mine-"+ids.join("-"),$("#mine-out"),"已複製「我的保單」連結。對方打開後，就會看到同一份清單。")});
+$("#sum-copy").addEventListener("click",()=>copyText($("#summary").textContent,$("#mine-out"),"已複製文字摘要，可以直接貼到 LINE。"));
+$("#mine-list").addEventListener("click",e=>{const b=e.target.closest("[data-rm]");if(!b)return;mine=mine.filter(x=>x!==b.dataset.rm);save();renderMine()});
+
+function route(){
+  let h=location.hash.slice(1)||"find", view=h;
+  if(/^mine-[\d-]+$/.test(h)&&P.length){const ids=h.slice(5).split("-").map(Number).filter(i=>P[i]).map(i=>P[i].vers[0].id); mine=[...new Set([...mine,...ids])]; save(); history.replaceState(null,"","#mine"); h=view="mine";}
+  if(/^p\d+$/.test(h)){ view = P.length && renderDetail(+h.slice(1)) ? "detail" : "find"; }
+  if(!["learn","find","mine","detail"].includes(view)) view="find";
+  document.querySelectorAll("section[data-view]").forEach(s=>s.hidden=s.dataset.view!==view);
+  const tab=view==="detail"?"find":view;
+  document.querySelectorAll("nav a").forEach(a=>{if(a.dataset.tab===tab)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current")});
+  if(view==="find"&&P.length) renderList();
+  if(view==="mine"&&P.length) renderMine();
+  window.scrollTo(0,0);
+}
+addEventListener("hashchange",route);
+route();
+</script>
+
+</body>
+</html>
