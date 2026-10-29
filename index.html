@@ -297,6 +297,7 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 .sim-grid input[type=number],.sim-grid select{width:7em;max-width:100%;padding:6px 8px;border:1px solid var(--line);border-radius:8px;font-size:1rem;font-weight:700;color:var(--accent);background:var(--bg)}
 .sim-grid .sim-flag{display:flex;align-items:center;gap:8px;color:var(--ink);font-weight:600;align-self:end}
 .sim-grid .sim-flag input{width:20px;height:20px}
+.sim-grid .sim-surg{grid-column:1/-1}.sim-grid .sim-surg input{width:100%;max-width:28em}
 .sim-cause .q-sex{display:inline-flex;gap:10px}
 .sim-desc{margin:0;color:var(--muted);font-size:.9rem}
 .sim-total{display:grid;gap:4px;background:var(--accent-soft);border-radius:12px;padding:14px 18px}
@@ -320,6 +321,7 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 .msp-ctl label{display:grid;gap:3px;font-size:.85rem;color:var(--muted)}
 .msp-ctl input,.msp-ctl select{padding:6px 8px;border:1px solid var(--line);border-radius:8px;font-weight:700;color:var(--accent);background:var(--bg);width:9em;max-width:100%}
 .msp .sim-rows{margin:0 16px;border-radius:10px}
+.surg-tbl{border:1px solid var(--line);border-radius:12px;padding:10px 16px;background:var(--surface)}.surg-tbl>summary{cursor:pointer;font-weight:700;color:var(--accent)}.surg-tbl>summary small{display:block;font-weight:400;color:var(--muted);font-size:.85em}.surg-tbl input[type=search]{width:100%;max-width:28em;margin:10px 0;padding:8px 10px;border:1px solid var(--line);border-radius:8px;font-size:1rem}
 .ben-h{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:4px}
 .ben-h h3{margin:0}
 .bens{display:grid;gap:8px}
@@ -482,7 +484,7 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 </main>
 
 <script>
-const BUILD="1793271044";
+const BUILD="1793273015";
 const TYPE_INFO = [
   {k:0,n:"住院日額",pays:"住院一天給固定金額",d:"不看花多少錢，只看住幾天。加護病房、燒燙傷病房通常另有加給。"},
   {k:1,n:"實支實付",pays:"依收據實報實銷",d:"重點看三項限額：病房費（每天）、住院雜費（每次）、手術費（每次）。"},
@@ -926,14 +928,24 @@ route();
 
 /* ---------- 理賠模擬器 ---------- */
 const SIM_KEY=KEY+":sim", CFG_KEY=KEY+":cfg";
-const SIM_DEF={cause:"疾病",days:0,icu:0,burn:0,room:0,misc:0,surgIn:0,surgFee:0,surgOut:0,surgOutFee:0,opd:0,er:0,cancer:0,stage:"重度",major:0,disab:0,ltc:0,death:0};
+const SIM_DEF={cause:"疾病",days:0,icu:0,burn:0,room:0,misc:0,surgIn:0,surgFee:0,surgOut:0,surgOutFee:0,opd:0,er:0,cancer:0,stage:"重度",major:0,disab:0,ltc:0,death:0,surgName:""};
+const SSH={};
+function loadSurg(n){ if(!SSH[n]) SSH[n]=fetch(`s/${n}.json?v=${BUILD}`).then(r=>r.ok?r.json():null).catch(()=>null); return SSH[n]; }
+const normS=s=>String(s||"").replace(/[\s（）()「」、，,.．·‧\-－/／]/g,"").toLowerCase();
+function surgMatch(T,q){ if(!T||!q) return null; const nq=normS(q); if(!nq) return null; let best=null,bs=0; for(const [name,v,cat] of T.t){const nn=normS(name); let s=0; if(nn===nq) s=3; else if(nn.includes(nq)) s=2+nq.length/nn.length; else if(nq.includes(nn)&&nn.length>=3) s=1+nn.length/nq.length; if(s>bs){bs=s;best={name,v,cat};}} return best; }
+function surgBase(b,A,st){ if(b.pv&&st.pi>=0&&b.pv[st.pi]!=null) return [b.pv[st.pi],""]; if(A!=null) return [A,""]; const rr=(b.r||[]).filter(z=>z!=="依條款附表"); let v=st.amt>0?benAmount(rr,st.amt,st.unit):null; let note=""; const m=rr.map(z=>z.match(/^(?:保額|日額) × ([\d.]+) 倍$/)).find(Boolean); if(m&&+m[1]<1&&/第一(?:保險單|保單)年度/.test(b.d||"")){ v=st.amt; note="（第一保單年度為 "+m[1]+" 倍）"; } if(v==null&&st.amt>0&&!st.unit) v=st.amt; return [v,note]; }
+function surgPay(b,A,st,S,T,real){ const m=surgMatch(T,S.surgName); if(!m) return null;
+  if(T.u==="元"){ const k=st.unit&&st.amt>0?st.amt:1; return {v:m.v*k,calc:`${m.name}：給付金額表 ${fmtN(m.v)} 元${k>1?` × ${k} 單位`:""}`}; }
+  const [base,note]=surgBase(b,A,st); if(base==null) return {v:0,calc:"",nobase:true};
+  if(T.u==="%"){ const v=real?Math.min(S.surgFee||base,base*m.v/100):base*m.v/100; return {v,calc:`${m.name} 比率 ${m.v}%：${fmtN(base)} 元 × ${m.v}%${real?`（自費 ${fmtN(S.surgFee)} 元以內）`:""} = ${fmtN(v)} 元${note}`}; }
+  const v=base*m.v; return {v,calc:`${m.name} ${m.v} 倍：${fmtN(base)} 元 × ${m.v} = ${fmtN(v)} 元${note}`}; }
 function defAmt(p,R,X){ if(R&&R.b===1) return 1; if((R&&/日額/.test(R.u))||(R&&R.b===100)||(!R&&guessUnit(X)==="日額")) return 1000; if((p.type===7||p.type===8)&&R&&R.b<=1000) return 10000; return 100000; }
 function guessUnit(X){ const b=X&&X.ben||[]; let d=0,a=0; for(const x of b){ for(const z of (x.r||[])){ if(/^日額 ×/.test(z)) d++; else if(/^保額/.test(z)||z==="給付保額") a++; } if(/住院日額|日額保險金/.test(x.n)) d++; } return d>a?"日額":"保額"; }
 const SIM_PRESETS=[
-  {k:"appx",t:"盲腸炎住院開刀",d:"疾病・住院 4 天、住院手術 1 次、自費約 5 萬",S:{cause:"疾病",days:4,room:2500,misc:30000,surgIn:1,surgFee:20000,opd:2,er:1}},
-  {k:"car",t:"車禍骨折住院",d:"意外・住院 7 天（加護 2 天）、手術 1 次",S:{cause:"意外",days:7,icu:2,room:3000,misc:40000,surgIn:1,surgFee:30000,opd:3,er:1}},
+  {k:"appx",t:"盲腸炎住院開刀",d:"疾病・住院 4 天、住院手術 1 次、自費約 5 萬",S:{cause:"疾病",days:4,room:2500,misc:30000,surgIn:1,surgFee:20000,opd:2,er:1,surgName:"闌尾切除"}},
+  {k:"car",t:"車禍骨折住院",d:"意外・住院 7 天（加護 2 天）、手術 1 次",S:{cause:"意外",days:7,icu:2,room:3000,misc:40000,surgIn:1,surgFee:30000,opd:3,er:1,surgName:"骨折復位"}},
   {k:"cancer",t:"初次罹患癌症",d:"確診癌症・住院 10 天、手術 1 次、門診治療 6 次",S:{cause:"疾病",cancer:1,days:10,room:3000,misc:80000,surgIn:1,surgFee:50000,opd:6}},
-  {k:"cataract",t:"白內障門診手術",d:"門診手術 1 次、自費水晶體 6 萬，未住院",S:{cause:"疾病",surgOut:1,surgOutFee:60000,opd:2}},
+  {k:"cataract",t:"白內障門診手術",d:"門診手術 1 次、自費水晶體 6 萬，未住院",S:{cause:"疾病",surgOut:1,surgOutFee:60000,opd:2,surgName:"白內障"}},
   {k:"stroke",t:"中風（重大傷病）",d:"重大傷病・住院 20 天（加護 5 天）",S:{cause:"疾病",major:1,days:20,icu:5,room:2500,misc:60000,opd:4}},
   {k:"ltc",t:"重度失能需長照",d:"第 1 級失能、符合長照狀態",S:{cause:"疾病",disab:1,ltc:1,days:30,icu:5,room:2000,misc:50000}},
 ];
@@ -1020,9 +1032,13 @@ function simItem(b,A,S,pol,X){
   if(/安寧|緩和/.test(n)) return skip("安寧療護才給付");
   if(/燒燙傷/.test(n)&&/病房|中心|住院|日額/.test(n)){ if(!S.burn) return skip("住燒燙傷病房才給付"); if(A==null) return need("燒"); const d=capD(S.burn); return pay(A*d,`${fx(A)} × ${d} 天`,"燒"); }
   if(/加護|特別病房|特定病房/.test(n)){ if(!S.icu) return skip("住加護病房才給付"); if(A==null) return need("加護"); const d=capD(S.icu); return pay(A*d,`${fx(A)} × ${d} 天`,"加護"); }
-  if(/門診手術/.test(n)){ if(!S.surgOut) return skip("門診手術才給付"); if(A==null) return need("門手"); if(real){const ded=b._ded||0; const v=Math.max(0,Math.min(S.surgOutFee,A)-ded); return pay(v*S.surgOut,`${fx(v)}（自費 ${fx(S.surgOutFee)}，上限 ${fx(A)}${ded?`，扣自負額 ${fx(ded)}`:""}）× ${S.surgOut} 次`,"門手");} return pay(A*capN(S.surgOut),`${fx(A)} × ${capN(S.surgOut)} 次`,"門手"); }
+  if(/門診手術/.test(n)){ if(!S.surgOut) return skip("門診手術才給付");
+    if(r.includes("依條款附表")&&X._surg&&S.surgName){ const sp=surgPay(b,A,X._st||{amt:0,pi:-1},Object.assign({},S,{surgFee:S.surgOutFee}),X._surg,real); if(sp&&sp.nobase) return need("門手"); if(sp) return pay(sp.v*S.surgOut,sp.calc+(S.surgOut>1?` × ${S.surgOut} 次`:""),"門手"); return skip(`倍數表找不到「${S.surgName}」`); }
+    if(A==null) return need("門手"); if(real){const ded=b._ded||0; const v=Math.max(0,Math.min(S.surgOutFee,A)-ded); return pay(v*S.surgOut,`${fx(v)}（自費 ${fx(S.surgOutFee)}，上限 ${fx(A)}${ded?`，扣自負額 ${fx(ded)}`:""}）× ${S.surgOut} 次`,"門手");} return pay(A*capN(S.surgOut),`${fx(A)} × ${capN(S.surgOut)} 次`,"門手"); }
   if(real&&/雜費|各項費用|醫療費用/.test(n)&&/手術/.test(n)&&!/門診/.test(n)){ if(!S.days&&!S.misc) return skip("住院才給付"); if(A==null) return need("雜費"); const exp=S.misc+S.surgFee; const ded=b._ded||0; const v=Math.max(0,Math.min(exp,A)-ded); return pay(v,`自費 ${fx(exp)}（雜費＋手術費），上限 ${fx(A)}${ded?`，扣自負額 ${fx(ded)}`:""} → ${fx(v)}`,"雜費"); }
-  if(/手術|處置/.test(n)&&!/前後/.test(n)){ if(!S.surgIn) return skip("住院手術才給付"); if(A==null) return need("手術"); if(byDay&&!real){ if(!S.days) return skip("住院才給付"); const d=capD(S.days); return pay(A*d,`${fx(A)} × 住院 ${d} 天`,"住院"); } if(real){const ded=b._ded||0; const v=Math.max(0,Math.min(S.surgFee,A)-ded); return pay(v*S.surgIn,`${fx(v)}（自費 ${fx(S.surgFee)}，上限 ${fx(A)}${ded?`，扣自負額 ${fx(ded)}`:""}）× ${S.surgIn} 次`,"手術");} return pay(A*capN(S.surgIn),`${fx(A)} × ${capN(S.surgIn)} 次`,"手術"); }
+  if(/手術|處置/.test(n)&&!/前後/.test(n)){ if(!S.surgIn) return skip("住院手術才給付");
+    if(r.includes("依條款附表")&&X._surg&&S.surgName&&/手術/.test(n)){ const sp=surgPay(b,A,X._st||{amt:0,pi:-1},S,X._surg,real); if(sp&&sp.nobase) return need("手術"); if(sp) return pay(sp.v*S.surgIn,sp.calc+(S.surgIn>1?` × ${S.surgIn} 次`:""),"手術"); return skip(`倍數表找不到「${S.surgName}」`); }
+    if(A==null) return need("手術"); if(byDay&&!real){ if(!S.days) return skip("住院才給付"); const d=capD(S.days); return pay(A*d,`${fx(A)} × 住院 ${d} 天`,"住院"); } if(real){const ded=b._ded||0; const v=Math.max(0,Math.min(S.surgFee,A)-ded); return pay(v*S.surgIn,`${fx(v)}（自費 ${fx(S.surgFee)}，上限 ${fx(A)}${ded?`，扣自負額 ${fx(ded)}`:""}）× ${S.surgIn} 次`,"手術");} return pay(A*capN(S.surgIn),`${fx(A)} × ${capN(S.surgIn)} 次`,"手術"); }
   if(/醫材|特定(?:處置|項目)/.test(n)) return skip("依條款附表的醫材／處置項目才給付");
   if(/病房費/.test(n)){ if(!S.days) return skip("住院才給付"); if(A==null) return need("病房");
     const icuM=(b.sub||[]).find(z=>/加護/.test(z.n)), burnM=(b.sub||[]).find(z=>/燒燙傷/.test(z.n));
@@ -1050,6 +1066,7 @@ function simItem(b,A,S,pol,X){
 }
 function simRun(X,st,S,pol){
   const rows=[]; const bens=X&&X.ben||[];
+  X._st=st;
   bens.forEach(b=>{b.ei=!!(X.either&&/日額保險金選擇權|日額選擇|轉換.*日額|日額保險金$/.test(b.n)&&!/^住院日額/.test(b.n)); const f=benFreq(b); const A=itemAmount(b,st,f); b._ded=(b.dv&&st.pi>=0&&b.dv[st.pi])||0; rows.push(simItem(b,A,S,pol,X));});
   let note="";
   if(X&&X.either){ const alt=rows.find(r=>r.b.ei); const reals=rows.filter(r=>!r.b.ei&&/病房|雜費|手術/.test(r.kind)&&r.kind!=="門手");
@@ -1067,6 +1084,7 @@ function simFormHTML(id){
     <div class="sim-grid">
       <label class="sim-cause"><span>事故原因</span><span class="q-sex" role="group"><button type="button" data-cause="疾病" aria-pressed="${S.cause!=="意外"}">疾病</button><button type="button" data-cause="意外" aria-pressed="${S.cause==="意外"}">意外</button></span></label>
       ${SIM_FIELDS.map(([k,l,u])=>`<label><span>${l}</span><span><input type="number" inputmode="numeric" min="0" data-sim="${k}" value="${S[k]||0}"> ${u}</span></label>`).join("")}
+      <label class="sim-surg"><span>手術名稱（有倍數表的保單會用來算手術給付）</span><span><input type="text" data-sim="surgName" list="${id}-surglist" placeholder="例如 闌尾切除、白內障" value="${esc(S.surgName||"")}"><datalist id="${id}-surglist"></datalist></span></label>
       ${SIM_FLAGS.map(([k,l])=>`<label class="sim-flag"><input type="checkbox" data-sim="${k}" ${S[k]?"checked":""}> ${l}</label>`+(k==="cancer"?`<label class="sim-flag"><span>癌症程度</span><select data-sim="stage"><option value="重度" ${S.stage!=="初期"?"selected":""}>重度（侵襲性）</option><option value="初期" ${S.stage==="初期"?"selected":""}>初期／輕度（原位癌）</option></select></label>`:"")).join("")}
       <label class="sim-flag"><span>失能等級</span><select data-sim="disab"><option value="0">無</option>${[1,2,3,4,5,6,7,8,9,10,11].map(k=>`<option value="${k}" ${S.disab===k?"selected":""}>第 ${k} 級（${Math.round(DISAB_RATIO[k]*100)}%）</option>`).join("")}</select></label>
     </div></details>`;
@@ -1075,14 +1093,14 @@ function simDesc(S){
   const a=[S.cause==="意外"?"意外":"疾病"];
   if(S.cancer) a.push("初次確診癌症（"+(S.stage==="初期"?"初期／輕度":"重度")+"）"); if(S.major) a.push("重大傷病"); if(S.disab) a.push(`第 ${S.disab} 級失能`); if(S.ltc) a.push("長照狀態"); if(S.death) a.push("身故");
   if(S.days) a.push(`住院 ${S.days} 天`+(S.icu?`（加護 ${S.icu} 天）`:"")+(S.burn?`（燒燙傷病房 ${S.burn} 天）`:""));
-  if(S.surgIn) a.push(`住院手術 ${S.surgIn} 次`); if(S.surgOut) a.push(`門診手術 ${S.surgOut} 次`); if(S.opd) a.push(`門診 ${S.opd} 次`); if(S.er) a.push(`急診 ${S.er} 次`);
+  if(S.surgIn) a.push(`住院手術 ${S.surgIn} 次`+(S.surgName?`（${S.surgName}）`:"")); if(S.surgOut) a.push(`門診手術 ${S.surgOut} 次`); if(S.opd) a.push(`門診 ${S.opd} 次`); if(S.er) a.push(`急診 ${S.er} 次`);
   const exp=S.room*S.days+S.misc+S.surgFee+S.surgOutFee; if(exp) a.push(`自費約 ${fmtN(exp)} 元`);
   return a.join("・");
 }
 function simWire(root,onChange){
   root.querySelectorAll("[data-preset]").forEach(b=>b.addEventListener("click",()=>{const k=b.dataset.preset; SIM=Object.assign({},SIM_DEF,k==="clear"?{}:SIM_PRESETS.find(p=>p.k===k).S); simSave(); root.querySelectorAll("[data-sim]").forEach(e=>{const v=SIM[e.dataset.sim]; if(e.type==="checkbox") e.checked=!!v; else e.value=v||0;}); root.querySelectorAll("[data-cause]").forEach(e=>e.setAttribute("aria-pressed",e.dataset.cause===SIM.cause)); onChange();}));
   root.querySelectorAll("[data-cause]").forEach(b=>b.addEventListener("click",()=>{SIM.cause=b.dataset.cause; root.querySelectorAll("[data-cause]").forEach(e=>e.setAttribute("aria-pressed",e.dataset.cause===SIM.cause)); simSave(); onChange();}));
-  root.querySelectorAll("[data-sim]").forEach(e=>e.addEventListener("input",()=>{const k=e.dataset.sim; SIM[k]=e.type==="checkbox"?(e.checked?1:0):(k==="stage"?e.value:Math.max(0,+e.value||0)); if(k==="icu"||k==="burn"){if(SIM.icu+SIM.burn>SIM.days){SIM.days=SIM.icu+SIM.burn; const d=root.querySelector('[data-sim="days"]'); if(d) d.value=SIM.days;}} if(k==="days"&&SIM.icu+SIM.burn>SIM.days){SIM.icu=Math.min(SIM.icu,SIM.days);SIM.burn=Math.max(0,Math.min(SIM.burn,SIM.days-SIM.icu)); root.querySelector('[data-sim="icu"]').value=SIM.icu; root.querySelector('[data-sim="burn"]').value=SIM.burn;} simSave(); onChange();}));
+  root.querySelectorAll("[data-sim]").forEach(e=>e.addEventListener("input",()=>{const k=e.dataset.sim; SIM[k]=e.type==="checkbox"?(e.checked?1:0):((k==="stage"||k==="surgName")?e.value:Math.max(0,+e.value||0)); if(k==="icu"||k==="burn"){if(SIM.icu+SIM.burn>SIM.days){SIM.days=SIM.icu+SIM.burn; const d=root.querySelector('[data-sim="days"]'); if(d) d.value=SIM.days;}} if(k==="days"&&SIM.icu+SIM.burn>SIM.days){SIM.icu=Math.min(SIM.icu,SIM.days);SIM.burn=Math.max(0,Math.min(SIM.burn,SIM.days-SIM.icu)); root.querySelector('[data-sim="icu"]').value=SIM.icu; root.querySelector('[data-sim="burn"]').value=SIM.burn;} simSave(); onChange();}));
 }
 function simRowsHTML(res,showAll){
   const paid=res.rows.filter(r=>r.pay>0), other=res.rows.filter(r=>!(r.pay>0));
@@ -1090,10 +1108,13 @@ function simRowsHTML(res,showAll){
   return paid.map(row).join("")+(other.length?`<details class="sr-more"><summary>這次不給付或無法換算的 ${other.length} 項</summary>${other.map(row).join("")}</details>`:"");
 }
 function simSectionHTML(){ return `<section class="sim" id="sim"><div class="claims-h"><h3>理賠模擬：發生這些事，這張可以領多少？</h3></div>
-  ${simFormHTML("sim")}<p class="sim-desc" id="sim-desc"></p><div id="sim-out"></div>
+  ${simFormHTML("sim")}<p class="sim-desc" id="sim-desc"></p><div id="sim-out"></div><div id="surg-box"></div>
   <p class="fine">依上方試算的保額／計劃換算；實支實付以輸入的自費金額與條款限額取較低者。手術依倍數表給付、特定醫材等無法自動換算的項目不計入。實際理賠以條款、收據與保險公司審核為準。</p></section>`; }
+function fillSurgList(id,T){ const dl=document.getElementById(id+"-surglist"); if(!dl||!T) return; const seen=new Set(); dl.innerHTML=T.t.filter(([n])=>{if(seen.has(n))return false;seen.add(n);return true;}).slice(0,400).map(([n,v])=>`<option value="${esc(n)}">${T.u==="%"?v+"%":v+" 倍"}</option>`).join(""); }
 function simRender(X,st,pol){
   const out=document.getElementById("sim-out"); if(!out) return;
+  if(X._surg===undefined){ X._surg=null; const need=(X.ben||[]).some(b=>(b.r||[]).includes("依條款附表")&&/手術|處置/.test(b.n)); if(need){ loadSurg(Math.floor(pol.i/200)).then(j=>{ X._surg=j&&j[pol.i]||null; if(X._surg){fillSurgList("sim",X._surg); renderSurgBox(X,st); simRender(X,st,pol);} }); } }
+  else if(X._surg&&!document.querySelector("#surg-box .surg-tbl")) renderSurgBox(X,st);
   const res=simRun(X,st,SIM,pol); const d=document.getElementById("sim-desc"); if(d) d.textContent="情境："+simDesc(SIM);
   out.innerHTML=`<div class="sim-total"><span>這張保單合計可領（約）</span><b>${fmtN(res.total)} 元</b>${res.per?`<small>另外每期 ${fmtN(res.per)} 元（分期／長照給付）</small>`:""}${res.note?`<small>${esc(res.note)}</small>`:""}${res.unknown.length?`<small>還有 ${res.unknown.length} 項（${res.unknown.map(r=>simN(r.b.n)).slice(0,3).join("、")}${res.unknown.length>3?"…":""}）無法換算，實際可領會更多</small>`:""}</div><div class="sim-rows">${simRowsHTML(res)}</div>`;
 }
@@ -1118,6 +1139,7 @@ function renderMineSim(list){
     const parts=[]; let grand=0, per=0;
     for(const p of list){ const n=Math.floor(p.i/200); const X=p.hd?(await loadShard(n)||{})[p.i]:null; const R=p.hr?((await loadRate(n))||{})[p.i]:null;
       if(!X||!X.ben||!X.ben.length){parts.push(`<div class="msp"><div class="msp-h"><b>${esc(p.name)}</b><span class="fine">條款還沒整理，無法模擬</span></div></div>`);continue;}
+      if(X._surg===undefined){ X._surg=null; if((X.ben||[]).some(b=>(b.r||[]).includes("依條款附表")&&/手術|處置/.test(b.n))){ const sj=await loadSurg(Math.floor(p.i/200)); X._surg=sj&&sj[p.i]||null; } }
       const id=p.vers[0].id; const {st,plans,needAmt}=mineSt(p,X,R,CFG[id]); const res=simRun(X,st,SIM,p); grand+=res.total; per+=res.per;
       const ctl=`${plans.length?`<label>計劃別<select data-cfg="plan" data-id="${id}">${plans.map(v=>`<option ${v===st.plan?"selected":""}>${esc(v)}</option>`).join("")}</select></label>`:""}${needAmt?`<label>${st.unit?"投保單位":(R&&/日額/.test(R.u)?"住院日額":"保額")}<input type="number" inputmode="numeric" data-cfg="amt" data-id="${id}" value="${st.amt}"></label>`:""}`;
       parts.push(`<details class="msp"><summary><div class="msp-h"><b>${esc(p.name)}</b><span class="msp-a">${fmtN(res.total)} 元${res.per?` ＋ 每期 ${fmtN(res.per)} 元`:""}</span></div><small>${CO[p.co]||p.co}・${TYPE_INFO[p.type].n}${st.prem?`・年繳約 ${fmtN(st.prem)} 元`:""}${res.unknown.length?`・另有 ${res.unknown.length} 項無法換算`:""}</small></summary><div class="msp-ctl">${ctl||`<span class="fine">依條款附表給付，不需設定保額</span>`}</div><div class="sim-rows">${simRowsHTML(res)}</div></details>`);}
@@ -1126,7 +1148,17 @@ function renderMineSim(list){
   };
   simWire(document.getElementById("msim"),run); run();
 }
-</script>
+
+function renderSurgBox(X,st){
+  const box=document.getElementById("surg-box"); const T=X._surg; if(!box||!T) return;
+  const base=(st&&st.amt>0)?st.amt:null;
+  const row=([n,v,c])=>`<div class="sr on"><div class="sr-n"><b>${esc(n)}</b>${c?`<small>${esc(c)}</small>`:""}</div><div class="sr-a">${T.u==="%"?v+"%":v+" 倍"+(base?`・約 ${fmtN(base*v)} 元`:"")}</div></div>`;
+  box.innerHTML=`<details class="surg-tbl"><summary>手術倍數表（${T.t.length} 項）<small>輸入手術名稱查這張保單給付多少倍</small></summary>
+    <input type="search" id="surg-q" placeholder="搜尋手術名稱，例如 闌尾、白內障、膝關節" autocomplete="off">
+    <div class="sim-rows" id="surg-list">${T.t.slice(0,30).map(row).join("")}${T.t.length>30?`<div class="sr off"><div class="sr-n">…輸入關鍵字看更多</div></div>`:""}</div>
+    <p class="fine">${T.u==="%"?"數字是手術費用限額的給付比率。":"數字是倍數，乘上手術保險金額（通常等於投保的日額或保額）就是給付金額。"}表上沒有的手術，依條款多半比照程度相當的項目或由保險公司協議。</p></details>`;
+  const q=document.getElementById("surg-q"); q.addEventListener("input",()=>{const k=normS(q.value); const L=k?T.t.filter(([n])=>normS(n).includes(k)):T.t.slice(0,30); document.getElementById("surg-list").innerHTML=L.slice(0,80).map(row).join("")||`<div class="sr off"><div class="sr-n">找不到，試試別的關鍵字</div></div>`;});
+}</script>
 
 </body>
 </html>
