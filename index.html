@@ -349,7 +349,7 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 .cmp-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:start}@media (max-width:900px){.cmp-grid{grid-template-columns:1fr}}.cmp-card{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);padding:14px 16px;display:grid;gap:10px}.cmp-card h3{margin:0;font-size:1.25rem}.cmp-h{display:flex;justify-content:space-between;align-items:center}.cmp-desc{margin:0;color:var(--muted);font-size:.9rem}.cmp-prem{background:var(--accent-soft);border-radius:10px;padding:10px 14px;display:grid}.cmp-prem span{font-weight:700;font-size:.85rem}.cmp-prem b{font-size:1.7rem;color:var(--accent);font-variant-numeric:tabular-nums}.cmp-comps{display:grid;gap:6px}.cmp-comp{display:flex;justify-content:space-between;gap:10px;font-size:.9rem;border-bottom:1px dashed var(--line);padding-bottom:6px}.cmp-comp small{display:block;color:var(--muted);font-size:.78rem}.cmp-comp span:last-child{white-space:nowrap;font-variant-numeric:tabular-nums}.cmp-card h4{margin:6px 0 0;font-size:1rem}.cmp-rows{display:grid;border:1px solid var(--line);border-radius:10px;overflow:hidden}.cmp-rows .sr{padding:8px 12px}.cmp-v{display:grid;gap:8px}.cmp-v h4{margin:0 0 4px}.cmp-v ul{margin:0;padding-left:18px;font-size:.9rem;line-height:1.6}.cmp-ctl label span:last-child{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.cmp-it span small{display:block;color:var(--muted);font-size:.75rem}
 .scen-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0 14px}.scen-bar input{flex:1;min-width:160px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;font-size:1rem;background:var(--surface);color:var(--ink)}.scen-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}.scen-card{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:12px 14px;display:grid;gap:6px;align-content:start}.scen-card.on{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}.scen-card h4{margin:0;font-size:1.02rem}.scen-card .d{color:var(--muted);font-size:.88rem}.scen-card .amt{display:flex;justify-content:space-between;align-items:baseline;font-size:.88rem;color:var(--muted)}.scen-card .amt b{font-size:1.25rem;color:var(--warn);font-variant-numeric:tabular-nums}.scen-card .cat{font-size:.75rem;color:var(--accent);font-weight:700}.scen-card .acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}.scen-card .acts .btn{padding:7px 12px;font-size:.9rem}.scen-detail{grid-column:1/-1}.scen-now{border:1px solid var(--accent);border-radius:12px;padding:12px 16px;background:var(--accent-soft);display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}.scen-now b{font-size:1.05rem}
 .cmp-top{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:20px;align-items:start}@media (max-width:980px){.cmp-top{grid-template-columns:1fr}}
-.cmap{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px 20px 16px;box-shadow:var(--shadow);display:grid;gap:14px}
+.cmap{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px 20px 16px;box-shadow:var(--shadow);display:grid;gap:14px;container-type:inline-size}
 .cmap-h{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.cmap-h h3{font-size:1.6rem}.cmap-now{background:var(--accent-soft);color:var(--accent);border-radius:99px;padding:5px 14px;font-size:.88rem;font-weight:700}.cmap-now b{color:var(--ink)}
 .cmap-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(190px,.8fr) minmax(0,1fr);grid-template-rows:auto auto;gap:14px 22px;align-items:stretch;position:relative}
 .cm{border:1px solid var(--line);border-radius:16px;padding:16px 16px 12px;display:grid;gap:6px;align-content:start;background:var(--surface);position:relative}
@@ -361,6 +361,7 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 .cm::after{content:"";position:absolute;top:50%;width:22px;height:2px;background:var(--line)}.cm.l::after{right:-22px}.cm.r::after{left:-22px}
 .cm-c{grid-column:2;grid-row:1/3;align-self:center;background:var(--surface);border:2px solid var(--accent);border-radius:18px;overflow:hidden;text-align:center;box-shadow:var(--shadow)}
 .cm-c h4{margin:0;background:var(--accent);color:var(--accent-ink);padding:12px;font-size:1.3rem}.cm-c .p{padding:16px 12px}.cm-c .p span{display:block;font-weight:700;color:var(--muted);font-size:.9rem}.cm-c .p b{display:block;font-size:2.1rem;color:var(--accent);font-variant-numeric:tabular-nums;line-height:1.15}.cm-c .p b small{font-size:1rem;margin-right:4px}.cm-c .p .fine{display:block;margin-top:4px}
+@container (max-width:680px){.cmap-grid{grid-template-columns:1fr 1fr}.cm-c{grid-column:1/-1;grid-row:1}.cm::after{display:none}.cm p{min-height:0}}
 @media (max-width:640px){.cmap-grid{grid-template-columns:1fr 1fr}.cm-c{grid-column:1/-1;grid-row:1}.cm::after{display:none}.cm p{min-height:0}}
 .cmap-sc{display:grid;gap:8px}.cmap-sc>span{text-align:center;color:var(--muted);font-size:.9rem;display:flex;align-items:center;gap:12px}.cmap-sc>span::before,.cmap-sc>span::after{content:"";flex:1;height:1px;background:var(--line)}
 .cmap-sc .row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
@@ -594,7 +595,7 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 </main>
 
 <script>
-const BUILD="1793287079";
+const BUILD="1793287195";
 const TYPE_INFO = [
   {k:0,n:"住院日額",pays:"住院一天給固定金額",d:"不看花多少錢，只看住幾天。加護病房、燒燙傷病房通常另有加給。"},
   {k:1,n:"實支實付",pays:"依收據實報實銷",d:"重點看三項限額：病房費（每天）、住院雜費（每次）、手術費（每次）。"},
@@ -1377,9 +1378,9 @@ function renderCalc(){
 /* ---------- 保單比較／罐頭組合 ---------- */
 const CMP_KEY=KEY+":cmp";
 const BUNDLE_PRESETS=[
- {id:"A",name:"小資實支型",desc:"預算有限的年輕人：台壽實支實付當主約帶手術、失能附約；全球、富邦各用 10 萬的一年期重大疾病當門票主約，帶重大傷病、癌症附約。",items:[{i:999,plan:"計劃三"},{i:996,plan:"計劃一"},{i:1051,amt:3000000},{i:4846,amt:100000},{i:4853,amt:1000},{i:4844,amt:1000000},{i:2975,amt:100000},{i:2990,amt:1000000}]},
- {id:"B",name:"均衡型",desc:"國泰終身醫療主約帶自負額實支附約當底；全球、富邦、台壽各用 10 萬的一年期重大疾病當門票主約，帶實支、重大傷病、癌症、失能附約。",items:[{i:1718,amt:2000,y:"20年期"},{i:1763,plan:"計劃2"},{i:4846,amt:100000},{i:4841,plan:"計劃2"},{i:4844,amt:1000000},{i:2975,amt:100000},{i:2990,amt:1000000},{i:1130,amt:100000},{i:1051,amt:3000000}]},
- {id:"C",name:"全面型",desc:"預算充足：遠雄終身醫療主約帶實支與終身手術附約，凱基長照主約帶癌症與重疾附約，台壽主約帶失能附約。",items:[{i:3542,amt:2000,y:"20年期"},{i:3671,plan:"計劃二"},{i:3543,amt:1000,y:"20年期"},{i:3665,amt:1000000},{i:2077,amt:10000,y:"20年期"},{i:2059,amt:1000000},{i:2006,amt:1000000},{i:1130,amt:100000},{i:1051,amt:3000000}]},
+ {id:"A",name:"小資實支型",sub:"基本保障，預算優先",desc:"預算有限的年輕人：台壽實支實付當主約帶手術、失能附約；全球、富邦各用 10 萬的一年期重大疾病當門票主約，帶重大傷病、癌症附約。",items:[{i:999,plan:"計劃三"},{i:996,plan:"計劃一"},{i:1051,amt:3000000},{i:4846,amt:100000},{i:4853,amt:1000},{i:4844,amt:1000000},{i:2975,amt:100000},{i:2990,amt:1000000}]},
+ {id:"B",name:"均衡型",sub:"保障較完整，兼顧預算與保障",desc:"國泰終身醫療主約帶自負額實支附約當底；全球、富邦、台壽各用 10 萬的一年期重大疾病當門票主約，帶實支、重大傷病、癌症、失能附約。",items:[{i:1718,amt:2000,y:"20年期"},{i:1763,plan:"計劃2"},{i:4846,amt:100000},{i:4841,plan:"計劃2"},{i:4844,amt:1000000},{i:2975,amt:100000},{i:2990,amt:1000000},{i:1130,amt:100000},{i:1051,amt:3000000}]},
+ {id:"C",name:"全面型",sub:"更全面的保障，強化重大風險",desc:"預算充足：遠雄終身醫療主約帶實支與終身手術附約，凱基長照主約帶癌症與重疾附約，台壽主約帶失能附約。",items:[{i:3542,amt:2000,y:"20年期"},{i:3671,plan:"計劃二"},{i:3543,amt:1000,y:"20年期"},{i:3665,amt:1000000},{i:2077,amt:10000,y:"20年期"},{i:2059,amt:1000000},{i:2006,amt:1000000},{i:1130,amt:100000},{i:1051,amt:3000000}]},
 ];
 const FORM_LAB=["主約","附約","附加條款"];
 /* 規則：同一家壽險公司＝一張主約＋掛在它下面的附約；附約不能單獨買 */
@@ -1433,7 +1434,7 @@ function renderCompare(){
   if(CMP.sel==null||!CMP.b[CMP.sel]) CMP.sel=Math.min(1,CMP.b.length-1); if(!CMP.sc||!SIM_PRESETS.some(p=>p.k===CMP.sc)) CMP.sc="cancer";
   box.innerHTML=`<div class="cmp-top"><div class="cmap" id="cmap"><div class="cmap-h"><h3>保障地圖</h3><span class="cmap-now">計算中…</span></div></div><aside class="cside" id="cside"><h3>三種組合</h3><p class="fine">計算保費中…</p></aside></div>
     <details class="cmp-detail" id="cmp-detail"><summary>三組逐項比較：保費明細、六種情境可領多少、勝在哪／弱在哪</summary><div class="cmp-grid" id="cmp-grid">${CMP.b.map((b,k)=>`<div class="cmp-card" data-k="${k}"><h3>${esc(b.name)}</h3><p class="fine">計算中…</p></div>`).join("")}</div></details>`;
-  (async()=>{ const results=[]; for(const b of CMP.b) results.push(await bundleCalc(b)); const V=cmpVerdict(results); LAST_CMP={results,V}; if(document.getElementById("cmap")) cmpDraw(); })();
+  (async()=>{ try{ const results=[]; for(const b of CMP.b) results.push(await bundleCalc(b)); const V=cmpVerdict(results); LAST_CMP={results,V}; if(document.getElementById("cmap")) cmpDraw(); }catch(e){ const n=document.querySelector("#cmap .cmap-now"); if(n) n.textContent="計算失敗："+e.message; console.error(e);} })();
 }
 function cmpDraw(){
   const {results,V}=LAST_CMP; const k=CMP.sel, b=CMP.b[k], r=results[k]; const sc=SIM_PRESETS.find(p=>p.k===CMP.sc)||SIM_PRESETS[0];
@@ -1449,7 +1450,7 @@ function cmpDraw(){
     <div class="cmap-grid">${cm(cards[0])}<div class="cm-c"><h4>${esc(b.name)}</h4><div class="p"><span>年繳保費</span><b><small>NT$</small>${f(r.prem)}</b><span class="fine">${CMP.age} 歲${CMP.s}性・${r.comps.length} 張保單</span></div></div>${cm(cards[1])}${cm(cards[2])}${cm(cards[3])}</div>
     <div class="cmap-sc"><span>切換情境</span><div class="row">${SIM_PRESETS.map(p=>`<button type="button" class="scb" aria-pressed="${p.k===CMP.sc}" data-sc="${p.k}"><b>${esc(p.t)}</b><span>${esc(p.d)}</span></button>`).join("")}</div></div>`;
   document.getElementById("cside").innerHTML=`<div class="who"><span>投保</span><input type="number" inputmode="numeric" min="0" max="80" id="cmp-age" value="${CMP.age}"><span>歲・</span><select id="cmp-s"><option ${CMP.s==="男"?"selected":""}>男</option><option ${CMP.s==="女"?"selected":""}>女</option></select><span>性</span></div>
-    <h3>三種組合</h3><div class="bsel">${CMP.b.map((x,j)=>`<button type="button" class="bopt" aria-pressed="${j===k}" data-sel="${j}"><span class="rad"></span><span><b>${esc(x.name)}</b><small>${esc((x.desc||"").split("：")[0].slice(0,22))}</small></span><span class="pr">NT$ ${f(results[j].prem)}<small> ／年</small></span></button>`).join("")}</div>
+    <h3>三種組合</h3><div class="bsel">${CMP.b.map((x,j)=>`<button type="button" class="bopt" aria-pressed="${j===k}" data-sel="${j}"><span class="rad"></span><span><b>${esc(x.name)}</b><small>${esc(x.sub||(x.desc||"").slice(0,18))}</small></span><span class="pr">NT$ ${f(results[j].prem)}<small> ／年</small></span></button>`).join("")}</div>
     <h3>情境結果</h3><div class="cres"><select id="cres-sc">${SIM_PRESETS.map(p=>`<option value="${p.k}" ${p.k===CMP.sc?"selected":""}>${esc(p.t)}</option>`).join("")}</select><span class="lab">模擬給付</span><div class="big">${fmtWan(r.tot[sc.k])}</div><div class="note">「${esc(sc.t)}」（${esc(sc.d)}）在「${esc(b.name)}」下的試算理賠合計；依現售條款邏輯換算，實際以保險公司審核為準。${r.unknown?`另有 ${r.unknown} 個項目無法自動換算。`:""}</div></div>
     <button type="button" class="btn wide" id="cmp-adjust">調整組合 ›</button>
     <div class="actions"><button type="button" class="linkbtn" id="cmp-reset">還原三組示意組合</button><button type="button" class="linkbtn" id="cmp-share">複製比較連結</button></div><span class="fine" id="cmp-out"></span>`;
