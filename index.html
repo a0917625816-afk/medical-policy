@@ -226,6 +226,16 @@ html.big{font-size:20px}
 mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-weight:600;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) mark.hl{background:#5c1d1d;color:#ffd7d5}}
 :root[data-theme="dark"] mark.hl{background:#5c1d1d;color:#ffd7d5}
+.calc{background:var(--accent-soft);border-radius:var(--r);padding:16px;display:grid;gap:10px}
+.calc h3{margin:0}
+.calc-f{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.calc-f label{display:grid;gap:4px;font-size:.85rem;font-weight:700}
+.calc-f input,.calc-f select{padding:9px 10px;border:1.5px solid var(--line);border-radius:8px;background:var(--surface);font-size:1rem;color:var(--ink);min-width:0}
+.calc-out{display:grid;gap:6px}
+.calc-r{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;background:var(--surface);border-radius:8px;padding:10px 14px}
+.calc-r b{font-variant-numeric:tabular-nums}
+.calc-r.big b{font-size:1.4rem;color:var(--accent)}
+.ben .amt{margin-left:auto;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums;white-space:nowrap}
 .ben-h{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:4px}
 .ben-h h3{margin:0}
 .bens{display:grid;gap:8px}
@@ -453,7 +463,7 @@ const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(mine))}catch(e){}};
 fetch("policies.json").then(r=>r.json()).then(rows=>{
   P=rows.map((r,i)=>{const vers=r[6].split(";").map(v=>{const [id,s,e]=v.split(",");return {id,s,e:e||null}});
     const last=vers[vers.length-1];
-    return {i,co:r[0],name:r[1],type:r[2],form:r[3],term:r[4],grp:r[5],vers,s:vers[0].s,e:last.e,codes:r[7]?r[7].split(" "):[],hd:!!r[8],life:!!r[9],
+    return {i,co:r[0],name:r[1],type:r[2],form:r[3],term:r[4],grp:r[5],vers,s:vers[0].s,e:last.e,codes:r[7]?r[7].split(" "):[],hd:!!r[8],life:!!r[9],hr:!!r[10],
       key:(r[1]+(CO[r[0]]||"")+" "+(r[7]||"")+" "+vers.map(v=>v.id).join(" ")).toLowerCase()}});
   boot();
 }).catch(()=>{$("#count").textContent="保單資料載入失敗，請重新整理頁面。";$("#ver-tag").textContent="載入失敗"});
@@ -507,6 +517,55 @@ function card(p){
 
 /* ---------- 條款整理與台灣現況 ---------- */
 const SH={};
+const RSH={};
+function loadRate(n){ if(!RSH[n]) RSH[n]=fetch(`r/${n}.json`).then(r=>r.json()).catch(()=>{delete RSH[n];return null}); return RSH[n]; }
+const fmtN=v=>Math.round(v).toLocaleString("zh-TW");
+function ageKey(ages,age){ if(ages[age]!=null) return ages[age]; for(const k in ages){const m=k.match(/^(\d+)-(\d+)$/); if(m&&age>=+m[1]&&age<=+m[2]) return ages[k];} return null; }
+function benAmount(rules,amt,isUnit){ let out=null;
+  for(const r of rules){ let m;
+    if((m=r.match(/^(?:保額|日額) × ([\d.]+) 倍$/))) out=(out||0)+amt*(+m[1]);
+    else if(r==="給付保額") out=(out||0)+amt;
+    else if((m=r.match(/^保額的 ([\d.]+)%$/))) out=(out||0)+amt*(+m[1])/100;
+    else if((m=r.match(/^每單位(?:每日|每次|每月)? ([\d,]+) 元$/))&&isUnit) out=(out||0)+(+m[1].replace(/,/g,""))*amt;
+  } return out; }
+function calcBlock(p,R,x){
+  if(!R) return "";
+  const unitLab = R.b===1 ? "投保單位數" : R.b===0 ? "保額（換算理賠金額用，可不填）" : (/日額/.test(R.u)?"住院日額（元）":"保險金額（元）");
+  const ph = R.b===1 ? "例如 1" : (/日額/.test(R.u)?"例如 1000":"例如 100000");
+  const uniq=k=>[...new Set(R.c.map(c=>c[k]).filter(Boolean))];
+  const sel=(id,lab,vals)=>vals.length>1?`<label>${lab}<select id="${id}">${vals.map(v=>`<option>${esc(v)}</option>`).join("")}</select></label>`:"";
+  const ys=uniq("y"),ps=uniq("p"),gs=uniq("g"),ks=uniq("k");
+  return `<div class="calc" id="calc"><h3>保費與理賠試算</h3>
+    <p class="unit">依保發中心登錄的費率表（${esc(R.u||"單位未標示")}）計算年繳保費；下方「要賠什麼」各項會換算成大約金額。</p>
+    <div class="calc-f">
+      <label>性別<select id="c-s"><option>男</option><option>女</option></select></label>
+      <label>投保年齡<input id="c-a" type="number" inputmode="numeric" min="0" max="100" value="30"></label>
+      ${sel("c-y","繳費年期",ys)}${sel("c-p","計劃",ps)}${sel("c-g","保障期間",gs)}${sel("c-k","繳費方式",ks)}
+      <label>${unitLab}<input id="c-v" type="number" inputmode="numeric" placeholder="${ph}"></label>
+    </div>
+    <div class="calc-out" id="c-out" aria-live="polite"></div>
+    <p class="fine">試算僅供參考：依費率表的年繳費率計算，未計外溢回饋、保費折扣、月繳／季繳係數與職業加費；實際保費以保險公司核保結果為準。</p></div>`;
+}
+function wireCalc(p,R,x){
+  const el=document.getElementById("calc"); if(!el||!R) return;
+  const v=id=>{const e=document.getElementById(id);return e?e.value:""};
+  const run=()=>{
+    const s=v("c-s"),age=+v("c-a"),y=v("c-y"),pl=v("c-p"),g=v("c-g"),k=v("c-k"),amt=+v("c-v");
+    const cands=R.c.filter(c=>(!c.s||c.s===s)&&(!y||!c.y||c.y===y)&&(!pl||!c.p||c.p===pl)&&(!g||!c.g||c.g===g)&&(!k||!c.k||c.k===k));
+    const col=cands.find(c=>ageKey(c.a,age)!=null);
+    const out=document.getElementById("c-out");
+    if(!col){out.innerHTML=`<p class="fine">這個年齡／條件在費率表中沒有費率，可能超過投保年齡範圍。</p>`;document.querySelectorAll(".ben .amt").forEach(e=>e.remove());return;}
+    const rate=ageKey(col.a,age);
+    let prem=null, note="";
+    if(R.b===0) prem=rate; else if(amt>0){ prem = R.b===1 ? rate*amt : (R.b ? rate*amt/R.b : null); }
+    out.innerHTML=`<div class="calc-r"><span>費率表數值</span><b>${fmtN(rate)} 元</b><span class="fine">${esc(R.u||"")}・${[col.s,col.y,col.p,col.g,col.k].filter(Boolean).join("・")}</span></div>`+
+      (prem!=null?`<div class="calc-r big"><span>年繳保費（約）</span><b>${fmtN(prem)} 元</b></div>`:(R.b==null?`<p class="fine">費率表沒有標示計算單位，保費請以官方費率表為準。</p>`:`<p class="fine">輸入${R.b===1?"投保單位數":"保額"}後會算出年繳保費。</p>`));
+    document.querySelectorAll(".ben").forEach((d,i)=>{d.querySelector(".amt")?.remove(); const b=x&&x.ben&&x.ben[i]; if(!b||!(amt>0)) return;
+      const a=benAmount(b.r,amt,R.b===1); if(a==null) return;
+      const days=b.r.includes("按住院天數計")?"／每日":""; d.querySelector("summary").insertAdjacentHTML("beforeend",`<span class="amt">約 ${fmtN(a)} 元${days}</span>`);});
+  };
+  el.querySelectorAll("input,select").forEach(e=>e.addEventListener("input",run)); run();
+}
 function loadShard(n){ if(!SH[n]) SH[n]=fetch(`d/${n}.json`).then(r=>r.json()).catch(()=>{delete SH[n];return null}); return SH[n]; }
 const TW_NOW={
   1:{t:"實支實付的新制",b:"2024 年 10 月 1 日起新投保的實支實付醫療險回歸「損害填補」：理賠要用收據正本，同一次醫療由各家保險公司依實際支出分攤，合計不超過實際花費。新制不溯及既往，之前生效的保單仍依原條款，所以條款允許副本理賠的舊保單更要好好保留。",s:"工商時報，2024/6/17"},
@@ -520,7 +579,9 @@ function detailBlock(p){
   if(!p.hd) return `<div class="pending"><h4>條款重點整理中</h4><p>這張保單的條款還沒整理（可能是早期掃描檔或無法辨識的檔案），請先依下方步驟查看官方條款。</p></div>`+now;
   const n=Math.floor(p.i/200);
   loadShard(n).then(j=>{const el=document.getElementById("dblock"); if(!el||+el.dataset.i!==p.i) return;
-    el.innerHTML=j&&j[p.i]?detailHTML(j[p.i])+now:`<div class="pending"><h4>條款重點載入失敗</h4><p>請重新整理頁面再試一次。</p></div>`+now;
+    const X=j&&j[p.i];
+    el.innerHTML=X?detailHTML(X)+now:`<div class="pending"><h4>條款重點載入失敗</h4><p>請重新整理頁面再試一次。</p></div>`+now;
+    if(p.hr) loadRate(Math.floor(p.i/200)).then(rj=>{const R=rj&&rj[p.i]; if(!R||+el.dataset.i!==p.i) return; el.insertAdjacentHTML("afterbegin",calcBlock(p,R,X)); wireCalc(p,R,X);});
     const all=el.querySelector("#ben-all"); if(all) all.addEventListener("click",()=>{const ds=el.querySelectorAll("details.ben"),open=![...ds].every(d=>d.open);ds.forEach(d=>d.open=open);all.textContent=open?"全部收合":"全部展開"});});
   return `<div id="dblock" data-i="${p.i}"><div class="pending"><h4>條款重點載入中…</h4></div></div>`;
 }
