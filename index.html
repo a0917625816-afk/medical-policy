@@ -512,7 +512,7 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 </main>
 
 <script>
-const BUILD="1793276832";
+const BUILD="1793276911";
 const TYPE_INFO = [
   {k:0,n:"住院日額",pays:"住院一天給固定金額",d:"不看花多少錢，只看住幾天。加護病房、燒燙傷病房通常另有加給。"},
   {k:1,n:"實支實付",pays:"依收據實報實銷",d:"重點看三項限額：病房費（每天）、住院雜費（每次）、手術費（每次）。"},
@@ -1289,7 +1289,7 @@ async function bundleCalc(b){
 function cmpVerdict(results){
   const out=results.map(()=>({good:[],bad:[]}));
   const metric=(key,label,get,lowerBetter)=>{ const vals=results.map(get); const pos=vals.filter(v=>v>0); if(!pos.length) return; const best=lowerBetter?Math.min(...pos):Math.max(...vals); const second=[...vals].sort((a,b)=>lowerBetter?a-b:b-a)[1];
-    vals.forEach((v,k)=>{ if(lowerBetter){ if(v===best&&results.length>1&&second>best*1.3) out[k].good.push(`${label}最低（${fmtN(v)} 元）`); else if(v>0&&v>=best*1.8) out[k].bad.push(`${label}最高（${fmtN(v)} 元，是最便宜組合的 ${(v/best).toFixed(1)} 倍）`); return; }
+    vals.forEach((v,k)=>{ if(lowerBetter){ if(v===best&&results.length>1&&second>best*1.3) out[k].good.push(`${label}最低（${fmtN(v)} 元）`); else if(v>0&&v>=best*1.8) out[k].bad.push(`${label}${v===Math.max(...vals)?"最高":"較高"}（${fmtN(v)} 元，是最便宜組合的 ${(v/best).toFixed(1)} 倍）`); return; }
       if(v===0) out[k].bad.push(`沒有${label}`); else if(v===best&&results.length>1&&(second===0||v>=second*1.25)) out[k].good.push(`${label}最高（${fmtN(v)}）`); else if(v<best*0.5) out[k].bad.push(`${label}偏低（${fmtN(v)}，最高的組合有 ${fmtN(best)}）`); }); };
   metric("prem","保費",r=>r.prem,true);
   metric("day","住院日額",r=>r.M.day); metric("misc","住院雜費實支上限",r=>r.M.misc); metric("surg","手術給付",r=>r.M.surg); metric("cancer","癌症一次金",r=>r.M.cancer); metric("major","重大傷病一次金",r=>r.M.major); metric("disab","失能給付",r=>r.M.disab); metric("ltc","長照給付",r=>r.M.ltc); metric("death","身故保險金",r=>r.M.death);
