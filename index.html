@@ -570,7 +570,7 @@ function ageKey(ages,age){ if(ages[age]!=null) return ages[age]; for(const k in 
 function benAmount(rules,amt,isUnit){ let out=null;
   for(const r of rules){ let m;
     if((m=r.match(/^(?:保額|日額) × ([\d.]+) 倍$/))) out=(out||0)+amt*(+m[1]);
-    else if(r==="給付保額") out=(out||0)+amt;
+    else if(r==="給付保額"||r==="最高給付保額") out=(out||0)+amt;
     else if((m=r.match(/^保額的 ([\d.]+)%$/))) out=(out||0)+amt*(+m[1])/100;
     else if((m=r.match(/^每單位(?:每日|每次|每月)? ([\d,]+) 元$/))&&isUnit) out=(out||0)+(+m[1].replace(/,/g,""))*amt;
   } return out; }
@@ -645,6 +645,7 @@ function benExample(b,A,freq){
   if(freq==="每日"&&isReal){const c=Math.round(A*0.85/100)*100||Math.round(A*0.85);return `舉例：若每日上限 ${f(A)} 元，住院 5 天、病房費每天 ${f(c)} 元，理賠 ${f(c)} × 5 天 = ${f(c*5)} 元；若每天花費超過上限，最多理賠 ${f(A)} × 5 天 = ${f(A*5)} 元。`;}
   if(freq==="每日") return `舉例：住院 5 天，理賠 ${f(A)} × 5 天 = ${f(A*5)} 元，不用看實際花多少。`;
   if(isReal) return `舉例：同一次的相關費用在 ${f(A)} 元以內，花多少賠多少；超過 ${f(A)} 元，以 ${f(A)} 元為上限。需要醫療收據。`;
+  if((b.r||[]).includes("最高給付保額")) return `依失能等級表的比例給付，最嚴重（第 1 級）給付 ${f(A)} 元；例如第 6 級（比例 50%）給付 ${f(A*0.5)} 元。`;
   if(freq==="一次給付") return `符合條款條件時，一次給付 ${f(A)} 元，錢可以自由運用。`;
   if(freq==="分期") return `符合條件後，每期給付 ${f(A)} 元，依條款約定的期數持續給付。`;
   return `每次符合條款條件，給付 ${f(A)} 元。`;}
@@ -670,11 +671,13 @@ function occQuoteHTML(p,R){
     ${O.b===0?"":`<label>${O.b===1?"投保單位":"保額"}<span><input id="q-v" type="number" inputmode="numeric" value="${O.b===1?1:1000000}"> ${O.b===1?"單位":"元"}</span><small>可自行修改</small></label>`}
   </div><div class="q-out"><span>年繳保費</span><b id="q-prem">－</b><small id="q-note"></small></div></section>`;
 }
-function wireOcc(p,R){const O=R.o;const g=id=>{const e=document.getElementById(id);return e?e.value:""};
+function wireOcc(p,R,X){const O=R.o;let ex=true;const g=id=>{const e=document.getElementById(id);return e?e.value:""};
   const run=()=>{const c=+g("q-c"),k=+(g("q-l")||0),amt=+g("q-v")||0;const t=O.t[k]||O.t[0];const rate=t.v[c];const pe=document.getElementById("q-prem"),ne=document.getElementById("q-note");
     if(rate==null){pe.textContent="－";ne.textContent="這個職業類別不在承保範圍";return;}
     const prem=O.b===0?rate:(O.b===1?rate*amt:(O.b?rate*amt/O.b:null));
-    pe.textContent=prem!=null?fmtN(prem)+" 元":"－";ne.textContent=`依費率表 ${O.u||""}：${rate} 元`+(O.b==null?"（未標示單位，請以官方費率表為準）":"");};
+    pe.textContent=prem!=null?fmtN(prem)+" 元":"－";ne.textContent=`依費率表 ${O.u||""}：${rate} 元`+(O.b==null?"（未標示單位，請以官方費率表為準）":"");
+    if(X&&X.ben) renderClaims(X,{pi:-1,amt:O.b===0?0:amt,unit:O.b===1,ex});};
+  const t=document.getElementById("ex-t"); if(t) t.addEventListener("click",()=>{ex=!ex;t.textContent=ex?"－ 收起說明":"＋ 展開說明";run();});
   document.querySelectorAll("#quote input,#quote select").forEach(e=>e.addEventListener("input",run));run();}
 function quoteHTML(p,R,X){
   if(R&&R.o&&!(R.c&&R.c.length)) return occQuoteHTML(p,R);
@@ -711,11 +714,12 @@ function renderClaims(X,st){
     return `<div class="cg"><h4>${esc(k)}</h4>${groups[k].map(([b,i])=>{
       let A=null;
       if(b.pv&&st.pi>=0&&b.pv[st.pi]!=null) A=b.pv[st.pi];
-      else if(st.amt>0){ A=benAmount(b.r||[],st.amt,st.unit);
+      else if(st.amt>0&&!((b.r||[]).includes("依條款附表")&&/手術|處置/.test(b.n))){ A=benAmount(b.r||[],st.amt,st.unit);
         if(A==null&&!st.unit&&freq==="每日"&&/^(?:一般)?住院(?:醫療)?(?:日額)?(?:醫療)?保險金$/.test(b.n)) A=st.amt; }
-      const lim=/限額|上限|最高/.test(b.n+(b.r||[]).join(""))||(b.r||[]).some(z=>/實支/.test(z));
-      const tags=(b.r||[]).filter(z=>!/^含門診$/.test(z)&&!/倍|每單位|給付保額|保額的/.test(z));
-      const amt=A!=null?`${lim?"上限 ":""}${fmtN(A)} 元`:"";
+      const lim=/限額|上限/.test(b.n+(b.r||[]).join(""))||(b.r||[]).some(z=>/實支/.test(z));
+      const maxp=(b.r||[]).includes("最高給付保額")||/失能|殘廢/.test(b.n);
+      const tags=(b.r||[]).filter(z=>!/^含門診$/.test(z)&&!/倍|每單位|給付保額|保額的/.test(z)).map(z=>z==="依條款附表"&&/手術|處置/.test(b.n)?"依手術項目倍數表":z);
+      const amt=A!=null?`${maxp?"最高 ":lim?"上限 ":""}${fmtN(A)} 元${freq==="每日"&&!/病房費用|限額/.test(b.n)?"／日":""}`:"";
       const ex=benExample(b,A,freq);
       return `<div class="ci"><div class="ci-h"><b>${esc(b.n)}</b>${amt?`<span class="ci-a">${esc(amt)}</span>`:""}</div>${tags.length?`<div class="ci-t">${tags.map(z=>`<i>${esc(z)}</i>`).join("")}</div>`:""}
         ${ex?`<p class="ci-ex">${esc(ex)}</p>`:""}
@@ -753,7 +757,7 @@ function detailBlock(p){
     if(!X){el.innerHTML=`<div class="pending"><h4>條款重點載入失敗</h4><p>請重新整理頁面再試一次。</p></div>`+now;return;}
     (p.hr?loadRate(n):Promise.resolve(null)).then(rj=>{ if(+el.dataset.i!==p.i) return; const R=rj&&rj[p.i]||null;
       el.innerHTML=quoteHTML(p,R,X)+infoCards(p,X)+claimsHTML(X)+detailHTML(X,true)+now;
-      if(R&&R.o&&!(R.c&&R.c.length)){wireOcc(p,R); if(X&&X.ben) renderClaims(X,{pi:-1,amt:0,unit:false,ex:true}); const t=document.getElementById("ex-t"); if(t) t.addEventListener("click",()=>{const box=document.getElementById("claims");box.classList.toggle("noex");t.textContent=box.classList.contains("noex")?"＋ 展開說明":"－ 收起說明";});}
+      if(R&&R.o&&!(R.c&&R.c.length)) wireOcc(p,R,X);
       else wireProduct(p,R,X);});
     const all=el.querySelector("#ben-all"); if(all) all.addEventListener("click",()=>{const ds=el.querySelectorAll("details.ben"),open=![...ds].every(d=>d.open);ds.forEach(d=>d.open=open);all.textContent=open?"全部收合":"全部展開"});});
   return `<div id="dblock" data-i="${p.i}"><div class="pending"><h4>條款重點載入中…</h4></div></div>`;
