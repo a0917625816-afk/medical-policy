@@ -236,6 +236,48 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 .calc-r b{font-variant-numeric:tabular-nums}
 .calc-r.big b{font-size:1.4rem;color:var(--accent)}
 .ben .amt{margin-left:auto;font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums;white-space:nowrap}
+.quote{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px 24px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+@media (max-width:700px){.quote{grid-template-columns:1fr;padding:14px}.q-f{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 12px}.q-out b{font-size:1.7rem}}
+.q-f{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px 16px}
+.q-f label,.q-sex{display:grid;gap:4px;font-size:.85rem;font-weight:700;color:var(--muted)}
+.q-f label>span{display:flex;align-items:baseline;gap:6px;color:var(--ink);font-weight:700}
+.q-f input,.q-f select{padding:8px 10px;border:none;border-bottom:2px solid var(--accent);background:transparent;font-size:1.15rem;font-weight:700;color:var(--accent);min-width:0;width:100%;border-radius:0}
+.q-f small{font-weight:400;color:var(--muted);font-size:.75rem}
+.q-static{font-size:1.1rem;color:var(--ink);padding:8px 0}
+.q-sex{grid-template-columns:auto auto;align-items:end}
+.q-sex span{grid-column:1/-1}
+.q-sex button{border:none;border-bottom:2px solid var(--line);background:none;padding:8px 6px;font-size:1.05rem;font-weight:700;color:var(--muted);cursor:pointer}
+.q-sex button[aria-pressed="true"]{color:var(--accent);border-color:var(--accent)}
+.q-out{display:grid;justify-items:end;gap:2px;text-align:right}
+@media (max-width:700px){.q-out{justify-items:start;text-align:left;background:var(--accent-soft);border-radius:8px;padding:12px 14px}}
+.q-out span{font-weight:700}
+.q-out b{font-size:2rem;color:var(--accent);font-variant-numeric:tabular-nums;line-height:1.1}
+.q-out small{color:var(--muted);font-size:.78rem}
+.cards{display:grid;gap:10px}
+.icard{display:flex;gap:14px;align-items:flex-start;background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px}
+.icard .ic{flex:none;width:44px;height:44px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-weight:900;font-size:.85rem}
+.icard b{display:block;font-size:1.02rem}
+.icard p{margin:2px 0 0;color:var(--muted);font-size:.93rem}
+.claims-h{display:flex;justify-content:space-between;align-items:center}
+.claims-h h3{margin:0;font-size:1.3rem}
+.linkbtn{background:none;border:none;color:var(--accent);font-weight:700;cursor:pointer;font-size:.95rem}
+.claims-g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:start}
+@media (max-width:700px){.claims-g{grid-template-columns:1fr}}
+.cg{display:grid;gap:0;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:var(--surface)}
+.cg h4{margin:0;background:var(--accent);color:var(--accent-ink);padding:10px 16px;font-size:1.05rem}
+.ci{border-top:1px solid var(--line)}
+.ci:first-of-type{border-top:none}
+.ci-h{display:flex;justify-content:space-between;gap:12px;padding:12px 16px;align-items:baseline}
+.ci-h b{font-size:1rem}
+.ci-a{font-weight:800;white-space:nowrap;font-variant-numeric:tabular-nums}
+@media (max-width:700px){.q-f{grid-template-columns:repeat(2,minmax(0,1fr))}.q-f label.q-age{grid-column:auto}}
+.ci-t{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 10px;margin-top:-4px}
+.ci-t i{font-style:normal;font-size:.78rem;background:var(--accent-soft);border-radius:6px;padding:2px 8px}
+.ci-ex{margin:0;background:var(--bg);padding:12px 16px;color:var(--ink);font-size:.93rem;line-height:1.7}
+.noex .ci-ex{display:none}
+.ci-raw{padding:0 16px 10px}
+.ci-raw summary{cursor:pointer;color:var(--muted);font-size:.82rem;padding:6px 0}
+.ci-raw p,.ci-raw ul{margin:4px 0;font-size:.88rem;color:var(--muted);line-height:1.7}
 .ben-h{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:4px}
 .ben-h h3{margin:0}
 .bens{display:grid;gap:8px}
@@ -574,24 +616,133 @@ const TW_NOW={
   4:{t:"台灣癌症現況",b:"依國健署 2025 年 12 月公布的癌症登記報告，民國 112 年新診斷癌症 13 萬 8,051 人，平均每 3 分 48 秒就有一人罹癌，前三名是肺癌、大腸癌、女性乳癌。現在癌症治療多改在門診進行（門診化療、口服或注射標靶藥、免疫治療），部分新藥健保有給付條件限制、需要自費，所以確診一次金通常比住院日額實用。",s:"國民健康署癌症登記報告（2025/12/30 發布）"},
   2:{t:"門診手術越來越多",b:"白內障、內視鏡、部分骨科手術現在常在門診完成。手術險要看條款附表與是否給付門診手術，表上沒有的新式手術可能要比照近似項目或不賠。",s:"一般醫療趨勢說明，個案以實際醫療情況為準"}
 };
+/* ---------- 新版保單頁：試算＋說明卡＋理賠項目 ---------- */
+function benCat(b){const n=b.n;
+  if(/門診/.test(n)&&!/住院/.test(n)) return "門診";
+  if(/癌/.test(n)) return "癌症";
+  if(/重大傷病|重大疾病|特定傷病|重度|輕度|嚴重/.test(n)) return "重大傷病／重疾";
+  if(/長期照顧|長照|照護|失能|殘廢|扶助|失智/.test(n)) return "長照／失能";
+  if(/身故|喪葬|祝壽|滿期|退還|生存|還本/.test(n)) return "身故與其他";
+  if(/手術|醫材|處置/.test(n)) return "手術";
+  if(/住院|病房|日額|加護|燒燙傷|療養|雜費|醫療費用|急診|看護/.test(n)) return "住院";
+  return "其他";}
+function benFreq(b){const r=b.r||[];
+  if(r.includes("按住院天數計")||/每日|日額|病房費用/.test(b.n)) return "每日";
+  if(r.includes("分期給付")) return "分期";
+  if(r.includes("限領一次")||/一次|初次|確診/.test(b.n)) return "一次給付";
+  if(r.includes("每年限一次")) return "每年";
+  return "每次";}
+const CAT_ORDER=["住院","手術","門診","癌症","重大傷病／重疾","長照／失能","身故與其他","其他"];
+const FREQ_ORDER=["每日","每次","每年","一次給付","分期"];
+function benExample(b,A,freq){
+  const isReal=(b.r||[]).some(z=>/實支/.test(z))||/費用|雜費|限額/.test(b.n);
+  if(A==null) return "";
+  const f=fmtN;
+  if(freq==="每日"&&isReal){const c=Math.round(A*0.85/100)*100||Math.round(A*0.85);return `舉例：若每日上限 ${f(A)} 元，住院 5 天、病房費每天 ${f(c)} 元，理賠 ${f(c)} × 5 天 = ${f(c*5)} 元；若每天花費超過上限，最多理賠 ${f(A)} × 5 天 = ${f(A*5)} 元。`;}
+  if(freq==="每日") return `舉例：住院 5 天，理賠 ${f(A)} × 5 天 = ${f(A*5)} 元，不用看實際花多少。`;
+  if(isReal) return `舉例：同一次的相關費用在 ${f(A)} 元以內，花多少賠多少；超過 ${f(A)} 元，以 ${f(A)} 元為上限。需要醫療收據。`;
+  if(freq==="一次給付") return `符合條款條件時，一次給付 ${f(A)} 元，錢可以自由運用。`;
+  if(freq==="分期") return `符合條件後，每期給付 ${f(A)} 元，依條款約定的期數持續給付。`;
+  return `每次符合條款條件，給付 ${f(A)} 元。`;}
+function infoCards(p,X){
+  const c=[];
+  if(p.form===1) c.push(["附約","這是附約保險","不能單獨購買，要搭配一張主約才能投保；主約終止時通常跟著終止。"]);
+  if(p.form===2) c.push(["附加","這是附加條款","附加在主約或附約上的額外約定，不能單獨購買。"]);
+  if(p.term===1) c.push(["一年","這是一年期險","繳費一年、保障一年，保費每年依年齡調整；"+((X&&X.facts||[]).some(f=>f[1]==="保證續保")?"這張是保證續保，到期不會因為理賠或健康變化被拒絕續保。":"續保條件請看條款。")]);
+  if(p.term===3) c.push(["終身","這是終身保險","繳費期滿後保障持續，保費在繳費期間內通常固定。"]);
+  if(p.grp) c.push(["團體","這是團體保險","由公司或團體投保，離開團體後保障通常就結束。"]);
+  if(p.life) c.push(["壽險","這是壽險類商品","除了醫療相關給付，通常也有身故保險金；提前領了醫療或長照給付，身故保險金可能會減少。"]);
+  const w=X&&(X.facts||[]).find(f=>f[0]==="等待期"); if(w) c.push(["等待","等待期："+w[1],"投保後這段期間內發生的疾病不賠，意外通常不受影響。"]);
+  return c.length?`<div class="cards">${c.map(([ic,t,d])=>`<div class="icard"><span class="ic">${ic}</span><div><b>${esc(t)}</b><p>${esc(d)}</p></div></div>`).join("")}</div>`:"";
+}
+function quoteHTML(p,R,X){
+  const plans=(R&&[...new Set(R.c.map(c=>c.p).filter(Boolean))].length?[...new Set(R.c.map(c=>c.p).filter(Boolean))]:(X&&X.plans)||[]);
+  const ys=R?[...new Set(R.c.map(c=>c.y).filter(Boolean))]:[];
+  const needAmt=!plans.length||(R&&R.b>0);
+  const ages=R?R.c.flatMap(c=>Object.keys(c.a)).flatMap(k=>k.split("-").map(Number)):[];
+  const amin=ages.length?Math.min(...ages):0, amax=ages.length?Math.max(...ages):80;
+  const unitLab=R&&R.b===1?"投保單位":(R&&/日額/.test(R.u)?"住院日額":"保額");
+  if(!R&&!plans.length&&!(X&&X.ben||[]).some(b=>benAmount(b.r||[],1,false)!=null)) return "";
+  return `<section class="quote" id="quote">
+    <div class="q-f">
+      ${R?`<label class="q-age">年齡<span><input id="q-a" type="number" inputmode="numeric" min="${amin}" max="${amax}" value="${Math.min(Math.max(30,amin),amax)}"> 歲</span><small>可投保 ${amin}～${amax} 歲</small></label>
+      <div class="q-sex" role="group" aria-label="性別"><span>性別</span><button type="button" data-s="男" aria-pressed="true">男性</button><button type="button" data-s="女" aria-pressed="false">女性</button></div>`:""}
+      ${ys.length>1?`<label>年期<select id="q-y">${ys.map(v=>`<option>${esc(v)}</option>`).join("")}</select></label>`:(ys[0]?`<label>年期<span class="q-static">${esc(ys[0])}</span></label>`:(p.term===1?`<label>年期<span class="q-static">一年期</span></label>`:""))}
+      ${plans.length?`<label>計劃別<select id="q-p">${plans.map(v=>`<option>${esc(v)}</option>`).join("")}</select></label>`:""}
+      ${needAmt?`<label>${unitLab}<span><input id="q-v" type="number" inputmode="numeric" placeholder="${R&&R.b===1?"1":unitLab==="住院日額"?"1000":"100000"}"> ${R&&R.b===1?"單位":"元"}</span></label>`:""}
+    </div>
+    <div class="q-out">${R?`<span>年繳保費</span><b id="q-prem">－</b><small id="q-note"></small>`:`<span>這張保單的費率表無法試算</span><small>理賠金額仍可依計劃或保額換算</small>`}</div>
+  </section>`;
+}
+function claimsHTML(X){
+  if(!X||!X.ben||!X.ben.length) return X&&X.items&&X.items.length?`<div><h3>給付項目</h3><div class="chips">${X.items.map(i=>`<span>${esc(i)}</span>`).join("")}</div></div>`:"";
+  return `<section class="claims"><div class="claims-h"><h3>理賠項目</h3><button type="button" class="linkbtn" id="ex-t" aria-pressed="true">－ 收起說明</button></div>
+    <div class="claims-g" id="claims"></div>
+    <p class="fine">金額依所選計劃（條款附表）或輸入的保額換算；「說明」是舉例，實際理賠以條款與收據為準。點「條款原文」可看該項目的條款寫法。</p></section>`;
+}
+function renderClaims(X,st){
+  const box=document.getElementById("claims"); if(!box) return;
+  const groups={};
+  X.ben.forEach((b,i)=>{const k=benCat(b)+"／"+benFreq(b);(groups[k]=groups[k]||[]).push([b,i]);});
+  const keys=Object.keys(groups).sort((a,b)=>{const[ca,fa]=a.split("／").length>2?[a.slice(0,a.lastIndexOf("／")),a.slice(a.lastIndexOf("／")+1)]:a.split("／");const[cb,fb]=b.split("／").length>2?[b.slice(0,b.lastIndexOf("／")),b.slice(b.lastIndexOf("／")+1)]:b.split("／");return (CAT_ORDER.indexOf(ca)-CAT_ORDER.indexOf(cb))||(FREQ_ORDER.indexOf(fa)-FREQ_ORDER.indexOf(fb));});
+  box.innerHTML=keys.map(k=>{const freq=k.slice(k.lastIndexOf("／")+1);
+    return `<div class="cg"><h4>${esc(k)}</h4>${groups[k].map(([b,i])=>{
+      let A=null;
+      if(b.pv&&st.pi>=0&&b.pv[st.pi]!=null) A=b.pv[st.pi];
+      else if(st.amt>0){ A=benAmount(b.r||[],st.amt,st.unit);
+        if(A==null&&!st.unit&&freq==="每日"&&/^(?:一般)?住院(?:醫療)?(?:日額)?(?:醫療)?保險金$/.test(b.n)) A=st.amt; }
+      const lim=/限額|上限|最高/.test(b.n+(b.r||[]).join(""))||(b.r||[]).some(z=>/實支/.test(z));
+      const tags=(b.r||[]).filter(z=>!/^含門診$/.test(z)&&!/倍|每單位|給付保額|保額的/.test(z));
+      const amt=A!=null?`${lim?"上限 ":""}${fmtN(A)} 元`:"";
+      const ex=benExample(b,A,freq);
+      return `<div class="ci"><div class="ci-h"><b>${esc(b.n)}</b>${amt?`<span class="ci-a">${esc(amt)}</span>`:""}</div>${tags.length?`<div class="ci-t">${tags.map(z=>`<i>${esc(z)}</i>`).join("")}</div>`:""}
+        ${ex?`<p class="ci-ex">${esc(ex)}</p>`:""}
+        <details class="ci-raw"><summary>條款原文</summary>${b.d?`<p>${hl(b.d)}</p>`:""}${b.s&&b.s.length?`<ul>${b.s.map(z=>`<li>${hl(z)}</li>`).join("")}</ul>`:""}</details></div>`;}).join("")}</div>`;}).join("");
+  box.classList.toggle("noex",!st.ex);
+}
+function wireProduct(p,R,X){
+  const st={s:"男",age:30,y:"",plan:"",pi:-1,amt:0,unit:!!(R&&R.b===1),ex:true};
+  const plans=[...document.querySelectorAll("#q-p option")].map(o=>o.value);
+  const read=()=>{const g=id=>{const e=document.getElementById(id);return e?e.value:""};
+    st.age=+g("q-a")||st.age; st.y=g("q-y"); st.plan=g("q-p"); st.amt=+g("q-v")||0;
+    st.pi=X&&X.plans&&st.plan?X.plans.findIndex(n=>n.replace(/\s/g,"")===st.plan.replace(/\s/g,"")):-1;
+    if(st.pi<0&&X&&X.plans&&plans.length) st.pi=plans.indexOf(st.plan);};
+  const run=()=>{read();
+    if(R){const cands=R.c.filter(c=>(!c.s||c.s===st.s)&&(!st.y||!c.y||c.y===st.y)&&(!st.plan||!c.p||c.p===st.plan));
+      const col=cands.find(c=>ageKey(c.a,st.age)!=null);const pe=document.getElementById("q-prem"),ne=document.getElementById("q-note");
+      if(!col){pe.textContent="－";ne.textContent="這個年齡不在可投保範圍";}
+      else{const rate=ageKey(col.a,st.age);let prem=null;
+        if(R.b===0) prem=rate; else if(st.amt>0) prem=R.b===1?rate*st.amt:(R.b?rate*st.amt/R.b:null);
+        pe.textContent=prem!=null?fmtN(prem)+" 元":"－";
+        ne.textContent=prem!=null?`依費率表 ${R.u||""}：${fmtN(rate)} 元`:(R.b==null?"費率表未標示單位，請以官方費率表為準":`輸入${R.b===1?"投保單位":"保額"}後顯示`);}}
+    if(X&&X.ben) renderClaims(X,st);};
+  document.querySelectorAll(".q-sex button").forEach(b=>b.addEventListener("click",()=>{st.s=b.dataset.s;document.querySelectorAll(".q-sex button").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));run();}));
+  document.querySelectorAll("#quote input,#quote select").forEach(e=>e.addEventListener("input",run));
+  const t=document.getElementById("ex-t"); if(t) t.addEventListener("click",()=>{st.ex=!st.ex;t.setAttribute("aria-pressed",st.ex?"true":"false");t.textContent=st.ex?"－ 收起說明":"＋ 展開說明";renderClaims(X,st);});
+  run();
+}
+
 function detailBlock(p){
   const now=TW_NOW[p.type]?`<div class="now"><h3>對照台灣現況：${TW_NOW[p.type].t}</h3><p>${TW_NOW[p.type].b}</p><p class="fine">資料來源：${TW_NOW[p.type].s}</p></div>`:"";
   if(!p.hd) return `<div class="pending"><h4>條款重點整理中</h4><p>這張保單的條款還沒整理（可能是早期掃描檔或無法辨識的檔案），請先依下方步驟查看官方條款。</p></div>`+now;
   const n=Math.floor(p.i/200);
   loadShard(n).then(j=>{const el=document.getElementById("dblock"); if(!el||+el.dataset.i!==p.i) return;
     const X=j&&j[p.i];
-    el.innerHTML=X?detailHTML(X)+now:`<div class="pending"><h4>條款重點載入失敗</h4><p>請重新整理頁面再試一次。</p></div>`+now;
-    if(p.hr) loadRate(Math.floor(p.i/200)).then(rj=>{const R=rj&&rj[p.i]; if(!R||+el.dataset.i!==p.i) return; el.insertAdjacentHTML("afterbegin",calcBlock(p,R,X)); wireCalc(p,R,X);});
+    if(!X){el.innerHTML=`<div class="pending"><h4>條款重點載入失敗</h4><p>請重新整理頁面再試一次。</p></div>`+now;return;}
+    (p.hr?loadRate(n):Promise.resolve(null)).then(rj=>{ if(+el.dataset.i!==p.i) return; const R=rj&&rj[p.i]||null;
+      el.innerHTML=quoteHTML(p,R,X)+infoCards(p,X)+claimsHTML(X)+detailHTML(X,true)+now;
+      wireProduct(p,R,X);});
     const all=el.querySelector("#ben-all"); if(all) all.addEventListener("click",()=>{const ds=el.querySelectorAll("details.ben"),open=![...ds].every(d=>d.open);ds.forEach(d=>d.open=open);all.textContent=open?"全部收合":"全部展開"});});
   return `<div id="dblock" data-i="${p.i}"><div class="pending"><h4>條款重點載入中…</h4></div></div>`;
 }
 const HL=/(新[台臺]幣[壹貳參叁肆伍陸柒捌玖拾佰仟萬零〇一二三四五六七八九十百千\d,，]+元|\d[\d,]*\s*(?:元|萬元)|[一二兩三四五六七八九十百零點\.\d]+倍|百分之[一二三四五六七八九十百零點\.\d]+|\d+(?:\.\d+)?%|(?:最高|最多|累計|每次|每日|每年|每一保單年度)?以[^，。；「」]{1,18}為限|不負(?:給付)?責任|不(?:予)?給付|不在此限|除外|等待期間?|免責期間?|持續有效[^，。；]{0,10}[日天]|初次(?:罹患|診斷確定)?|第一次罹患|實際(?:住院)?(?:日數|支出|發生)[^，。；]{0,6}|住院日數|門診次數|自負額|門診手術)/g;
 const hl=t=>esc(t).replace(HL,'<mark class="hl">$1</mark>');
-function detailHTML(x){
-  const ben=x.ben&&x.ben.length?`<div><div class="ben-h"><h3>保障內容：要賠什麼</h3><button type="button" class="copy" id="ben-all">全部展開</button></div>
+function detailHTML(x,noBen){
+  let ben=x.ben&&x.ben.length?`<div><div class="ben-h"><h3>保障內容：要賠什麼</h3><button type="button" class="copy" id="ben-all">全部展開</button></div>
       <p class="unit">點開每一項看條款怎麼寫，<mark class="hl">紅底</mark>是金額、倍數、上限、等待期與不賠條件等重點。金額多以「保額」「日額」或「投保單位」計算，你的實際金額看保單首頁的保險金額。</p>
       <div class="bens">${x.ben.map(b=>`<details class="ben"><summary><b>${esc(b.n)}</b>${b.r.length?`<span class="rl">${b.r.map(z=>`<i>${esc(z)}</i>`).join("")}</span>`:""}</summary>${b.d?`<p>${hl(b.d)}</p>`:`<p class="fine">條款中沒有找到這一項的計算方式，請看條款原文。</p>`}${b.s.length?`<ul>${b.s.map(z=>`<li>${hl(z)}</li>`).join("")}</ul>`:""}</details>`).join("")}</div></div>`
     :(x.items.length?`<div><h3>給付項目</h3><div class="chips">${x.items.map(i=>`<span>${esc(i)}</span>`).join("")}</div></div>`:"");
+  if(noBen) ben="";
   return `
     ${x.facts.length?`<div><h3>條款重點</h3><dl class="kv">${x.facts.map(f=>`<div><dt>${f[0]}</dt><dd>${esc(f[1])}</dd></div>`).join("")}</dl></div>`:""}
     ${ben}
@@ -619,17 +770,18 @@ function renderDetail(i){
         <h2>${esc(p.name)}</h2>
         <span class="co">${CO[p.co]||p.co}${p.codes.length?`・保單代號（參考）：<b class="cd">${p.codes.join(" / ")}</b>`:""}</span>
       </div>
-      <dl class="facts" style="margin:0">
+
+      <div class="d-body">
+        ${detailBlock(p)}
+        <div><h3>這類保單怎麼賠</h3><p class="fit">${TYPE_INFO[p.type].pays}。${TYPE_INFO[p.type].d}</p><p class="fine" style="margin-top:6px">險種由商品名稱自動判讀，實際內容以條款為準。</p></div>
+        <div><h3>基本資料</h3><dl class="facts" style="margin:0;border:1px solid var(--line);border-radius:var(--r)">
         <div class="fact"><dt>首次開賣</dt><dd>民國 ${fmtD(p.s)}</dd></div>
         <div class="fact"><dt>最新版本停售</dt><dd>${p.e?"民國 "+fmtD(p.e):"尚未停售"}</dd></div>
         <div class="fact"><dt>條款版本數</dt><dd>${p.vers.length} 個</dd></div>
         <div class="fact"><dt>主約／附約</dt><dd>${FORMS[p.form]}</dd></div>
         <div class="fact"><dt>保障期間</dt><dd>${p.term?TERMS[p.term]:"依條款"}</dd></div>
         <div class="fact"><dt>險種</dt><dd>${TYPE_INFO[p.type].n}</dd></div>
-      </dl>
-      <div class="d-body">
-        <div><h3>這類保單怎麼賠</h3><p class="fit">${TYPE_INFO[p.type].pays}。${TYPE_INFO[p.type].d}</p><p class="fine" style="margin-top:6px">險種由商品名稱自動判讀，實際內容以條款為準。</p></div>
-        ${detailBlock(p)}
+      </dl></div>
         <div><h3>所有版本</h3><p class="unit">同一張商品修訂過條款就會有新版本。輸入保單上的「投保日期」（契約生效日），就會標出你的那一版。</p>
           <div class="finddate"><label for="dt">投保日期（民國）</label><input id="dt" inputmode="numeric" placeholder="例如 105/03/12" autocomplete="off"><span id="dt-out" class="fine" aria-live="polite"></span></div>
           <div class="vers" id="vers">${p.vers.map((v,k)=>`<div data-k="${k}" class="${k===p.vers.length-1?"cur":""}"><span>${k===0?"初版":"第 "+k+" 次修訂"}<br><span class="pid">${v.id}</span></span><span>${fmtD(v.s)} ～ ${v.e?fmtD(v.e):"現在"}</span></div>`).join("")}</div></div>
