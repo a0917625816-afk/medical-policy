@@ -482,7 +482,7 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 </main>
 
 <script>
-const BUILD="1793268349";
+const BUILD="1793269019";
 const TYPE_INFO = [
   {k:0,n:"住院日額",pays:"住院一天給固定金額",d:"不看花多少錢，只看住幾天。加護病房、燒燙傷病房通常另有加給。"},
   {k:1,n:"實支實付",pays:"依收據實報實銷",d:"重點看三項限額：病房費（每天）、住院雜費（每次）、手術費（每次）。"},
@@ -977,11 +977,14 @@ function simItem(b,A,S,pol,X){
   const accItem=/意外|傷害|骨折|脫臼|創傷|食物中毒/.test(n)||pol.type===9;
   const byDay=r.includes("按住院天數計")&&!/前後門診|門診/.test(n);
   if(/海外|國外|旅遊|旅行/.test(n)) return skip("海外就醫才適用");
+  if(/、/.test(n)&&n.split("、").some(z=>z.length>=4&&(X.ben||[]).some(o=>o!==b&&simN(o.n)===z.trim()))) return skip("與上方項目重複，已分開列出");
   if(/調整|改變|事後|始適用|當事人|續保|總額|給付總|保險金額$|保險範圍|^保險金/.test(n)&&!/保險金$/.test(n.replace(/^保險金/,""))) return skip("條款說明，不是給付項目");
   if(/器官移植|幹細胞|骨髓|失明|認知功能|失智|支架|人工關節|安寧|精選傷病|生活習慣|特定人工|義肢|義齒|義乳|重建|洗腎|透析|燒燙傷|截肢|創傷縫合|骨折|脫臼|食物中毒|住院輔助|輔助/.test(n)&&!/住院|病房|手術|中心/.test(n)||/重大燒燙傷|特定燒燙傷|重症燒燙傷|第三度燒燙傷/.test(n)) return skip("這次情境沒有這項事故或治療");
   if(/祝壽|滿期|生存|還本|退還|無理賠|回饋|增值|健康管理|豁免|保費|保單價值|解約|紅利/.test(n)) return skip("不是醫療事故給付，這次不計");
   if(/身故|喪葬/.test(n)){ if(!S.death) return skip("身故時才給付"); if(accItem&&!acc) return skip("意外身故才給付"); if(/癌/.test(n)&&!S.cancer) return skip("癌症身故才給付"); if(A==null) return need("死亡"); return pay(A,`身故給付 ${fx(A)}`,"死亡"); }
   if(accItem&&!acc) return skip("意外事故才給付（這次是疾病）");
+  if(/住院照護|住院看護|住院療養照護/.test(n)){ if(!S.days) return skip("住院才給付"); if(A==null) return need("住院"); const d=capD(S.days); return pay(A*d,`${fx(A)} × 住院 ${d} 天`,"住院"); }
+  if(/重大手術/.test(n)&&!/住院日額/.test(n)) return skip("條款附表所列的重大手術才給付，這次未假設");
   if(/長期照顧|長照|照護|失智|生活扶助|扶助金|喪失工作能力/.test(n)&&!/失能保險金$|殘廢保險金$/.test(n)){
     if(!S.ltc&&!(S.disab>0&&/失能|殘廢/.test(n))) return skip("符合長照／失能狀態才給付");
     if(A==null) return need("長照");
@@ -1027,7 +1030,8 @@ function simItem(b,A,S,pol,X){
     if(S.burn){const lim=A*(burnM?burnM.m:1), vb=Math.min(S.room*(burnM?burnM.m:1),lim); tot+=vb*S.burn; calc+=` ＋ 燒燙傷 ${fx(vb)} × ${S.burn} 天`;}
     if(maxD!=null&&S.days>maxD){tot=tot*maxD/S.days; calc+=`（最多 ${maxD} 天）`;}
     return pay(tot,calc+`（自費每天 ${fx(S.room)}，上限 ${fx(A)}／日）`,"病房"); }
-  if(real&&/傷害醫療|意外醫療|意外傷害醫療|醫療保險金$/.test(n)&&(accItem||pol.type===9)){ const exp=S.room*S.days+S.misc+S.surgFee+S.surgOutFee; if(!exp) return skip("有自費醫療費用才給付"); if(A==null) return need("意外實支"); const v=Math.min(exp,A); return pay(v,`自費合計 ${fx(exp)}，上限 ${fx(A)} → ${fx(v)}`,"意外實支"); }
+  const realTxt=/實際(?:支出|醫療費用|發生)|超過全民健康保險|收據/.test(b.d||"");
+  if((real||realTxt)&&/傷害醫療|意外醫療|意外傷害醫療|醫療保險金$/.test(n)&&(accItem||pol.type===9)&&!/日額/.test(n)){ const exp=S.room*S.days+S.misc+S.surgFee+S.surgOutFee; if(!exp) return skip("有自費醫療費用才給付"); if(A==null) return need("意外實支"); const v=Math.min(exp,A); return pay(v,`自費合計 ${fx(exp)}，上限 ${fx(A)} → ${fx(v)}`,"意外實支"); }
   if(real&&/雜費|醫療費用|醫療保險金|特定費用/.test(n)&&!/門診/.test(n)){ if(!S.days&&!S.misc) return skip("住院才給付"); if(A==null) return need("雜費");
     const inc=(b.sub||[]).some(z=>/包含住院手術/.test(z.n))||!(X.ben||[]).some(o=>o!==b&&/手術費用|手術醫療費用/.test(o.n)&&!/門診/.test(o.n));
     const exp=S.misc+(inc?S.surgFee:0); const v=Math.min(exp,A); return pay(v,`自費 ${fx(exp)}${inc&&S.surgFee?"（含手術費）":""}，上限 ${fx(A)} → ${fx(v)}`,"雜費"); }
