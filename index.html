@@ -630,8 +630,8 @@ function benCat(b){const n=b.n;
   if(b.ei) return "實支實付轉換住院日額（二擇一）";
   if(/門診/.test(n)&&!/住院/.test(n)) return "門診";
   if(/癌/.test(n)) return "癌症";
-  if(/重大傷病|重大疾病|特定傷病|重度|輕度|嚴重/.test(n)) return "重大傷病／重疾";
-  if(/長期照顧|長照|照護|失能|殘廢|扶助|失智/.test(n)) return "長照／失能";
+  if(/重大傷病|重大疾病|特定傷病|重度|輕度|嚴重/.test(n)) return "重大傷病・重疾";
+  if(/長期照顧|長照|照護|失能|殘廢|扶助|失智/.test(n)) return "長照・失能";
   if(/身故|喪葬|祝壽|滿期|退還|生存|還本/.test(n)) return "身故與其他";
   if(/手術|醫材|處置/.test(n)) return "手術";
   if(/住院|病房|日額|加護|燒燙傷|療養|雜費|醫療費用|急診|看護/.test(n)) return "住院";
@@ -643,7 +643,7 @@ function benFreq(b){const r=b.r||[];
   if(r.includes("限領一次")||/一次|初次|確診/.test(b.n)) return "一次給付";
   if(r.includes("每年限一次")) return "每年";
   return "每次";}
-const CAT_ORDER=["實支實付轉換住院日額（二擇一）","住院","手術","門診","癌症","重大傷病／重疾","長照／失能","身故與其他","其他"];
+const CAT_ORDER=["實支實付轉換住院日額（二擇一）","住院","手術","門診","癌症","重大傷病・重疾","長照・失能","身故與其他","其他"];
 const FREQ_ORDER=["每日","每次","每年","一次給付","分期"];
 function benExample(b,A,freq){
   if(b.ei&&A!=null) return `理賠時可以選擇用實支實付（花多少賠多少），或改用日額（每天固定金額），哪個多選哪個。例如住院 5 天：日額 ${fmtN(A)} × 5 天 = ${fmtN(A*5)} 元；如果實支實付算下來比較少，就改領日額。`;
@@ -725,12 +725,12 @@ function renderClaims(X,st){
       else if(st.amt>0&&!((b.r||[]).includes("依條款附表")&&/手術|處置/.test(b.n))){ A=benAmount(b.r||[],st.amt,st.unit);
         if(A==null&&!st.unit&&freq==="每日"&&/^(?:一般)?住院(?:醫療)?(?:日額)?(?:醫療)?保險金$/.test(b.n)) A=st.amt; }
       const lim=/限額|上限/.test(b.n+(b.r||[]).join(""))||(b.r||[]).some(z=>/實支/.test(z));
-      const maxp=(b.r||[]).includes("最高給付保額")||/失能|殘廢/.test(b.n);
+      const maxp=((b.r||[]).includes("最高給付保額")||/失能|殘廢/.test(b.n))&&!/完全失能/.test(b.n);
       const tags=(b.r||[]).filter(z=>!/^含門診$/.test(z)&&!/倍|每單位|給付保額|保額的/.test(z)).filter(z=>!(b.pv&&z==="依條款附表")).map(z=>z==="依條款附表"&&/手術|處置/.test(b.n)?"依手術項目倍數表":z);
       const amt=A!=null?`${maxp?"最高 ":lim?"上限 ":""}${fmtN(A)} 元${freq==="每日"&&!/病房費用|限額/.test(b.n)?"／日":""}`:"";
       const ex=benExample(b,A,freq);
       return `<div class="ci"><div class="ci-h"><b>${esc((b.ei?"轉換住院日額／每日":friendly(b.n))||b.n)}${(b.ei||friendly(b.n))?`<small class="ci-o">${esc(b.n)}</small>`:""}</b>${amt?`<span class="ci-a">${esc(amt)}</span>`:""}</div>${tags.length?`<div class="ci-t">${tags.map(z=>`<i>${esc(z)}</i>`).join("")}</div>`:""}
-        ${ex?`<p class="ci-ex">${esc(ex)}</p>`:""}
+        ${ex?`<p class="ci-ex">${esc(ex)}${b.nt?`（${esc(b.nt)}）`:""}</p>`:""}
         ${b.sub&&b.sub.length?b.sub.map(z=>`<div class="ci-sub"><span>${esc(z.n)}</span><span>${A!=null?fmtN(A*z.m)+" 元":(z.m>1?"限額 × "+z.m:"同上限額")}</span></div>`).join(""):""}
         <details class="ci-raw"><summary>條款原文</summary>${b.d?`<p>${hl(b.d)}</p>`:""}${b.s&&b.s.length?`<ul>${b.s.map(z=>`<li>${hl(z)}</li>`).join("")}</ul>`:""}</details></div>`;}).join("")}</div>`;}).join("");
   box.classList.toggle("noex",!st.ex);
