@@ -656,10 +656,28 @@ function infoCards(p,X){
   if(p.term===3) c.push(["終身","這是終身保險","繳費期滿後保障持續，保費在繳費期間內通常固定。"]);
   if(p.grp) c.push(["團體","這是團體保險","由公司或團體投保，離開團體後保障通常就結束。"]);
   if(p.life) c.push(["壽險","這是壽險類商品","除了醫療相關給付，通常也有身故保險金；提前領了醫療或長照給付，身故保險金可能會減少。"]);
-  const w=X&&(X.facts||[]).find(f=>f[0]==="等待期"); if(w) c.push(["等待","等待期："+w[1],"投保後這段期間內發生的疾病不賠，意外通常不受影響。"]);
+  const w=X&&(X.facts||[]).find(f=>f[0]==="等待期"); if(w) c.push(["等待","等待期："+w[1],/沒有等待期|無等待期/.test(w[1])?"投保生效後就開始保障。":/主約/.test(w[1])?"這張條款沒有另外規定，跟著主約的等待期。":"投保後這段期間內發生的疾病不賠，意外通常不受影響。"]);
   return c.length?`<div class="cards">${c.map(([ic,t,d])=>`<div class="icard"><span class="ic">${ic}</span><div><b>${esc(t)}</b><p>${esc(d)}</p></div></div>`).join("")}</div>`:"";
 }
+const OCC_DESC={1:"第1類（內勤行政）",2:"第2類（外勤業務）",3:"第3類（輕度體力）",4:"第4類（中度體力）",5:"第5類（重度體力）",6:"第6類（高危險）"};
+function occQuoteHTML(p,R){
+  const O=R.o; const labs=O.t.map(t=>t.lab||"");
+  const cls=[...new Set(O.t.flatMap(t=>Object.keys(t.v).map(Number)))].sort((a,b)=>a-b);
+  return `<section class="quote" id="quote"><div class="q-f">
+    <label>職業類別<select id="q-c">${cls.map(c=>`<option value="${c}">${OCC_DESC[c]||("第"+c+"類")}</option>`).join("")}</select></label>
+    ${labs.filter(Boolean).length>1?`<label>方案／年齡<select id="q-l">${labs.map((l,k)=>`<option value="${k}">${esc(l||("方案"+(k+1)))}</option>`).join("")}</select></label>`:""}
+    <p class="fine" style="grid-column:1/-1;margin:0">職業類別依保險公司的職業分類表認定，不確定時請洽保險公司或業務員。</p>
+    ${O.b===0?"":`<label>${O.b===1?"投保單位":"保額"}<span><input id="q-v" type="number" inputmode="numeric" value="${O.b===1?1:1000000}"> ${O.b===1?"單位":"元"}</span><small>可自行修改</small></label>`}
+  </div><div class="q-out"><span>年繳保費</span><b id="q-prem">－</b><small id="q-note"></small></div></section>`;
+}
+function wireOcc(p,R){const O=R.o;const g=id=>{const e=document.getElementById(id);return e?e.value:""};
+  const run=()=>{const c=+g("q-c"),k=+(g("q-l")||0),amt=+g("q-v")||0;const t=O.t[k]||O.t[0];const rate=t.v[c];const pe=document.getElementById("q-prem"),ne=document.getElementById("q-note");
+    if(rate==null){pe.textContent="－";ne.textContent="這個職業類別不在承保範圍";return;}
+    const prem=O.b===0?rate:(O.b===1?rate*amt:(O.b?rate*amt/O.b:null));
+    pe.textContent=prem!=null?fmtN(prem)+" 元":"－";ne.textContent=`依費率表 ${O.u||""}：${rate} 元`+(O.b==null?"（未標示單位，請以官方費率表為準）":"");};
+  document.querySelectorAll("#quote input,#quote select").forEach(e=>e.addEventListener("input",run));run();}
 function quoteHTML(p,R,X){
+  if(R&&R.o&&!(R.c&&R.c.length)) return occQuoteHTML(p,R);
   const plans=(R&&[...new Set(R.c.map(c=>c.p).filter(Boolean))].length?[...new Set(R.c.map(c=>c.p).filter(Boolean))]:(X&&X.plans)||[]);
   const ys=R?[...new Set(R.c.map(c=>c.y).filter(Boolean))]:[];
   const needAmt=!plans.length||(R&&R.b>0);
@@ -735,7 +753,8 @@ function detailBlock(p){
     if(!X){el.innerHTML=`<div class="pending"><h4>條款重點載入失敗</h4><p>請重新整理頁面再試一次。</p></div>`+now;return;}
     (p.hr?loadRate(n):Promise.resolve(null)).then(rj=>{ if(+el.dataset.i!==p.i) return; const R=rj&&rj[p.i]||null;
       el.innerHTML=quoteHTML(p,R,X)+infoCards(p,X)+claimsHTML(X)+detailHTML(X,true)+now;
-      wireProduct(p,R,X);});
+      if(R&&R.o&&!(R.c&&R.c.length)){wireOcc(p,R); if(X&&X.ben) renderClaims(X,{pi:-1,amt:0,unit:false,ex:true}); const t=document.getElementById("ex-t"); if(t) t.addEventListener("click",()=>{const box=document.getElementById("claims");box.classList.toggle("noex");t.textContent=box.classList.contains("noex")?"＋ 展開說明":"－ 收起說明";});}
+      else wireProduct(p,R,X);});
     const all=el.querySelector("#ben-all"); if(all) all.addEventListener("click",()=>{const ds=el.querySelectorAll("details.ben"),open=![...ds].every(d=>d.open);ds.forEach(d=>d.open=open);all.textContent=open?"全部收合":"全部展開"});});
   return `<div id="dblock" data-i="${p.i}"><div class="pending"><h4>條款重點載入中…</h4></div></div>`;
 }
