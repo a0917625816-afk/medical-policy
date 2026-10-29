@@ -482,7 +482,7 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 </main>
 
 <script>
-const BUILD="1793268033";
+const BUILD="1793268296";
 const TYPE_INFO = [
   {k:0,n:"住院日額",pays:"住院一天給固定金額",d:"不看花多少錢，只看住幾天。加護病房、燒燙傷病房通常另有加給。"},
   {k:1,n:"實支實付",pays:"依收據實報實銷",d:"重點看三項限額：病房費（每天）、住院雜費（每次）、手術費（每次）。"},
@@ -735,7 +735,7 @@ function quoteHTML(p,R,X){
   const needAmt=!plans.length||(R&&R.b>0);
   const ages=R?R.c.flatMap(c=>Object.keys(c.a)).flatMap(k=>k.split("-").map(Number)):[];
   const amin=ages.length?Math.min(...ages):0, amax=ages.length?Math.max(...ages):80;
-  const unitLab=R&&R.b===1?"投保單位":(R&&/日額/.test(R.u)?"住院日額":"保額");
+  const unitLab=R&&R.b===1?"投保單位":((R&&/日額/.test(R.u))||(!R&&guessUnit(X)==="日額")?"住院日額":"保額");
   if(!R&&!plans.length&&!(X&&X.ben||[]).some(b=>benAmount(b.r||[],1,false)!=null)) return "";
   return `<section class="quote" id="quote">
     <div class="q-f">
@@ -743,7 +743,7 @@ function quoteHTML(p,R,X){
       <div class="q-sex" role="group" aria-label="性別"><span>性別</span><button type="button" data-s="男" aria-pressed="true">男性</button><button type="button" data-s="女" aria-pressed="false">女性</button></div>`:""}
       ${ys.length>1?`<label>年期<select id="q-y">${ys.map(v=>`<option>${esc(v)}</option>`).join("")}</select></label>`:(ys[0]?`<label>年期<span class="q-static">${esc(ys[0])}</span></label>`:(p.term===1?`<label>年期<span class="q-static">一年期</span></label>`:""))}
       ${plans.length?`<label>計劃別<select id="q-p">${plans.map(v=>`<option>${esc(v)}</option>`).join("")}</select></label>`:""}
-      ${needAmt?`<label>${unitLab}<span><input id="q-v" type="number" inputmode="numeric" value="${R&&R.b===1?1:(unitLab==="住院日額"||(R&&R.b===100))?1000:100000}"> ${R&&R.b===1?"單位":"元"}</span><small>可自行修改</small></label>`:""}
+      ${needAmt?`<label>${unitLab}<span><input id="q-v" type="number" inputmode="numeric" value="${defAmt(p,R,X)}"> ${R&&R.b===1?"單位":"元"}</span><small>可自行修改</small></label>`:""}
     </div>
     <div class="q-out">${R?`<span>年繳保費</span><b id="q-prem">－</b><small id="q-note"></small>`:`<span>這張保單的費率表無法試算</span><small>理賠金額仍可依計劃或保額換算</small>`}</div>
   </section>`;
@@ -925,7 +925,9 @@ route();
 
 /* ---------- 理賠模擬器 ---------- */
 const SIM_KEY=KEY+":sim", CFG_KEY=KEY+":cfg";
-const SIM_DEF={cause:"疾病",days:0,icu:0,burn:0,room:0,misc:0,surgIn:0,surgFee:0,surgOut:0,surgOutFee:0,opd:0,er:0,cancer:0,major:0,disab:0,ltc:0,death:0};
+const SIM_DEF={cause:"疾病",days:0,icu:0,burn:0,room:0,misc:0,surgIn:0,surgFee:0,surgOut:0,surgOutFee:0,opd:0,er:0,cancer:0,stage:"重度",major:0,disab:0,ltc:0,death:0};
+function defAmt(p,R,X){ if(R&&R.b===1) return 1; if((R&&/日額/.test(R.u))||(R&&R.b===100)||(!R&&guessUnit(X)==="日額")) return 1000; if((p.type===7||p.type===8)&&R&&R.b<=1000) return 10000; return 100000; }
+function guessUnit(X){ const b=X&&X.ben||[]; let d=0,a=0; for(const x of b){ for(const z of (x.r||[])){ if(/^日額 ×/.test(z)) d++; else if(/^保額/.test(z)||z==="給付保額") a++; } if(/住院日額|日額保險金/.test(x.n)) d++; } return d>a?"日額":"保額"; }
 const SIM_PRESETS=[
   {k:"appx",t:"盲腸炎住院開刀",d:"疾病・住院 4 天、住院手術 1 次、自費約 5 萬",S:{cause:"疾病",days:4,room:2500,misc:30000,surgIn:1,surgFee:20000,opd:2,er:1}},
   {k:"car",t:"車禍骨折住院",d:"意外・住院 7 天（加護 2 天）、手術 1 次",S:{cause:"意外",days:7,icu:2,room:3000,misc:40000,surgIn:1,surgFee:30000,opd:3,er:1}},
@@ -951,7 +953,7 @@ function cfgSave(){try{localStorage.setItem(CFG_KEY,JSON.stringify(CFG))}catch(e
 function itemAmount(b,st,freq){
   let A=null;
   if(b.pv&&st.pi>=0&&b.pv[st.pi]!=null) A=b.pv[st.pi];
-  else if(st.amt>0&&!((b.r||[]).includes("依條款附表")&&/手術|處置/.test(b.n))){ A=benAmount(b.r||[],st.amt,st.unit);
+  else if(st.amt>0&&!((b.r||[]).includes("依條款附表")&&/手術|處置/.test(b.n))&&!(st.unit&&!(b.r||[]).some(z=>/^每單位/.test(z)))){ A=benAmount(b.r||[],st.amt,st.unit);
     if(A==null&&!st.unit&&freq==="每日"&&/^(?:一般)?住院(?:醫療)?(?:日額)?(?:醫療)?保險金$/.test(b.n)) A=st.amt; }
   if(A==null&&st.prem>0){for(const z of (b.r||[])){let m;
     if((m=z.match(/^已繳保費 × ([\d.]+) 倍$/))&&st.yrs>0) A=Math.round(st.prem*st.yrs*(+m[1]));
@@ -972,16 +974,17 @@ function simItem(b,A,S,pol,X){
   const need=(kind)=>{R.kind=kind;R.note="金額無法自動換算";return R;};
   const pay=(v,calc,kind)=>{R.pay=Math.max(0,Math.round(v));R.calc=calc;R.kind=kind;return R;};
   const accItem=/意外|傷害|骨折|脫臼|創傷|食物中毒/.test(n)||pol.type===9;
+  const byDay=r.includes("按住院天數計")&&!/前後門診|門診/.test(n);
   if(/海外|國外|旅遊|旅行/.test(n)) return skip("海外就醫才適用");
   if(/調整|改變|事後|始適用|當事人|續保|總額|給付總|保險金額$|保險範圍|^保險金/.test(n)&&!/保險金$/.test(n.replace(/^保險金/,""))) return skip("條款說明，不是給付項目");
   if(/器官移植|幹細胞|骨髓|失明|認知功能|失智|支架|人工關節|安寧|精選傷病|生活習慣|特定人工|義肢|義齒|義乳|重建|洗腎|透析|燒燙傷|截肢|創傷縫合|骨折|脫臼|食物中毒|住院輔助|輔助/.test(n)&&!/住院|病房|手術|中心/.test(n)||/重大燒燙傷|特定燒燙傷|重症燒燙傷|第三度燒燙傷/.test(n)) return skip("這次情境沒有這項事故或治療");
-  if(/祝壽|滿期|生存|還本|退還|無理賠|回饋|增值|健康管理|豁免|保費|保單價值|解約|紅利|關懷/.test(n)) return skip("不是醫療事故給付，這次不計");
+  if(/祝壽|滿期|生存|還本|退還|無理賠|回饋|增值|健康管理|豁免|保費|保單價值|解約|紅利/.test(n)) return skip("不是醫療事故給付，這次不計");
   if(/身故|喪葬/.test(n)){ if(!S.death) return skip("身故時才給付"); if(accItem&&!acc) return skip("意外身故才給付"); if(/癌/.test(n)&&!S.cancer) return skip("癌症身故才給付"); if(A==null) return need("死亡"); return pay(A,`身故給付 ${fx(A)}`,"死亡"); }
   if(accItem&&!acc) return skip("意外事故才給付（這次是疾病）");
   if(/長期照顧|長照|照護|失智|生活扶助|扶助金|喪失工作能力/.test(n)&&!/失能保險金$|殘廢保險金$/.test(n)){
     if(!S.ltc&&!(S.disab>0&&/失能|殘廢/.test(n))) return skip("符合長照／失能狀態才給付");
     if(A==null) return need("長照");
-    if(r.includes("分期給付")||/分期|扶助|每月|年金/.test(n)){R.periodic=true;return pay(A,`符合狀態後每期 ${fx(A)}`,"長照");}
+    if(r.includes("分期給付")||/分期|扶助|每月|年金/.test(n)){R.periodic=true;return pay(A,`符合狀態後每期 ${fx(A)}${maxN?`，最多 ${maxN} 期`:""}（分期週期依條款）`,"長照");}
     return pay(A,`一次給付 ${fx(A)}`,"長照");
   }
   if(/失能|殘廢/.test(n)){
@@ -997,18 +1000,24 @@ function simItem(b,A,S,pol,X){
     if(/義肢|義齒|義乳|乳房重建|骨髓|造血|安寧|居家|緩和/.test(n)) return skip("這次情境沒有這項治療");
     if(/住院(?:醫療)?(?:日額)?保險金$|住院醫療保險金|住院日額/.test(n)&&!/手術|前後/.test(n)){ if(!S.days) return skip("住院才給付"); const d=capD(S.days); return pay(A*d,`${fx(A)} × ${d} 天`,"癌住"); }
     if(/療養/.test(n)){ if(!S.days) return skip("住院才給付"); const d=capD(S.days); return pay(A*d,`${fx(A)} × 住院 ${d} 天`,"癌住"); }
-    if(/手術/.test(n)){ const k=/門診/.test(n)?S.surgOut:S.surgIn; if(!k) return skip("手術才給付"); if(real){const fee=/門診/.test(n)?S.surgOutFee:S.surgFee; const v=Math.min(fee,A); return pay(v*k,`${fx(Math.min(fee,A))}（自費 ${fx(fee)}，上限 ${fx(A)}）× ${k} 次`,"癌手");} return pay(A*capN(k),`${fx(A)} × ${capN(k)} 次`,"癌手"); }
+    if(/手術/.test(n)){ const k=/門診/.test(n)?S.surgOut:S.surgIn; if(!k) return skip("手術才給付"); if(byDay&&!real&&!/門診/.test(n)){ if(!S.days) return skip("住院才給付"); const d=capD(S.days); return pay(A*d,`${fx(A)} × 住院 ${d} 天`,"癌住"); } if(real){const fee=/門診/.test(n)?S.surgOutFee:S.surgFee; const v=Math.min(fee,A); return pay(v*k,`${fx(Math.min(fee,A))}（自費 ${fx(fee)}，上限 ${fx(A)}）× ${k} 次`,"癌手");} return pay(A*capN(k),`${fx(A)} × ${capN(k)} 次`,"癌手"); }
     if(/門診|化學|化療|放射|標靶|免疫|荷爾蒙|治療/.test(n)){ if(!S.opd) return skip("門診治療才給付"); const k=capN(S.opd); return pay(A*k,`${fx(A)} × ${k} 次`,"癌門"); }
+    const nf=b.n;
+    if(/初期|輕度|原位癌|第一期|早期/.test(nf)&&!/重度|侵襲/.test(nf)&&S.stage!=="初期") return skip("初期／輕度癌症才給付（這次設定為重度）");
+    if(/重度|侵襲性|侵襲/.test(nf)&&!/初期|輕度/.test(nf)&&S.stage==="初期") return skip("重度癌症才給付（這次設定為初期）");
     if(/初次|首次|確診|罹患|診斷|一次/.test(n)||once) return pay(A,`確診一次給付 ${fx(A)}`,"癌一");
     if(f==="每日"){ if(!S.days) return skip("住院才給付"); const d=capD(S.days); return pay(A*d,`${fx(A)} × ${d} 天`,"癌住"); }
     return pay(A,`給付 ${fx(A)}`,"癌一");
   }
-  if(/重大傷病|重大疾病|特定傷病|特定疾病|重度|輕度|嚴重|特定重大/.test(n)){ if(!S.major) return skip("符合重大傷病／重大疾病定義才給付"); if(A==null) return need("重疾"); if(r.includes("分期給付")) R.periodic=true; return pay(A,`${R.periodic?"每期":"一次"}給付 ${fx(A)}`,"重疾"); }
+  if(/重大傷病|重大疾病|特定傷病|特定疾病|重度|輕度|嚴重|特定重大/.test(n)){ if(!S.major) return skip("符合重大傷病／重大疾病定義才給付"); if(A==null) return need("重疾"); if(byDay){ if(!S.days) return skip("住院才給付"); const d=capD(S.days); return pay(A*d,`${fx(A)} × 住院 ${d} 天`,"住院"); } if(r.includes("分期給付")) R.periodic=true; return pay(A,`${R.periodic?"每期":"一次"}給付 ${fx(A)}`,"重疾"); }
   if(/重大燒燙傷|特定燒燙傷/.test(n)) return skip("重大燒燙傷才給付");
+  if(/加護/.test(n)&&/燒燙傷/.test(n)){ const dd=S.icu+S.burn; if(!dd) return skip("住加護病房或燒燙傷病房才給付"); if(A==null) return need("加護"); const d=capD(dd); return pay(A*d,`${fx(A)} × ${d} 天`,"加護"); }
+  if(/安寧|緩和/.test(n)) return skip("安寧療護才給付");
   if(/燒燙傷/.test(n)&&/病房|中心|住院|日額/.test(n)){ if(!S.burn) return skip("住燒燙傷病房才給付"); if(A==null) return need("燒"); const d=capD(S.burn); return pay(A*d,`${fx(A)} × ${d} 天`,"燒"); }
   if(/加護|特別病房|特定病房/.test(n)){ if(!S.icu) return skip("住加護病房才給付"); if(A==null) return need("加護"); const d=capD(S.icu); return pay(A*d,`${fx(A)} × ${d} 天`,"加護"); }
   if(/門診手術/.test(n)){ if(!S.surgOut) return skip("門診手術才給付"); if(A==null) return need("門手"); if(real){const v=Math.min(S.surgOutFee,A); return pay(v*S.surgOut,`${fx(v)}（自費 ${fx(S.surgOutFee)}，上限 ${fx(A)}）× ${S.surgOut} 次`,"門手");} return pay(A*capN(S.surgOut),`${fx(A)} × ${capN(S.surgOut)} 次`,"門手"); }
-  if(/手術|處置/.test(n)&&!/前後/.test(n)){ if(!S.surgIn) return skip("住院手術才給付"); if(A==null) return need("手術"); if(real){const v=Math.min(S.surgFee,A); return pay(v*S.surgIn,`${fx(v)}（自費 ${fx(S.surgFee)}，上限 ${fx(A)}）× ${S.surgIn} 次`,"手術");} return pay(A*capN(S.surgIn),`${fx(A)} × ${capN(S.surgIn)} 次`,"手術"); }
+  if(real&&/雜費|各項費用|醫療費用/.test(n)&&/手術/.test(n)&&!/門診/.test(n)){ if(!S.days&&!S.misc) return skip("住院才給付"); if(A==null) return need("雜費"); const exp=S.misc+S.surgFee; const v=Math.min(exp,A); return pay(v,`自費 ${fx(exp)}（雜費＋手術費），上限 ${fx(A)} → ${fx(v)}`,"雜費"); }
+  if(/手術|處置/.test(n)&&!/前後/.test(n)){ if(!S.surgIn) return skip("住院手術才給付"); if(A==null) return need("手術"); if(byDay&&!real){ if(!S.days) return skip("住院才給付"); const d=capD(S.days); return pay(A*d,`${fx(A)} × 住院 ${d} 天`,"住院"); } if(real){const v=Math.min(S.surgFee,A); return pay(v*S.surgIn,`${fx(v)}（自費 ${fx(S.surgFee)}，上限 ${fx(A)}）× ${S.surgIn} 次`,"手術");} return pay(A*capN(S.surgIn),`${fx(A)} × ${capN(S.surgIn)} 次`,"手術"); }
   if(/醫材|特定(?:處置|項目)/.test(n)) return skip("依條款附表的醫材／處置項目才給付");
   if(/病房費/.test(n)){ if(!S.days) return skip("住院才給付"); if(A==null) return need("病房");
     const icuM=(b.sub||[]).find(z=>/加護/.test(z.n)), burnM=(b.sub||[]).find(z=>/燒燙傷/.test(z.n));
@@ -1026,7 +1035,7 @@ function simItem(b,A,S,pol,X){
   if(/救護車|轉送|運送/.test(n)){ if(!S.er) return skip("緊急轉送才給付"); if(A==null) return need("急診"); return pay(A,`${fx(A)} × 1 次`,"急診"); }
   if(/門診/.test(n)&&!/住院/.test(n)){ if(!S.opd) return skip("門診才給付"); if(A==null) return need("門診"); const k=capN(S.opd); return pay(A*k,`${fx(A)} × ${k} 次`,"門診"); }
   if(/長期住院/.test(n)){ const over=Math.max(0,S.days-30); if(!over) return skip("住院超過 30 天才給付"); if(A==null) return need("住院"); return pay(A*capD(over),`${fx(A)} × 超過 30 天的 ${capD(over)} 天`,"住院"); }
-  if(/慰問|補償|看護/.test(n)&&f!=="每日"){ if(!S.days) return skip("住院才給付"); if(A==null) return need("住院"); return pay(A,`每次住院 ${fx(A)}`,"住院"); }
+  if(/慰問|補償|看護|關懷/.test(n)&&f!=="每日"){ if(!S.days) return skip("住院才給付"); if(A==null) return need("住院"); return pay(A,`每次住院 ${fx(A)}`,"住院"); }
   if(/療養|養護|居家/.test(n)){ if(!S.days) return skip("住院才給付"); if(A==null) return need("住院"); const d=capD(S.days); return pay(A*d,`${fx(A)} × 住院 ${d} 天`,"住院"); }
   if(/住院|日額|病房/.test(n)||f==="每日"){ if(!S.days) return skip("住院才給付"); if(A==null) return need("住院"); const d=capD(S.days); return pay(A*d,`${fx(A)} × ${d} 天`,"住院"); }
   if(/骨折|脫臼/.test(n)) return skip("骨折／脫臼才給付");
@@ -1052,13 +1061,13 @@ function simFormHTML(id){
     <div class="sim-grid">
       <label class="sim-cause"><span>事故原因</span><span class="q-sex" role="group"><button type="button" data-cause="疾病" aria-pressed="${S.cause!=="意外"}">疾病</button><button type="button" data-cause="意外" aria-pressed="${S.cause==="意外"}">意外</button></span></label>
       ${SIM_FIELDS.map(([k,l,u])=>`<label><span>${l}</span><span><input type="number" inputmode="numeric" min="0" data-sim="${k}" value="${S[k]||0}"> ${u}</span></label>`).join("")}
-      ${SIM_FLAGS.map(([k,l])=>`<label class="sim-flag"><input type="checkbox" data-sim="${k}" ${S[k]?"checked":""}> ${l}</label>`).join("")}
+      ${SIM_FLAGS.map(([k,l])=>`<label class="sim-flag"><input type="checkbox" data-sim="${k}" ${S[k]?"checked":""}> ${l}</label>`+(k==="cancer"?`<label class="sim-flag"><span>癌症程度</span><select data-sim="stage"><option value="重度" ${S.stage!=="初期"?"selected":""}>重度（侵襲性）</option><option value="初期" ${S.stage==="初期"?"selected":""}>初期／輕度（原位癌）</option></select></label>`:"")).join("")}
       <label class="sim-flag"><span>失能等級</span><select data-sim="disab"><option value="0">無</option>${[1,2,3,4,5,6,7,8,9,10,11].map(k=>`<option value="${k}" ${S.disab===k?"selected":""}>第 ${k} 級（${Math.round(DISAB_RATIO[k]*100)}%）</option>`).join("")}</select></label>
     </div></details>`;
 }
 function simDesc(S){
   const a=[S.cause==="意外"?"意外":"疾病"];
-  if(S.cancer) a.push("初次確診癌症"); if(S.major) a.push("重大傷病"); if(S.disab) a.push(`第 ${S.disab} 級失能`); if(S.ltc) a.push("長照狀態"); if(S.death) a.push("身故");
+  if(S.cancer) a.push("初次確診癌症（"+(S.stage==="初期"?"初期／輕度":"重度")+"）"); if(S.major) a.push("重大傷病"); if(S.disab) a.push(`第 ${S.disab} 級失能`); if(S.ltc) a.push("長照狀態"); if(S.death) a.push("身故");
   if(S.days) a.push(`住院 ${S.days} 天`+(S.icu?`（加護 ${S.icu} 天）`:"")+(S.burn?`（燒燙傷病房 ${S.burn} 天）`:""));
   if(S.surgIn) a.push(`住院手術 ${S.surgIn} 次`); if(S.surgOut) a.push(`門診手術 ${S.surgOut} 次`); if(S.opd) a.push(`門診 ${S.opd} 次`); if(S.er) a.push(`急診 ${S.er} 次`);
   const exp=S.room*S.days+S.misc+S.surgFee+S.surgOutFee; if(exp) a.push(`自費約 ${fmtN(exp)} 元`);
@@ -1067,7 +1076,7 @@ function simDesc(S){
 function simWire(root,onChange){
   root.querySelectorAll("[data-preset]").forEach(b=>b.addEventListener("click",()=>{const k=b.dataset.preset; SIM=Object.assign({},SIM_DEF,k==="clear"?{}:SIM_PRESETS.find(p=>p.k===k).S); simSave(); root.querySelectorAll("[data-sim]").forEach(e=>{const v=SIM[e.dataset.sim]; if(e.type==="checkbox") e.checked=!!v; else e.value=v||0;}); root.querySelectorAll("[data-cause]").forEach(e=>e.setAttribute("aria-pressed",e.dataset.cause===SIM.cause)); onChange();}));
   root.querySelectorAll("[data-cause]").forEach(b=>b.addEventListener("click",()=>{SIM.cause=b.dataset.cause; root.querySelectorAll("[data-cause]").forEach(e=>e.setAttribute("aria-pressed",e.dataset.cause===SIM.cause)); simSave(); onChange();}));
-  root.querySelectorAll("[data-sim]").forEach(e=>e.addEventListener("input",()=>{const k=e.dataset.sim; SIM[k]=e.type==="checkbox"?(e.checked?1:0):Math.max(0,+e.value||0); if(k==="icu"||k==="burn"){if(SIM.icu+SIM.burn>SIM.days){SIM.days=SIM.icu+SIM.burn; const d=root.querySelector('[data-sim="days"]'); if(d) d.value=SIM.days;}} if(k==="days"&&SIM.icu+SIM.burn>SIM.days){SIM.icu=Math.min(SIM.icu,SIM.days);SIM.burn=Math.max(0,Math.min(SIM.burn,SIM.days-SIM.icu)); root.querySelector('[data-sim="icu"]').value=SIM.icu; root.querySelector('[data-sim="burn"]').value=SIM.burn;} simSave(); onChange();}));
+  root.querySelectorAll("[data-sim]").forEach(e=>e.addEventListener("input",()=>{const k=e.dataset.sim; SIM[k]=e.type==="checkbox"?(e.checked?1:0):(k==="stage"?e.value:Math.max(0,+e.value||0)); if(k==="icu"||k==="burn"){if(SIM.icu+SIM.burn>SIM.days){SIM.days=SIM.icu+SIM.burn; const d=root.querySelector('[data-sim="days"]'); if(d) d.value=SIM.days;}} if(k==="days"&&SIM.icu+SIM.burn>SIM.days){SIM.icu=Math.min(SIM.icu,SIM.days);SIM.burn=Math.max(0,Math.min(SIM.burn,SIM.days-SIM.icu)); root.querySelector('[data-sim="icu"]').value=SIM.icu; root.querySelector('[data-sim="burn"]').value=SIM.burn;} simSave(); onChange();}));
 }
 function simRowsHTML(res,showAll){
   const paid=res.rows.filter(r=>r.pay>0), other=res.rows.filter(r=>!(r.pay>0));
@@ -1086,7 +1095,7 @@ function simRender(X,st,pol){
 function mineSt(p,X,R,cfg){
   cfg=cfg||{}; const plans=(R&&R.c&&[...new Set(R.c.map(c=>c.p).filter(Boolean))].length?[...new Set(R.c.map(c=>c.p).filter(Boolean))]:(X&&X.plans)||[]);
   const unit=!!(R&&R.b===1); const needAmt=!plans.length||(R&&R.b>0);
-  let plan=cfg.plan||plans[0]||""; let amt=cfg.amt; if(!(amt>0)&&needAmt) amt=unit?1:((R&&/日額/.test(R.u))||(R&&R.b===100)?1000:100000);
+  let plan=cfg.plan||plans[0]||""; let amt=cfg.amt; if(!(amt>0)&&needAmt) amt=defAmt(p,R,X);
   let pi=X&&X.plans&&plan?X.plans.findIndex(n=>n.replace(/\s/g,"")===plan.replace(/\s/g,"")):-1; if(pi<0&&plans.length) pi=plans.indexOf(plan);
   let prem=0,yrs=0; const s=cfg.s||"男",age=cfg.age||30,y=cfg.y||"";
   if(R&&R.c&&R.c.length){const cands=R.c.filter(c=>(!c.s||c.s===s)&&(!y||!c.y||c.y===y)&&(!plan||!c.p||c.p===plan)); const col=cands.find(c=>ageKey(c.a,age)!=null);
