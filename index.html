@@ -444,6 +444,7 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 </main>
 
 <script>
+const BUILD="1793264218";
 const TYPE_INFO = [
   {k:0,n:"住院日額",pays:"住院一天給固定金額",d:"不看花多少錢，只看住幾天。加護病房、燒燙傷病房通常另有加給。"},
   {k:1,n:"實支實付",pays:"依收據實報實銷",d:"重點看三項限額：病房費（每天）、住院雜費（每次）、手術費（每次）。"},
@@ -508,7 +509,7 @@ let mine=[]; try{mine=JSON.parse(localStorage.getItem(KEY))||[]}catch(e){}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(mine))}catch(e){}};
 
 /* ---------- 載入資料 ---------- */
-fetch("policies.json").then(r=>r.json()).then(rows=>{
+fetch("policies.json?v="+BUILD).then(r=>r.json()).then(rows=>{
   P=rows.map((r,i)=>{const vers=r[6].split(";").map(v=>{const [id,s,e]=v.split(",");return {id,s,e:e||null}});
     const last=vers[vers.length-1];
     return {i,co:r[0],name:r[1],type:r[2],form:r[3],term:r[4],grp:r[5],vers,s:vers[0].s,e:last.e,codes:r[7]?r[7].split(" "):[],hd:!!r[8],life:!!r[9],hr:!!r[10],
@@ -567,7 +568,7 @@ function card(p){
 /* ---------- 條款整理與台灣現況 ---------- */
 const SH={};
 const RSH={};
-function loadRate(n){ if(!RSH[n]) RSH[n]=fetch(`r/${n}.json`).then(r=>r.json()).catch(()=>{delete RSH[n];return null}); return RSH[n]; }
+function loadRate(n){ if(!RSH[n]) RSH[n]=fetch(`r/${n}.json?v=${BUILD}`).then(r=>r.json()).catch(()=>{delete RSH[n];return null}); return RSH[n]; }
 const fmtN=v=>Math.round(v).toLocaleString("zh-TW");
 function ageKey(ages,age){ if(ages[age]!=null) return ages[age]; for(const k in ages){const m=k.match(/^(\d+)-(\d+)$/); if(m&&age>=+m[1]&&age<=+m[2]) return ages[k];} return null; }
 function benAmount(rules,amt,isUnit){ let out=null;
@@ -615,7 +616,7 @@ function wireCalc(p,R,x){
   };
   el.querySelectorAll("input,select").forEach(e=>e.addEventListener("input",run)); run();
 }
-function loadShard(n){ if(!SH[n]) SH[n]=fetch(`d/${n}.json`).then(r=>r.json()).catch(()=>{delete SH[n];return null}); return SH[n]; }
+function loadShard(n){ if(!SH[n]) SH[n]=fetch(`d/${n}.json?v=${BUILD}`).then(r=>r.json()).catch(()=>{delete SH[n];return null}); return SH[n]; }
 const TW_NOW={
   1:{t:"實支實付的新制",b:"2024 年 10 月 1 日起新投保的實支實付醫療險回歸「損害填補」：理賠要用收據正本，同一次醫療由各家保險公司依實際支出分攤，合計不超過實際花費。新制不溯及既往，之前生效的保單仍依原條款，所以條款允許副本理賠的舊保單更要好好保留。",s:"工商時報，2024/6/17"},
   0:{t:"住院天數變短、自費變多",b:"微創、達文西等手術普及，加上許多治療改在門診完成，住院時間常比以前短，自費醫材、自費藥物的選擇卻越來越多。只靠日額型，可能「住得短、領得少、自費卻很多」，最好搭配實支實付。",s:"一般醫療趨勢說明，個案以實際醫療情況為準"},
