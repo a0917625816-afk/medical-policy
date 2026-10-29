@@ -220,11 +220,23 @@ html.big{font-size:20px}
 .links a b{color:var(--accent)} .links a span{font-size:.92rem;color:var(--muted)}
 .dispute{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r)}
 @media (max-width:600px){.brand small{display:none}.brand h1{font-size:1.2rem}.head{flex-wrap:wrap}.demo-tag{display:none}}
+.d-body{grid-template-columns:minmax(0,1fr)}
+.d-body>*,#dblock>*{min-width:0}
+.vers>div{min-width:0}.vers>div>span:first-child{min-width:0;flex:1 1 auto}
+.ben-h{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:4px}
+.ben-h h3{margin:0}
+.bens{display:grid;gap:8px}
+.ben{border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+.ben summary{cursor:pointer;padding:10px 14px;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;list-style:none}
+.ben summary::-webkit-details-marker{display:none}
+.ben summary::before{content:"＋";color:var(--accent);font-weight:700}
+.ben[open] summary::before{content:"－"}
+.ben .rl{display:flex;flex-wrap:wrap;gap:6px}
+.ben .rl i{font-style:normal;font-size:.8rem;background:var(--accent-soft);border-radius:6px;padding:2px 8px;white-space:nowrap}
+.ben p,.ben ul{margin:0 14px 12px;font-size:.92rem;line-height:1.7;color:var(--muted)}
+.ben ul{padding-left:1.2em}
 .cd{font-family:var(--mono);font-weight:600;color:var(--accent);letter-spacing:.03em}
 </style>
-</head>
-<body>
-
 
 <header>
   <div class="wrap">
@@ -437,7 +449,7 @@ const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(mine))}catch(e){}};
 fetch("policies.json").then(r=>r.json()).then(rows=>{
   P=rows.map((r,i)=>{const vers=r[6].split(";").map(v=>{const [id,s,e]=v.split(",");return {id,s,e:e||null}});
     const last=vers[vers.length-1];
-    return {i,co:r[0],name:r[1],type:r[2],form:r[3],term:r[4],grp:r[5],vers,s:vers[0].s,e:last.e,codes:r[7]?r[7].split(" "):[],
+    return {i,co:r[0],name:r[1],type:r[2],form:r[3],term:r[4],grp:r[5],vers,s:vers[0].s,e:last.e,codes:r[7]?r[7].split(" "):[],hd:!!r[8],
       key:(r[1]+(CO[r[0]]||"")+" "+(r[7]||"")+" "+vers.map(v=>v.id).join(" ")).toLowerCase()}});
   boot();
 }).catch(()=>{$("#count").textContent="保單資料載入失敗，請重新整理頁面。";$("#ver-tag").textContent="載入失敗"});
@@ -485,12 +497,12 @@ function renderList(recompute=true){
 function card(p){
   return `<a class="card" href="#p${p.i}">
     <span class="t"><b>${esc(p.name)}</b><span>${p.codes.length?`<span class="cd">${p.codes.join(" / ")}</span> `:""}${CO[p.co]||p.co}・${TYPE_INFO[p.type].n}・${FORMS[p.form]}${p.term?"・"+TERMS[p.term]:""}${p.grp?"・團體":""}</span><span>民國 ${yr(p.s)} 年開賣${p.e?`，${yr(p.e)} 年停售`:""}・${p.vers.length} 個版本</span></span>
-    <span class="side">${p.e?`<span class="pill off">已停售</span>`:`<span class="pill on">現售中</span>`}${D&&D[p.i]?`<span class="mini">有白話解讀</span>`:""}</span></a>`;
+    <span class="side">${p.e?`<span class="pill off">已停售</span>`:`<span class="pill on">現售中</span>`}${p.hd?`<span class="mini">有白話解讀</span>`:""}</span></a>`;
 }
 
 /* ---------- 條款整理與台灣現況 ---------- */
-let D=null;
-fetch("details.json").then(r=>r.json()).then(j=>{D=j; if(/^#p\d+$/.test(location.hash)) renderDetail(+location.hash.slice(2)); if(!$("#list").hidden&&P.length) renderList(false);}).catch(()=>{D={}});
+const SH={};
+function loadShard(n){ if(!SH[n]) SH[n]=fetch(`d/${n}.json`).then(r=>r.json()).catch(()=>{delete SH[n];return null}); return SH[n]; }
 const TW_NOW={
   1:{t:"實支實付的新制",b:"2024 年 10 月 1 日起新投保的實支實付醫療險回歸「損害填補」：理賠要用收據正本，同一次醫療由各家保險公司依實際支出分攤，合計不超過實際花費。新制不溯及既往，之前生效的保單仍依原條款，所以條款允許副本理賠的舊保單更要好好保留。",s:"工商時報，2024/6/17"},
   0:{t:"住院天數變短、自費變多",b:"微創、達文西等手術普及，加上許多治療改在門診完成，住院時間常比以前短，自費醫材、自費藥物的選擇卻越來越多。只靠日額型，可能「住得短、領得少、自費卻很多」，最好搭配實支實付。",s:"一般醫療趨勢說明，個案以實際醫療情況為準"},
@@ -499,20 +511,28 @@ const TW_NOW={
   2:{t:"門診手術越來越多",b:"白內障、內視鏡、部分骨科手術現在常在門診完成。手術險要看條款附表與是否給付門診手術，表上沒有的新式手術可能要比照近似項目或不賠。",s:"一般醫療趨勢說明，個案以實際醫療情況為準"}
 };
 function detailBlock(p){
-  const x=D&&D[p.i];
   const now=TW_NOW[p.type]?`<div class="now"><h3>對照台灣現況：${TW_NOW[p.type].t}</h3><p>${TW_NOW[p.type].b}</p><p class="fine">資料來源：${TW_NOW[p.type].s}</p></div>`:"";
-  if(D===null) return `<div class="pending"><h4>條款重點載入中…</h4></div>`+now;
-  if(!x) return `<div class="pending"><h4>條款重點整理中</h4><p>這張保單的條款還沒整理（可能是早期掃描檔或團體保險），請先依下方步驟查看官方條款。</p></div>`+now;
+  if(!p.hd) return `<div class="pending"><h4>條款重點整理中</h4><p>這張保單的條款還沒整理（可能是早期掃描檔或無法辨識的檔案），請先依下方步驟查看官方條款。</p></div>`+now;
+  const n=Math.floor(p.i/200);
+  loadShard(n).then(j=>{const el=document.getElementById("dblock"); if(!el||+el.dataset.i!==p.i) return;
+    el.innerHTML=j&&j[p.i]?detailHTML(j[p.i])+now:`<div class="pending"><h4>條款重點載入失敗</h4><p>請重新整理頁面再試一次。</p></div>`+now;
+    const all=el.querySelector("#ben-all"); if(all) all.addEventListener("click",()=>{const ds=el.querySelectorAll("details.ben"),open=![...ds].every(d=>d.open);ds.forEach(d=>d.open=open);all.textContent=open?"全部收合":"全部展開"});});
+  return `<div id="dblock" data-i="${p.i}"><div class="pending"><h4>條款重點載入中…</h4></div></div>`;
+}
+function detailHTML(x){
+  const ben=x.ben&&x.ben.length?`<div><div class="ben-h"><h3>保障內容：要賠什麼</h3><button type="button" class="copy" id="ben-all">全部展開</button></div>
+      <p class="unit">點開每一項看條款怎麼寫。金額多以「保額」「日額」或「投保單位」計算，你的實際金額看保單首頁的保險金額。</p>
+      <div class="bens">${x.ben.map(b=>`<details class="ben"><summary><b>${esc(b.n)}</b>${b.r.length?`<span class="rl">${b.r.map(z=>`<i>${esc(z)}</i>`).join("")}</span>`:""}</summary>${b.d?`<p>${esc(b.d)}</p>`:`<p class="fine">條款中沒有找到這一項的計算方式，請看條款原文。</p>`}${b.s.length?`<ul>${b.s.map(z=>`<li>${esc(z)}</li>`).join("")}</ul>`:""}</details>`).join("")}</div></div>`
+    :(x.items.length?`<div><h3>給付項目</h3><div class="chips">${x.items.map(i=>`<span>${esc(i)}</span>`).join("")}</div></div>`:"");
   return `
-    ${x.items.length?`<div><h3>給付項目</h3><div class="chips">${x.items.map(i=>`<span>${esc(i)}</span>`).join("")}</div></div>`:""}
     ${x.facts.length?`<div><h3>條款重點</h3><dl class="kv">${x.facts.map(f=>`<div><dt>${f[0]}</dt><dd>${esc(f[1])}</dd></div>`).join("")}</dl></div>`:""}
+    ${ben}
     <div><h3>白話解讀</h3><div class="read">
       <div class="good"><h4>這張的強項</h4>${x.good.length?`<ul>${x.good.map(g=>`<li>${esc(g)}</li>`).join("")}</ul>`:`<p class="fine">條款中沒有找到特別的加值項目。</p>`}</div>
       <div class="care"><h4>要特別注意</h4>${x.care.length?`<ul>${x.care.map(g=>`<li>${esc(g)}</li>`).join("")}</ul>`:`<p class="fine">請依條款確認給付條件。</p>`}</div>
     </div></div>
-    ${now}
     ${x.excl.length?`<div><h3>哪些情況不賠（條款節錄）</h3><ul class="excl">${x.excl.map(e=>`<li>${esc(e)}</li>`).join("")}</ul></div>`:""}
-    <p class="fine">以上依保發中心登錄的最新版條款自動整理，不同版本的內容可能不同，實際權益以你那一版的保單條款為準。</p>`;
+    <p class="fine">以上依保發中心登錄的條款全文自動整理，不同版本的內容可能不同，實際權益以你那一版的保單條款為準。</p>`;
 }
 
 function copyText(t,out,msg){
