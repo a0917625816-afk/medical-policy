@@ -223,6 +223,9 @@ html.big{font-size:20px}
 .d-body{grid-template-columns:minmax(0,1fr)}
 .d-body>*,#dblock>*{min-width:0}
 .vers>div{min-width:0}.vers>div>span:first-child{min-width:0;flex:1 1 auto}
+mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-weight:600;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) mark.hl{background:#5c1d1d;color:#ffd7d5}}
+:root[data-theme="dark"] mark.hl{background:#5c1d1d;color:#ffd7d5}
 .ben-h{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:4px}
 .ben-h h3{margin:0}
 .bens{display:grid;gap:8px}
@@ -335,7 +338,7 @@ html.big{font-size:20px}
     <div class="intro">
       <span class="eyebrow">全台健康保險與傷害保險商品</span>
       <h2>找到你手上的那一張保單</h2>
-      <p class="lead">收錄保險事業發展中心登錄的健康保險與傷害保險（意外險）商品，壽險公司與產險公司都有，包含已停售和已合併公司的舊保單。</p>
+      <p class="lead">收錄保險事業發展中心登錄的健康保險、傷害保險（意外險），以及重大疾病、長照、失能等醫療型壽險商品，壽險公司與產險公司都有，包含已停售和已合併公司的舊保單。</p>
     </div>
     <div class="stats" id="stats"></div>
     <div><p class="fine" style="margin-bottom:8px">從發生的情況找</p><div class="scen" id="scen" role="group" aria-label="依情況找"></div></div>
@@ -350,6 +353,7 @@ html.big{font-size:20px}
         <select id="f-era" aria-label="開賣年代"><option value="">全部年代</option><option value="80">民國 80 年代</option><option value="90">民國 90 年代</option><option value="100">民國 100～109 年</option><option value="110">民國 110 年後</option></select>
         <label class="toggle"><input type="checkbox" id="f-off" checked> 包含已停售</label>
         <label class="toggle"><input type="checkbox" id="f-grp"> 包含團體保險</label>
+        <label class="toggle"><input type="checkbox" id="f-life" checked> 包含壽險類（重疾、長照、失能型壽險）</label>
       </div>
     </div>
     <p class="count" id="count"></p>
@@ -449,7 +453,7 @@ const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(mine))}catch(e){}};
 fetch("policies.json").then(r=>r.json()).then(rows=>{
   P=rows.map((r,i)=>{const vers=r[6].split(";").map(v=>{const [id,s,e]=v.split(",");return {id,s,e:e||null}});
     const last=vers[vers.length-1];
-    return {i,co:r[0],name:r[1],type:r[2],form:r[3],term:r[4],grp:r[5],vers,s:vers[0].s,e:last.e,codes:r[7]?r[7].split(" "):[],hd:!!r[8],
+    return {i,co:r[0],name:r[1],type:r[2],form:r[3],term:r[4],grp:r[5],vers,s:vers[0].s,e:last.e,codes:r[7]?r[7].split(" "):[],hd:!!r[8],life:!!r[9],
       key:(r[1]+(CO[r[0]]||"")+" "+(r[7]||"")+" "+vers.map(v=>v.id).join(" ")).toLowerCase()}});
   boot();
 }).catch(()=>{$("#count").textContent="保單資料載入失敗，請重新整理頁面。";$("#ver-tag").textContent="載入失敗"});
@@ -464,7 +468,7 @@ function boot(){
   $("#f-type").innerHTML+=TYPE_INFO.map(t=>`<option value="${t.k}">${t.n}</option>`).join("");
   $("#scen").innerHTML=SCEN.map(x=>`<button type="button" data-s="${x.k}" aria-pressed="false"><b>${x.n}</b><span>${x.d}</span></button>`).join("");
   $("#scen").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;scen=scen===b.dataset.s?"":b.dataset.s;document.querySelectorAll("#scen button").forEach(x=>x.setAttribute("aria-pressed",x.dataset.s===scen));shown=30;renderList();});
-  ["q","f-co","f-type","f-term","f-form","f-era","f-off","f-grp"].forEach(id=>$("#"+id).addEventListener("input",()=>{shown=30;renderList()}));
+  ["q","f-co","f-type","f-term","f-form","f-era","f-off","f-grp","f-life"].forEach(id=>$("#"+id).addEventListener("input",()=>{shown=30;renderList()}));
   $("#more").addEventListener("click",()=>{shown+=30;renderList(false)});
   route();
 }
@@ -474,9 +478,10 @@ function renderList(recompute=true){
   if(recompute){
     const q=$("#q").value.trim().toLowerCase().split(/\s+/).filter(Boolean);
     const co=$("#f-co").value, ft=$("#f-type").value, term=$("#f-term").value, form=$("#f-form").value, era=$("#f-era").value;
-    const off=$("#f-off").checked, grp=$("#f-grp").checked;
+    const off=$("#f-off").checked, grp=$("#f-grp").checked, life=$("#f-life").checked;
     lastRes=P.filter(p=>{
       if(!grp && p.grp) return false;
+      if(!life && p.life) return false;
       if(!off && p.e) return false;
       if(co && p.co!==co) return false;
       if(ft!=="" && p.type!==+ft) return false;
@@ -496,7 +501,7 @@ function renderList(recompute=true){
 }
 function card(p){
   return `<a class="card" href="#p${p.i}">
-    <span class="t"><b>${esc(p.name)}</b><span>${p.codes.length?`<span class="cd">${p.codes.join(" / ")}</span> `:""}${CO[p.co]||p.co}・${TYPE_INFO[p.type].n}・${FORMS[p.form]}${p.term?"・"+TERMS[p.term]:""}${p.grp?"・團體":""}</span><span>民國 ${yr(p.s)} 年開賣${p.e?`，${yr(p.e)} 年停售`:""}・${p.vers.length} 個版本</span></span>
+    <span class="t"><b>${esc(p.name)}</b><span>${p.codes.length?`<span class="cd">${p.codes.join(" / ")}</span> `:""}${CO[p.co]||p.co}・${TYPE_INFO[p.type].n}・${FORMS[p.form]}${p.term?"・"+TERMS[p.term]:""}${p.grp?"・團體":""}${p.life?"・壽險類":""}</span><span>民國 ${yr(p.s)} 年開賣${p.e?`，${yr(p.e)} 年停售`:""}・${p.vers.length} 個版本</span></span>
     <span class="side">${p.e?`<span class="pill off">已停售</span>`:`<span class="pill on">現售中</span>`}${p.hd?`<span class="mini">有白話解讀</span>`:""}</span></a>`;
 }
 
@@ -519,10 +524,12 @@ function detailBlock(p){
     const all=el.querySelector("#ben-all"); if(all) all.addEventListener("click",()=>{const ds=el.querySelectorAll("details.ben"),open=![...ds].every(d=>d.open);ds.forEach(d=>d.open=open);all.textContent=open?"全部收合":"全部展開"});});
   return `<div id="dblock" data-i="${p.i}"><div class="pending"><h4>條款重點載入中…</h4></div></div>`;
 }
+const HL=/(新[台臺]幣[壹貳參叁肆伍陸柒捌玖拾佰仟萬零〇一二三四五六七八九十百千\d,，]+元|\d[\d,]*\s*(?:元|萬元)|[一二兩三四五六七八九十百零點\.\d]+倍|百分之[一二三四五六七八九十百零點\.\d]+|\d+(?:\.\d+)?%|(?:最高|最多|累計|每次|每日|每年|每一保單年度)?以[^，。；「」]{1,18}為限|不負(?:給付)?責任|不(?:予)?給付|不在此限|除外|等待期間?|免責期間?|持續有效[^，。；]{0,10}[日天]|初次(?:罹患|診斷確定)?|第一次罹患|實際(?:住院)?(?:日數|支出|發生)[^，。；]{0,6}|住院日數|門診次數|自負額|門診手術)/g;
+const hl=t=>esc(t).replace(HL,'<mark class="hl">$1</mark>');
 function detailHTML(x){
   const ben=x.ben&&x.ben.length?`<div><div class="ben-h"><h3>保障內容：要賠什麼</h3><button type="button" class="copy" id="ben-all">全部展開</button></div>
-      <p class="unit">點開每一項看條款怎麼寫。金額多以「保額」「日額」或「投保單位」計算，你的實際金額看保單首頁的保險金額。</p>
-      <div class="bens">${x.ben.map(b=>`<details class="ben"><summary><b>${esc(b.n)}</b>${b.r.length?`<span class="rl">${b.r.map(z=>`<i>${esc(z)}</i>`).join("")}</span>`:""}</summary>${b.d?`<p>${esc(b.d)}</p>`:`<p class="fine">條款中沒有找到這一項的計算方式，請看條款原文。</p>`}${b.s.length?`<ul>${b.s.map(z=>`<li>${esc(z)}</li>`).join("")}</ul>`:""}</details>`).join("")}</div></div>`
+      <p class="unit">點開每一項看條款怎麼寫，<mark class="hl">紅底</mark>是金額、倍數、上限、等待期與不賠條件等重點。金額多以「保額」「日額」或「投保單位」計算，你的實際金額看保單首頁的保險金額。</p>
+      <div class="bens">${x.ben.map(b=>`<details class="ben"><summary><b>${esc(b.n)}</b>${b.r.length?`<span class="rl">${b.r.map(z=>`<i>${esc(z)}</i>`).join("")}</span>`:""}</summary>${b.d?`<p>${hl(b.d)}</p>`:`<p class="fine">條款中沒有找到這一項的計算方式，請看條款原文。</p>`}${b.s.length?`<ul>${b.s.map(z=>`<li>${hl(z)}</li>`).join("")}</ul>`:""}</details>`).join("")}</div></div>`
     :(x.items.length?`<div><h3>給付項目</h3><div class="chips">${x.items.map(i=>`<span>${esc(i)}</span>`).join("")}</div></div>`:"");
   return `
     ${x.facts.length?`<div><h3>條款重點</h3><dl class="kv">${x.facts.map(f=>`<div><dt>${f[0]}</dt><dd>${esc(f[1])}</dd></div>`).join("")}</dl></div>`:""}
@@ -531,7 +538,7 @@ function detailHTML(x){
       <div class="good"><h4>這張的強項</h4>${x.good.length?`<ul>${x.good.map(g=>`<li>${esc(g)}</li>`).join("")}</ul>`:`<p class="fine">條款中沒有找到特別的加值項目。</p>`}</div>
       <div class="care"><h4>要特別注意</h4>${x.care.length?`<ul>${x.care.map(g=>`<li>${esc(g)}</li>`).join("")}</ul>`:`<p class="fine">請依條款確認給付條件。</p>`}</div>
     </div></div>
-    ${x.excl.length?`<div><h3>哪些情況不賠（條款節錄）</h3><ul class="excl">${x.excl.map(e=>`<li>${esc(e)}</li>`).join("")}</ul></div>`:""}
+    ${x.excl.length?`<div><h3>哪些情況不賠（條款節錄）</h3><ul class="excl">${x.excl.map(e=>`<li>${hl(e)}</li>`).join("")}</ul></div>`:""}
     <p class="fine">以上依保發中心登錄的條款全文自動整理，不同版本的內容可能不同，實際權益以你那一版的保單條款為準。</p>`;
 }
 
@@ -547,7 +554,7 @@ function renderDetail(i){
     <a class="back" href="#find">← 回到保單列表</a>
     <article class="dossier">
       <div class="d-head">
-        <div class="row">${p.e?`<span class="pill off">已停售</span>`:`<span class="pill on">現售中</span>`}<span class="badge">${TYPE_INFO[p.type].n}</span>${p.grp?`<span class="badge">團體保險</span>`:""}</div>
+        <div class="row">${p.e?`<span class="pill off">已停售</span>`:`<span class="pill on">現售中</span>`}<span class="badge">${TYPE_INFO[p.type].n}</span>${p.grp?`<span class="badge">團體保險</span>`:""}${p.life?`<span class="badge">壽險類商品</span>`:""}</div>
         <h2>${esc(p.name)}</h2>
         <span class="co">${CO[p.co]||p.co}${p.codes.length?`・保單代號（參考）：<b class="cd">${p.codes.join(" / ")}</b>`:""}</span>
       </div>
