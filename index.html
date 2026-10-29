@@ -482,7 +482,7 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 </main>
 
 <script>
-const BUILD="1793269019";
+const BUILD="1793269404";
 const TYPE_INFO = [
   {k:0,n:"住院日額",pays:"住院一天給固定金額",d:"不看花多少錢，只看住幾天。加護病房、燒燙傷病房通常另有加給。"},
   {k:1,n:"實支實付",pays:"依收據實報實銷",d:"重點看三項限額：病房費（每天）、住院雜費（每次）、手術費（每次）。"},
@@ -787,7 +787,7 @@ function wireProduct(p,R,X){
   const run=()=>{read();
     if(R){const cands=R.c.filter(c=>(!c.s||c.s===st.s)&&(!st.y||!c.y||c.y===st.y)&&(!st.plan||!c.p||c.p===st.plan));
       const col=cands.find(c=>ageKey(c.a,st.age)!=null);const pe=document.getElementById("q-prem"),ne=document.getElementById("q-note");
-      if(!col){st.prem=0;pe.textContent="－";ne.textContent="這個年齡不在可投保範圍";}
+      if(!col){st.prem=0;pe.textContent="－";ne.textContent="這個年齡沒有可用的費率（不在投保範圍，或費率表讀取不完整）";}
       else{const rate=ageKey(col.a,st.age);let prem=null;
         if(R.b===0) prem=rate; else if(st.amt>0) prem=R.b===1?rate*st.amt:(R.b?rate*st.amt/R.b:null);
         st.prem=prem||0; const yv=st.y||(R.c[0]&&R.c[0].y)||"",ym=yv.match(/(\d+)\s*年/); st.yrs=/躉繳/.test(yv)?1:ym&&+ym[1]>0?+ym[1]:(p.term===1?1:0);
@@ -1019,13 +1019,13 @@ function simItem(b,A,S,pol,X){
   if(/安寧|緩和/.test(n)) return skip("安寧療護才給付");
   if(/燒燙傷/.test(n)&&/病房|中心|住院|日額/.test(n)){ if(!S.burn) return skip("住燒燙傷病房才給付"); if(A==null) return need("燒"); const d=capD(S.burn); return pay(A*d,`${fx(A)} × ${d} 天`,"燒"); }
   if(/加護|特別病房|特定病房/.test(n)){ if(!S.icu) return skip("住加護病房才給付"); if(A==null) return need("加護"); const d=capD(S.icu); return pay(A*d,`${fx(A)} × ${d} 天`,"加護"); }
-  if(/門診手術/.test(n)){ if(!S.surgOut) return skip("門診手術才給付"); if(A==null) return need("門手"); if(real){const v=Math.min(S.surgOutFee,A); return pay(v*S.surgOut,`${fx(v)}（自費 ${fx(S.surgOutFee)}，上限 ${fx(A)}）× ${S.surgOut} 次`,"門手");} return pay(A*capN(S.surgOut),`${fx(A)} × ${capN(S.surgOut)} 次`,"門手"); }
-  if(real&&/雜費|各項費用|醫療費用/.test(n)&&/手術/.test(n)&&!/門診/.test(n)){ if(!S.days&&!S.misc) return skip("住院才給付"); if(A==null) return need("雜費"); const exp=S.misc+S.surgFee; const v=Math.min(exp,A); return pay(v,`自費 ${fx(exp)}（雜費＋手術費），上限 ${fx(A)} → ${fx(v)}`,"雜費"); }
-  if(/手術|處置/.test(n)&&!/前後/.test(n)){ if(!S.surgIn) return skip("住院手術才給付"); if(A==null) return need("手術"); if(byDay&&!real){ if(!S.days) return skip("住院才給付"); const d=capD(S.days); return pay(A*d,`${fx(A)} × 住院 ${d} 天`,"住院"); } if(real){const v=Math.min(S.surgFee,A); return pay(v*S.surgIn,`${fx(v)}（自費 ${fx(S.surgFee)}，上限 ${fx(A)}）× ${S.surgIn} 次`,"手術");} return pay(A*capN(S.surgIn),`${fx(A)} × ${capN(S.surgIn)} 次`,"手術"); }
+  if(/門診手術/.test(n)){ if(!S.surgOut) return skip("門診手術才給付"); if(A==null) return need("門手"); if(real){const ded=b._ded||0; const v=Math.max(0,Math.min(S.surgOutFee,A)-ded); return pay(v*S.surgOut,`${fx(v)}（自費 ${fx(S.surgOutFee)}，上限 ${fx(A)}${ded?`，扣自負額 ${fx(ded)}`:""}）× ${S.surgOut} 次`,"門手");} return pay(A*capN(S.surgOut),`${fx(A)} × ${capN(S.surgOut)} 次`,"門手"); }
+  if(real&&/雜費|各項費用|醫療費用/.test(n)&&/手術/.test(n)&&!/門診/.test(n)){ if(!S.days&&!S.misc) return skip("住院才給付"); if(A==null) return need("雜費"); const exp=S.misc+S.surgFee; const ded=b._ded||0; const v=Math.max(0,Math.min(exp,A)-ded); return pay(v,`自費 ${fx(exp)}（雜費＋手術費），上限 ${fx(A)}${ded?`，扣自負額 ${fx(ded)}`:""} → ${fx(v)}`,"雜費"); }
+  if(/手術|處置/.test(n)&&!/前後/.test(n)){ if(!S.surgIn) return skip("住院手術才給付"); if(A==null) return need("手術"); if(byDay&&!real){ if(!S.days) return skip("住院才給付"); const d=capD(S.days); return pay(A*d,`${fx(A)} × 住院 ${d} 天`,"住院"); } if(real){const ded=b._ded||0; const v=Math.max(0,Math.min(S.surgFee,A)-ded); return pay(v*S.surgIn,`${fx(v)}（自費 ${fx(S.surgFee)}，上限 ${fx(A)}${ded?`，扣自負額 ${fx(ded)}`:""}）× ${S.surgIn} 次`,"手術");} return pay(A*capN(S.surgIn),`${fx(A)} × ${capN(S.surgIn)} 次`,"手術"); }
   if(/醫材|特定(?:處置|項目)/.test(n)) return skip("依條款附表的醫材／處置項目才給付");
   if(/病房費/.test(n)){ if(!S.days) return skip("住院才給付"); if(A==null) return need("病房");
     const icuM=(b.sub||[]).find(z=>/加護/.test(z.n)), burnM=(b.sub||[]).find(z=>/燒燙傷/.test(z.n));
-    const norm=Math.max(0,S.days-S.icu-S.burn), v=Math.min(S.room,A); let tot=v*norm, calc=`${fx(v)} × ${norm} 天`;
+    const ded=b._ded||0; const norm=Math.max(0,S.days-S.icu-S.burn), v=Math.max(0,Math.min(S.room,A)-ded); let tot=v*norm, calc=`${fx(v)} × ${norm} 天`+(ded?`（每日自負額 ${fx(ded)} 已扣）`:"");
     if(S.icu){const lim=A*(icuM?icuM.m:1), vi=Math.min(S.room*(icuM?icuM.m:1),lim); tot+=vi*S.icu; calc+=` ＋ 加護 ${fx(vi)} × ${S.icu} 天`;}
     if(S.burn){const lim=A*(burnM?burnM.m:1), vb=Math.min(S.room*(burnM?burnM.m:1),lim); tot+=vb*S.burn; calc+=` ＋ 燒燙傷 ${fx(vb)} × ${S.burn} 天`;}
     if(maxD!=null&&S.days>maxD){tot=tot*maxD/S.days; calc+=`（最多 ${maxD} 天）`;}
@@ -1034,7 +1034,7 @@ function simItem(b,A,S,pol,X){
   if((real||realTxt)&&/傷害醫療|意外醫療|意外傷害醫療|醫療保險金$/.test(n)&&(accItem||pol.type===9)&&!/日額/.test(n)){ const exp=S.room*S.days+S.misc+S.surgFee+S.surgOutFee; if(!exp) return skip("有自費醫療費用才給付"); if(A==null) return need("意外實支"); const v=Math.min(exp,A); return pay(v,`自費合計 ${fx(exp)}，上限 ${fx(A)} → ${fx(v)}`,"意外實支"); }
   if(real&&/雜費|醫療費用|醫療保險金|特定費用/.test(n)&&!/門診/.test(n)){ if(!S.days&&!S.misc) return skip("住院才給付"); if(A==null) return need("雜費");
     const inc=(b.sub||[]).some(z=>/包含住院手術/.test(z.n))||!(X.ben||[]).some(o=>o!==b&&/手術費用|手術醫療費用/.test(o.n)&&!/門診/.test(o.n));
-    const exp=S.misc+(inc?S.surgFee:0); const v=Math.min(exp,A); return pay(v,`自費 ${fx(exp)}${inc&&S.surgFee?"（含手術費）":""}，上限 ${fx(A)} → ${fx(v)}`,"雜費"); }
+    const exp=S.misc+(inc?S.surgFee:0); const ded=b._ded||0; const v=Math.max(0,Math.min(exp,A)-ded); return pay(v,`自費 ${fx(exp)}${inc&&S.surgFee?"（含手術費）":""}，上限 ${fx(A)}${ded?`，扣自負額 ${fx(ded)}`:""} → ${fx(v)}`,"雜費"); }
   if(/住院前後門診|前後門診/.test(n)){ if(!S.days||!S.opd) return skip("住院前後有門診才給付"); if(A==null) return need("門診"); const k=capN(S.opd); return pay(A*k,`${fx(A)} × ${k} 次`,"門診"); }
   if(/急診/.test(n)){ if(!S.er) return skip("急診才給付"); if(A==null) return need("急診"); const k=capN(S.er); return pay(A*k,`${fx(A)} × ${k} 次`,"急診"); }
   if(/救護車|轉送|運送/.test(n)){ if(!S.er) return skip("緊急轉送才給付"); if(A==null) return need("急診"); return pay(A,`${fx(A)} × 1 次`,"急診"); }
@@ -1049,7 +1049,7 @@ function simItem(b,A,S,pol,X){
 }
 function simRun(X,st,S,pol){
   const rows=[]; const bens=X&&X.ben||[];
-  bens.forEach(b=>{b.ei=!!(X.either&&/日額保險金選擇權|日額選擇|轉換.*日額|日額保險金$/.test(b.n)&&!/^住院日額/.test(b.n)); const f=benFreq(b); const A=itemAmount(b,st,f); rows.push(simItem(b,A,S,pol,X));});
+  bens.forEach(b=>{b.ei=!!(X.either&&/日額保險金選擇權|日額選擇|轉換.*日額|日額保險金$/.test(b.n)&&!/^住院日額/.test(b.n)); const f=benFreq(b); const A=itemAmount(b,st,f); b._ded=(b.dv&&st.pi>=0&&b.dv[st.pi])||0; rows.push(simItem(b,A,S,pol,X));});
   let note="";
   if(X&&X.either){ const alt=rows.find(r=>r.b.ei); const reals=rows.filter(r=>!r.b.ei&&/病房|雜費|手術/.test(r.kind)&&r.kind!=="門手");
     if(alt&&S.days){ const A=alt.A; const altPay=A!=null?A*S.days:null; const realPay=reals.reduce((a,r)=>a+r.pay,0);
