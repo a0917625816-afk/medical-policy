@@ -491,6 +491,18 @@ nav{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;overflow:visible}na
     </div>
     <p class="disclaim">險種依商品名稱自動判讀，僅供參考。各項給付金額與條件以保單條款為準。</p>
   </section>
+  <!-- 真實情境 -->
+  <section data-view="scen" hidden>
+    <div class="intro">
+      <span class="eyebrow">客戶真的會遇到的狀況</span>
+      <h2>真實醫療情境：健保付什麼、自己要掏多少</h2>
+      <p class="lead">從小手術到癌症、長照，每個情境都拆出「健保給付」與「自費」兩塊，金額是全台醫院常見的參考中間值。點「用這個情境試算」就會把住院天數、自費金額、手術名稱帶進理賠試算，看客戶手上的保單夠不夠。</p>
+    </div>
+    <div class="scen-bar"><input type="search" id="scen-q" placeholder="搜尋情境，例如 達文西、骨折、癌症、洗腎"><span class="fine" id="scen-n"></span></div>
+    <div class="sim-presets" id="scen-cats"></div>
+    <div class="scen-grid" id="scen-grid"></div>
+    <p class="disclaim">費用為各醫院公開資料與媒體報導整理的參考值，實際依醫院、病情、選用醫材與健保給付規定而定；不構成醫療或理賠承諾。</p>
+  </section>
   <!-- 理賠試算 -->
   <section data-view="calc" hidden>
     <div class="intro">
@@ -533,7 +545,7 @@ nav{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;overflow:visible}na
 </main>
 
 <script>
-const BUILD="1793286450";
+const BUILD="1793286644";
 const TYPE_INFO = [
   {k:0,n:"住院日額",pays:"住院一天給固定金額",d:"不看花多少錢，只看住幾天。加護病房、燒燙傷病房通常另有加給。"},
   {k:1,n:"實支實付",pays:"依收據實報實銷",d:"重點看三項限額：病房費（每天）、住院雜費（每次）、手術費（每次）。"},
