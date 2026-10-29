@@ -271,6 +271,8 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 .ci-h b{font-size:1rem}
 .ci-a{font-weight:800;white-space:nowrap;font-variant-numeric:tabular-nums}
 @media (max-width:700px){.q-f{grid-template-columns:repeat(2,minmax(0,1fr))}.q-f label.q-age{grid-column:auto}}
+.calc-tag{color:var(--accent-ink)!important;background:var(--accent);border-radius:6px;padding:1px 7px;font-weight:700}
+.calc-filter{font-weight:700;color:var(--accent)}
 .ci-t{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 10px;margin-top:-4px}
 .ci-t i{font-style:normal;font-size:.78rem;background:var(--accent-soft);border-radius:6px;padding:2px 8px}
 .ci-ex{margin:0;background:var(--bg);padding:12px 16px;color:var(--ink);font-size:.93rem;line-height:1.7}
@@ -405,6 +407,7 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
         <select id="f-era" aria-label="開賣年代"><option value="">全部年代</option><option value="80">民國 80 年代</option><option value="90">民國 90 年代</option><option value="100">民國 100～109 年</option><option value="110">民國 110 年後</option></select>
         <label class="toggle"><input type="checkbox" id="f-off" checked> 包含已停售</label>
         <label class="toggle"><input type="checkbox" id="f-grp"> 包含團體保險</label>
+        <label class="toggle calc-filter"><input type="checkbox" id="f-calc"> 只看可試算保費的</label>
         <label class="toggle"><input type="checkbox" id="f-life" checked> 包含壽險類（重疾、長照、失能型壽險）</label>
       </div>
     </div>
@@ -520,7 +523,7 @@ function boot(){
   $("#f-type").innerHTML+=TYPE_INFO.map(t=>`<option value="${t.k}">${t.n}</option>`).join("");
   $("#scen").innerHTML=SCEN.map(x=>`<button type="button" data-s="${x.k}" aria-pressed="false"><b>${x.n}</b><span>${x.d}</span></button>`).join("");
   $("#scen").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;scen=scen===b.dataset.s?"":b.dataset.s;document.querySelectorAll("#scen button").forEach(x=>x.setAttribute("aria-pressed",x.dataset.s===scen));shown=30;renderList();});
-  ["q","f-co","f-type","f-term","f-form","f-era","f-off","f-grp","f-life"].forEach(id=>$("#"+id).addEventListener("input",()=>{shown=30;renderList()}));
+  ["q","f-co","f-type","f-term","f-form","f-era","f-off","f-grp","f-life","f-calc"].forEach(id=>$("#"+id).addEventListener("input",()=>{shown=30;renderList()}));
   $("#more").addEventListener("click",()=>{shown+=30;renderList(false)});
   route();
 }
@@ -534,6 +537,7 @@ function renderList(recompute=true){
     lastRes=P.filter(p=>{
       if(!grp && p.grp) return false;
       if(!life && p.life) return false;
+      if($("#f-calc").checked && !p.hr) return false;
       if(!off && p.e) return false;
       if(co && p.co!==co) return false;
       if(ft!=="" && p.type!==+ft) return false;
@@ -554,7 +558,7 @@ function renderList(recompute=true){
 function card(p){
   return `<a class="card" href="#p${p.i}">
     <span class="t"><b>${esc(p.name)}</b><span>${p.codes.length?`<span class="cd">${p.codes.join(" / ")}</span> `:""}${CO[p.co]||p.co}・${TYPE_INFO[p.type].n}・${FORMS[p.form]}${p.term?"・"+TERMS[p.term]:""}${p.grp?"・團體":""}${p.life?"・壽險類":""}</span><span>民國 ${yr(p.s)} 年開賣${p.e?`，${yr(p.e)} 年停售`:""}・${p.vers.length} 個版本</span></span>
-    <span class="side">${p.e?`<span class="pill off">已停售</span>`:`<span class="pill on">現售中</span>`}${p.hd?`<span class="mini">有白話解讀</span>`:""}</span></a>`;
+    <span class="side">${p.e?`<span class="pill off">已停售</span>`:`<span class="pill on">現售中</span>`}${p.hr?`<span class="mini calc-tag">可試算</span>`:(p.hd?`<span class="mini">有白話解讀</span>`:"")}</span></a>`;
 }
 
 /* ---------- 條款整理與台灣現況 ---------- */
@@ -669,7 +673,7 @@ function quoteHTML(p,R,X){
       <div class="q-sex" role="group" aria-label="性別"><span>性別</span><button type="button" data-s="男" aria-pressed="true">男性</button><button type="button" data-s="女" aria-pressed="false">女性</button></div>`:""}
       ${ys.length>1?`<label>年期<select id="q-y">${ys.map(v=>`<option>${esc(v)}</option>`).join("")}</select></label>`:(ys[0]?`<label>年期<span class="q-static">${esc(ys[0])}</span></label>`:(p.term===1?`<label>年期<span class="q-static">一年期</span></label>`:""))}
       ${plans.length?`<label>計劃別<select id="q-p">${plans.map(v=>`<option>${esc(v)}</option>`).join("")}</select></label>`:""}
-      ${needAmt?`<label>${unitLab}<span><input id="q-v" type="number" inputmode="numeric" placeholder="${R&&R.b===1?"1":unitLab==="住院日額"?"1000":"100000"}"> ${R&&R.b===1?"單位":"元"}</span></label>`:""}
+      ${needAmt?`<label>${unitLab}<span><input id="q-v" type="number" inputmode="numeric" value="${R&&R.b===1?1:(unitLab==="住院日額"||(R&&R.b===100))?1000:100000}"> ${R&&R.b===1?"單位":"元"}</span><small>可自行修改</small></label>`:""}
     </div>
     <div class="q-out">${R?`<span>年繳保費</span><b id="q-prem">－</b><small id="q-note"></small>`:`<span>這張保單的費率表無法試算</span><small>理賠金額仍可依計劃或保額換算</small>`}</div>
   </section>`;
