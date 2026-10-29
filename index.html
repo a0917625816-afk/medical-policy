@@ -348,6 +348,7 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
       <a href="#learn" data-tab="learn">醫療險觀念</a>
       <a href="#find" data-tab="find">找保單</a>
       <a href="#mine" data-tab="mine">我的保單</a>
+      <a href="#calc" data-tab="calc">理賠試算</a>
     </nav>
   </div>
 </header>
@@ -467,12 +468,10 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
     <div class="intro">
       <span class="eyebrow">把手上的保單放在一起看</span>
       <h2>我的保單有哪些保障？還缺什麼？</h2>
-      <p class="lead">在保單頁按「加入我的保單」，或用下面的「自己輸入保單內容」把手上舊保單的金額 key 進來。加入後可以一起做理賠模擬，並標出目前沒有保障的類別。清單只存在你這台裝置的瀏覽器裡。</p>
+      <p class="lead">在保單頁按「加入我的保單」。下面會依險種排列，標出目前沒有保障的類別，也可以做理賠模擬。要自己 key 保單內容請到「理賠試算」分頁。清單只存在你這台裝置的瀏覽器裡。</p>
     </div>
     <div class="add-hint"><span class="count" id="mine-count"></span><a class="btn ghost" href="#find" style="text-decoration:none">＋ 加入保單</a></div>
     <div class="mine-list" id="mine-list"></div>
-    <div class="actions"><button class="btn ghost" type="button" id="cust-new">＋ 自己輸入保單內容（舊保單、別家保單都可以）</button></div>
-    <div id="cust-box" class="cust-box" hidden></div>
     <div id="mine-sim"></div>
     <div class="intro"><h2 style="font-size:1.3rem">保障地圖</h2></div>
     <div class="map" id="map"></div>
@@ -484,10 +483,23 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
     </div>
     <p class="disclaim">險種依商品名稱自動判讀，僅供參考。各項給付金額與條件以保單條款為準。</p>
   </section>
+  <!-- 理賠試算 -->
+  <section data-view="calc" hidden>
+    <div class="intro">
+      <span class="eyebrow">業務員工具</span>
+      <h2>理賠試算：把保單內容 key 進來，直接算客戶可以領多少</h2>
+      <p class="lead">舊保單、別家公司的保單都可以。照保單首頁或條款填每一項的金額，再選一個情境（住院幾天、開什麼刀、罹癌…），就會算出每張保單和合計的理賠金額，附算式，可以直接拿給客戶看。資料只存在你這台裝置的瀏覽器裡。</p>
+    </div>
+    <div class="mine-list" id="cust-list"></div>
+    <div class="actions"><button class="btn" type="button" id="cust-new">＋ 自己輸入保單內容</button><span class="fine" id="calc-note"></span></div>
+    <div id="cust-box" class="cust-box" hidden></div>
+    <div id="calc-sim"></div>
+    <p class="disclaim">試算依輸入的金額與一般條款邏輯計算，僅供參考；實際理賠以保單條款、收據與保險公司審核為準。</p>
+  </section>
 </main>
 
 <script>
-const BUILD="1793274413";
+const BUILD="1793274674";
 const TYPE_INFO = [
   {k:0,n:"住院日額",pays:"住院一天給固定金額",d:"不看花多少錢，只看住幾天。加護病房、燒燙傷病房通常另有加給。"},
   {k:1,n:"實支實付",pays:"依收據實報實銷",d:"重點看三項限額：病房費（每天）、住院雜費（每次）、手術費（每次）。"},
@@ -898,7 +910,7 @@ function renderDetail(i){
 }
 
 function renderMine(){
-  const list=[...mine.map(id=>P.find(p=>p.vers[0].id===id)).filter(Boolean),...CUST.map(custPol)];
+  const list=mine.map(id=>P.find(p=>p.vers[0].id===id)).filter(Boolean);
   const gaps=MAP_TYPES.filter(k=>!list.some(p=>p.type===k));
   $("#mine-tools").hidden=!list.length;
   $("#summary").textContent=list.length?`我目前的醫療保障（共 ${list.length} 張）：\n`+list.map(p=>`・${p.name}（${p.cust?(p.co||"自己輸入"):(CO[p.co]||p.co)}，${TYPE_INFO[p.type].n}）`).join("\n")+`\n\n還沒有的保障：${gaps.map(k=>TYPE_INFO[k].n).join("、")||"無"}`:"";
@@ -914,17 +926,19 @@ $("#mine-share").addEventListener("click",()=>{const ids=mine.map(id=>P.findInde
 $("#sum-copy").addEventListener("click",()=>copyText($("#summary").textContent,$("#mine-out"),"已複製文字摘要，可以直接貼到 LINE。"));
 $("#mine-list").addEventListener("click",e=>{const b=e.target.closest("[data-rm]"); if(b){mine=mine.filter(x=>x!==b.dataset.rm);save();renderMine();return;} const c=e.target.closest("[data-rmc]"); if(c){CUST=CUST.filter(x=>x.id!==c.dataset.rmc);custSave();renderMine();return;} const ed=e.target.closest("[data-edit]"); if(ed){custOpen(CUST.find(x=>x.id===ed.dataset.edit));}});
 $("#cust-new").addEventListener("click",()=>custOpen(null));
+$("#cust-list").addEventListener("click",e=>{const c=e.target.closest("[data-rmc]"); if(c){CUST=CUST.filter(x=>x.id!==c.dataset.rmc);custSave();renderCalc();return;} const ed=e.target.closest("[data-edit]"); if(ed){custOpen(CUST.find(x=>x.id===ed.dataset.edit));}});
 
 function route(){
   let h=location.hash.slice(1)||"find", view=h;
   if(/^mine-[\d-]*(~[A-Za-z0-9_-]+)?$/.test(h)&&P.length){const [idp,cp]=h.slice(5).split("~"); const ids=idp.split("-").filter(Boolean).map(Number).filter(i=>P[i]).map(i=>P[i].vers[0].id); mine=[...new Set([...mine,...ids])]; save(); if(cp){const add=custDecode(cp); for(const c of add){ if(!CUST.some(x=>x.name===c.name&&JSON.stringify(x.items)===JSON.stringify(c.items))) CUST.push(c);} custSave();} history.replaceState(null,"","#mine"); h=view="mine";}
   if(/^p\d+$/.test(h)){ view = P.length && renderDetail(+h.slice(1)) ? "detail" : "find"; }
-  if(!["learn","find","mine","detail"].includes(view)) view="find";
+  if(!["learn","find","mine","detail","calc"].includes(view)) view="find";
   document.querySelectorAll("section[data-view]").forEach(s=>s.hidden=s.dataset.view!==view);
   const tab=view==="detail"?"find":view;
   document.querySelectorAll("nav a").forEach(a=>{if(a.dataset.tab===tab)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current")});
   if(view==="find"&&P.length) renderList();
   if(view==="mine"&&P.length) renderMine();
+  if(view==="calc"&&P.length) renderCalc();
   window.scrollTo(0,0);
 }
 addEventListener("hashchange",route);
@@ -1135,10 +1149,10 @@ function mineSt(p,X,R,cfg){
     if(col){const rate=ageKey(col.a,age); if(R.b===0) prem=rate; else if(amt>0) prem=R.b===1?rate*amt:(R.b?rate*amt/R.b:0); const yv=y||(col.y||""),ym=yv.match(/(\d+)\s*年/); yrs=/躉繳/.test(yv)?1:ym&&+ym[1]>0?+ym[1]:(p.term===1?1:0);}}
   return {st:{s,age,y,plan,pi,amt:amt||0,unit,prem:prem||0,yrs,ex:false},plans,needAmt};
 }
-function renderMineSim(list){
-  const box=document.getElementById("mine-sim"); if(!box) return;
-  if(!list.length){box.innerHTML="";return;}
-  box.innerHTML=`<div class="intro"><h2 style="font-size:1.3rem">理賠模擬：發生這些事，手上的保單總共可以領多少？</h2><p class="lead">把加入的保單一起算。每張保單的計劃別或保額可以在下面改，改完會記住。</p></div>
+function renderMineSim(list,boxId,title){
+  boxId=boxId||"mine-sim"; const box=document.getElementById(boxId); if(!box) return;
+  if(!list.length){box.innerHTML=boxId==="calc-sim"?`<div class="empty">還沒有保單可以模擬。先在上面「自己輸入保單內容」，或到「找保單」把保單加入「我的保單」。</div>`:"";return;}
+  box.innerHTML=`<div class="intro"><h2 style="font-size:1.3rem">${title||"理賠模擬：發生這些事，手上的保單總共可以領多少？"}</h2><p class="lead">把保單一起算。每張保單的計劃別或保額可以在下面改，改完會記住。</p></div>
     <section class="sim" id="msim">${simFormHTML("msim")}<p class="sim-desc" id="msim-desc"></p><div id="msim-out"><p class="fine">載入中…</p></div>
     <p class="fine">依各張保單的條款自動換算，實支實付以自費金額與限額取較低者；多張實支實付的分攤、同性質給付的互相抵扣未納入計算。實際理賠以條款與保險公司審核為準。</p></section>`;
   const run=async()=>{const out=document.getElementById("msim-out"); const d=document.getElementById("msim-desc"); if(d) d.textContent="情境："+simDesc(SIM);
@@ -1209,10 +1223,20 @@ function custOpen(c){ const box=document.getElementById("cust-box"); box.innerHT
   box.querySelector("#ck-add").addEventListener("click",()=>custRowAdd({k:0}));
   box.querySelector("#ck-cancel").addEventListener("click",()=>{box.hidden=true;box.innerHTML="";});
   box.addEventListener("click",e=>{const d=e.target.closest("[data-del]"); if(d){d.closest(".ck-row").remove();}});
-  box.querySelector("#cust-form").addEventListener("submit",e=>{e.preventDefault(); const c2=custRead(); if(!c2.items.length){alert("至少要填一個有金額的給付項目");return;} const k=CUST.findIndex(x=>x.id===c2.id); if(k>=0) CUST[k]=c2; else CUST.push(c2); custSave(); box.hidden=true; box.innerHTML=""; renderMine();});
+  box.querySelector("#cust-form").addEventListener("submit",e=>{e.preventDefault(); const c2=custRead(); if(!c2.items.length){alert("至少要填一個有金額的給付項目");return;} const k=CUST.findIndex(x=>x.id===c2.id); if(k>=0) CUST[k]=c2; else CUST.push(c2); custSave(); box.hidden=true; box.innerHTML=""; renderCalc();});
   box.scrollIntoView({behavior:"smooth",block:"start"}); }
 function custEncode(){ try{ return CUST.length?btoa(unescape(encodeURIComponent(JSON.stringify(CUST.map(c=>[c.name,c.co,c.type,c.items.map(it=>[it.k,it.a,it.cap||0,it.m||0,it.inc?1:0])]))))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,""):""; }catch(e){return "";} }
 function custDecode(s){ try{ s=s.replace(/-/g,"+").replace(/_/g,"/"); const j=JSON.parse(decodeURIComponent(escape(atob(s)))); return j.map((a,i)=>({id:"s"+Date.now().toString(36)+i,name:a[0],co:a[1],type:a[2],items:a[3].map(x=>({k:x[0],a:x[1],cap:x[2],m:x[3],inc:x[4]}))})); }catch(e){return [];} }
+
+function renderCalc(){
+  const box=document.getElementById("cust-list"); if(!box) return;
+  box.innerHTML=CUST.length?CUST.map(c=>{const p=custPol(c);return `<div class="mine-row"><span class="t"><b>${esc(p.name)}</b><span>${esc(p.co||"")}${p.co?"・":""}${TYPE_INFO[p.type].n}・${(c.items||[]).length} 個給付項目</span></span><button class="x" type="button" data-edit="${c.id}">修改</button><button class="x" type="button" data-rmc="${c.id}">移除</button></div>`;}).join("")
+    :`<div class="empty">還沒有自己輸入的保單。按下面的按鈕，把客戶保單上的給付項目和金額 key 進來。</div>`;
+  const minePols=mine.map(id=>P.find(p=>p.vers[0].id===id)).filter(Boolean);
+  const list=[...CUST.map(custPol),...minePols];
+  const n=document.getElementById("calc-note"); if(n) n.textContent=minePols.length?`「我的保單」裡的 ${minePols.length} 張也會一起算。`:"";
+  renderMineSim(list,"calc-sim","理賠模擬：這些保單合計可以領多少？");
+}
 </script>
 
 </body>
