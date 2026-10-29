@@ -284,6 +284,42 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 .ci-raw{padding:0 16px 10px}
 .ci-raw summary{cursor:pointer;color:var(--muted);font-size:.82rem;padding:6px 0}
 .ci-raw p,.ci-raw ul{margin:4px 0;font-size:.88rem;color:var(--muted);line-height:1.7}
+.sim{display:grid;gap:12px;margin-top:8px}
+.sim-presets{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--accent);background:var(--surface);color:var(--accent);border-radius:999px;padding:7px 14px;font-weight:700;cursor:pointer;font-size:.95rem}
+.chip:hover{background:var(--accent-soft)}
+.sim-form{border:1px solid var(--line);border-radius:12px;padding:10px 16px;background:var(--surface)}
+.sim-form>summary{cursor:pointer;font-weight:700;color:var(--accent)}
+.sim-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 18px;margin-top:12px}
+@media (max-width:700px){.sim-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.sim-grid label{display:grid;gap:4px;font-size:.9rem;color:var(--muted)}
+.sim-grid label>span:last-child{color:var(--ink);font-weight:700}
+.sim-grid input[type=number],.sim-grid select{width:7em;max-width:100%;padding:6px 8px;border:1px solid var(--line);border-radius:8px;font-size:1rem;font-weight:700;color:var(--accent);background:var(--bg)}
+.sim-grid .sim-flag{display:flex;align-items:center;gap:8px;color:var(--ink);font-weight:600;align-self:end}
+.sim-grid .sim-flag input{width:20px;height:20px}
+.sim-cause .q-sex{display:inline-flex;gap:10px}
+.sim-desc{margin:0;color:var(--muted);font-size:.9rem}
+.sim-total{display:grid;gap:4px;background:var(--accent-soft);border-radius:12px;padding:14px 18px}
+.sim-total span{font-weight:700}.sim-total b{font-size:2rem;color:var(--accent);font-variant-numeric:tabular-nums;line-height:1.1}.sim-total small{color:var(--muted)}
+.sim-rows{display:grid;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface)}
+.sr{display:flex;justify-content:space-between;gap:12px;padding:10px 16px;border-top:1px solid var(--line);align-items:flex-start}
+.sr:first-child{border-top:none}
+.sr.off{color:var(--muted)}
+.sr-n{display:grid;gap:2px;min-width:0}.sr-n small{color:var(--muted);font-size:.75rem}.sr-c{font-size:.85rem;color:var(--muted)}
+.sr-a{font-weight:800;white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--accent)}
+.sr.off .sr-a{color:var(--muted);font-weight:400}
+.sr-more{border-top:1px solid var(--line)}
+.sr-more>summary{padding:10px 16px;cursor:pointer;color:var(--muted);font-size:.9rem}
+.msp{border:1px solid var(--line);border-radius:12px;background:var(--surface);margin-top:10px;padding:0 0 8px}
+.msp>summary{list-style:none;cursor:pointer;padding:12px 16px}
+.msp>summary::-webkit-details-marker{display:none}
+.msp-h{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.msp-h b{font-size:1.02rem}.msp-a{font-weight:800;color:var(--accent);white-space:nowrap;font-variant-numeric:tabular-nums}
+.msp>summary small{display:block;color:var(--muted);font-size:.8rem;margin-top:2px}
+.msp-ctl{display:flex;flex-wrap:wrap;gap:10px 18px;padding:0 16px 10px}
+.msp-ctl label{display:grid;gap:3px;font-size:.85rem;color:var(--muted)}
+.msp-ctl input,.msp-ctl select{padding:6px 8px;border:1px solid var(--line);border-radius:8px;font-weight:700;color:var(--accent);background:var(--bg);width:9em;max-width:100%}
+.msp .sim-rows{margin:0 16px;border-radius:10px}
 .ben-h{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:4px}
 .ben-h h3{margin:0}
 .bens{display:grid;gap:8px}
@@ -432,6 +468,7 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
     </div>
     <div class="add-hint"><span class="count" id="mine-count"></span><a class="btn ghost" href="#find" style="text-decoration:none">＋ 加入保單</a></div>
     <div class="mine-list" id="mine-list"></div>
+    <div id="mine-sim"></div>
     <div class="intro"><h2 style="font-size:1.3rem">保障地圖</h2></div>
     <div class="map" id="map"></div>
     <div id="mine-tools" class="tools" hidden>
@@ -445,7 +482,7 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 </main>
 
 <script>
-const BUILD="1793264790";
+const BUILD="1793267721";
 const TYPE_INFO = [
   {k:0,n:"住院日額",pays:"住院一天給固定金額",d:"不看花多少錢，只看住幾天。加護病房、燒燙傷病房通常另有加給。"},
   {k:1,n:"實支實付",pays:"依收據實報實銷",d:"重點看三項限額：病房費（每天）、住院雜費（每次）、手術費（每次）。"},
@@ -507,6 +544,7 @@ $("#gloss").innerHTML=GLOSS.map(g=>`<div><dt>${g[0]}</dt><dd>${g[1]}</dd></div>`
 /* ---------- 我的保單（存在這台裝置） ---------- */
 const KEY="mpe-mine-v3";
 let mine=[]; try{mine=JSON.parse(localStorage.getItem(KEY))||[]}catch(e){}
+let CUR_ST=null;
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(mine))}catch(e){}};
 
 /* ---------- 載入資料 ---------- */
@@ -686,7 +724,8 @@ function wireOcc(p,R,X){const O=R.o;let ex=true;const g=id=>{const e=document.ge
     if(rate==null){pe.textContent="－";ne.textContent="這個職業類別不在承保範圍";return;}
     const prem=O.b===0?rate:(O.b===1?rate*amt:(O.b?rate*amt/O.b:null));
     pe.textContent=prem!=null?fmtN(prem)+" 元":"－";ne.textContent=`依費率表 ${O.u||""}：${rate} 元`+(O.b==null?"（未標示單位，請以官方費率表為準）":"");
-    if(X&&X.ben) renderClaims(X,{pi:-1,amt:O.b===0?0:amt,unit:O.b===1,ex,prem:prem||0,yrs:1});};
+    if(X&&X.ben){const st={pi:-1,amt:O.b===0?0:amt,unit:O.b===1,ex,prem:prem||0,yrs:1};renderClaims(X,st);simRender(X,st,p);CUR_ST=st;}};
+  const simEl=document.getElementById("sim"); if(simEl) simWire(simEl,run);
   const t=document.getElementById("ex-t"); if(t) t.addEventListener("click",()=>{ex=!ex;t.textContent=ex?"－ 收起說明":"＋ 展開說明";run();});
   document.querySelectorAll("#quote input,#quote select").forEach(e=>e.addEventListener("input",run));run();}
 function quoteHTML(p,R,X){
@@ -722,14 +761,11 @@ function renderClaims(X,st){
   const keys=Object.keys(groups).sort((a,b)=>{if(a.startsWith("實支實付轉換"))return -1;if(b.startsWith("實支實付轉換"))return 1;const[ca,fa]=a.split("／").length>2?[a.slice(0,a.lastIndexOf("／")),a.slice(a.lastIndexOf("／")+1)]:a.split("／");const[cb,fb]=b.split("／").length>2?[b.slice(0,b.lastIndexOf("／")),b.slice(b.lastIndexOf("／")+1)]:b.split("／");return (CAT_ORDER.indexOf(ca)-CAT_ORDER.indexOf(cb))||(FREQ_ORDER.indexOf(fa)-FREQ_ORDER.indexOf(fb));});
   box.innerHTML=keys.map(k=>{const freq=k.startsWith("實支實付轉換")?"每日":k.slice(k.lastIndexOf("／")+1);
     return `<div class="cg"><h4>${esc(k)}</h4>${groups[k].map(([b,i])=>{
-      let A=null;
-      if(b.pv&&st.pi>=0&&b.pv[st.pi]!=null) A=b.pv[st.pi];
-      else if(st.amt>0&&!((b.r||[]).includes("依條款附表")&&/手術|處置/.test(b.n))){ A=benAmount(b.r||[],st.amt,st.unit);
-        if(A==null&&!st.unit&&freq==="每日"&&/^(?:一般)?住院(?:醫療)?(?:日額)?(?:醫療)?保險金$/.test(b.n)) A=st.amt; }
+      const A=itemAmount(b,st,freq);
       let pnote="";
-      if(A==null&&st.prem>0){for(const z of (b.r||[])){let m;
-        if((m=z.match(/^已繳保費 × ([\d.]+) 倍$/))&&st.yrs>0){A=Math.round(st.prem*st.yrs*(+m[1]));pnote=`以年繳 ${fmtN(st.prem)} 元 × ${st.yrs} 年 × ${m[1]} 倍估算${(b.r||[]).includes("扣除已領保險金")?"，還要扣掉之前已領的保險金":""}`;}
-        else if((m=z.match(/^年繳保費的 ([\d.]+)%$/))){A=Math.round(st.prem*(+m[1])/100);pnote=`以年繳 ${fmtN(st.prem)} 元 × ${m[1]}% 估算`;}}}
+      if(A!=null&&st.prem>0&&!(b.pv&&st.pi>=0&&b.pv[st.pi]!=null)&&benAmount(b.r||[],st.amt||1,st.unit)==null){for(const z of (b.r||[])){let m;
+        if((m=z.match(/^已繳保費 × ([\d.]+) 倍$/))&&st.yrs>0) pnote=`以年繳 ${fmtN(st.prem)} 元 × ${st.yrs} 年 × ${m[1]} 倍估算${(b.r||[]).includes("扣除已領保險金")?"，還要扣掉之前已領的保險金":""}`;
+        else if((m=z.match(/^年繳保費的 ([\d.]+)%$/))) pnote=`以年繳 ${fmtN(st.prem)} 元 × ${m[1]}% 估算`;}}
       const lim=/限額|上限/.test(b.n+(b.r||[]).join(""))||(b.r||[]).some(z=>/實支/.test(z));
       const maxp=((b.r||[]).includes("最高給付保額")||/失能|殘廢/.test(b.n))&&!/完全失能/.test(b.n);
       const tags=(b.r||[]).filter(z=>!/^含門診$/.test(z)&&(/已繳保費|年繳保費/.test(z)||!/倍|每單位|給付保額|保額的/.test(z))).filter(z=>!(b.pv&&z==="依條款附表")).map(z=>z==="依條款附表"&&/手術|處置/.test(b.n)?"依手術項目倍數表":z);
@@ -757,7 +793,8 @@ function wireProduct(p,R,X){
         st.prem=prem||0; const yv=st.y||(R.c[0]&&R.c[0].y)||"",ym=yv.match(/(\d+)\s*年/); st.yrs=/躉繳/.test(yv)?1:ym&&+ym[1]>0?+ym[1]:(p.term===1?1:0);
         pe.textContent=prem!=null?fmtN(prem)+" 元":"－";
         ne.textContent=prem!=null?`依費率表 ${R.u||""}：${fmtN(rate)} 元`:(R.b==null?"費率表未標示單位，請以官方費率表為準":`輸入${R.b===1?"投保單位":"保額"}後顯示`);}}
-    if(X&&X.ben) renderClaims(X,st);};
+    if(X&&X.ben){renderClaims(X,st);simRender(X,st,p);CUR_ST=st;}};
+  const simEl=document.getElementById("sim"); if(simEl) simWire(simEl,()=>simRender(X,st,p));
   document.querySelectorAll(".q-sex button").forEach(b=>b.addEventListener("click",()=>{st.s=b.dataset.s;document.querySelectorAll(".q-sex button").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));run();}));
   document.querySelectorAll("#quote input,#quote select").forEach(e=>e.addEventListener("input",run));
   const t=document.getElementById("ex-t"); if(t) t.addEventListener("click",()=>{st.ex=!st.ex;t.setAttribute("aria-pressed",st.ex?"true":"false");t.textContent=st.ex?"－ 收起說明":"＋ 展開說明";renderClaims(X,st);});
@@ -772,7 +809,7 @@ function detailBlock(p){
     const X=j&&j[p.i];
     if(!X){el.innerHTML=`<div class="pending"><h4>條款重點載入失敗</h4><p>請重新整理頁面再試一次。</p></div>`+now;return;}
     (p.hr?loadRate(n):Promise.resolve(null)).then(rj=>{ if(+el.dataset.i!==p.i) return; const R=rj&&rj[p.i]||null;
-      el.innerHTML=quoteHTML(p,R,X)+infoCards(p,X)+claimsHTML(X)+detailHTML(X,true)+now;
+      el.innerHTML=quoteHTML(p,R,X)+infoCards(p,X)+claimsHTML(X)+(X.ben&&X.ben.length?simSectionHTML():"")+detailHTML(X,true)+now;
       if(R&&R.o&&!(R.c&&R.c.length)) wireOcc(p,R,X);
       else wireProduct(p,R,X);});
     const all=el.querySelector("#ben-all"); if(all) all.addEventListener("click",()=>{const ds=el.querySelectorAll("details.ben"),open=![...ds].every(d=>d.open);ds.forEach(d=>d.open=open);all.textContent=open?"全部收合":"全部展開"});});
@@ -850,7 +887,7 @@ function renderDetail(i){
   });
   $("#share").addEventListener("click",()=>copyText(location.href,$("#share-out"),"已複製連結，可以貼到 LINE 傳給客戶。"));
   $("#cp").addEventListener("click",e=>{const b=e.currentTarget; navigator.clipboard.writeText(p.name).then(()=>b.textContent="已複製",()=>b.textContent=p.name);});
-  if(!has) $("#add").addEventListener("click",e=>{mine.push(p.vers[0].id);save();const b=e.currentTarget;b.textContent="已加入，查看我的保單 →";b.onclick=()=>{location.hash="mine"}},{once:true});
+  if(!has) $("#add").addEventListener("click",e=>{mine.push(p.vers[0].id);save();if(CUR_ST){CFG[p.vers[0].id]={plan:CUR_ST.plan||"",amt:CUR_ST.amt||0,s:CUR_ST.s||"男",age:CUR_ST.age||30,y:CUR_ST.y||""};cfgSave();}const b=e.currentTarget;b.textContent="已加入，查看我的保單 →";b.onclick=()=>{location.hash="mine"}},{once:true});
   return true;
 }
 
@@ -862,6 +899,7 @@ function renderMine(){
   $("#mine-count").textContent=list.length?`目前有 ${list.length} 張保單`:"";
   $("#mine-list").innerHTML=list.length?list.map(p=>`<div class="mine-row"><a class="t" href="#p${p.i}" style="text-decoration:none;color:inherit"><b>${esc(p.name)}</b><span>${CO[p.co]||p.co}・${TYPE_INFO[p.type].n}</span></a><span></span><button class="x" type="button" data-rm="${p.vers[0].id}">移除</button></div>`).join("")
     :`<div class="empty">還沒有加入保單。到「找保單」搜尋保單上的商品名稱，打開後按「加入我的保單」。</div>`;
+  renderMineSim(list);
   $("#map").innerHTML=MAP_TYPES.map(k=>{const ps=list.filter(p=>p.type===k||(k===3&&false));
     return ps.length?`<div class="cell has"><span class="lab">${TYPE_INFO[k].n}</span><span class="who">${ps.map(p=>esc(p.name)).join("、")}</span></div>`
       :`<div class="cell zero"><span class="lab">${TYPE_INFO[k].n}</span><span class="who">目前沒有這類保單</span></div>`}).join("");
@@ -884,6 +922,195 @@ function route(){
 }
 addEventListener("hashchange",route);
 route();
+
+/* ---------- 理賠模擬器 ---------- */
+const SIM_KEY=KEY+":sim", CFG_KEY=KEY+":cfg";
+const SIM_DEF={cause:"疾病",days:0,icu:0,burn:0,room:0,misc:0,surgIn:0,surgFee:0,surgOut:0,surgOutFee:0,opd:0,er:0,cancer:0,major:0,disab:0,ltc:0,death:0};
+const SIM_PRESETS=[
+  {k:"appx",t:"盲腸炎住院開刀",d:"疾病・住院 4 天、住院手術 1 次、自費約 5 萬",S:{cause:"疾病",days:4,room:2500,misc:30000,surgIn:1,surgFee:20000,opd:2,er:1}},
+  {k:"car",t:"車禍骨折住院",d:"意外・住院 7 天（加護 2 天）、手術 1 次",S:{cause:"意外",days:7,icu:2,room:3000,misc:40000,surgIn:1,surgFee:30000,opd:3,er:1}},
+  {k:"cancer",t:"初次罹患癌症",d:"確診癌症・住院 10 天、手術 1 次、門診治療 6 次",S:{cause:"疾病",cancer:1,days:10,room:3000,misc:80000,surgIn:1,surgFee:50000,opd:6}},
+  {k:"cataract",t:"白內障門診手術",d:"門診手術 1 次、自費水晶體 6 萬，未住院",S:{cause:"疾病",surgOut:1,surgOutFee:60000,opd:2}},
+  {k:"stroke",t:"中風（重大傷病）",d:"重大傷病・住院 20 天（加護 5 天）",S:{cause:"疾病",major:1,days:20,icu:5,room:2500,misc:60000,opd:4}},
+  {k:"ltc",t:"重度失能需長照",d:"第 1 級失能、符合長照狀態",S:{cause:"疾病",disab:1,ltc:1,days:30,icu:5,room:2000,misc:50000}},
+];
+const SIM_FIELDS=[
+  ["days","住院天數","天"],["icu","　其中加護病房","天"],["burn","　其中燒燙傷病房","天"],
+  ["room","病房費差額（每日自費）","元"],["misc","住院雜費（自費，不含手術費）","元"],
+  ["surgIn","住院手術","次"],["surgFee","住院手術費（自費）","元"],
+  ["surgOut","門診手術","次"],["surgOutFee","門診手術費（自費）","元"],
+  ["opd","門診次數","次"],["er","急診次數","次"]];
+const SIM_FLAGS=[["cancer","初次確診癌症"],["major","重大傷病／重大疾病"],["ltc","符合長期照顧狀態"],["death","身故"]];
+const DISAB_RATIO={1:1,2:.9,3:.8,4:.7,5:.6,6:.5,7:.4,8:.3,9:.2,10:.1,11:.05};
+let SIM=Object.assign({},SIM_DEF,SIM_PRESETS[0].S); try{const s=JSON.parse(localStorage.getItem(SIM_KEY)); if(s&&typeof s==="object") SIM=Object.assign({},SIM_DEF,s);}catch(e){}
+function simSave(){try{localStorage.setItem(SIM_KEY,JSON.stringify(SIM))}catch(e){}}
+let CFG={}; try{CFG=JSON.parse(localStorage.getItem(CFG_KEY))||{}}catch(e){}
+function cfgSave(){try{localStorage.setItem(CFG_KEY,JSON.stringify(CFG))}catch(e){}}
+
+/* 每一項理賠項目在試算狀態 st 下的單位金額（與理賠項目列表相同算法） */
+function itemAmount(b,st,freq){
+  let A=null;
+  if(b.pv&&st.pi>=0&&b.pv[st.pi]!=null) A=b.pv[st.pi];
+  else if(st.amt>0&&!((b.r||[]).includes("依條款附表")&&/手術|處置/.test(b.n))){ A=benAmount(b.r||[],st.amt,st.unit);
+    if(A==null&&!st.unit&&freq==="每日"&&/^(?:一般)?住院(?:醫療)?(?:日額)?(?:醫療)?保險金$/.test(b.n)) A=st.amt; }
+  if(A==null&&st.prem>0){for(const z of (b.r||[])){let m;
+    if((m=z.match(/^已繳保費 × ([\d.]+) 倍$/))&&st.yrs>0) A=Math.round(st.prem*st.yrs*(+m[1]));
+    else if((m=z.match(/^年繳保費的 ([\d.]+)%$/))) A=Math.round(st.prem*(+m[1])/100);}}
+  return A;
+}
+const simN=n=>n.replace(/[（(].*$/,"").replace(/的給付$/,"").replace(/^保險範圍[－-]?/,"");
+function simItem(b,A,S,pol,X){
+  const n=simN(b.n), r=b.r||[], f=benFreq(b);
+  const acc=S.cause==="意外", R={b,A,pay:0,calc:"",note:"",kind:""};
+  const num=re=>{const z=r.find(x=>re.test(x)); const m=z&&z.match(/(\d[\d,]*)/); return m?+m[1].replace(/,/g,""):null;};
+  const maxD=num(/^最多 \d+ 日$/), maxN=num(/^最多 \d+ 次$/);
+  const once=r.includes("限領一次")||f==="一次給付";
+  const real=r.some(z=>/實支/.test(z))||/費用|雜費/.test(n);
+  const capD=d=>maxD!=null?Math.min(d,maxD):d, capN=k=>maxN!=null?Math.min(k,maxN):k;
+  const fx=v=>fmtN(v)+" 元";
+  const skip=(note,kind)=>{R.note=note;R.kind=kind||"skip";return R;};
+  const need=(kind)=>{R.kind=kind;R.note="金額無法自動換算";return R;};
+  const pay=(v,calc,kind)=>{R.pay=Math.max(0,Math.round(v));R.calc=calc;R.kind=kind;return R;};
+  const accItem=/意外|傷害|骨折|脫臼|創傷|食物中毒/.test(n)||pol.type===9;
+  if(/海外|國外|旅遊|旅行/.test(n)) return skip("海外就醫才適用");
+  if(/調整|改變|事後|始適用|當事人|續保|總額|給付總|保險金額$|保險範圍|^保險金/.test(n)&&!/保險金$/.test(n.replace(/^保險金/,""))) return skip("條款說明，不是給付項目");
+  if(/器官移植|幹細胞|骨髓|失明|認知功能|失智|支架|人工關節|安寧|精選傷病|生活習慣|特定人工|義肢|義齒|義乳|重建|洗腎|透析|燒燙傷|截肢|創傷縫合|骨折|脫臼|食物中毒|住院輔助|輔助/.test(n)&&!/住院|病房|手術/.test(n)||/重大燒燙傷|特定燒燙傷/.test(n)) return skip("這次情境沒有這項事故或治療");
+  if(/祝壽|滿期|生存|還本|退還|無理賠|回饋|增值|健康管理|豁免|保費|保單價值|解約|紅利|關懷/.test(n)) return skip("不是醫療事故給付，這次不計");
+  if(/身故|喪葬/.test(n)){ if(!S.death) return skip("身故時才給付"); if(accItem&&!acc) return skip("意外身故才給付"); if(/癌/.test(n)&&!S.cancer) return skip("癌症身故才給付"); if(A==null) return need("死亡"); return pay(A,`身故給付 ${fx(A)}`,"死亡"); }
+  if(accItem&&!acc) return skip("意外事故才給付（這次是疾病）");
+  if(/長期照顧|長照|照護|失智|生活扶助|扶助金|喪失工作能力/.test(n)&&!/失能保險金$|殘廢保險金$/.test(n)){
+    if(!S.ltc&&!(S.disab>0&&/失能|殘廢/.test(n))) return skip("符合長照／失能狀態才給付");
+    if(A==null) return need("長照");
+    if(r.includes("分期給付")||/分期|扶助|每月|年金/.test(n)){R.periodic=true;return pay(A,`符合狀態後每期 ${fx(A)}`,"長照");}
+    return pay(A,`一次給付 ${fx(A)}`,"長照");
+  }
+  if(/失能|殘廢/.test(n)){
+    if(!(S.disab>0)) return skip("失能才給付");
+    if(A==null) return need("失能");
+    if(/完全/.test(n)||!(r.includes("最高給付保額")||/等級|程度|比例/.test(b.d||""))){ if(S.disab===1) return pay(A,`第 1 級（完全）失能給付 ${fx(A)}`,"失能"); return skip("第 1 級失能才給付"); }
+    const ratio=DISAB_RATIO[S.disab]||0; if(r.includes("分期給付")) R.periodic=true;
+    return pay(A*ratio,`第 ${S.disab} 級失能 ${Math.round(ratio*100)}%：${fx(A)} × ${ratio}`,"失能");
+  }
+  if(/癌/.test(n)){
+    if(!S.cancer) return skip("確診癌症才給付");
+    if(A==null) return need("癌症");
+    if(/義肢|義齒|義乳|乳房重建|骨髓|造血|安寧|居家|緩和/.test(n)) return skip("這次情境沒有這項治療");
+    if(/住院(?:醫療)?(?:日額)?保險金$|住院醫療保險金|住院日額/.test(n)&&!/手術|前後/.test(n)){ if(!S.days) return skip("住院才給付"); const d=capD(S.days); return pay(A*d,`${fx(A)} × ${d} 天`,"癌住"); }
+    if(/療養/.test(n)){ if(!S.days) return skip("住院才給付"); const d=capD(S.days); return pay(A*d,`${fx(A)} × 住院 ${d} 天`,"癌住"); }
+    if(/手術/.test(n)){ const k=/門診/.test(n)?S.surgOut:S.surgIn; if(!k) return skip("手術才給付"); if(real){const fee=/門診/.test(n)?S.surgOutFee:S.surgFee; const v=Math.min(fee,A); return pay(v*k,`${fx(Math.min(fee,A))}（自費 ${fx(fee)}，上限 ${fx(A)}）× ${k} 次`,"癌手");} return pay(A*capN(k),`${fx(A)} × ${capN(k)} 次`,"癌手"); }
+    if(/門診|化學|化療|放射|標靶|免疫|荷爾蒙|治療/.test(n)){ if(!S.opd) return skip("門診治療才給付"); const k=capN(S.opd); return pay(A*k,`${fx(A)} × ${k} 次`,"癌門"); }
+    if(/初次|首次|確診|罹患|診斷|一次/.test(n)||once) return pay(A,`確診一次給付 ${fx(A)}`,"癌一");
+    if(f==="每日"){ if(!S.days) return skip("住院才給付"); const d=capD(S.days); return pay(A*d,`${fx(A)} × ${d} 天`,"癌住"); }
+    return pay(A,`給付 ${fx(A)}`,"癌一");
+  }
+  if(/重大傷病|重大疾病|特定傷病|特定疾病|重度|輕度|嚴重|特定重大/.test(n)){ if(!S.major) return skip("符合重大傷病／重大疾病定義才給付"); if(A==null) return need("重疾"); if(r.includes("分期給付")) R.periodic=true; return pay(A,`${R.periodic?"每期":"一次"}給付 ${fx(A)}`,"重疾"); }
+  if(/重大燒燙傷|特定燒燙傷/.test(n)) return skip("重大燒燙傷才給付");
+  if(/燒燙傷/.test(n)){ if(!S.burn) return skip("住燒燙傷病房才給付"); if(A==null) return need("燒"); const d=capD(S.burn); return pay(A*d,`${fx(A)} × ${d} 天`,"燒"); }
+  if(/加護|特別病房|特定病房/.test(n)){ if(!S.icu) return skip("住加護病房才給付"); if(A==null) return need("加護"); const d=capD(S.icu); return pay(A*d,`${fx(A)} × ${d} 天`,"加護"); }
+  if(/門診手術/.test(n)){ if(!S.surgOut) return skip("門診手術才給付"); if(A==null) return need("門手"); if(real){const v=Math.min(S.surgOutFee,A); return pay(v*S.surgOut,`${fx(v)}（自費 ${fx(S.surgOutFee)}，上限 ${fx(A)}）× ${S.surgOut} 次`,"門手");} return pay(A*capN(S.surgOut),`${fx(A)} × ${capN(S.surgOut)} 次`,"門手"); }
+  if(/手術|處置/.test(n)&&!/前後/.test(n)){ if(!S.surgIn) return skip("住院手術才給付"); if(A==null) return need("手術"); if(real){const v=Math.min(S.surgFee,A); return pay(v*S.surgIn,`${fx(v)}（自費 ${fx(S.surgFee)}，上限 ${fx(A)}）× ${S.surgIn} 次`,"手術");} return pay(A*capN(S.surgIn),`${fx(A)} × ${capN(S.surgIn)} 次`,"手術"); }
+  if(/醫材|特定(?:處置|項目)/.test(n)) return skip("依條款附表的醫材／處置項目才給付");
+  if(/病房費/.test(n)){ if(!S.days) return skip("住院才給付"); if(A==null) return need("病房");
+    const icuM=(b.sub||[]).find(z=>/加護/.test(z.n)), burnM=(b.sub||[]).find(z=>/燒燙傷/.test(z.n));
+    const norm=Math.max(0,S.days-S.icu-S.burn), v=Math.min(S.room,A); let tot=v*norm, calc=`${fx(v)} × ${norm} 天`;
+    if(S.icu){const lim=A*(icuM?icuM.m:1), vi=Math.min(S.room*(icuM?icuM.m:1),lim); tot+=vi*S.icu; calc+=` ＋ 加護 ${fx(vi)} × ${S.icu} 天`;}
+    if(S.burn){const lim=A*(burnM?burnM.m:1), vb=Math.min(S.room*(burnM?burnM.m:1),lim); tot+=vb*S.burn; calc+=` ＋ 燒燙傷 ${fx(vb)} × ${S.burn} 天`;}
+    if(maxD!=null&&S.days>maxD){tot=tot*maxD/S.days; calc+=`（最多 ${maxD} 天）`;}
+    return pay(tot,calc+`（自費每天 ${fx(S.room)}，上限 ${fx(A)}／日）`,"病房"); }
+  if(real&&/傷害醫療|意外醫療|意外傷害醫療|醫療保險金$/.test(n)&&(accItem||pol.type===9)){ const exp=S.room*S.days+S.misc+S.surgFee+S.surgOutFee; if(!exp) return skip("有自費醫療費用才給付"); if(A==null) return need("意外實支"); const v=Math.min(exp,A); return pay(v,`自費合計 ${fx(exp)}，上限 ${fx(A)} → ${fx(v)}`,"意外實支"); }
+  if(real&&/雜費|醫療費用|醫療保險金|特定費用/.test(n)&&!/門診/.test(n)){ if(!S.days&&!S.misc) return skip("住院才給付"); if(A==null) return need("雜費");
+    const inc=(b.sub||[]).some(z=>/包含住院手術/.test(z.n))||!(X.ben||[]).some(o=>o!==b&&/手術費用|手術醫療費用/.test(o.n)&&!/門診/.test(o.n));
+    const exp=S.misc+(inc?S.surgFee:0); const v=Math.min(exp,A); return pay(v,`自費 ${fx(exp)}${inc&&S.surgFee?"（含手術費）":""}，上限 ${fx(A)} → ${fx(v)}`,"雜費"); }
+  if(/住院前後門診|前後門診/.test(n)){ if(!S.days||!S.opd) return skip("住院前後有門診才給付"); if(A==null) return need("門診"); const k=capN(S.opd); return pay(A*k,`${fx(A)} × ${k} 次`,"門診"); }
+  if(/急診/.test(n)){ if(!S.er) return skip("急診才給付"); if(A==null) return need("急診"); const k=capN(S.er); return pay(A*k,`${fx(A)} × ${k} 次`,"急診"); }
+  if(/救護車|轉送|運送/.test(n)){ if(!S.er) return skip("緊急轉送才給付"); if(A==null) return need("急診"); return pay(A,`${fx(A)} × 1 次`,"急診"); }
+  if(/門診/.test(n)&&!/住院/.test(n)){ if(!S.opd) return skip("門診才給付"); if(A==null) return need("門診"); const k=capN(S.opd); return pay(A*k,`${fx(A)} × ${k} 次`,"門診"); }
+  if(/長期住院/.test(n)){ const over=Math.max(0,S.days-30); if(!over) return skip("住院超過 30 天才給付"); if(A==null) return need("住院"); return pay(A*capD(over),`${fx(A)} × 超過 30 天的 ${capD(over)} 天`,"住院"); }
+  if(/慰問|補償|看護/.test(n)&&f!=="每日"){ if(!S.days) return skip("住院才給付"); if(A==null) return need("住院"); return pay(A,`每次住院 ${fx(A)}`,"住院"); }
+  if(/療養|養護|居家/.test(n)){ if(!S.days) return skip("住院才給付"); if(A==null) return need("住院"); const d=capD(S.days); return pay(A*d,`${fx(A)} × 住院 ${d} 天`,"住院"); }
+  if(/住院|日額|病房/.test(n)||f==="每日"){ if(!S.days) return skip("住院才給付"); if(A==null) return need("住院"); const d=capD(S.days); return pay(A*d,`${fx(A)} × ${d} 天`,"住院"); }
+  if(/骨折|脫臼/.test(n)) return skip("骨折／脫臼才給付");
+  if(/傳染病|法定/.test(n)) return skip("法定傳染病才給付");
+  return skip("這個情境無法自動判斷，請看條款");
+}
+function simRun(X,st,S,pol){
+  const rows=[]; const bens=X&&X.ben||[];
+  bens.forEach(b=>{b.ei=!!(X.either&&/日額保險金選擇權|日額選擇|轉換.*日額|日額保險金$/.test(b.n)&&!/^住院日額/.test(b.n)); const f=benFreq(b); const A=itemAmount(b,st,f); rows.push(simItem(b,A,S,pol,X));});
+  let note="";
+  if(X&&X.either){ const alt=rows.find(r=>r.b.ei); const reals=rows.filter(r=>!r.b.ei&&/病房|雜費|手術/.test(r.kind)&&r.kind!=="門手");
+    if(alt&&S.days){ const A=alt.A; const altPay=A!=null?A*S.days:null; const realPay=reals.reduce((a,r)=>a+r.pay,0);
+      if(altPay!=null&&altPay>realPay){ reals.forEach(r=>{r.pay=0;r.note="二擇一：改領日額較有利";r.calc="";}); alt.pay=altPay;alt.calc=`${fmtN(A)} 元 × ${S.days} 天（實支實付合計 ${fmtN(realPay)} 元較少，改領日額）`;alt.kind="住院";alt.note=""; note="實支實付與日額二擇一，已選較高者。"; }
+      else if(altPay!=null){ alt.pay=0; alt.calc=""; alt.note=`二擇一：實支實付 ${fmtN(realPay)} 元較日額 ${fmtN(altPay)} 元高，領實支實付`; note="實支實付與日額二擇一，已選較高者。"; } } }
+  const total=rows.filter(r=>!r.periodic).reduce((a,r)=>a+r.pay,0), per=rows.filter(r=>r.periodic).reduce((a,r)=>a+r.pay,0);
+  const unknown=rows.filter(r=>r.note==="金額無法自動換算");
+  return {rows,total,per,unknown,note};
+}
+function simFormHTML(id){
+  const S=SIM;
+  return `<div class="sim-presets">${SIM_PRESETS.map(p=>`<button type="button" class="chip" data-preset="${p.k}" title="${esc(p.d)}">${esc(p.t)}</button>`).join("")}<button type="button" class="chip" data-preset="clear">全部清空</button></div>
+  <details class="sim-form" id="${id}-f"><summary>調整情境（天數、自費金額、手術次數…）</summary>
+    <div class="sim-grid">
+      <label class="sim-cause"><span>事故原因</span><span class="q-sex" role="group"><button type="button" data-cause="疾病" aria-pressed="${S.cause!=="意外"}">疾病</button><button type="button" data-cause="意外" aria-pressed="${S.cause==="意外"}">意外</button></span></label>
+      ${SIM_FIELDS.map(([k,l,u])=>`<label><span>${l}</span><span><input type="number" inputmode="numeric" min="0" data-sim="${k}" value="${S[k]||0}"> ${u}</span></label>`).join("")}
+      ${SIM_FLAGS.map(([k,l])=>`<label class="sim-flag"><input type="checkbox" data-sim="${k}" ${S[k]?"checked":""}> ${l}</label>`).join("")}
+      <label class="sim-flag"><span>失能等級</span><select data-sim="disab"><option value="0">無</option>${[1,2,3,4,5,6,7,8,9,10,11].map(k=>`<option value="${k}" ${S.disab===k?"selected":""}>第 ${k} 級（${Math.round(DISAB_RATIO[k]*100)}%）</option>`).join("")}</select></label>
+    </div></details>`;
+}
+function simDesc(S){
+  const a=[S.cause==="意外"?"意外":"疾病"];
+  if(S.cancer) a.push("初次確診癌症"); if(S.major) a.push("重大傷病"); if(S.disab) a.push(`第 ${S.disab} 級失能`); if(S.ltc) a.push("長照狀態"); if(S.death) a.push("身故");
+  if(S.days) a.push(`住院 ${S.days} 天`+(S.icu?`（加護 ${S.icu} 天）`:"")+(S.burn?`（燒燙傷病房 ${S.burn} 天）`:""));
+  if(S.surgIn) a.push(`住院手術 ${S.surgIn} 次`); if(S.surgOut) a.push(`門診手術 ${S.surgOut} 次`); if(S.opd) a.push(`門診 ${S.opd} 次`); if(S.er) a.push(`急診 ${S.er} 次`);
+  const exp=S.room*S.days+S.misc+S.surgFee+S.surgOutFee; if(exp) a.push(`自費約 ${fmtN(exp)} 元`);
+  return a.join("・");
+}
+function simWire(root,onChange){
+  root.querySelectorAll("[data-preset]").forEach(b=>b.addEventListener("click",()=>{const k=b.dataset.preset; SIM=Object.assign({},SIM_DEF,k==="clear"?{}:SIM_PRESETS.find(p=>p.k===k).S); simSave(); root.querySelectorAll("[data-sim]").forEach(e=>{const v=SIM[e.dataset.sim]; if(e.type==="checkbox") e.checked=!!v; else e.value=v||0;}); root.querySelectorAll("[data-cause]").forEach(e=>e.setAttribute("aria-pressed",e.dataset.cause===SIM.cause)); onChange();}));
+  root.querySelectorAll("[data-cause]").forEach(b=>b.addEventListener("click",()=>{SIM.cause=b.dataset.cause; root.querySelectorAll("[data-cause]").forEach(e=>e.setAttribute("aria-pressed",e.dataset.cause===SIM.cause)); simSave(); onChange();}));
+  root.querySelectorAll("[data-sim]").forEach(e=>e.addEventListener("input",()=>{const k=e.dataset.sim; SIM[k]=e.type==="checkbox"?(e.checked?1:0):Math.max(0,+e.value||0); if(k==="icu"||k==="burn"){if(SIM.icu+SIM.burn>SIM.days){SIM.days=SIM.icu+SIM.burn; const d=root.querySelector('[data-sim="days"]'); if(d) d.value=SIM.days;}} if(k==="days"&&SIM.icu+SIM.burn>SIM.days){SIM.icu=Math.min(SIM.icu,SIM.days);SIM.burn=Math.max(0,Math.min(SIM.burn,SIM.days-SIM.icu)); root.querySelector('[data-sim="icu"]').value=SIM.icu; root.querySelector('[data-sim="burn"]').value=SIM.burn;} simSave(); onChange();}));
+}
+function simRowsHTML(res,showAll){
+  const paid=res.rows.filter(r=>r.pay>0), other=res.rows.filter(r=>!(r.pay>0));
+  const row=r=>`<div class="sr ${r.pay>0?"on":"off"}"><div class="sr-n"><b>${esc(friendly(r.b.n)||simN(r.b.n))}</b>${friendly(r.b.n)?`<small>${esc(r.b.n)}</small>`:""}${r.calc?`<span class="sr-c">${esc(r.calc)}</span>`:""}${r.note?`<span class="sr-c">${esc(r.note)}</span>`:""}</div><div class="sr-a">${r.pay>0?fmtN(r.pay)+" 元"+(r.periodic?"／期":""):"—"}</div></div>`;
+  return paid.map(row).join("")+(other.length?`<details class="sr-more"><summary>這次不給付或無法換算的 ${other.length} 項</summary>${other.map(row).join("")}</details>`:"");
+}
+function simSectionHTML(){ return `<section class="sim" id="sim"><div class="claims-h"><h3>理賠模擬：發生這些事，這張可以領多少？</h3></div>
+  ${simFormHTML("sim")}<p class="sim-desc" id="sim-desc"></p><div id="sim-out"></div>
+  <p class="fine">依上方試算的保額／計劃換算；實支實付以輸入的自費金額與條款限額取較低者。手術依倍數表給付、特定醫材等無法自動換算的項目不計入。實際理賠以條款、收據與保險公司審核為準。</p></section>`; }
+function simRender(X,st,pol){
+  const out=document.getElementById("sim-out"); if(!out) return;
+  const res=simRun(X,st,SIM,pol); const d=document.getElementById("sim-desc"); if(d) d.textContent="情境："+simDesc(SIM);
+  out.innerHTML=`<div class="sim-total"><span>這張保單合計可領（約）</span><b>${fmtN(res.total)} 元</b>${res.per?`<small>另外每期 ${fmtN(res.per)} 元（分期／長照給付）</small>`:""}${res.note?`<small>${esc(res.note)}</small>`:""}${res.unknown.length?`<small>還有 ${res.unknown.length} 項（${res.unknown.map(r=>simN(r.b.n)).slice(0,3).join("、")}${res.unknown.length>3?"…":""}）無法換算，實際可領會更多</small>`:""}</div><div class="sim-rows">${simRowsHTML(res)}</div>`;
+}
+/* 我的保單：多張保單合併模擬 */
+function mineSt(p,X,R,cfg){
+  cfg=cfg||{}; const plans=(R&&R.c&&[...new Set(R.c.map(c=>c.p).filter(Boolean))].length?[...new Set(R.c.map(c=>c.p).filter(Boolean))]:(X&&X.plans)||[]);
+  const unit=!!(R&&R.b===1); const needAmt=!plans.length||(R&&R.b>0);
+  let plan=cfg.plan||plans[0]||""; let amt=cfg.amt; if(!(amt>0)&&needAmt) amt=unit?1:((R&&/日額/.test(R.u))||(R&&R.b===100)?1000:100000);
+  let pi=X&&X.plans&&plan?X.plans.findIndex(n=>n.replace(/\s/g,"")===plan.replace(/\s/g,"")):-1; if(pi<0&&plans.length) pi=plans.indexOf(plan);
+  let prem=0,yrs=0; const s=cfg.s||"男",age=cfg.age||30,y=cfg.y||"";
+  if(R&&R.c&&R.c.length){const cands=R.c.filter(c=>(!c.s||c.s===s)&&(!y||!c.y||c.y===y)&&(!plan||!c.p||c.p===plan)); const col=cands.find(c=>ageKey(c.a,age)!=null);
+    if(col){const rate=ageKey(col.a,age); if(R.b===0) prem=rate; else if(amt>0) prem=R.b===1?rate*amt:(R.b?rate*amt/R.b:0); const yv=y||(col.y||""),ym=yv.match(/(\d+)\s*年/); yrs=/躉繳/.test(yv)?1:ym&&+ym[1]>0?+ym[1]:(p.term===1?1:0);}}
+  return {st:{s,age,y,plan,pi,amt:amt||0,unit,prem:prem||0,yrs,ex:false},plans,needAmt};
+}
+function renderMineSim(list){
+  const box=document.getElementById("mine-sim"); if(!box) return;
+  if(!list.length){box.innerHTML="";return;}
+  box.innerHTML=`<div class="intro"><h2 style="font-size:1.3rem">理賠模擬：發生這些事，手上的保單總共可以領多少？</h2><p class="lead">把加入的保單一起算。每張保單的計劃別或保額可以在下面改，改完會記住。</p></div>
+    <section class="sim" id="msim">${simFormHTML("msim")}<p class="sim-desc" id="msim-desc"></p><div id="msim-out"><p class="fine">載入中…</p></div>
+    <p class="fine">依各張保單的條款自動換算，實支實付以自費金額與限額取較低者；多張實支實付的分攤、同性質給付的互相抵扣未納入計算。實際理賠以條款與保險公司審核為準。</p></section>`;
+  const run=async()=>{const out=document.getElementById("msim-out"); const d=document.getElementById("msim-desc"); if(d) d.textContent="情境："+simDesc(SIM);
+    const parts=[]; let grand=0, per=0;
+    for(const p of list){ const n=Math.floor(p.i/200); const X=p.hd?(await loadShard(n)||{})[p.i]:null; const R=p.hr?((await loadRate(n))||{})[p.i]:null;
+      if(!X||!X.ben||!X.ben.length){parts.push(`<div class="msp"><div class="msp-h"><b>${esc(p.name)}</b><span class="fine">條款還沒整理，無法模擬</span></div></div>`);continue;}
+      const id=p.vers[0].id; const {st,plans,needAmt}=mineSt(p,X,R,CFG[id]); const res=simRun(X,st,SIM,p); grand+=res.total; per+=res.per;
+      const ctl=`${plans.length?`<label>計劃別<select data-cfg="plan" data-id="${id}">${plans.map(v=>`<option ${v===st.plan?"selected":""}>${esc(v)}</option>`).join("")}</select></label>`:""}${needAmt?`<label>${st.unit?"投保單位":(R&&/日額/.test(R.u)?"住院日額":"保額")}<input type="number" inputmode="numeric" data-cfg="amt" data-id="${id}" value="${st.amt}"></label>`:""}`;
+      parts.push(`<details class="msp"><summary><div class="msp-h"><b>${esc(p.name)}</b><span class="msp-a">${fmtN(res.total)} 元${res.per?` ＋ 每期 ${fmtN(res.per)} 元`:""}</span></div><small>${CO[p.co]||p.co}・${TYPE_INFO[p.type].n}${st.prem?`・年繳約 ${fmtN(st.prem)} 元`:""}${res.unknown.length?`・另有 ${res.unknown.length} 項無法換算`:""}</small></summary><div class="msp-ctl">${ctl||`<span class="fine">依條款附表給付，不需設定保額</span>`}</div><div class="sim-rows">${simRowsHTML(res)}</div></details>`);}
+    out.innerHTML=`<div class="sim-total"><span>${list.length} 張保單合計可領（約）</span><b>${fmtN(grand)} 元</b>${per?`<small>另外每期 ${fmtN(per)} 元（分期／長照給付）</small>`:""}</div>${parts.join("")}`;
+    out.querySelectorAll("[data-cfg]").forEach(e=>e.addEventListener("change",()=>{const id=e.dataset.id; CFG[id]=Object.assign({},CFG[id]||{}); if(e.dataset.cfg==="amt") CFG[id].amt=+e.value||0; else CFG[id].plan=e.value; cfgSave(); const open=[...out.querySelectorAll("details.msp")].map(x=>x.open); run().then(()=>{out.querySelectorAll("details.msp").forEach((x,k)=>x.open=open[k]);});}));
+  };
+  simWire(document.getElementById("msim"),run); run();
+}
 </script>
 
 </body>
