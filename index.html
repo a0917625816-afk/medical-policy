@@ -531,7 +531,7 @@ nav{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;overflow:visible}na
 </main>
 
 <script>
-const BUILD="1793285733";
+const BUILD="1793285827";
 const TYPE_INFO = [
   {k:0,n:"住院日額",pays:"住院一天給固定金額",d:"不看花多少錢，只看住幾天。加護病房、燒燙傷病房通常另有加給。"},
   {k:1,n:"實支實付",pays:"依收據實報實銷",d:"重點看三項限額：病房費（每天）、住院雜費（每次）、手術費（每次）。"},
@@ -1179,7 +1179,7 @@ function simRender(X,st,pol){
   if(X._surg===undefined){ X._surg=null; const need=(X.ben||[]).some(b=>(b.r||[]).includes("依條款附表")&&/手術|處置/.test(b.n)); if(need){ loadSurg(Math.floor(pol.i/200)).then(j=>{ X._surg=j&&j[pol.i]||null; if(X._surg){fillSurgList("sim",X._surg); renderSurgBox(X,st); simRender(X,st,pol);} }); } }
   else if(X._surg&&!document.querySelector("#surg-box .surg-tbl")) renderSurgBox(X,st);
   const res=simRun(X,st,SIM,pol); const d=document.getElementById("sim-desc"); if(d) d.textContent="情境："+simDesc(SIM);
-  const selfCost=SIM.room*SIM.days+SIM.misc+SIM.surgFee+SIM.surgOutFee+(SIM.opdFee||0);
+  const selfCost=simSelfCost();
   out.innerHTML=`<div class="sim-total"><span>這張保單合計可領（約）</span><b>${fmtN(res.total)} 元</b>${selfCost?`<small>這次預估自費 ${fmtN(selfCost)} 元，${res.total>=selfCost?"這張保單就夠付":`還差 ${fmtN(selfCost-res.total)} 元`}</small>`:""}${res.per?`<small>另外每期 ${fmtN(res.per)} 元（分期／長照給付）</small>`:""}${res.note?`<small>${esc(res.note)}</small>`:""}${res.unknown.length?`<small>還有 ${res.unknown.length} 項（${res.unknown.map(r=>simN(r.b.n)).slice(0,3).join("、")}${res.unknown.length>3?"…":""}）無法換算，實際可領會更多</small>`:""}</div><div class="sim-rows">${simRowsHTML(res)}</div>`;
 }
 /* 我的保單：多張保單合併模擬 */
@@ -1207,7 +1207,7 @@ function renderMineSim(list,boxId,title){
       const id=p.vers[0].id; const {st,plans,needAmt}=p.cust?{st:{s:"男",age:30,y:"",plan:"自訂",pi:0,amt:0,unit:false,prem:0,yrs:0,ex:false},plans:[],needAmt:false}:mineSt(p,X,R,CFG[id]); const res=simRun(X,st,SIM,p); grand+=res.total; per+=res.per;
       const ctl=`${plans.length?`<label>計劃別<select data-cfg="plan" data-id="${id}">${plans.map(v=>`<option ${v===st.plan?"selected":""}>${esc(v)}</option>`).join("")}</select></label>`:""}${needAmt?`<label>${st.unit?"投保單位":(R&&/日額/.test(R.u)?"住院日額":"保額")}<input type="number" inputmode="numeric" data-cfg="amt" data-id="${id}" value="${st.amt}"></label>`:""}`;
       parts.push(`<details class="msp"><summary><div class="msp-h"><b>${esc(p.name)}</b><span class="msp-a">${fmtN(res.total)} 元${res.per?` ＋ 每期 ${fmtN(res.per)} 元`:""}</span></div><small>${p.cust?esc(p.co||"自己輸入"):(CO[p.co]||p.co)}・${TYPE_INFO[p.type].n}${st.prem?`・年繳約 ${fmtN(st.prem)} 元`:""}${res.unknown.length?`・另有 ${res.unknown.length} 項無法換算`:""}</small></summary><div class="msp-ctl">${p.cust?`<span class="fine">自己輸入的保單，金額依輸入內容</span>`:(ctl||`<span class="fine">依條款附表給付，不需設定保額</span>`)}</div><div class="sim-rows">${simRowsHTML(res)}</div></details>`);}
-    const selfCost=SIM.room*SIM.days+SIM.misc+SIM.surgFee+SIM.surgOutFee+(SIM.opdFee||0);
+    const selfCost=simSelfCost();
     out.innerHTML=`<div class="sim-total"><span>${list.length} 張保單合計可領（約）</span><b>${fmtN(grand)} 元</b>${per?`<small>另外每期 ${fmtN(per)} 元（分期／長照給付）</small>`:""}${selfCost?`<small>這次預估自費 ${fmtN(selfCost)} 元，${grand>=selfCost?"保單合計足夠支付":`缺口 ${fmtN(selfCost-grand)} 元要自己付`}</small>`:""}</div>${parts.join("")}
       <div id="${boxId}-adv" class="adv"><p class="fine">保障缺口分析計算中…</p></div>
       <div class="actions"><button type="button" class="btn" id="${boxId}-rep">產生給客戶的建議報告（可存成 PDF）</button></div>`;
@@ -1403,6 +1403,7 @@ function cmpEncode(){ try{ return btoa(unescape(encodeURIComponent(JSON.stringif
 function cmpDecode(s){ try{ s=s.replace(/-/g,"+").replace(/_/g,"/"); const j=JSON.parse(decodeURIComponent(escape(atob(s)))); if(j&&j.b) return j; }catch(e){} return null; }
 
 let LAST_SIM=null;
+function simSelfCost(){ const sc=SIM.sc&&SCN.find(s=>s.k===SIM.sc); if(sc) return scenCost(sc); return SIM.room*SIM.days+SIM.misc+SIM.surgFee+SIM.surgOutFee+(SIM.opdFee||0); }
 async function calcAdvice(list){ const b={items:list.map(p=>p.cust?{cust:p.id}:{i:p.i,plan:(CFG[p.vers[0].id]||{}).plan||"",amt:(CFG[p.vers[0].id]||{}).amt||0})}; const saveS=CMP.s,saveA=CMP.age; const r=await bundleCalc(b); return r; }
 function buildReport(boxId){
   const L=LAST_SIM; if(!L) return; const name=prompt("客戶稱呼（會印在報告上，可留空）","")||""; const sc=SCN.find(s=>s.k===SIM.sc);
