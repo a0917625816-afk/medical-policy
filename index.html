@@ -273,6 +273,9 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 @media (max-width:700px){.q-f{grid-template-columns:repeat(2,minmax(0,1fr))}.q-f label.q-age{grid-column:auto}}
 .calc-tag{color:var(--accent-ink)!important;background:var(--accent);border-radius:6px;padding:1px 7px;font-weight:700}
 .calc-filter{font-weight:700;color:var(--accent)}
+.ci-o{display:block;font-weight:400;font-size:.75rem;color:var(--muted);margin-top:2px}
+.ci-sub{display:flex;justify-content:space-between;gap:12px;padding:10px 16px 10px 32px;border-top:1px solid var(--line);color:var(--accent);font-weight:600;font-size:.95rem}
+.ci-sub span:last-child{font-variant-numeric:tabular-nums;white-space:nowrap}
 .ci-t{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 10px;margin-top:-4px}
 .ci-t i{font-style:normal;font-size:.78rem;background:var(--accent-soft);border-radius:6px;padding:2px 8px}
 .ci-ex{margin:0;background:var(--bg);padding:12px 16px;color:var(--ink);font-size:.93rem;line-height:1.7}
@@ -621,7 +624,10 @@ const TW_NOW={
   2:{t:"門診手術越來越多",b:"白內障、內視鏡、部分骨科手術現在常在門診完成。手術險要看條款附表與是否給付門診手術，表上沒有的新式手術可能要比照近似項目或不賠。",s:"一般醫療趨勢說明，個案以實際醫療情況為準"}
 };
 /* ---------- 新版保單頁：試算＋說明卡＋理賠項目 ---------- */
+function friendly(n){const rules=[[/每日病房費用|病房費用保險金|病房費/,"病房費（實支實付）"],[/住院醫療(?:特定)?費用|醫院各項雜費|住院雜費|住院醫療費用/,"住院雜費（實支實付）"],[/門診手術(?:或門診特定診療)?費用|門診手術醫療費用/,"門診手術雜費（實支實付）"],[/日額保險金選擇權|日額選擇|轉換.*日額/,"轉換住院日額"],[/特定醫材|醫材補助/,"醫材補助"],[/重大手術/,"重大手術"],[/^住院(?:醫療)?(?:日額)?保險金$|^住院日額保險金$/,"住院日額"],[/加護病房/,"加護病房"],[/燒燙傷/,"燒燙傷病房"],[/出院療養/,"出院療養"],[/住院前後門診/,"住院前後門診"]];
+  for(const [re,t] of rules) if(re.test(n)) return t; return null;}
 function benCat(b){const n=b.n;
+  if(b.ei) return "實支實付轉換住院日額（二擇一）";
   if(/門診/.test(n)&&!/住院/.test(n)) return "門診";
   if(/癌/.test(n)) return "癌症";
   if(/重大傷病|重大疾病|特定傷病|重度|輕度|嚴重/.test(n)) return "重大傷病／重疾";
@@ -631,14 +637,16 @@ function benCat(b){const n=b.n;
   if(/住院|病房|日額|加護|燒燙傷|療養|雜費|醫療費用|急診|看護/.test(n)) return "住院";
   return "其他";}
 function benFreq(b){const r=b.r||[];
+  if(b.ei) return "每日";
   if(r.includes("按住院天數計")||/每日|日額|病房費用/.test(b.n)) return "每日";
   if(r.includes("分期給付")) return "分期";
   if(r.includes("限領一次")||/一次|初次|確診/.test(b.n)) return "一次給付";
   if(r.includes("每年限一次")) return "每年";
   return "每次";}
-const CAT_ORDER=["住院","手術","門診","癌症","重大傷病／重疾","長照／失能","身故與其他","其他"];
+const CAT_ORDER=["實支實付轉換住院日額（二擇一）","住院","手術","門診","癌症","重大傷病／重疾","長照／失能","身故與其他","其他"];
 const FREQ_ORDER=["每日","每次","每年","一次給付","分期"];
 function benExample(b,A,freq){
+  if(b.ei&&A!=null) return `理賠時可以選擇用實支實付（花多少賠多少），或改用日額（每天固定金額），哪個多選哪個。例如住院 5 天：日額 ${fmtN(A)} × 5 天 = ${fmtN(A*5)} 元；如果實支實付算下來比較少，就改領日額。`;
   const isReal=(b.r||[]).some(z=>/實支/.test(z))||/費用|雜費|限額/.test(b.n);
   if(A==null) return "";
   const f=fmtN;
@@ -708,9 +716,9 @@ function claimsHTML(X){
 function renderClaims(X,st){
   const box=document.getElementById("claims"); if(!box) return;
   const groups={};
-  X.ben.forEach((b,i)=>{const k=benCat(b)+"／"+benFreq(b);(groups[k]=groups[k]||[]).push([b,i]);});
-  const keys=Object.keys(groups).sort((a,b)=>{const[ca,fa]=a.split("／").length>2?[a.slice(0,a.lastIndexOf("／")),a.slice(a.lastIndexOf("／")+1)]:a.split("／");const[cb,fb]=b.split("／").length>2?[b.slice(0,b.lastIndexOf("／")),b.slice(b.lastIndexOf("／")+1)]:b.split("／");return (CAT_ORDER.indexOf(ca)-CAT_ORDER.indexOf(cb))||(FREQ_ORDER.indexOf(fa)-FREQ_ORDER.indexOf(fb));});
-  box.innerHTML=keys.map(k=>{const freq=k.slice(k.lastIndexOf("／")+1);
+  X.ben.forEach((b,i)=>{b.ei=!!(X.either&&/日額保險金選擇權|日額選擇|轉換.*日額|日額保險金$/.test(b.n)&&!/^住院日額/.test(b.n));const k=b.ei?benCat(b):benCat(b)+"／"+benFreq(b);(groups[k]=groups[k]||[]).push([b,i]);});
+  const keys=Object.keys(groups).sort((a,b)=>{if(a.startsWith("實支實付轉換"))return -1;if(b.startsWith("實支實付轉換"))return 1;const[ca,fa]=a.split("／").length>2?[a.slice(0,a.lastIndexOf("／")),a.slice(a.lastIndexOf("／")+1)]:a.split("／");const[cb,fb]=b.split("／").length>2?[b.slice(0,b.lastIndexOf("／")),b.slice(b.lastIndexOf("／")+1)]:b.split("／");return (CAT_ORDER.indexOf(ca)-CAT_ORDER.indexOf(cb))||(FREQ_ORDER.indexOf(fa)-FREQ_ORDER.indexOf(fb));});
+  box.innerHTML=keys.map(k=>{const freq=k.startsWith("實支實付轉換")?"每日":k.slice(k.lastIndexOf("／")+1);
     return `<div class="cg"><h4>${esc(k)}</h4>${groups[k].map(([b,i])=>{
       let A=null;
       if(b.pv&&st.pi>=0&&b.pv[st.pi]!=null) A=b.pv[st.pi];
@@ -718,11 +726,12 @@ function renderClaims(X,st){
         if(A==null&&!st.unit&&freq==="每日"&&/^(?:一般)?住院(?:醫療)?(?:日額)?(?:醫療)?保險金$/.test(b.n)) A=st.amt; }
       const lim=/限額|上限/.test(b.n+(b.r||[]).join(""))||(b.r||[]).some(z=>/實支/.test(z));
       const maxp=(b.r||[]).includes("最高給付保額")||/失能|殘廢/.test(b.n);
-      const tags=(b.r||[]).filter(z=>!/^含門診$/.test(z)&&!/倍|每單位|給付保額|保額的/.test(z)).map(z=>z==="依條款附表"&&/手術|處置/.test(b.n)?"依手術項目倍數表":z);
+      const tags=(b.r||[]).filter(z=>!/^含門診$/.test(z)&&!/倍|每單位|給付保額|保額的/.test(z)).filter(z=>!(b.pv&&z==="依條款附表")).map(z=>z==="依條款附表"&&/手術|處置/.test(b.n)?"依手術項目倍數表":z);
       const amt=A!=null?`${maxp?"最高 ":lim?"上限 ":""}${fmtN(A)} 元${freq==="每日"&&!/病房費用|限額/.test(b.n)?"／日":""}`:"";
       const ex=benExample(b,A,freq);
-      return `<div class="ci"><div class="ci-h"><b>${esc(b.n)}</b>${amt?`<span class="ci-a">${esc(amt)}</span>`:""}</div>${tags.length?`<div class="ci-t">${tags.map(z=>`<i>${esc(z)}</i>`).join("")}</div>`:""}
+      return `<div class="ci"><div class="ci-h"><b>${esc((b.ei?"轉換住院日額／每日":friendly(b.n))||b.n)}${(b.ei||friendly(b.n))?`<small class="ci-o">${esc(b.n)}</small>`:""}</b>${amt?`<span class="ci-a">${esc(amt)}</span>`:""}</div>${tags.length?`<div class="ci-t">${tags.map(z=>`<i>${esc(z)}</i>`).join("")}</div>`:""}
         ${ex?`<p class="ci-ex">${esc(ex)}</p>`:""}
+        ${b.sub&&b.sub.length?b.sub.map(z=>`<div class="ci-sub"><span>${esc(z.n)}</span><span>${A!=null?fmtN(A*z.m)+" 元":(z.m>1?"限額 × "+z.m:"同上限額")}</span></div>`).join(""):""}
         <details class="ci-raw"><summary>條款原文</summary>${b.d?`<p>${hl(b.d)}</p>`:""}${b.s&&b.s.length?`<ul>${b.s.map(z=>`<li>${hl(z)}</li>`).join("")}</ul>`:""}</details></div>`;}).join("")}</div>`;}).join("");
   box.classList.toggle("noex",!st.ex);
 }
