@@ -445,7 +445,7 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 </main>
 
 <script>
-const BUILD="1793264729";
+const BUILD="1793264790";
 const TYPE_INFO = [
   {k:0,n:"住院日額",pays:"住院一天給固定金額",d:"不看花多少錢，只看住幾天。加護病房、燒燙傷病房通常另有加給。"},
   {k:1,n:"實支實付",pays:"依收據實報實銷",d:"重點看三項限額：病房費（每天）、住院雜費（每次）、手術費（每次）。"},
@@ -650,7 +650,7 @@ const FREQ_ORDER=["每日","每次","每年","一次給付","分期"];
 function benExample(b,A,freq){
   if(b.ei&&A!=null) return `理賠時可以選擇用實支實付（花多少賠多少），或改用日額（每天固定金額），哪個多選哪個。例如住院 5 天：日額 ${fmtN(A)} × 5 天 = ${fmtN(A*5)} 元；如果實支實付算下來比較少，就改領日額。`;
   const isReal=(b.r||[]).some(z=>/實支/.test(z))||/費用|雜費|限額/.test(b.n);
-  if(A==null) return "";
+  if(A==null||(b.r||[]).some(z=>/已繳保費|年繳保費/.test(z))) return "";
   const f=fmtN;
   if(freq==="每日"&&isReal){const c=Math.round(A*0.85/100)*100||Math.round(A*0.85);return `舉例：若每日上限 ${f(A)} 元，住院 5 天、病房費每天 ${f(c)} 元，理賠 ${f(c)} × 5 天 = ${f(c*5)} 元；若每天花費超過上限，最多理賠 ${f(A)} × 5 天 = ${f(A*5)} 元。`;}
   if(freq==="每日") return `舉例：住院 5 天，理賠 ${f(A)} × 5 天 = ${f(A*5)} 元，不用看實際花多少。`;
