@@ -325,6 +325,8 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 .cmp-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:start}@media (max-width:900px){.cmp-grid{grid-template-columns:1fr}}.cmp-card{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);padding:14px 16px;display:grid;gap:10px}.cmp-card h3{margin:0;font-size:1.25rem}.cmp-h{display:flex;justify-content:space-between;align-items:center}.cmp-desc{margin:0;color:var(--muted);font-size:.9rem}.cmp-prem{background:var(--accent-soft);border-radius:10px;padding:10px 14px;display:grid}.cmp-prem span{font-weight:700;font-size:.85rem}.cmp-prem b{font-size:1.7rem;color:var(--accent);font-variant-numeric:tabular-nums}.cmp-comps{display:grid;gap:6px}.cmp-comp{display:flex;justify-content:space-between;gap:10px;font-size:.9rem;border-bottom:1px dashed var(--line);padding-bottom:6px}.cmp-comp small{display:block;color:var(--muted);font-size:.78rem}.cmp-comp span:last-child{white-space:nowrap;font-variant-numeric:tabular-nums}.cmp-card h4{margin:6px 0 0;font-size:1rem}.cmp-rows{display:grid;border:1px solid var(--line);border-radius:10px;overflow:hidden}.cmp-rows .sr{padding:8px 12px}.cmp-v{display:grid;gap:8px}.cmp-v h4{margin:0 0 4px}.cmp-v ul{margin:0;padding-left:18px;font-size:.9rem;line-height:1.6}.cmp-ctl label span:last-child{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.cmp-it span small{display:block;color:var(--muted);font-size:.75rem}
 nav{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;overflow:visible}nav a{padding:10px 4px;font-size:.92rem}@media (max-width:400px){nav a{font-size:.82rem;padding:10px 2px}}
 .rules{border:1px solid var(--line);border-radius:12px;padding:10px 16px;background:var(--surface);margin-bottom:12px}.rules>summary{cursor:pointer;font-weight:700;color:var(--accent)}.rules ul{margin:8px 0 4px;padding-left:20px;line-height:1.7;font-size:.95rem}.cmp-warn p{margin:4px 0;background:var(--warn-soft);border-left:3px solid var(--warn);padding:6px 10px;border-radius:6px;font-size:.9rem}.cmp-co{display:grid;gap:4px;margin-bottom:8px}.cmp-co>b{font-size:.85rem;color:var(--muted)}.cmp-comp.rider{padding-left:14px}.cmp-comp i,.fl{font-style:normal;font-size:.72rem;background:var(--accent-soft);border-radius:5px;padding:1px 6px;margin-right:6px;vertical-align:middle}
+.scen-cat h4{margin:10px 0 6px;font-size:.95rem;color:var(--muted)}.chip small{display:block;font-weight:400;font-size:.72rem;color:var(--muted)}.chip.on{background:var(--accent);color:var(--accent-ink)}.chip.on small{color:var(--accent-ink);opacity:.85}.scen-sel{appearance:auto;max-width:100%;font-size:.9rem}.scen-cost{border:1px solid var(--accent);border-radius:12px;padding:12px 16px;background:var(--surface);display:grid;gap:8px}.scen-h b{display:block;font-size:1.05rem}.scen-h span{color:var(--muted);font-size:.9rem}.scen-rows{display:grid;border:1px solid var(--line);border-radius:10px;overflow:hidden}.scen-total{display:flex;justify-content:space-between;align-items:baseline;background:var(--warn-soft);border-radius:8px;padding:8px 12px}.scen-total b{font-size:1.4rem;color:var(--warn);font-variant-numeric:tabular-nums}.adv h3{font-size:1.15rem;margin:14px 0 8px}
+#report{display:none}@media print{body.printing>*:not(#report){display:none!important}body.printing #report{display:block}#report .report{font:15px/1.6 "Noto Sans TC",system-ui,sans-serif;color:#000;background:#fff;padding:0 8mm}#report h1{font-size:22px;margin:0 0 4px}#report h2{font-size:17px;margin:18px 0 6px;border-left:4px solid #333;padding-left:8px}#report .rep-meta{color:#555;margin:0 0 10px}#report .rep-tbl{width:100%;border-collapse:collapse;font-size:14px}#report .rep-tbl th,#report .rep-tbl td{border:1px solid #999;padding:6px 8px;text-align:left;vertical-align:top}#report .rep-tbl td:last-child{text-align:right;white-space:nowrap}#report .rep-tbl .tot td{font-weight:700;background:#eee}#report .rep-sub{color:#555;font-size:12px;margin-top:4px}#report .rep-adv li{margin-bottom:6px}#report .rep-fine{font-size:11px;color:#555;margin-top:16px}@page{margin:14mm}}
 .surg-tbl{border:1px solid var(--line);border-radius:12px;padding:10px 16px;background:var(--surface)}.surg-tbl>summary{cursor:pointer;font-weight:700;color:var(--accent)}.surg-tbl>summary small{display:block;font-weight:400;color:var(--muted);font-size:.85em}.surg-tbl input[type=search]{width:100%;max-width:28em;margin:10px 0;padding:8px 10px;border:1px solid var(--line);border-radius:8px;font-size:1rem}
 .ben-h{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:4px}
 .ben-h h3{margin:0}
@@ -494,10 +496,16 @@ nav{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;overflow:visible}na
       <h2>理賠試算：把保單內容 key 進來，直接算客戶可以領多少</h2>
       <p class="lead">舊保單、別家公司的保單都可以。照保單首頁或條款填每一項的金額，再選一個情境（住院幾天、開什麼刀、罹癌…），就會算出每張保單和合計的理賠金額，附算式，可以直接拿給客戶看。資料只存在你這台裝置的瀏覽器裡。</p>
     </div>
+    <div class="intro"><h2 style="font-size:1.3rem">1. 先選一個客戶真的會遇到的狀況</h2><p class="lead">每個情境都附健保給付什麼、自費多少的拆解。選了之後，下面的模擬會自動帶入住院天數、自費金額和手術名稱。</p></div>
+    <div id="scen-pick"></div>
+    <div class="intro"><h2 style="font-size:1.3rem">2. 手上有哪些保單</h2><p class="lead">從「我的保單」加入的會自動帶進來；舊保單、別家保單可以在這裡自己輸入。</p></div>
     <div class="mine-list" id="cust-list"></div>
     <div class="actions"><button class="btn" type="button" id="cust-new">＋ 自己輸入保單內容</button><span class="fine" id="calc-note"></span></div>
     <div id="cust-box" class="cust-box" hidden></div>
+    <div class="intro"><h2 style="font-size:1.3rem">3. 算出可以領多少、缺口在哪，產生建議報告</h2></div>
     <div id="calc-sim"></div>
+    <div class="intro"><h2 style="font-size:1.3rem">手術快查</h2></div>
+    <div id="surg-look"></div>
     <p class="disclaim">試算依輸入的金額與一般條款邏輯計算，僅供參考；實際理賠以保單條款、收據與保險公司審核為準。</p>
   </section>
   <!-- 比較 -->
@@ -523,7 +531,7 @@ nav{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;overflow:visible}na
 </main>
 
 <script>
-const BUILD="1793284580";
+const BUILD="1793285733";
 const TYPE_INFO = [
   {k:0,n:"住院日額",pays:"住院一天給固定金額",d:"不看花多少錢，只看住幾天。加護病房、燒燙傷病房通常另有加給。"},
   {k:1,n:"實支實付",pays:"依收據實報實銷",d:"重點看三項限額：病房費（每天）、住院雜費（每次）、手術費（每次）。"},
@@ -972,7 +980,7 @@ route();
 
 /* ---------- 理賠模擬器 ---------- */
 const SIM_KEY=KEY+":sim", CFG_KEY=KEY+":cfg";
-const SIM_DEF={cause:"疾病",days:0,icu:0,burn:0,room:0,misc:0,surgIn:0,surgFee:0,surgOut:0,surgOutFee:0,opd:0,er:0,cancer:0,stage:"重度",major:0,disab:0,ltc:0,death:0,surgName:"",surgMult:0};
+const SIM_DEF={cause:"疾病",days:0,icu:0,burn:0,room:0,misc:0,surgIn:0,surgFee:0,surgOut:0,surgOutFee:0,opd:0,er:0,cancer:0,stage:"重度",major:0,disab:0,ltc:0,death:0,surgName:"",surgMult:0,opdFee:0,sc:""};
 const SSH={};
 function loadSurg(n){ if(!SSH[n]) SSH[n]=fetch(`s/${n}.json?v=${BUILD}`).then(r=>r.ok?r.json():null).catch(()=>null); return SSH[n]; }
 const normS=s=>String(s||"").replace(/[\s（）()「」、，,.．·‧\-－/／]/g,"").toLowerCase();
@@ -998,7 +1006,7 @@ const SIM_FIELDS=[
   ["room","病房費差額（每日自費）","元"],["misc","住院雜費（自費，不含手術費）","元"],
   ["surgIn","住院手術","次"],["surgFee","住院手術費（自費）","元"],
   ["surgOut","門診手術","次"],["surgOutFee","門診手術費（自費）","元"],
-  ["opd","門診次數","次"],["er","急診次數","次"]];
+  ["opd","門診次數","次"],["er","急診次數","次"],["opdFee","門診治療自費（標靶、免疫等，算缺口用）","元"]];
 const SIM_FLAGS=[["cancer","初次確診癌症"],["major","重大傷病／重大疾病"],["ltc","符合長期照顧狀態"],["death","身故"]];
 const DISAB_RATIO={1:1,2:.9,3:.8,4:.7,5:.6,6:.5,7:.4,8:.3,9:.2,10:.1,11:.05};
 let SIM=Object.assign({},SIM_DEF,SIM_PRESETS[0].S); try{const s=JSON.parse(localStorage.getItem(SIM_KEY)); if(s&&typeof s==="object") SIM=Object.assign({},SIM_DEF,s);}catch(e){}
@@ -1130,7 +1138,8 @@ function simRun(X,st,S,pol){
 }
 function simFormHTML(id){
   const S=SIM;
-  return `<div class="sim-presets">${SIM_PRESETS.map(p=>`<button type="button" class="chip" data-preset="${p.k}" title="${esc(p.d)}">${esc(p.t)}</button>`).join("")}<button type="button" class="chip" data-preset="clear">全部清空</button></div>
+  return `<div class="sim-presets">${SIM_PRESETS.map(p=>`<button type="button" class="chip" data-preset="${p.k}" title="${esc(p.d)}">${esc(p.t)}</button>`).join("")}<button type="button" class="chip" data-preset="clear">全部清空</button><select class="chip scen-sel" data-scen><option value="">更多真實情境（含自費拆解）…</option>${[...new Set(SCN.map(s=>s.cat))].map(c=>`<optgroup label="${esc(c)}">${SCN.filter(s=>s.cat===c).map(s=>`<option value="${s.k}" ${S.sc===s.k?"selected":""}>${esc(s.t)}（自費約 ${fmtN(scenCost(s))}）</option>`).join("")}</optgroup>`).join("")}</select></div>
+  <div class="scen-box" data-scenbox>${S.sc&&SCN.find(s=>s.k===S.sc)?scenCardHTML(SCN.find(s=>s.k===S.sc)):""}</div>
   <details class="sim-form" id="${id}-f"><summary>調整情境（天數、自費金額、手術次數…）</summary>
     <div class="sim-grid">
       <label class="sim-cause"><span>事故原因</span><span class="q-sex" role="group"><button type="button" data-cause="疾病" aria-pressed="${S.cause!=="意外"}">疾病</button><button type="button" data-cause="意外" aria-pressed="${S.cause==="意外"}">意外</button></span></label>
@@ -1146,13 +1155,15 @@ function simDesc(S){
   if(S.cancer) a.push("初次確診癌症（"+(S.stage==="初期"?"初期／輕度":"重度")+"）"); if(S.major) a.push("重大傷病"); if(S.disab) a.push(`第 ${S.disab} 級失能`); if(S.ltc) a.push("長照狀態"); if(S.death) a.push("身故");
   if(S.days) a.push(`住院 ${S.days} 天`+(S.icu?`（加護 ${S.icu} 天）`:"")+(S.burn?`（燒燙傷病房 ${S.burn} 天）`:""));
   if(S.surgIn) a.push(`住院手術 ${S.surgIn} 次`+(S.surgName?`（${S.surgName}）`:"")); if(S.surgOut) a.push(`門診手術 ${S.surgOut} 次`); if(S.opd) a.push(`門診 ${S.opd} 次`); if(S.er) a.push(`急診 ${S.er} 次`);
-  const exp=S.room*S.days+S.misc+S.surgFee+S.surgOutFee; if(exp) a.push(`自費約 ${fmtN(exp)} 元`);
+  const exp=S.room*S.days+S.misc+S.surgFee+S.surgOutFee+(S.opdFee||0); if(exp) a.push(`自費約 ${fmtN(exp)} 元`);
   return a.join("・");
 }
 function simWire(root,onChange){
-  root.querySelectorAll("[data-preset]").forEach(b=>b.addEventListener("click",()=>{const k=b.dataset.preset; SIM=Object.assign({},SIM_DEF,k==="clear"?{}:SIM_PRESETS.find(p=>p.k===k).S); simSave(); root.querySelectorAll("[data-sim]").forEach(e=>{const v=SIM[e.dataset.sim]; if(e.type==="checkbox") e.checked=!!v; else e.value=v||0;}); root.querySelectorAll("[data-cause]").forEach(e=>e.setAttribute("aria-pressed",e.dataset.cause===SIM.cause)); onChange();}));
+  const syncScen=()=>{const bx=root.querySelector("[data-scenbox]"); if(bx){const sc=SCN.find(s=>s.k===SIM.sc); bx.innerHTML=sc?scenCardHTML(sc):"";} const sel=root.querySelector("[data-scen]"); if(sel) sel.value=SIM.sc||"";};
+  const sel=root.querySelector("[data-scen]"); if(sel) sel.addEventListener("change",()=>{ if(!sel.value){SIM.sc="";simSave();syncScen();onChange();return;} scenApply(sel.value); root.querySelectorAll("[data-sim]").forEach(e=>{const v=SIM[e.dataset.sim]; if(e.type==="checkbox") e.checked=!!v; else e.value=v||(e.dataset.sim==="stage"?"重度":0);}); root.querySelectorAll("[data-cause]").forEach(e=>e.setAttribute("aria-pressed",e.dataset.cause===SIM.cause)); syncScen(); onChange(); });
+  root.querySelectorAll("[data-preset]").forEach(b=>b.addEventListener("click",()=>{const k=b.dataset.preset; SIM=Object.assign({},SIM_DEF,k==="clear"?{}:SIM_PRESETS.find(p=>p.k===k).S); simSave(); syncScen(); root.querySelectorAll("[data-sim]").forEach(e=>{const v=SIM[e.dataset.sim]; if(e.type==="checkbox") e.checked=!!v; else e.value=v||0;}); root.querySelectorAll("[data-cause]").forEach(e=>e.setAttribute("aria-pressed",e.dataset.cause===SIM.cause)); onChange();}));
   root.querySelectorAll("[data-cause]").forEach(b=>b.addEventListener("click",()=>{SIM.cause=b.dataset.cause; root.querySelectorAll("[data-cause]").forEach(e=>e.setAttribute("aria-pressed",e.dataset.cause===SIM.cause)); simSave(); onChange();}));
-  root.querySelectorAll("[data-sim]").forEach(e=>e.addEventListener("input",()=>{const k=e.dataset.sim; SIM[k]=e.type==="checkbox"?(e.checked?1:0):((k==="stage"||k==="surgName")?e.value:Math.max(0,+e.value||0)); if(k==="icu"||k==="burn"){if(SIM.icu+SIM.burn>SIM.days){SIM.days=SIM.icu+SIM.burn; const d=root.querySelector('[data-sim="days"]'); if(d) d.value=SIM.days;}} if(k==="days"&&SIM.icu+SIM.burn>SIM.days){SIM.icu=Math.min(SIM.icu,SIM.days);SIM.burn=Math.max(0,Math.min(SIM.burn,SIM.days-SIM.icu)); root.querySelector('[data-sim="icu"]').value=SIM.icu; root.querySelector('[data-sim="burn"]').value=SIM.burn;} simSave(); onChange();}));
+  root.querySelectorAll("[data-sim]").forEach(e=>e.addEventListener("input",()=>{const k=e.dataset.sim; SIM[k]=e.type==="checkbox"?(e.checked?1:0):((k==="stage"||k==="surgName")?e.value:Math.max(0,+e.value||0)); if(k!=="surgMult"){SIM.sc=""; const bx=root.querySelector("[data-scenbox]"); if(bx) bx.innerHTML=""; const sl=root.querySelector("[data-scen]"); if(sl) sl.value="";} if(k==="icu"||k==="burn"){if(SIM.icu+SIM.burn>SIM.days){SIM.days=SIM.icu+SIM.burn; const d=root.querySelector('[data-sim="days"]'); if(d) d.value=SIM.days;}} if(k==="days"&&SIM.icu+SIM.burn>SIM.days){SIM.icu=Math.min(SIM.icu,SIM.days);SIM.burn=Math.max(0,Math.min(SIM.burn,SIM.days-SIM.icu)); root.querySelector('[data-sim="icu"]').value=SIM.icu; root.querySelector('[data-sim="burn"]').value=SIM.burn;} simSave(); onChange();}));
 }
 function simRowsHTML(res,showAll){
   const paid=res.rows.filter(r=>r.pay>0), other=res.rows.filter(r=>!(r.pay>0));
@@ -1168,7 +1179,8 @@ function simRender(X,st,pol){
   if(X._surg===undefined){ X._surg=null; const need=(X.ben||[]).some(b=>(b.r||[]).includes("依條款附表")&&/手術|處置/.test(b.n)); if(need){ loadSurg(Math.floor(pol.i/200)).then(j=>{ X._surg=j&&j[pol.i]||null; if(X._surg){fillSurgList("sim",X._surg); renderSurgBox(X,st); simRender(X,st,pol);} }); } }
   else if(X._surg&&!document.querySelector("#surg-box .surg-tbl")) renderSurgBox(X,st);
   const res=simRun(X,st,SIM,pol); const d=document.getElementById("sim-desc"); if(d) d.textContent="情境："+simDesc(SIM);
-  out.innerHTML=`<div class="sim-total"><span>這張保單合計可領（約）</span><b>${fmtN(res.total)} 元</b>${res.per?`<small>另外每期 ${fmtN(res.per)} 元（分期／長照給付）</small>`:""}${res.note?`<small>${esc(res.note)}</small>`:""}${res.unknown.length?`<small>還有 ${res.unknown.length} 項（${res.unknown.map(r=>simN(r.b.n)).slice(0,3).join("、")}${res.unknown.length>3?"…":""}）無法換算，實際可領會更多</small>`:""}</div><div class="sim-rows">${simRowsHTML(res)}</div>`;
+  const selfCost=SIM.room*SIM.days+SIM.misc+SIM.surgFee+SIM.surgOutFee+(SIM.opdFee||0);
+  out.innerHTML=`<div class="sim-total"><span>這張保單合計可領（約）</span><b>${fmtN(res.total)} 元</b>${selfCost?`<small>這次預估自費 ${fmtN(selfCost)} 元，${res.total>=selfCost?"這張保單就夠付":`還差 ${fmtN(selfCost-res.total)} 元`}</small>`:""}${res.per?`<small>另外每期 ${fmtN(res.per)} 元（分期／長照給付）</small>`:""}${res.note?`<small>${esc(res.note)}</small>`:""}${res.unknown.length?`<small>還有 ${res.unknown.length} 項（${res.unknown.map(r=>simN(r.b.n)).slice(0,3).join("、")}${res.unknown.length>3?"…":""}）無法換算，實際可領會更多</small>`:""}</div><div class="sim-rows">${simRowsHTML(res)}</div>`;
 }
 /* 我的保單：多張保單合併模擬 */
 function mineSt(p,X,R,cfg){
@@ -1195,7 +1207,13 @@ function renderMineSim(list,boxId,title){
       const id=p.vers[0].id; const {st,plans,needAmt}=p.cust?{st:{s:"男",age:30,y:"",plan:"自訂",pi:0,amt:0,unit:false,prem:0,yrs:0,ex:false},plans:[],needAmt:false}:mineSt(p,X,R,CFG[id]); const res=simRun(X,st,SIM,p); grand+=res.total; per+=res.per;
       const ctl=`${plans.length?`<label>計劃別<select data-cfg="plan" data-id="${id}">${plans.map(v=>`<option ${v===st.plan?"selected":""}>${esc(v)}</option>`).join("")}</select></label>`:""}${needAmt?`<label>${st.unit?"投保單位":(R&&/日額/.test(R.u)?"住院日額":"保額")}<input type="number" inputmode="numeric" data-cfg="amt" data-id="${id}" value="${st.amt}"></label>`:""}`;
       parts.push(`<details class="msp"><summary><div class="msp-h"><b>${esc(p.name)}</b><span class="msp-a">${fmtN(res.total)} 元${res.per?` ＋ 每期 ${fmtN(res.per)} 元`:""}</span></div><small>${p.cust?esc(p.co||"自己輸入"):(CO[p.co]||p.co)}・${TYPE_INFO[p.type].n}${st.prem?`・年繳約 ${fmtN(st.prem)} 元`:""}${res.unknown.length?`・另有 ${res.unknown.length} 項無法換算`:""}</small></summary><div class="msp-ctl">${p.cust?`<span class="fine">自己輸入的保單，金額依輸入內容</span>`:(ctl||`<span class="fine">依條款附表給付，不需設定保額</span>`)}</div><div class="sim-rows">${simRowsHTML(res)}</div></details>`);}
-    out.innerHTML=`<div class="sim-total"><span>${list.length} 張保單合計可領（約）</span><b>${fmtN(grand)} 元</b>${per?`<small>另外每期 ${fmtN(per)} 元（分期／長照給付）</small>`:""}</div>${parts.join("")}`;
+    const selfCost=SIM.room*SIM.days+SIM.misc+SIM.surgFee+SIM.surgOutFee+(SIM.opdFee||0);
+    out.innerHTML=`<div class="sim-total"><span>${list.length} 張保單合計可領（約）</span><b>${fmtN(grand)} 元</b>${per?`<small>另外每期 ${fmtN(per)} 元（分期／長照給付）</small>`:""}${selfCost?`<small>這次預估自費 ${fmtN(selfCost)} 元，${grand>=selfCost?"保單合計足夠支付":`缺口 ${fmtN(selfCost-grand)} 元要自己付`}</small>`:""}</div>${parts.join("")}
+      <div id="${boxId}-adv" class="adv"><p class="fine">保障缺口分析計算中…</p></div>
+      <div class="actions"><button type="button" class="btn" id="${boxId}-rep">產生給客戶的建議報告（可存成 PDF）</button></div>`;
+    LAST_SIM={list,grand,per,selfCost,parts:null};
+    calcAdvice(list).then(adv=>{ const el=document.getElementById(boxId+"-adv"); if(!el) return; LAST_SIM.adv=adv; LAST_SIM.M=adv.M; const items=gapAdvice(adv.M,{cost:selfCost,pay:grand,gap:selfCost-grand}); el.innerHTML=`<h3>保障缺口分析</h3>${items.length?`<div class="sim-rows">${items.map(([k,v])=>`<div class="sr on"><div class="sr-n"><b>${esc(k)}</b><span class="sr-c">${esc(v)}</span></div></div>`).join("")}</div>`:`<p class="fine">以目前情境來看，主要保障都有。</p>`}`; });
+    const rb=document.getElementById(boxId+"-rep"); if(rb) rb.addEventListener("click",()=>buildReport(boxId));
     out.querySelectorAll("[data-cfg]").forEach(e=>e.addEventListener("change",()=>{const id=e.dataset.id; CFG[id]=Object.assign({},CFG[id]||{}); if(e.dataset.cfg==="amt") CFG[id].amt=+e.value||0; else CFG[id].plan=e.value; cfgSave(); const open=[...out.querySelectorAll("details.msp")].map(x=>x.open); run().then(()=>{out.querySelectorAll("details.msp").forEach((x,k)=>x.open=open[k]);});}));
   };
   simWire(document.getElementById("msim"),run); run();
@@ -1261,7 +1279,20 @@ function custOpen(c){ const box=document.getElementById("cust-box"); box.innerHT
 function custEncode(){ try{ return CUST.length?btoa(unescape(encodeURIComponent(JSON.stringify(CUST.map(c=>[c.name,c.co,c.type,c.items.map(it=>[it.k,it.a,it.cap||0,it.m||0,it.inc?1:0])]))))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,""):""; }catch(e){return "";} }
 function custDecode(s){ try{ s=s.replace(/-/g,"+").replace(/_/g,"/"); const j=JSON.parse(decodeURIComponent(escape(atob(s)))); return j.map((a,i)=>({id:"s"+Date.now().toString(36)+i,name:a[0],co:a[1],type:a[2],items:a[3].map(x=>({k:x[0],a:x[1],cap:x[2],m:x[3],inc:x[4]}))})); }catch(e){return [];} }
 
+function renderScenPick(){
+  const box=document.getElementById("scen-pick"); if(!box) return;
+  const cats=[...new Set(SCN.map(s=>s.cat))];
+  box.innerHTML=cats.map(c=>`<div class="scen-cat"><h4>${esc(c)}</h4><div class="sim-presets">${SCN.filter(s=>s.cat===c).map(s=>`<button type="button" class="chip ${SIM.sc===s.k?"on":""}" data-sc="${s.k}" title="${esc(s.d)}">${esc(s.t)}<small>自費約 ${fmtN(scenCost(s))}</small></button>`).join("")}</div></div>`).join("");
+  box.querySelectorAll("[data-sc]").forEach(b=>b.addEventListener("click",()=>{scenApply(b.dataset.sc); renderCalc(); const m=document.getElementById("msim"); if(m) m.scrollIntoView({behavior:"smooth",block:"start"});}));
+}
+function renderSurgLook(){
+  const box=document.getElementById("surg-look"); if(!box||box.dataset.ready) return; box.dataset.ready="1";
+  box.innerHTML=`<div class="sim-grid"><label class="sim-surg"><span>輸入手術名稱，看各家現售保單這個手術賠多少（倍數制以日額 1,000 元換算）</span><span><input type="search" id="sl-q" placeholder="例如 達文西、攝護腺、白內障、膝關節、椎間盤"> <button type="button" class="btn ghost" id="sl-go">查詢</button></span></label></div><div class="sim-rows" id="sl-out"></div>`;
+  const go=async()=>{const q=document.getElementById("sl-q").value.trim(); const out=document.getElementById("sl-out"); if(!q){out.innerHTML="";return;} out.innerHTML=`<div class="sr off"><div class="sr-n">查詢中…</div></div>`; const L=await surgLookupAll(q); out.innerHTML=L.length?L.slice(0,40).map(surgLookupRowHTML).join("")+(L.length>40?`<div class="sr off"><div class="sr-n">還有 ${L.length-40} 張，請輸入更精確的名稱</div></div>`:""):`<div class="sr off"><div class="sr-n">沒有保單的手術表列出這個名稱，試試別的寫法（例如「水晶體」「冠狀動脈」）</div></div>`;};
+  document.getElementById("sl-go").addEventListener("click",go); document.getElementById("sl-q").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();go();}});
+}
 function renderCalc(){
+  renderScenPick(); renderSurgLook();
   const box=document.getElementById("cust-list"); if(!box) return;
   box.innerHTML=CUST.length?CUST.map(c=>{const p=custPol(c);return `<div class="mine-row"><span class="t"><b>${esc(p.name)}</b><span>${esc(p.co||"")}${p.co?"・":""}${TYPE_INFO[p.type].n}・${(c.items||[]).length} 個給付項目</span></span><button class="x" type="button" data-edit="${c.id}">修改</button><button class="x" type="button" data-rmc="${c.id}">移除</button></div>`;}).join("")
     :`<div class="empty">還沒有自己輸入的保單。按下面的按鈕，把客戶保單上的給付項目和金額 key 進來。</div>`;
@@ -1370,6 +1401,107 @@ function cmpEdit(k){
 }
 function cmpEncode(){ try{ return btoa(unescape(encodeURIComponent(JSON.stringify({s:CMP.s,age:CMP.age,b:CMP.b.map(b=>({name:b.name,desc:b.desc,items:(b.items||[]).filter(it=>!it.cust)}))})))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,""); }catch(e){return "";} }
 function cmpDecode(s){ try{ s=s.replace(/-/g,"+").replace(/_/g,"/"); const j=JSON.parse(decodeURIComponent(escape(atob(s)))); if(j&&j.b) return j; }catch(e){} return null; }
+
+let LAST_SIM=null;
+async function calcAdvice(list){ const b={items:list.map(p=>p.cust?{cust:p.id}:{i:p.i,plan:(CFG[p.vers[0].id]||{}).plan||"",amt:(CFG[p.vers[0].id]||{}).amt||0})}; const saveS=CMP.s,saveA=CMP.age; const r=await bundleCalc(b); return r; }
+function buildReport(boxId){
+  const L=LAST_SIM; if(!L) return; const name=prompt("客戶稱呼（會印在報告上，可留空）","")||""; const sc=SCN.find(s=>s.k===SIM.sc);
+  const rows=[...document.querySelectorAll(`#${boxId} .msp`)].map(d=>({t:d.querySelector(".msp-h b").textContent, a:d.querySelector(".msp-a").textContent, rows:[...d.querySelectorAll(".sr.on")].map(r=>r.innerText.replace(/\n/g," ／ "))}));
+  const adv=L.M?gapAdvice(L.M,{cost:L.selfCost,pay:L.grand,gap:L.selfCost-L.grand}):[];
+  const today=new Date(); const dateStr=`${today.getFullYear()-1911}/${String(today.getMonth()+1).padStart(2,"0")}/${String(today.getDate()).padStart(2,"0")}`;
+  const html=`<article class="report"><h1>醫療保障健診與理賠試算建議</h1><p class="rep-meta">${name?esc(name)+"　":""}日期：民國 ${dateStr}</p>
+    <h2>一、假設情境${sc?`：${esc(sc.t)}`:""}</h2><p>${esc(simDesc(SIM))}</p>${sc?`<table class="rep-tbl"><tr><th>項目</th><th>健保／自費</th><th>金額</th></tr>${sc.cost.map(c=>`<tr><td>${esc(c[0])}</td><td>${c[1]}</td><td>${c[1]==="自費"?fmtN(c[2])+" 元":"—"}</td></tr>`).join("")}<tr class="tot"><td colspan="2">預估自費合計</td><td>${fmtN(L.selfCost)} 元</td></tr></table>`:(L.selfCost?`<p>預估自費合計 ${fmtN(L.selfCost)} 元。</p>`:"")}
+    <h2>二、手上保單可以領多少</h2><table class="rep-tbl"><tr><th>保單</th><th>可領（約）</th></tr>${rows.map(r=>`<tr><td>${esc(r.t)}${r.rows.length?`<div class="rep-sub">${r.rows.map(x=>esc(x)).join("<br>")}</div>`:""}</td><td>${esc(r.a)}</td></tr>`).join("")}<tr class="tot"><td>合計可領</td><td>${fmtN(L.grand)} 元${L.per?`（另每期 ${fmtN(L.per)} 元）`:""}</td></tr>${L.selfCost?`<tr class="tot"><td>${L.grand>=L.selfCost?"保單足以支付這次自費":"這次還要自己付"}</td><td>${L.grand>=L.selfCost?"—":fmtN(L.selfCost-L.grand)+" 元"}</td></tr>`:""}</table>
+    <h2>三、保障缺口與建議</h2>${adv.length?`<ol class="rep-adv">${adv.map(([k,v])=>`<li><b>${esc(k)}</b>：${esc(v)}</li>`).join("")}</ol>`:"<p>以目前情境來看，主要保障都有。</p>"}
+    <h2>四、保障內容總覽</h2>${L.M?`<table class="rep-tbl">${CMP_METRICS.filter(m=>m[0]!=="prem").map(([k,lab,u])=>`<tr><td>${esc(lab)}</td><td>${L.M[k]>0?fmtN(L.M[k])+" "+u:"—"}</td></tr>`).join("")}</table>`:""}
+    <p class="rep-fine">${sc?`費用參考來源：${(sc.src||[]).map(s=>esc(SCN_SRC[s]||s)).join("；")}。`:""}理賠金額依各保單條款與輸入的保額自動換算，實支實付以自費金額與限額取較低者；實際理賠以條款、收據與保險公司審核為準。本報告僅供規劃參考，不構成投保建議或保證。</p></article>`;
+  let rep=document.getElementById("report"); if(!rep){rep=document.createElement("div"); rep.id="report"; document.body.appendChild(rep);} rep.innerHTML=html; document.body.classList.add("printing"); window.print(); setTimeout(()=>document.body.classList.remove("printing"),1000);
+}
+
+/* ---------- 真實情境庫：台灣常見治療的健保／自費拆解 ---------- */
+/* 金額為一般參考範圍的中間值（醫學中心、雙人房差額），依醫院、病情、選用醫材不同；每個情境附來源。 */
+const SCN_SRC={
+  tw:"台灣懶人包《台灣自費醫療與健保不給付項目指南》2026/05（達文西、自費醫材、癌症藥物）",
+  scmh:"聖馬爾定醫院〈達文西手臂手術是什麼？〉（住院天數、達文西耗材 8～15 萬、健保 2023/3 起給付 17 項）",
+  roo:"roo.cash〈全台醫院病房費整理〉2025/09～2026/03（各院單人、雙人房差額）",
+  faq:"faqs.tw〈住院費用完整指南 2026〉（病房差額、常見自費醫材）",
+  lapa:"黃士峯醫師〈腹腔鏡手術費用多少？〉2026/03（能量刀 2～3 萬、防沾黏 2 萬以上、腹腔鏡自費 5～15 萬）",
+  udn:"聯合報〈自費醫療 脊椎特材貴到吃不消〉2024/09（人工椎間盤、骨板骨釘 10～20 萬）",
+  chubb:"安達人壽〈住院日額多少才夠？〉（國人平均住院 9.29 天、半膝關節自付約 15 萬）",
+  gen:"住院天數為一般臨床常見範圍，實際依病情與醫院而定",
+};
+const SCN=[
+ {k:"appendix",cat:"常見手術",t:"急性闌尾炎（盲腸炎）腹腔鏡手術",d:"急診後當天開刀，住院 3 天",S:{cause:"疾病",days:3,room:2500,misc:15000,surgIn:1,surgFee:30000,opd:2,er:1,surgName:"闌尾切除"},
+  cost:[["腹腔鏡手術本身、麻醉、健保病房","健保",0],["超音波刀等能量器械（自費）","自費",25000],["防沾黏產品（自費，可選）","自費",15000],["雙人房差額 2,500 × 3 天","自費",7500],["急診、術後門診 2 次部分負擔","自費",5000]],src:["lapa","faq","gen"]},
+ {k:"gall",cat:"常見手術",t:"膽結石 腹腔鏡膽囊切除",d:"排程手術，住院 3 天",S:{cause:"疾病",days:3,room:2500,misc:12000,surgIn:1,surgFee:30000,opd:2,surgName:"膽囊切除"},
+  cost:[["腹腔鏡膽囊切除、麻醉","健保",0],["能量器械、取物袋等耗材（自費）","自費",30000],["雙人房差額 2,500 × 3 天","自費",7500],["術後門診、藥品部分負擔","自費",4500]],src:["lapa","faq","gen"]},
+ {k:"hernia",cat:"常見手術",t:"腹股溝疝氣 人工網膜修補",d:"住院 2 天",S:{cause:"疾病",days:2,room:2500,misc:5000,surgIn:1,surgFee:30000,opd:1,surgName:"疝氣修補"},
+  cost:[["疝氣修補手術、麻醉","健保",0],["自費人工網膜、固定釘","自費",30000],["雙人房差額 2,500 × 2 天","自費",5000]],src:["faq","gen"]},
+ {k:"hemo",cat:"常見手術",t:"痔瘡 微創手術",d:"住院 2 天",S:{cause:"疾病",days:2,room:2500,misc:5000,surgIn:1,surgFee:40000,opd:2,surgName:"痔瘡"},
+  cost:[["傳統痔瘡切除","健保",0],["微創器械（環狀切除器、雷射等，自費）","自費",40000],["雙人房差額 2,500 × 2 天","自費",5000]],src:["faq","gen"]},
+ {k:"fracture",cat:"意外",t:"車禍 小腿骨折 鋼板固定",d:"意外・急診、住院 5 天、自費骨板",S:{cause:"意外",days:5,room:2500,misc:20000,surgIn:1,surgFee:80000,opd:4,er:1,surgName:"骨折開放性復位"},
+  cost:[["骨折復位手術、麻醉、健保骨板","健保",0],["新型自費骨板、骨釘（差額）","自費",80000],["雙人房差額 2,500 × 5 天","自費",12500],["急診、復健門診 4 次、護具","自費",20000]],src:["udn","faq","gen"]},
+ {k:"cataract",cat:"門診手術",t:"白內障 多焦點人工水晶體（單眼）",d:"門診手術，不住院",S:{cause:"疾病",surgOut:1,surgOutFee:70000,opd:2,surgName:"白內障"},
+  cost:[["白內障超音波乳化手術、健保基本水晶體","健保",0],["多焦點人工水晶體差額（單眼）","自費",70000],["術前術後門診","自費",1000]],src:["tw","faq"]},
+ {k:"davinci_p",cat:"達文西",t:"攝護腺癌 達文西根除手術",d:"確診癌症・住院 5 天",S:{cause:"疾病",cancer:1,stage:"重度",days:5,room:2500,misc:20000,surgIn:1,surgFee:200000,opd:4,surgName:"攝護腺根除"},
+  cost:[["攝護腺根除手術費（泌尿科達文西健保有給付手術費）","健保",0],["達文西機械手臂耗材（自費）","自費",200000],["雙人房差額 2,500 × 5 天","自費",12500],["住院雜費、導尿管、藥品部分負擔","自費",20000],["術後門診追蹤 4 次","自費",2000]],src:["tw","scmh","gen"]},
+ {k:"davinci_u",cat:"達文西",t:"子宮肌瘤 達文西切除",d:"住院 4 天",S:{cause:"疾病",days:4,room:2500,misc:15000,surgIn:1,surgFee:170000,opd:3,surgName:"子宮肌瘤切除"},
+  cost:[["子宮肌瘤切除手術費","健保",0],["達文西耗材（自費）","自費",170000],["雙人房差額 2,500 × 4 天","自費",10000],["住院雜費、藥品","自費",15000]],src:["tw","scmh","gen"]},
+ {k:"stent",cat:"心血管",t:"急性心肌梗塞 心導管＋塗藥支架 2 支",d:"重大疾病・加護病房 2 天、住院共 6 天",S:{cause:"疾病",major:1,days:6,icu:2,room:2500,misc:20000,surgIn:1,surgFee:120000,opd:4,er:1,surgName:"冠狀動脈"},
+  cost:[["心導管手術、健保支架、加護病房","健保",0],["塗藥支架差額 6 萬 × 2 支","自費",120000],["雙人房差額 2,500 × 4 天（加護病房不另收）","自費",10000],["住院雜費、藥品、急診","自費",20000],["出院後心臟科門診 4 次、用藥","自費",4000]],src:["tw","faq","gen"]},
+ {k:"knee",cat:"骨科",t:"退化性關節炎 人工膝關節置換（單側）",d:"住院 6 天、自費高耐磨關節",S:{cause:"疾病",days:6,room:2500,misc:15000,surgIn:1,surgFee:120000,opd:4,surgName:"人工膝關節"},
+  cost:[["人工膝關節置換手術、健保基本關節","健保",0],["高耐磨人工膝關節差額","自費",120000],["雙人房差額 2,500 × 6 天","自費",15000],["止痛自控裝置、雜費","自費",15000],["復健門診 4 次","自費",2000]],src:["tw","faq","chubb","gen"]},
+ {k:"spine",cat:"骨科",t:"腰椎椎間盤突出 微創手術＋骨釘",d:"住院 5 天、自費脊椎特材",S:{cause:"疾病",days:5,room:2500,misc:20000,surgIn:1,surgFee:180000,opd:4,surgName:"椎間盤"},
+  cost:[["脊椎手術費、麻醉","健保",0],["自費脊椎特材（微創骨釘、椎間融合器）","自費",180000],["雙人房差額 2,500 × 5 天","自費",12500],["住院雜費、背架","自費",20000]],src:["udn","gen"]},
+ {k:"stroke",cat:"重大傷病",t:"缺血性腦中風 住院治療",d:"重大傷病・加護病房 3 天、住院共 14 天",S:{cause:"疾病",major:1,days:14,icu:3,room:2500,misc:40000,opd:6},
+  cost:[["急診、血栓溶解、加護病房、復健","健保",0],["雙人房差額 2,500 × 11 天","自費",27500],["自費藥物、營養品、復健器材","自費",40000],["出院後門診復健 6 次、看護費（未計）","自費",6000]],src:["faq","gen"]},
+ {k:"breast",cat:"癌症",t:"乳癌 手術＋化療＋標靶治療",d:"確診癌症・住院 6 天、門診治療 12 次",S:{cause:"疾病",cancer:1,stage:"重度",days:6,room:2500,misc:30000,surgIn:1,surgFee:60000,opd:12,opdFee:600000,surgName:"乳癌根除"},
+  cost:[["乳房切除手術、健保化療","健保",0],["乳房重建、自費耗材","自費",60000],["雙人房差額 2,500 × 6 天","自費",15000],["住院雜費、自費止吐藥","自費",30000],["標靶藥（健保條件外自費）約 8～10 萬／月 × 6 個月","自費",600000]],src:["tw","gen"]},
+ {k:"lung",cat:"癌症",t:"肺癌 胸腔鏡手術＋標靶藥一年",d:"確診癌症・住院 7 天、長期門診",S:{cause:"疾病",cancer:1,stage:"重度",days:7,room:2500,misc:30000,surgIn:1,surgFee:150000,opd:12,opdFee:1200000,surgName:"肺葉切除"},
+  cost:[["肺葉切除手術、健保藥物","健保",0],["胸腔鏡／達文西耗材（自費）","自費",150000],["雙人房差額 2,500 × 7 天","自費",17500],["住院雜費","自費",30000],["標靶藥約 10 萬／月 × 12 個月（健保未給付者）","自費",1200000]],src:["tw","scmh","gen"]},
+ {k:"immuno",cat:"癌症",t:"癌症 免疫治療一年（健保條件外）",d:"確診癌症・門診注射 12 次、不住院",S:{cause:"疾病",cancer:1,stage:"重度",opd:12,opdFee:2400000},
+  cost:[["免疫治療藥物約 15～30 萬／月 × 12 個月","自費",2400000],["門診注射、檢查","自費",20000]],src:["tw"]},
+ {k:"proton",cat:"癌症",t:"癌症 質子治療",d:"確診癌症・門診放射治療 30 次",S:{cause:"疾病",cancer:1,stage:"重度",opd:30,opdFee:600000},
+  cost:[["質子治療一個療程（自費）","自費",600000],["門診、檢查","自費",10000]],src:["tw"]},
+ {k:"pneumonia_kid",cat:"住院",t:"兒童肺炎住院",d:"住院 5 天",S:{cause:"疾病",days:5,room:2500,misc:8000,opd:2,er:1},
+  cost:[["住院診療、抗生素","健保",0],["雙人房差額 2,500 × 5 天","自費",12500],["自費藥物、陪病床","自費",8000]],src:["roo","gen"]},
+ {k:"ltc",cat:"長照",t:"重度失能需長期照顧",d:"第 1 級失能、符合長照狀態，住院 30 天後居家照護",S:{cause:"疾病",disab:1,ltc:1,days:30,icu:5,room:2000,misc:50000,opdFee:360000},
+  cost:[["急性期住院治療","健保",0],["病房差額 2,000 × 25 天","自費",50000],["住院雜費、耗材","自費",50000],["出院後看護／長照機構每月約 3 萬 × 12 個月（第一年）","自費",360000]],src:["faq","gen"]},
+];
+function scenCost(sc){ return (sc.cost||[]).filter(c=>c[1]==="自費").reduce((a,c)=>a+c[2],0); }
+function scenApply(k){ const sc=SCN.find(s=>s.k===k); if(!sc) return; SIM=Object.assign({},SIM_DEF,sc.S,{sc:k}); simSave(); }
+function scenCardHTML(sc){ const self=scenCost(sc); return `<div class="scen-cost"><div class="scen-h"><b>${esc(sc.t)}</b><span>${esc(sc.d)}</span></div>
+  <div class="scen-rows">${sc.cost.map(c=>`<div class="sr ${c[1]==="自費"?"on":"off"}"><div class="sr-n">${esc(c[0])}</div><div class="sr-a">${c[1]==="自費"?fmtN(c[2])+" 元":"健保給付"}</div></div>`).join("")}</div>
+  <div class="scen-total"><span>這次預估自費合計</span><b>${fmtN(self)} 元</b></div>
+  <p class="fine">參考來源：${(sc.src||[]).map(s=>esc(SCN_SRC[s]||s)).join("；")}。金額為參考中間值，實際依醫院、病情與選用醫材而定。</p></div>`; }
+/* ---------- 缺口建議 ---------- */
+function gapAdvice(M,extra){
+  const out=[]; const f=fmtN;
+  if(!(M.day>0)) out.push(["住院日額","目前沒有住院日額，住院期間的病房差額、看護、收入損失都要自己扛。建議每天至少 2,000～3,000 元。"]);
+  else if(M.day<2000) out.push(["住院日額",`住院一天只有 ${f(M.day)} 元，連雙人房差額（約 2,500 元）都不夠，建議補到 2,000～3,000 元。`]);
+  if(!(M.misc>0)) out.push(["實支實付","沒有實支實付，自費醫材（達文西、支架、人工關節、水晶體）完全沒得賠，這是現在最大的缺口。建議雜費上限至少 20 萬。"]);
+  else if(M.misc<150000) out.push(["實支實付",`住院雜費上限只有 ${f(M.misc)} 元，一次達文西或脊椎特材就會超過，建議提高到 20～30 萬或加一張實支實付。`]);
+  if(!(M.surg>0)) out.push(["手術","沒有手術給付（定額或倍數制），門診手術、小手術領不到錢。建議加一年期手術附約。"]);
+  if(!(M.cancer>0)) out.push(["癌症一次金","沒有癌症一次金。標靶、免疫治療多在門診且常是自費，一次金才用得上，建議至少 100 萬。"]);
+  else if(M.cancer<1000000) out.push(["癌症一次金",`癌症一次金 ${f(M.cancer)} 元，標靶藥一年就可能超過 100 萬，建議補到 100～200 萬。`]);
+  if(!(M.major>0)) out.push(["重大傷病","沒有重大傷病／重大疾病一次金，中風、心肌梗塞、洗腎的長期花費沒有保障。建議至少 100 萬。"]);
+  else if(M.major<1000000) out.push(["重大傷病",`重大傷病一次金 ${f(M.major)} 元偏低，建議補到 100 萬以上。`]);
+  if(!(M.disab>0)) out.push(["失能","沒有失能保險金。失能後不只醫療費，還有長期的生活與照護支出，建議第 1 級失能至少 300 萬。"]);
+  if(!(M.ltc>0)) out.push(["長照","沒有長照給付。需要長期照顧時每月約 3～6 萬的看護費是最長期的負擔，建議每月 2～3 萬。"]);
+  if(extra&&extra.gap>0) out.unshift(["這次情境的缺口",`這次自費約 ${f(extra.cost)} 元，保單合計可領約 ${f(extra.pay)} 元，還差 ${f(extra.gap)} 元要自己付。`]);
+  return out;
+}
+/* ---------- 手術快查：各家現售保單這個手術賠多少 ---------- */
+async function surgLookupAll(q){
+  const nq=normS(q); if(!nq) return [];
+  const shards=[...new Set(P.filter(p=>!p.e&&!p.grp&&p.hd).map(p=>Math.floor(p.i/200)))];
+  const out=[];
+  for(const n of shards){ const sj=await loadSurg(n); if(!sj) continue; for(const [i,T] of Object.entries(sj)){ const p=P[+i]; if(!p||p.e||p.grp) continue; const m=surgMatch(T,q); if(!m) continue; out.push({p,T,m}); } }
+  out.sort((a,b)=>(b.m.v/(b.T.u==="%"?100:1))-(a.m.v/(a.T.u==="%"?100:1)));
+  return out;
+}
+function surgLookupRowHTML(r){ const {p,T,m}=r; const base=T.u==="元"?null:(guessUnit({ben:[]})==="日額"?1000:1000); let amt=""; if(T.u==="倍") amt=`${m.v} 倍・日額 1,000 時約 ${fmtN(1000*m.v)} 元`; else if(T.u==="%") amt=`${m.v}%（乘以手術費限額）`; else amt=`${fmtN(m.v)} 元（每單位）`;
+  return `<div class="sr on"><div class="sr-n"><b><a href="#p${p.i}">${esc(p.name)}</a></b><small>${CO[p.co]||p.co}・${TYPE_INFO[p.type].n}・表上名稱：${esc(m.name)}</small></div><div class="sr-a">${amt}</div></div>`; }
 </script>
 
 </body>
