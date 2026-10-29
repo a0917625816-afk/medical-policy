@@ -482,7 +482,7 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 </main>
 
 <script>
-const BUILD="1793268296";
+const BUILD="1793268349";
 const TYPE_INFO = [
   {k:0,n:"住院日額",pays:"住院一天給固定金額",d:"不看花多少錢，只看住幾天。加護病房、燒燙傷病房通常另有加給。"},
   {k:1,n:"實支實付",pays:"依收據實報實銷",d:"重點看三項限額：病房費（每天）、住院雜費（每次）、手術費（每次）。"},
@@ -955,6 +955,7 @@ function itemAmount(b,st,freq){
   if(b.pv&&st.pi>=0&&b.pv[st.pi]!=null) A=b.pv[st.pi];
   else if(st.amt>0&&!((b.r||[]).includes("依條款附表")&&/手術|處置/.test(b.n))&&!(st.unit&&!(b.r||[]).some(z=>/^每單位/.test(z)))){ A=benAmount(b.r||[],st.amt,st.unit);
     if(A==null&&!st.unit&&freq==="每日"&&/^(?:一般)?住院(?:醫療)?(?:日額)?(?:醫療)?保險金$/.test(b.n)) A=st.amt; }
+  if(A!=null&&!st.unit&&st.amt>20000&&(b.r||[]).some(z=>/^日額 ×/.test(z))&&!(b.pv&&st.pi>=0)) A=null; // 輸入的是保額，不能當日額用
   if(A==null&&st.prem>0){for(const z of (b.r||[])){let m;
     if((m=z.match(/^已繳保費 × ([\d.]+) 倍$/))&&st.yrs>0) A=Math.round(st.prem*st.yrs*(+m[1]));
     else if((m=z.match(/^年繳保費的 ([\d.]+)%$/))) A=Math.round(st.prem*(+m[1])/100);}}
