@@ -223,6 +223,7 @@ html.big{font-size:20px}
 .d-body{grid-template-columns:minmax(0,1fr)}
 .d-body>*,#dblock>*{min-width:0}
 .vers>div{min-width:0}.vers>div>span:first-child{min-width:0;flex:1 1 auto}
+.vers-d{border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin:8px 0}.vers-d>summary{cursor:pointer;font-weight:700;font-size:1.05em;list-style-position:inside}.vers-d>summary small{display:block;font-weight:400;color:var(--muted);font-size:.85em;margin:4px 0 0 1.2em}.vers-d[open]>summary{margin-bottom:10px}
 mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-weight:600;-webkit-box-decoration-break:clone;box-decoration-break:clone}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) mark.hl{background:#5c1d1d;color:#ffd7d5}}
 :root[data-theme="dark"] mark.hl{background:#5c1d1d;color:#ffd7d5}
@@ -444,7 +445,7 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 </main>
 
 <script>
-const BUILD="1793264218";
+const BUILD="1793264729";
 const TYPE_INFO = [
   {k:0,n:"住院日額",pays:"住院一天給固定金額",d:"不看花多少錢，只看住幾天。加護病房、燒燙傷病房通常另有加給。"},
   {k:1,n:"實支實付",pays:"依收據實報實銷",d:"重點看三項限額：病房費（每天）、住院雜費（每次）、手術費（每次）。"},
@@ -685,7 +686,7 @@ function wireOcc(p,R,X){const O=R.o;let ex=true;const g=id=>{const e=document.ge
     if(rate==null){pe.textContent="－";ne.textContent="這個職業類別不在承保範圍";return;}
     const prem=O.b===0?rate:(O.b===1?rate*amt:(O.b?rate*amt/O.b:null));
     pe.textContent=prem!=null?fmtN(prem)+" 元":"－";ne.textContent=`依費率表 ${O.u||""}：${rate} 元`+(O.b==null?"（未標示單位，請以官方費率表為準）":"");
-    if(X&&X.ben) renderClaims(X,{pi:-1,amt:O.b===0?0:amt,unit:O.b===1,ex});};
+    if(X&&X.ben) renderClaims(X,{pi:-1,amt:O.b===0?0:amt,unit:O.b===1,ex,prem:prem||0,yrs:1});};
   const t=document.getElementById("ex-t"); if(t) t.addEventListener("click",()=>{ex=!ex;t.textContent=ex?"－ 收起說明":"＋ 展開說明";run();});
   document.querySelectorAll("#quote input,#quote select").forEach(e=>e.addEventListener("input",run));run();}
 function quoteHTML(p,R,X){
@@ -725,13 +726,17 @@ function renderClaims(X,st){
       if(b.pv&&st.pi>=0&&b.pv[st.pi]!=null) A=b.pv[st.pi];
       else if(st.amt>0&&!((b.r||[]).includes("依條款附表")&&/手術|處置/.test(b.n))){ A=benAmount(b.r||[],st.amt,st.unit);
         if(A==null&&!st.unit&&freq==="每日"&&/^(?:一般)?住院(?:醫療)?(?:日額)?(?:醫療)?保險金$/.test(b.n)) A=st.amt; }
+      let pnote="";
+      if(A==null&&st.prem>0){for(const z of (b.r||[])){let m;
+        if((m=z.match(/^已繳保費 × ([\d.]+) 倍$/))&&st.yrs>0){A=Math.round(st.prem*st.yrs*(+m[1]));pnote=`以年繳 ${fmtN(st.prem)} 元 × ${st.yrs} 年 × ${m[1]} 倍估算${(b.r||[]).includes("扣除已領保險金")?"，還要扣掉之前已領的保險金":""}`;}
+        else if((m=z.match(/^年繳保費的 ([\d.]+)%$/))){A=Math.round(st.prem*(+m[1])/100);pnote=`以年繳 ${fmtN(st.prem)} 元 × ${m[1]}% 估算`;}}}
       const lim=/限額|上限/.test(b.n+(b.r||[]).join(""))||(b.r||[]).some(z=>/實支/.test(z));
       const maxp=((b.r||[]).includes("最高給付保額")||/失能|殘廢/.test(b.n))&&!/完全失能/.test(b.n);
-      const tags=(b.r||[]).filter(z=>!/^含門診$/.test(z)&&!/倍|每單位|給付保額|保額的/.test(z)).filter(z=>!(b.pv&&z==="依條款附表")).map(z=>z==="依條款附表"&&/手術|處置/.test(b.n)?"依手術項目倍數表":z);
+      const tags=(b.r||[]).filter(z=>!/^含門診$/.test(z)&&(/已繳保費|年繳保費/.test(z)||!/倍|每單位|給付保額|保額的/.test(z))).filter(z=>!(b.pv&&z==="依條款附表")).map(z=>z==="依條款附表"&&/手術|處置/.test(b.n)?"依手術項目倍數表":z);
       const amt=A!=null?`${maxp?"最高 ":lim?"上限 ":""}${fmtN(A)} 元${freq==="每日"&&!/病房費用|限額/.test(b.n)?"／日":""}`:"";
       const ex=benExample(b,A,freq);
       return `<div class="ci"><div class="ci-h"><b>${esc((b.ei?"轉換住院日額／每日":friendly(b.n))||b.n)}${(b.ei||friendly(b.n))?`<small class="ci-o">${esc(b.n)}</small>`:""}</b>${amt?`<span class="ci-a">${esc(amt)}</span>`:""}</div>${tags.length?`<div class="ci-t">${tags.map(z=>`<i>${esc(z)}</i>`).join("")}</div>`:""}
-        ${ex?`<p class="ci-ex">${esc(ex)}${b.nt?`（${esc(b.nt)}）`:""}</p>`:""}
+        ${ex?`<p class="ci-ex">${esc(ex)}${b.nt?`（${esc(b.nt)}）`:""}</p>`:""}${pnote?`<p class="ci-ex">${esc(pnote)}（實際以保險公司計算為準）</p>`:""}
         ${b.sub&&b.sub.length?b.sub.map(z=>`<div class="ci-sub"><span>${esc(z.n)}</span><span>${A!=null?fmtN(A*z.m)+" 元":(z.m>1?"限額 × "+z.m:"同上限額")}</span></div>`).join(""):""}
         <details class="ci-raw"><summary>條款原文</summary>${b.d?`<p>${hl(b.d)}</p>`:""}${b.s&&b.s.length?`<ul>${b.s.map(z=>`<li>${hl(z)}</li>`).join("")}</ul>`:""}</details></div>`;}).join("")}</div>`;}).join("");
   box.classList.toggle("noex",!st.ex);
@@ -746,9 +751,10 @@ function wireProduct(p,R,X){
   const run=()=>{read();
     if(R){const cands=R.c.filter(c=>(!c.s||c.s===st.s)&&(!st.y||!c.y||c.y===st.y)&&(!st.plan||!c.p||c.p===st.plan));
       const col=cands.find(c=>ageKey(c.a,st.age)!=null);const pe=document.getElementById("q-prem"),ne=document.getElementById("q-note");
-      if(!col){pe.textContent="－";ne.textContent="這個年齡不在可投保範圍";}
+      if(!col){st.prem=0;pe.textContent="－";ne.textContent="這個年齡不在可投保範圍";}
       else{const rate=ageKey(col.a,st.age);let prem=null;
         if(R.b===0) prem=rate; else if(st.amt>0) prem=R.b===1?rate*st.amt:(R.b?rate*st.amt/R.b:null);
+        st.prem=prem||0; const yv=st.y||(R.c[0]&&R.c[0].y)||"",ym=yv.match(/(\d+)\s*年/); st.yrs=/躉繳/.test(yv)?1:ym&&+ym[1]>0?+ym[1]:(p.term===1?1:0);
         pe.textContent=prem!=null?fmtN(prem)+" 元":"－";
         ne.textContent=prem!=null?`依費率表 ${R.u||""}：${fmtN(rate)} 元`:(R.b==null?"費率表未標示單位，請以官方費率表為準":`輸入${R.b===1?"投保單位":"保額"}後顯示`);}}
     if(X&&X.ben) renderClaims(X,st);};
@@ -819,9 +825,9 @@ function renderDetail(i){
         <div class="fact"><dt>保障期間</dt><dd>${p.term?TERMS[p.term]:"依條款"}</dd></div>
         <div class="fact"><dt>險種</dt><dd>${TYPE_INFO[p.type].n}</dd></div>
       </dl></div>
-        <div><h3>所有版本</h3><p class="unit">同一張商品修訂過條款就會有新版本。輸入保單上的「投保日期」（契約生效日），就會標出你的那一版。</p>
+        ${p.vers.length===1?`<div><h3>商品代號</h3><p class="pid">${p.vers[0].id}</p><p class="fine">銷售期間 ${fmtD(p.vers[0].s)} ～ ${p.vers[0].e?fmtD(p.vers[0].e):"現在"}</p></div>`:`<details class="vers-d" id="vers-d"><summary>版本紀錄（共 ${p.vers.length} 版）<small>舊保單才需要看：輸入投保日期，找出你的那一版</small></summary>
           <div class="finddate"><label for="dt">投保日期（民國）</label><input id="dt" inputmode="numeric" placeholder="例如 105/03/12" autocomplete="off"><span id="dt-out" class="fine" aria-live="polite"></span></div>
-          <div class="vers" id="vers">${p.vers.map((v,k)=>`<div data-k="${k}" class="${k===p.vers.length-1?"cur":""}"><span>${k===0?"初版":"第 "+k+" 次修訂"}<br><span class="pid">${v.id}</span></span><span>${fmtD(v.s)} ～ ${v.e?fmtD(v.e):"現在"}</span></div>`).join("")}</div></div>
+          <div class="vers" id="vers">${p.vers.map((v,k)=>`<div data-k="${k}" class="${k===p.vers.length-1?"cur":""}"><span>${k===0?"初版":"第 "+k+" 次修訂"}<br><span class="pid">${v.id}</span></span><span>${fmtD(v.s)} ～ ${v.e?fmtD(v.e):"現在"}</span></div>`).join("")}</div></details>`}
         <div><h3>查看官方條款</h3>
           <ol class="how">
             <li>打開保險事業發展中心「<a href="https://insprod.tii.org.tw/Query.aspx" target="_blank" rel="noopener">保險商品查詢</a>」</li>
@@ -832,7 +838,7 @@ function renderDetail(i){
         <p class="fine">資料來源：財團法人保險事業發展中心保險商品資料庫。實際權益以保單條款為準。</p>
       </div>
     </article>`;
-  $("#dt").addEventListener("input",e=>{
+  if($("#dt")) $("#dt").addEventListener("input",e=>{
     const m=e.target.value.match(/(\d{2,3})\D*(\d{1,2})\D*(\d{1,2})/); const out=$("#dt-out");
     document.querySelectorAll("#vers > div").forEach(d=>d.classList.remove("hit"));
     if(!m){out.textContent="";return;}
