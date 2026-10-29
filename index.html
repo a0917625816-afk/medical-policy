@@ -523,7 +523,7 @@ nav{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;overflow:visible}na
 </main>
 
 <script>
-const BUILD="1793277622";
+const BUILD="1793284580";
 const TYPE_INFO = [
   {k:0,n:"住院日額",pays:"住院一天給固定金額",d:"不看花多少錢，只看住幾天。加護病房、燒燙傷病房通常另有加給。"},
   {k:1,n:"實支實付",pays:"依收據實報實銷",d:"重點看三項限額：病房費（每天）、住院雜費（每次）、手術費（每次）。"},
@@ -1273,9 +1273,9 @@ function renderCalc(){
 /* ---------- 保單比較／罐頭組合 ---------- */
 const CMP_KEY=KEY+":cmp";
 const BUNDLE_PRESETS=[
- {id:"A",name:"小資實支型",desc:"預算有限的年輕人：三家公司各一張便宜主約帶附約，先補實支實付、手術、癌症、重大傷病、失能。",items:[{i:999,plan:"計劃三"},{i:996,plan:"計劃一"},{i:1051,amt:3000000},{i:4846,amt:1000000},{i:4853,amt:1000},{i:4844,amt:1000000},{i:2975,amt:1000000},{i:2990,amt:1000000}]},
- {id:"B",name:"均衡型",desc:"終身醫療當底（國泰主約＋自負額實支附約），再用一年期主約帶附約補實支、癌症、重大傷病、失能。",items:[{i:1718,amt:2000,y:"20年期"},{i:1763,plan:"計劃2"},{i:4846,amt:1000000},{i:4841,plan:"計劃2"},{i:4844,amt:1000000},{i:2975,amt:1000000},{i:2990,amt:1000000},{i:1130,amt:1000000},{i:1051,amt:3000000}]},
- {id:"C",name:"全面型",desc:"預算充足：遠雄終身醫療主約帶實支與終身手術附約，凱基長照主約帶癌症與重疾附約，台壽主約帶失能附約。",items:[{i:3542,amt:2000,y:"20年期"},{i:3671,plan:"計劃二"},{i:3543,amt:1000,y:"20年期"},{i:3665,amt:1000000},{i:2077,amt:10000,y:"20年期"},{i:2059,amt:1000000},{i:2006,amt:1000000},{i:1130,amt:1000000},{i:1051,amt:3000000}]},
+ {id:"A",name:"小資實支型",desc:"預算有限的年輕人：台壽實支實付當主約帶手術、失能附約；全球、富邦各用 10 萬的一年期重大疾病當門票主約，帶重大傷病、癌症附約。",items:[{i:999,plan:"計劃三"},{i:996,plan:"計劃一"},{i:1051,amt:3000000},{i:4846,amt:100000},{i:4853,amt:1000},{i:4844,amt:1000000},{i:2975,amt:100000},{i:2990,amt:1000000}]},
+ {id:"B",name:"均衡型",desc:"國泰終身醫療主約帶自負額實支附約當底；全球、富邦、台壽各用 10 萬的一年期重大疾病當門票主約，帶實支、重大傷病、癌症、失能附約。",items:[{i:1718,amt:2000,y:"20年期"},{i:1763,plan:"計劃2"},{i:4846,amt:100000},{i:4841,plan:"計劃2"},{i:4844,amt:1000000},{i:2975,amt:100000},{i:2990,amt:1000000},{i:1130,amt:100000},{i:1051,amt:3000000}]},
+ {id:"C",name:"全面型",desc:"預算充足：遠雄終身醫療主約帶實支與終身手術附約，凱基長照主約帶癌症與重疾附約，台壽主約帶失能附約。",items:[{i:3542,amt:2000,y:"20年期"},{i:3671,plan:"計劃二"},{i:3543,amt:1000,y:"20年期"},{i:3665,amt:1000000},{i:2077,amt:10000,y:"20年期"},{i:2059,amt:1000000},{i:2006,amt:1000000},{i:1130,amt:100000},{i:1051,amt:3000000}]},
 ];
 const FORM_LAB=["主約","附約","附加條款"];
 /* 規則：同一家壽險公司＝一張主約＋掛在它下面的附約；附約不能單獨買 */
@@ -1335,7 +1335,7 @@ function renderCompare(){
       return `<div class="cmp-card" data-k="${k}"><div class="cmp-h"><h3>${esc(b.name)}</h3><button type="button" class="linkbtn" data-edit="${k}">編輯</button></div><p class="cmp-desc">${esc(b.desc||"")}</p>
         <div class="cmp-prem"><span>${CMP.age} 歲${CMP.s}性 年繳保費合計</span><b>${fmtN(r.prem)} 元</b></div>
         ${r.rule.warns.length?`<div class="cmp-warn">${r.rule.warns.map(w=>`<p>⚠ ${esc(w)}</p>`).join("")}</div>`:""}
-        <div class="cmp-comps">${r.rule.groups.map(g=>`<div class="cmp-co"><b>${esc(g.co)}</b>${[...g.mains,...g.riders].map(c=>`<div class="cmp-comp ${c.form===0?"main":"rider"}"><span><i>${FORM_LAB[c.form]||"主約"}</i>${esc(c.name)}<small>${esc(c.cfg||"")}</small></span><span>${c.prem!=null?fmtN(c.prem)+" 元":(c.note||"—")}</span></div>`).join("")}</div>`).join("")||`<div class="fine">這組還沒有保單，按「編輯」加入。</div>`}</div>
+        <div class="cmp-comps">${r.rule.groups.map(g=>`<div class="cmp-co"><b>${esc(g.co)}</b>${[...g.mains,...g.riders].map(c=>`<div class="cmp-comp ${c.form===0?"main":"rider"}"><span><i>${c.form===0&&g.riders.length&&c.prem!=null&&c.prem<2500&&g.riders.some(r=>r.prem>c.prem)?"門票主約":(FORM_LAB[c.form]||"主約")}</i>${esc(c.name)}<small>${esc(c.cfg||"")}</small></span><span>${c.prem!=null?fmtN(c.prem)+" 元":(c.note||"—")}</span></div>`).join("")}</div>`).join("")||`<div class="fine">這組還沒有保單，按「編輯」加入。</div>`}</div>
         <h4>六種情境可領多少</h4><div class="cmp-rows">${SIM_PRESETS.map(p=>`<div class="sr on"><div class="sr-n"><b>${esc(p.t)}</b><small>${esc(p.d)}</small></div><div class="sr-a">${fmtN(r.tot[p.k])} 元</div></div>`).join("")}</div>
         <h4>保障內容</h4><div class="cmp-rows">${CMP_METRICS.filter(m=>m[0]!=="prem").map(([key,lab,u])=>`<div class="sr ${r.M[key]>0?"on":"off"}"><div class="sr-n">${esc(lab)}</div><div class="sr-a">${r.M[key]>0?fmtN(r.M[key])+" "+u:"—"}</div></div>`).join("")}</div>
         <div class="cmp-v"><div class="good"><h4>勝在哪</h4>${v.good.length?`<ul>${v.good.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:`<p class="fine">沒有明顯領先的項目</p>`}</div><div class="care"><h4>弱在哪</h4>${v.bad.length?`<ul>${v.bad.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:`<p class="fine">沒有明顯落後的項目</p>`}</div></div>
