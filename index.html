@@ -482,7 +482,7 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 </main>
 
 <script>
-const BUILD="1793269404";
+const BUILD="1793271044";
 const TYPE_INFO = [
   {k:0,n:"住院日額",pays:"住院一天給固定金額",d:"不看花多少錢，只看住幾天。加護病房、燒燙傷病房通常另有加給。"},
   {k:1,n:"實支實付",pays:"依收據實報實銷",d:"重點看三項限額：病房費（每天）、住院雜費（每次）、手術費（每次）。"},
@@ -616,6 +616,7 @@ function benAmount(rules,amt,isUnit){ let out=null;
     else if(r==="給付保額"||r==="最高給付保額") out=(out||0)+amt;
     else if((m=r.match(/^保額的 ([\d.]+)%$/))) out=(out||0)+amt*(+m[1])/100;
     else if((m=r.match(/^每單位(?:每日|每次|每月)? ([\d,]+) 元$/))&&isUnit) out=(out||0)+(+m[1].replace(/,/g,""))*amt;
+    else if((m=r.match(/^每(百|千|萬|十萬)元保額 ([\d,]+) 元$/))&&!isUnit) out=(out||0)+(+m[2].replace(/,/g,""))*amt/({"百":100,"千":1000,"萬":10000,"十萬":100000}[m[1]]);
   } return out; }
 function calcBlock(p,R,x){
   if(!R) return "";
@@ -953,9 +954,9 @@ function cfgSave(){try{localStorage.setItem(CFG_KEY,JSON.stringify(CFG))}catch(e
 function itemAmount(b,st,freq){
   let A=null;
   if(b.pv&&st.pi>=0&&b.pv[st.pi]!=null) A=b.pv[st.pi];
-  else if(st.amt>0&&!((b.r||[]).includes("依條款附表")&&/手術|處置/.test(b.n))&&!(st.unit&&!(b.r||[]).some(z=>/^每單位/.test(z)))){ A=benAmount(b.r||[],st.amt,st.unit);
+  else if(st.amt>0&&(!((b.r||[]).includes("依條款附表")&&/手術|處置/.test(b.n))||(b.r||[]).some(z=>/^每(百|千|萬|十萬)元保額/.test(z)))&&!(st.unit&&!(b.r||[]).some(z=>/^每單位/.test(z)))){ A=benAmount(b.r||[],st.amt,st.unit);
     if(A==null&&!st.unit&&freq==="每日"&&/^(?:一般)?住院(?:醫療)?(?:日額)?(?:醫療)?保險金$/.test(b.n)) A=st.amt; }
-  if(A!=null&&!st.unit&&st.amt>20000&&(b.r||[]).some(z=>/^日額 ×/.test(z))&&!(b.pv&&st.pi>=0)) A=null; // 輸入的是保額，不能當日額用
+  if(A!=null&&!st.unit&&st.amt>20000&&(b.r||[]).some(z=>/^日額 ×/.test(z))&&!(b.pv&&st.pi>=0)&&!(b.r||[]).some(z=>/^每(百|千|萬|十萬)元保額/.test(z))) A=null; // 輸入的是保額，不能當日額用
   if(A==null&&st.prem>0){for(const z of (b.r||[])){let m;
     if((m=z.match(/^已繳保費 × ([\d.]+) 倍$/))&&st.yrs>0) A=Math.round(st.prem*st.yrs*(+m[1]));
     else if((m=z.match(/^年繳保費的 ([\d.]+)%$/))) A=Math.round(st.prem*(+m[1])/100);}}
@@ -998,7 +999,7 @@ function simItem(b,A,S,pol,X){
     const ratio=DISAB_RATIO[S.disab]||0; if(r.includes("分期給付")) R.periodic=true;
     return pay(A*ratio,`第 ${S.disab} 級失能 ${Math.round(ratio*100)}%：${fx(A)} × ${ratio}`,"失能");
   }
-  if(/癌/.test(n)){
+  if(/癌|腫瘤/.test(n)){
     if(!S.cancer) return skip("確診癌症才給付");
     if(A==null) return need("癌症");
     if(/義肢|義齒|義乳|乳房重建|骨髓|造血|安寧|居家|緩和/.test(n)) return skip("這次情境沒有這項治療");
