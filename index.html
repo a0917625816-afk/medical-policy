@@ -545,7 +545,7 @@ nav{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;overflow:visible}na
 </main>
 
 <script>
-const BUILD="1793286644";
+const BUILD="1793286727";
 const TYPE_INFO = [
   {k:0,n:"住院日額",pays:"住院一天給固定金額",d:"不看花多少錢，只看住幾天。加護病房、燒燙傷病房通常另有加給。"},
   {k:1,n:"實支實付",pays:"依收據實報實銷",d:"重點看三項限額：病房費（每天）、住院雜費（每次）、手術費（每次）。"},
@@ -986,7 +986,7 @@ function route(){
   document.querySelectorAll("nav a").forEach(a=>{if(a.dataset.tab===tab)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current")});
   if(view==="find"&&P.length) renderList();
   if(view==="mine"&&P.length) renderMine();
-  if(view==="scen") renderScen();
+  if(view==="scen") try{renderScen();}catch(e){/* 首次載入時 scen.js 尚未執行，由 scen.js 結尾補跑 */}
   if(view==="calc"&&P.length) renderCalc();
   if(view==="cmp"&&P.length) renderCompare();
   window.scrollTo(0,0);
@@ -1643,6 +1643,8 @@ function renderScen(){
     card.after(d); d.querySelector("[data-use2]").addEventListener("click",()=>{scenApply(k); location.hash="#calc";}); d.scrollIntoView({behavior:"smooth",block:"nearest"});
   }));
 }
+
+if((location.hash.slice(1)||"")==="scen") renderScen();
 </script>
 
 </body>
