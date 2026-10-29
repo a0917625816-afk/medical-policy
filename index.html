@@ -512,7 +512,7 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 </main>
 
 <script>
-const BUILD="1793276646";
+const BUILD="1793276665";
 const TYPE_INFO = [
   {k:0,n:"住院日額",pays:"住院一天給固定金額",d:"不看花多少錢，只看住幾天。加護病房、燒燙傷病房通常另有加給。"},
   {k:1,n:"實支實付",pays:"依收據實報實銷",d:"重點看三項限額：病房費（每天）、住院雜費（每次）、手術費（每次）。"},
@@ -1052,6 +1052,7 @@ function simItem(b,A,S,pol,X){
     if(/住院(?:醫療)?(?:日額)?保險金$|住院醫療保險金|住院日額/.test(n)&&!/手術|前後/.test(n)){ if(!S.days) return skip("住院才給付"); const d=capD(S.days); return pay(A*d,`${fx(A)} × ${d} 天`,"癌住"); }
     if(/療養/.test(n)){ if(!S.days) return skip("住院才給付"); const d=capD(S.days); return pay(A*d,`${fx(A)} × 住院 ${d} 天`,"癌住"); }
     if(/手術/.test(n)){ const k=/門診/.test(n)?S.surgOut:S.surgIn; if(!k) return skip("手術才給付"); if(byDay&&!real&&!/門診/.test(n)){ if(!S.days) return skip("住院才給付"); const d=capD(S.days); return pay(A*d,`${fx(A)} × 住院 ${d} 天`,"癌住"); } if(real){const fee=/門診/.test(n)?S.surgOutFee:S.surgFee; const v=Math.min(fee,A); return pay(v*k,`${fx(Math.min(fee,A))}（自費 ${fx(fee)}，上限 ${fx(A)}）× ${k} 次`,"癌手");} return pay(A*capN(k),`${fx(A)} × ${capN(k)} 次`,"癌手"); }
+    if(/效力即行終止|以一次為限|給付一次為限|一次給付/.test(b.d||"")&&!/每次|每日|日數|次數/.test(b.d||"")) return pay(A,`一次給付 ${fx(A)}`,"癌一");
     if(/門診|化學|化療|放射|標靶|免疫|荷爾蒙|治療/.test(n)){ if(!S.opd) return skip("門診治療才給付"); const k=capN(S.opd); return pay(A*k,`${fx(A)} × ${k} 次`,"癌門"); }
     const nf=b.n;
     if(/初期|輕度|原位癌|第一期|早期/.test(nf)&&!/重度|侵襲/.test(nf)&&S.stage!=="初期") return skip("初期／輕度癌症才給付（這次設定為重度）");
