@@ -281,6 +281,8 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 .calc-f label{display:grid;gap:4px;font-size:.85rem;font-weight:700}
 .calc-f input,.calc-f select{padding:9px 10px;border:1.5px solid var(--line);border-radius:8px;background:var(--surface);font-size:1rem;color:var(--ink);min-width:0}
 .calc-out{display:grid;gap:6px}
+.q-chart{grid-column:1/-1}.q-chart:empty{display:none}
+.pchart{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:grid;gap:6px}.pchart-h{display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 12px;font-size:.92rem}.pchart-h span{color:var(--muted)}.pchart-h span b{color:var(--accent)}.pchart svg{width:100%;height:auto;display:block}.pchart .ln{fill:none;stroke:var(--accent);stroke-width:3;stroke-linejoin:round}.pchart .gl{stroke:var(--line);stroke-width:1}.pchart .tk{font-size:12px;fill:var(--muted)}.pchart .dot{fill:var(--warn);stroke:var(--surface);stroke-width:2}.pchart .cur{font-size:12px;font-weight:700;fill:var(--ink)}
 .calc-r{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;background:var(--surface);border-radius:8px;padding:10px 14px}
 .calc-r b{font-variant-numeric:tabular-nums}
 .calc-r.big b{font-size:1.4rem;color:var(--accent)}
@@ -627,7 +629,7 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 </main>
 
 <script>
-const BUILD="1793332768";
+const BUILD="1793332892";
 const TYPE_INFO = [
   {k:0,n:"住院日額",pays:"住院一天給固定金額",d:"不看花多少錢，只看住幾天。加護病房、燒燙傷病房通常另有加給。"},
   {k:1,n:"實支實付",pays:"依收據實報實銷",d:"重點看三項限額：病房費（每天）、住院雜費（每次）、手術費（每次）。"},
@@ -805,13 +807,33 @@ function wireCalc(p,R,x){
     const rate=ageKey(col.a,age);
     let prem=null, note="";
     if(R.b===0) prem=rate; else if(amt>0){ prem = R.b===1 ? rate*amt : (R.b ? rate*amt/R.b : null); }
+    const toPrem=r=>R.b===0?r:(amt>0?(R.b===1?r*amt:(R.b?r*amt/R.b:null)):null);
     out.innerHTML=`<div class="calc-r"><span>費率表數值</span><b>${fmtN(rate)} 元</b><span class="fine">${esc(R.u||"")}・${[col.s,col.y,col.p,col.g,col.k].filter(Boolean).join("・")}</span></div>`+
-      (prem!=null?`<div class="calc-r big"><span>年繳保費（約）</span><b>${fmtN(prem)} 元</b></div>`:(R.b==null?`<p class="fine">費率表沒有標示計算單位，保費請以官方費率表為準。</p>`:`<p class="fine">輸入${R.b===1?"投保單位數":"保額"}後會算出年繳保費。</p>`));
+      (prem!=null?`<div class="calc-r big"><span>年繳保費（約）</span><b>${fmtN(prem)} 元</b></div>`+premChartHTML(p,col,age,y,toPrem):(R.b==null?`<p class="fine">費率表沒有標示計算單位，保費請以官方費率表為準。</p>`:`<p class="fine">輸入${R.b===1?"投保單位數":"保額"}後會算出年繳保費。</p>`));
     document.querySelectorAll(".ben").forEach((d,i)=>{d.querySelector(".amt")?.remove(); const b=x&&x.ben&&x.ben[i]; if(!b||!(amt>0)) return;
       const a=benAmount(b.r,amt,R.b===1); if(a==null) return;
       const days=b.r.includes("按住院天數計")?"／每日":""; d.querySelector("summary").insertAdjacentHTML("beforeend",`<span class="amt">約 ${fmtN(a)} 元${days}</span>`);});
   };
   el.querySelectorAll("input,select").forEach(e=>e.addEventListener("input",run)); run();
+}
+/* ---------- 保費隨年齡曲線 ---------- */
+function premSeries(col,toPrem){ const pts=[]; for(let a=0;a<=100;a++){ const r=ageKey(col.a,a); if(r==null) continue; const v=toPrem(r); if(v==null) continue; pts.push([a,v]); } return pts; }
+function premChartHTML(p,col,age,y,toPrem){
+  const pts=premSeries(col,toPrem); if(pts.length<3) return "";
+  const yearly=!(y&&/\d+\s*年/.test(y))&&!(p.term&&/終身|\d+\s*年/.test(p.term)&&!/一年|1年/.test(p.term)); // 一年期：保費逐年調整
+  const nY=y&&(y.match(/(\d+)\s*年/)||[])[1]; const payYears=nY?+nY:null;
+  const maxA=pts[pts.length-1][0]; const endA=Math.min(maxA,75);
+  let total=null, totalNote="";
+  if(yearly){ let s=0,n=0; for(const [a,v] of pts){ if(a>=age&&a<=endA){s+=v;n++;} } if(n) { total=s; totalNote=`從 ${age} 歲繳到 ${endA} 歲（${n} 年）合計約`; } }
+  else if(payYears){ const v=pts.find(z=>z[0]===age); if(v){ total=v[1]*payYears; totalNote=`${age} 歲投保，繳 ${payYears} 年合計`; } }
+  const W=600,H=220,L=56,Rr=16,T=16,B=36; const xs=a=>L+(a-pts[0][0])/(maxA-pts[0][0]||1)*(W-L-Rr); const ymax=Math.max(...pts.map(z=>z[1]))*1.08; const ys=v=>T+(1-v/ymax)*(H-T-B);
+  const path=pts.map(([a,v],i)=>(i?"L":"M")+xs(a).toFixed(1)+" "+ys(v).toFixed(1)).join(" ");
+  const cur=pts.find(z=>z[0]===age)||pts.find(z=>z[0]>=age);
+  const ticks=[0,.5,1].map(f=>{const v=ymax*f/1.08; return `<text x="${L-6}" y="${ys(v)+4}" text-anchor="end" class="tk">${v>=10000?(v/10000).toFixed(v>=100000?0:1)+"萬":fmtN(Math.round(v))}</text><line x1="${L}" x2="${W-Rr}" y1="${ys(v)}" y2="${ys(v)}" class="gl"/>`;}).join("");
+  const xt=[pts[0][0],Math.round((pts[0][0]+maxA)/2),maxA].map(a=>`<text x="${xs(a)}" y="${H-B+18}" text-anchor="middle" class="tk">${a} 歲</text>`).join("");
+  return `<div class="pchart"><div class="pchart-h"><b>${yearly?"一年期：保費隨年齡逐年調整":payYears?`繳費 ${payYears} 年：依投保年齡決定，投保後固定`:"依投保年齡決定的年繳保費"}</b>${total!=null?`<span>${totalNote} <b>${fmtN(Math.round(total))} 元</b></span>`:""}</div>
+    <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="保費隨年齡變化圖">${ticks}${xt}<path d="${path}" class="ln"/>${cur?`<circle cx="${xs(cur[0])}" cy="${ys(cur[1])}" r="5" class="dot"/><text x="${xs(cur[0])}" y="${ys(cur[1])-10}" text-anchor="middle" class="cur">${cur[0]} 歲 ${fmtN(Math.round(cur[1]))} 元</text>`:""}</svg>
+    <p class="fine">${yearly?"一年期保單每年續保時依當時年齡的費率收費，年紀越大越貴；合計是把各年齡的保費加總（不含費率調整與未來改版）。":"定期繳費型保單的年繳保費在投保時就固定；圖上是不同投保年齡對應的年繳保費。"}</p></div>`;
 }
 function loadShard(n){ if(!SH[n]) SH[n]=fetch(`d/${n}.json?v=${BUILD}`).then(r=>r.json()).catch(()=>{delete SH[n];return null}); return SH[n]; }
 const TW_NOW={
@@ -904,6 +926,7 @@ function quoteHTML(p,R,X){
       ${needAmt?`<label>${unitLab}<span><input id="q-v" type="number" inputmode="numeric" value="${defAmt(p,R,X)}"> ${R&&R.b===1?"單位":"元"}</span><small>可自行修改</small></label>`:""}
     </div>
     <div class="q-out">${R?`<span>年繳保費</span><b id="q-prem">－</b><small id="q-note"></small>`:`<span>這張保單的費率表無法試算</span><small>理賠金額仍可依計劃或保額換算</small>`}</div>
+    ${R?`<div id="q-chart" class="q-chart"></div>`:""}
   </section>`;
 }
 function claimsHTML(X){
@@ -945,12 +968,13 @@ function wireProduct(p,R,X){
   const run=()=>{read();
     if(R){const cands=R.c.filter(c=>(!c.s||c.s===st.s)&&(!st.y||!c.y||c.y===st.y)&&(!st.plan||!c.p||c.p===st.plan));
       const col=cands.find(c=>ageKey(c.a,st.age)!=null);const pe=document.getElementById("q-prem"),ne=document.getElementById("q-note");
-      if(!col){st.prem=0;pe.textContent="－";ne.textContent="這個年齡沒有可用的費率（不在投保範圍，或費率表讀取不完整）";}
+      if(!col){st.prem=0;pe.textContent="－";ne.textContent="這個年齡沒有可用的費率（不在投保範圍，或費率表讀取不完整）";const ch=document.getElementById("q-chart"); if(ch) ch.innerHTML="";}
       else{const rate=ageKey(col.a,st.age);let prem=null;
         if(R.b===0) prem=rate; else if(st.amt>0) prem=R.b===1?rate*st.amt:(R.b?rate*st.amt/R.b:null);
         st.prem=prem||0; const yv=st.y||(R.c[0]&&R.c[0].y)||"",ym=yv.match(/(\d+)\s*年/); st.yrs=/躉繳/.test(yv)?1:ym&&+ym[1]>0?+ym[1]:(p.term===1?1:0);
         pe.textContent=prem!=null?fmtN(prem)+" 元":"－";
-        ne.textContent=prem!=null?`依費率表 ${R.u||""}：${fmtN(rate)} 元`:(R.b==null?"費率表未標示單位，請以官方費率表為準":`輸入${R.b===1?"投保單位":"保額"}後顯示`);}}
+        ne.textContent=prem!=null?`依費率表 ${R.u||""}：${fmtN(rate)} 元`:(R.b==null?"費率表未標示單位，請以官方費率表為準":`輸入${R.b===1?"投保單位":"保額"}後顯示`);
+        const ch=document.getElementById("q-chart"); if(ch) ch.innerHTML=prem!=null?premChartHTML(p,col,st.age,st.y||yv,r=>R.b===0?r:(st.amt>0?(R.b===1?r*st.amt:(R.b?r*st.amt/R.b:null)):null)):"";}}
     if(X&&X.ben){renderClaims(X,st);simRender(X,st,p);CUR_ST=st;}};
   const simEl=document.getElementById("sim"); if(simEl) simWire(simEl,()=>simRender(X,st,p));
   document.querySelectorAll(".q-sex button").forEach(b=>b.addEventListener("click",()=>{st.s=b.dataset.s;document.querySelectorAll(".q-sex button").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));run();}));
