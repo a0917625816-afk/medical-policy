@@ -50,8 +50,8 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var
 .brand small{display:block;color:var(--muted);font-size:.78rem;font-weight:500}
 .tagline{display:none;font-weight:900;font-size:1.25rem;letter-spacing:.04em}
 .demo-tag{font-size:.75rem;font-weight:700;color:var(--warn);background:var(--warn-soft);padding:3px 10px;border-radius:99px;white-space:nowrap}
-nav{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;padding-bottom:8px}
-nav a{display:grid;justify-items:center;gap:2px;text-align:center;text-decoration:none;color:var(--muted);font-weight:700;padding:8px 0 6px;border-radius:12px;white-space:nowrap;font-size:.74rem}
+nav{display:grid;grid-template-columns:repeat(8,1fr);gap:1px;padding-bottom:8px}
+nav a{display:grid;justify-items:center;gap:2px;text-align:center;text-decoration:none;color:var(--muted);font-weight:700;padding:8px 0 6px;border-radius:12px;white-space:nowrap;font-size:.7rem;letter-spacing:-.02em}
 nav a svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 nav a{border:1px solid transparent;transition:transform .08s,box-shadow .08s,background .15s}
 nav a[aria-current="page"]{background:linear-gradient(180deg,color-mix(in srgb,var(--accent) 86%,#fff),var(--accent));color:var(--accent-ink);border-color:var(--accent-deep);box-shadow:0 3px 0 var(--accent-deep)}
@@ -418,6 +418,18 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 .kgap-t{display:flex;gap:12px;align-items:flex-start}.kgap-n{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--warn);color:#fff;font-weight:900}.kgap-t b{font-size:1.05rem}.kgap-t p{margin:2px 0 0;color:var(--muted);font-size:.92rem}
 .kgap-s{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding-left:40px}.kgap-s>small{width:100%;color:var(--muted);font-size:.8rem}
 .kgap-add{display:flex;align-items:center;gap:8px;text-align:left;border:1.5px dashed var(--accent);background:var(--surface);border-radius:12px;padding:8px 12px;cursor:pointer;color:var(--ink)}.kgap-add:hover{background:var(--accent-soft)}.kgap-add>span:first-child{flex:none;display:grid;place-items:center;line-height:1;width:22px;height:22px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-weight:900}.kgap-add b{display:block;font-size:.92rem}.kgap-add small{font-size:.74rem;color:var(--muted)}
+.pr-bar input{box-sizing:border-box;width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:12px;font-size:1.05rem;background:var(--surface);color:var(--ink)}
+.pr-cats{margin:10px 0}.pr-legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.8rem;color:var(--muted);margin-bottom:6px}.pr-legend>span{display:inline-flex;align-items:center;gap:6px}
+.prtag{display:inline-block;font-size:.74rem;font-weight:800;padding:2px 8px;border-radius:999px;white-space:nowrap}.t-實支{background:#dcefe9;color:#1f6b5f}.t-日額{background:#e3ebf7;color:#2c5a8f}.t-癌{background:#f6e3ea;color:#9b3157}.t-長照{background:#efe6f6;color:#6a3f8f}.t-手術{background:#e9f0dd;color:#4a6b1f}.t-不賠{background:var(--gap-soft);color:var(--gap)}.t-看{background:var(--warn-soft);color:var(--warn)}
+:root[data-theme="dark"] .prtag:not(.t-不賠):not(.t-看){filter:brightness(.55) saturate(1.3);color:#fff}
+.prcat{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+.prcat>header{display:flex;gap:12px;align-items:flex-start;padding:14px 18px;background:linear-gradient(180deg,var(--accent-soft),var(--surface))}.prcat>header .ic svg{width:34px;height:34px;stroke:var(--accent);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}.prcat h3{margin:0;font-size:1.25rem}.prcat header p{margin:2px 0 0;color:var(--muted);font-size:.92rem}
+.prrows{display:grid}.prrow{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1.2fr) auto;gap:12px;align-items:center;padding:11px 18px;border-top:1px solid var(--line)}.prn{display:grid;min-width:0}.prn b{font-size:1rem}.prn small{color:var(--muted);font-size:.8rem}.prv{font-weight:800;color:var(--accent);font-variant-numeric:tabular-nums}.prt{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
+@media (max-width:640px){.prrow{grid-template-columns:1fr auto;grid-template-areas:"n t" "v v"}.prn{grid-area:n}.prt{grid-area:t}.prv{grid-area:v}}
+.prsrc{padding:8px 18px 12px;margin:0;border-top:1px dashed var(--line)}.prsrc a{color:var(--accent)}
+.prward{margin:0 18px 12px;border:1px solid var(--line);border-radius:12px;padding:10px 14px;background:var(--bg)}.prward>summary{cursor:pointer;font-weight:800;color:var(--accent)}.prward .sim-presets{margin:10px 0}
+.prw-t{display:grid;max-height:420px;overflow:auto}.prw-h,.prw-r{display:grid;grid-template-columns:minmax(0,2fr) 1fr 1fr;gap:10px;padding:8px 4px;border-bottom:1px solid var(--line)}.prw-h{font-size:.8rem;color:var(--muted);font-weight:800;position:sticky;top:0;background:var(--bg)}.prw-r span{font-variant-numeric:tabular-nums}.prw-r b{display:block;font-size:.95rem}.prw-r small{color:var(--muted);font-size:.75rem}
+section[data-view="price"]{gap:18px}
 .kgrid{display:grid;grid-template-columns:240px minmax(0,1fr);gap:18px;align-items:start}@media (max-width:820px){.kgrid{grid-template-columns:1fr}}
 .kside{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;display:grid;gap:12px;box-shadow:var(--shadow);position:sticky;top:84px}@media (max-width:820px){.kside{position:static;grid-template-columns:1fr 1fr}.kside>.kside-h,.kside>.ktot,.kside>p{grid-column:1/-1}}
 .kside-h{display:flex;justify-content:space-between;align-items:baseline}.kside-h b{font-size:1.1rem}.kside label{display:grid;gap:4px;font-size:.85rem;color:var(--muted);font-weight:700}
@@ -488,6 +500,7 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
       <a href="#key" data-tab="key"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg><span>建檔</span></a>
       <a href="#mine" data-tab="mine"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><span>我的保單</span></a>
       <a href="#scen" data-tab="scen"><svg viewBox="0 0 24 24"><path d="M4 21V8a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v13"/><path d="M2 21h20"/><path d="M12 10v6M9 13h6"/><path d="M9 7V4h6v3"/></svg><span>情境</span></a>
+      <a href="#price" data-tab="price"><svg viewBox="0 0 24 24"><path d="M20 12 12 20 4 12V4h8z"/><circle cx="8.5" cy="8.5" r="1.5"/></svg><span>自費行情</span></a>
       <a href="#calc" data-tab="calc"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 16h.01M12 16h.01M15.5 16h.01"/></svg><span>理賠試算</span></a>
       <a href="#cmp" data-tab="cmp"><svg viewBox="0 0 24 24"><path d="M5 20v-8M11 20V5M17 20v-5M3 20h18"/></svg><span>比較</span></a>
     </nav>
@@ -646,6 +659,11 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
     <div class="scen-grid" id="scen-grid"></div>
     <p class="disclaim">費用為各醫院公開資料與媒體報導整理的參考值，實際依醫院、病情、選用醫材與健保給付規定而定；不構成醫療或理賠承諾。</p>
   </section>
+  <!-- 自費行情 -->
+  <section data-view="price" hidden>
+    <div class="intro"><span class="eyebrow">台灣醫療自費行情</span><h2>住院、手術、癌症……到底要自己付多少？</h2><p class="lead">整理全台常見的自費項目：病房差額（37 家醫院）、看護、健保部分負擔、自費醫材、達文西、標靶與免疫治療、檢查、牙科、復健、疫苗。每一項都標出「保險怎麼賠」，跟客戶解釋時直接用。</p></div>
+    <div id="price-box"></div>
+  </section>
   <!-- 理賠試算 -->
   <section data-view="calc" hidden>
     <div class="intro">
@@ -690,7 +708,7 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 </main>
 
 <script>
-const BUILD="1793336674";
+const BUILD="1793338041";
 const TYPE_INFO = [
   {k:0,n:"住院日額",pays:"住院一天給固定金額",d:"不看花多少錢，只看住幾天。加護病房、燒燙傷病房通常另有加給。"},
   {k:1,n:"實支實付",pays:"依收據實報實銷",d:"重點看三項限額：病房費（每天）、住院雜費（每次）、手術費（每次）。"},
@@ -1180,13 +1198,14 @@ function route(){
   if(/^p\d+$/.test(h)){ view = P.length && renderDetail(+h.slice(1)) ? "detail" : "find"; }
   if(/^cmp~[A-Za-z0-9_-]+$/.test(h)){ const j=cmpDecode(h.slice(4)); if(j){CMP=j; cmpSave();} history.replaceState(null,"","#cmp"); h=view="cmp"; }
   if(/^scen-[a-z_]+$/.test(h)){ scenApply(h.slice(5)); history.replaceState(null,"","#calc"); h=view="calc"; }
-  if(!["learn","find","key","mine","detail","scen","calc","cmp"].includes(view)) view="find";
+  if(!["learn","find","key","mine","detail","scen","price","calc","cmp"].includes(view)) view="find";
   document.querySelectorAll("section[data-view]").forEach(s=>s.hidden=s.dataset.view!==view);
   const tab=view==="detail"?"find":view;
   document.querySelectorAll("nav a").forEach(a=>{if(a.dataset.tab===tab)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current")});
   if(view==="find"&&P.length) renderList();
   if(view==="mine"&&P.length) renderMine();
   if(view==="key") try{renderKey();}catch(e){}
+  if(view==="price") try{renderPrice();}catch(e){}
   if(view==="scen") try{renderScen();}catch(e){/* 首次載入時 scen.js 尚未執行，由 scen.js 結尾補跑 */}
   $("#dk-rep").hidden=!(view==="calc"||view==="mine");
   if(view==="calc"&&P.length) renderCalc();
@@ -2176,6 +2195,70 @@ function kCustOpen(c,k,rider){
   dlg.showModal();
 }
 if((location.hash.slice(1)||"")==="key") renderKey();
+
+/* ---------- 自費行情：台灣醫療自費項目與價格 ---------- */
+const PR_SRC={
+  roo:["Roo.cash〈全台 37 家醫院病房費差額〉（2025/9，2026/3 更新）","https://roo.cash/blog/expense-of-hospital-ward"],
+  mohw23:["衛福部〈健保部分負擔調整 112/7/1 實施〉","https://mohw.gov.tw/cp-2704-74962-1.html"],
+  ctee26:["中時新聞網〈2026 年住院部分負擔上限調整〉（2025/9/23）","https://wantrich.chinatimes.com/news/20250923900159-420501"],
+  tvbs24:["TVBS 健康 2.0〈住院整合照護試辦：日付最高 1,050 元〉（2024/8，2025/5 更新）","https://health.tvbs.com.tw/medical/349132"],
+  bt25:["今周刊〈護理之家 vs 外籍看護：失智長輩每月花費〉（2025/9/18）","https://www.businesstoday.com.tw/article/category/183030/post/202509180004/"],
+  twneed:["台灣懶人包〈台灣自費醫療與健保不給付項目指南〉（2026/5，2026/8 更新）","https://www.twneed.org/post/699.html"],
+  aia:["友邦人壽網路投保〈老大人常見四大自費醫材費用〉","https://aiadirect.com.tw/blog-detail.aspx?PKey=103"],
+  tvbs25:["TVBS 健康 2.0〈癌症標靶自費恐破百萬〉（2025/9/5）","https://health.tvbs.com.tw/nutrition/357425"],
+  cmm:["信傳媒〈TAVI 經導管瓣膜套組納差額給付〉","https://www.cmmedia.com.tw/home/articles/50345"],
+  gen:["一般市場行情整理，各院所實際收費不同",""],
+};
+/* 保險怎麼賠的標籤 */
+const PR_TAG={實支:["實支實付","住院中使用可申請，看限額"],日額:["住院日額","按天數定額給付，可拿來補差額"],癌:["癌症險","癌症一次金、標靶／放化療給付"],長照:["長照／失能","長照月給付或失能扶助金"],手術:["手術險","依手術表倍數或定額"],不賠:["通常不賠","非治療必要或除外責任"],看:["看條款","依條款與是否住院而定"]};
+const PRICE=[
+ {k:"ward",c:"病房費差額",ic:"bed",lead:"健保病房是 3～4 人房；升等雙人房、單人房要每天自付差額。醫學中心單人房多在 3,500～8,000 元，部分特等病房上萬元。",
+  items:[["雙人房差額（每日）","1,000～2,900 元","實支|日額","多數醫學中心落在 1,800～2,500 元"],["單人房差額（每日）","2,000～8,000 元","實支|日額","北部醫學中心常見 3,500～5,500 元"],["特等／VIP 病房（每日）","8,000～21,685 元","實支|日額","實支實付的病房費限額通常只有 1,000～3,000 元／日"],["加護病房","健保給付","日額","多數日額型保單加護病房給 2～3 倍"]],src:["roo"]},
+ {k:"care",c:"看護與照顧",ic:"home",lead:"住院自聘看護是最常被忽略的開銷，出院後的長期照顧則是最久的負擔。",
+  items:[["醫院自聘全日看護（每日）","2,000～3,000 元","日額","實支實付不賠看護費，要靠住院日額"],["健保住院整合照護（每日）","最高 1,050 元","日額","試辦醫院才有，非一對一照顧"],["外籍看護（每月）","約 30,000 元＋雜支 8,000 元","長照","薪資、膳宿、耗材、營養品"],["護理之家（每月）","約 45,000 元＋耗材 5,000 元","長照","十年約 600 萬元"],["居家照服員（每小時）","約 300～400 元","長照","長照 2.0 有補助額度，超過自付"]],src:["tvbs24","bt25","gen"]},
+ {k:"copay",c:"健保部分負擔",ic:"shield",lead:"看病時繳的「部分負擔」是健保規定自付的部分，重大傷病、分娩、3 歲以下兒童、低收入戶等免繳。",
+  items:[["急診（醫學中心）","750 元","看","112/7/1 起；區域醫院 400 元、地區醫院與診所 150 元"],["門診藥費","藥費 20%，上限 300 元","看","醫學中心、區域醫院；慢箋第 2 次起免收"],["門診基本（醫學中心，未轉診）","420 元","看","經轉診 170 元；區域醫院 240／100 元"],["住院（急性病房 30 日內）","醫療費用 10%","實支","31～60 日 20%、61 日起 30%"],["住院部分負擔上限（2026 年）","每次 57,000 元、全年 94,000 元","實支","2025 年為每次 51,000、全年 86,000 元"]],src:["mohw23","ctee26"]},
+ {k:"device",c:"自費醫材（健保差額）",ic:"knife",lead:"健保有給付基本款，選用新功能醫材就要自付「差額」。這是實支實付最常派上用場的地方。",
+  items:[["人工水晶體（白內障，每眼）","2 萬～15 萬元","實支|看","散光型 2～5 萬、多焦點 5～10 萬；健保基本款全給付"],["塗藥／特殊塗層心臟支架（每支）","3 萬～8 萬元","實支","健保給付上限約 14,099 元，例：差額約 62,500 元"],["人工髖關節（陶瓷等）","4 萬～18 萬元","實支","例：陶瓷全髖補差價約 111,200 元"],["人工膝關節","半膝 7～10 萬、全膝 20～30 萬元","實支","健保款自付約 1～2 萬；機器手臂可達 34 萬"],["經導管主動脈瓣膜（TAVI）","差額後病人仍約 76 萬元以上","實支","全自費逾 100 萬元"],["新功能骨板、骨釘","3 萬～8 萬元","實支","骨折開刀常見"],["止血材料、防沾黏、人工皮","5,000～3 萬元","實支","手術中常用的自費耗材"]],src:["twneed","aia","cmm","gen"]},
+ {k:"surg",c:"手術方式（自費）",ic:"knife",lead:"同一種手術，選微創、達文西就會多出自費；健保給付手術費，耗材與機械手臂費用自付。",
+  items:[["達文西手術（自費部分）","15 萬～30 萬元","實支","醫學中心 18～30 萬；攝護腺、子宮內膜癌、大腸癌常見"],["腹腔鏡耗材（膽囊、疝氣、盲腸）","2 萬～5 萬元","實支","能量器械、防沾黏、取物袋"],["海扶刀（子宮肌瘤）","20 萬～30 萬元","看","是否住院影響實支實付能否申請"],["近視雷射（雙眼）","LASIK 3～6 萬、SMILE 6～10 萬元","不賠","矯正視力不屬治療"]],src:["twneed","gen"]},
+ {k:"cancer",c:"癌症治療",ic:"shield",lead:"癌症治療多在門診進行，新藥常有健保給付條件限制；一次金比住院日額更實用。",
+  items:[["標靶藥（每月，依癌別）","4 萬～18 萬元","癌","肺癌 5～15 萬、乳癌 4～12 萬、大腸癌 6～18 萬"],["免疫治療（每月）","15 萬～30 萬元","癌","整個療程約 100 萬～500 萬元"],["質子治療（療程）","30 萬～80 萬元","癌|看","部分癌別健保已給付"],["光子刀／電腦刀放射治療","10 萬～20 萬元","癌","依療程次數"],["肝癌栓塞治療（每次）","3 萬～8 萬元","實支|癌","載藥微球等自費材料"],["CAR-T 細胞治療","千萬元以上","癌","部分適應症健保已給付"]],src:["twneed","tvbs25"]},
+ {k:"exam",c:"檢查與健檢",ic:"bed",lead:"醫師判斷需要的檢查健保給付；自己要求或健檢屬自費，多數保險不賠。",
+  items:[["核磁共振 MRI（自費）","1 萬～2.5 萬元","看","醫師開立且住院中檢查才可能申請實支"],["電腦斷層 CT（自費）","5,000～1.5 萬元","看",""],["正子斷層 PET","3 萬～5 萬元","看","部分癌症分期健保給付"],["癌症基因檢測","1 萬～5 萬元","看","有些防癌險有專項給付"],["全身健康檢查","5,000～2 萬元（頂級 5～15 萬）","不賠","檢查不是治療"],["無痛胃鏡／大腸鏡麻醉","3,000～5,000 元","不賠","門診自費麻醉"]],src:["twneed","gen"]},
+ {k:"dental",c:"牙科",ic:"knife",lead:"牙科多為自費，醫療險通常不賠；意外造成的牙齒傷害要看意外險條款。",
+  items:[["植牙（單顆）","5 萬～12 萬元","不賠","全口 40～120 萬"],["全瓷牙冠","1 萬～2.5 萬元","不賠",""],["牙齒矯正","8 萬～40 萬元","不賠","傳統 8～15 萬、隱形 15～30 萬"],["牙周再生材料、骨粉","1 萬～3 萬元","看",""]],src:["twneed","gen"]},
+ {k:"rehab",c:"復健與中醫",ic:"chair",lead:"健保復健有次數與項目限制，自費一對一治療越來越普遍。",
+  items:[["自費物理治療（一對一）","1,000～2,500 元／次","看","住院中、醫師開立較可能申請"],["徒手治療","1,500～3,000 元／次","看",""],["體外震波","1,500～3,000 元／次","看",""],["PRP 自體血小板注射","8,000～2 萬元／次","看",""],["自費中醫水藥","500～2,000 元／週","不賠",""]],src:["twneed"]},
+ {k:"vaccine",c:"疫苗",ic:"shield",lead:"預防保健不屬保險給付範圍。",
+  items:[["帶狀皰疹疫苗 Shingrix","8,000～1 萬元／劑（共 2 劑）","不賠","50 歲以上建議接種"],["HPV 九價疫苗","約 1.5 萬元（3 劑）","不賠",""],["自費流感疫苗","500～2,500 元","不賠",""]],src:["twneed"]},
+ {k:"other",c:"其他常見自費",ic:"home",lead:"醫院裡常見、容易被忽略的小額自費。",
+  items:[["診斷證明書","100～300 元／份","不賠","理賠申請要用，記得多開幾份"],["病歷影本、影像光碟","200～1,000 元","不賠",""],["心理諮商（50 分鐘）","1,500～3,000 元","不賠",""],["海外住院（每日）","歐美 10～50 萬、日本 3～10 萬元","看","要看有無海外突發疾病醫療"],["罕見疾病用藥（每年）","200 萬～1,000 萬元","看",""]],src:["twneed","gen"]},
+];
+const WARD=[["北部","國立台灣大學醫學院附設醫院","1,600～3,600","1,000～1,600"],["北部","三軍總醫院","4,500～16,000","1,800"],["北部","台北長庚紀念醫院","3,500","2,300"],["北部","台北馬偕紀念醫院","3,500～5,500","1,800～2,700"],["北部","馬偕紀念醫院淡水分院","2,600～4,500","1,300～2,500"],["北部","國泰綜合醫院","5,390～18,000","2,500～2,600"],["北部","新光醫院","2,000～20,000","2,900"],["北部","台北榮民總醫院","3,300～21,685","1,900～2,400"],["北部","台北市立萬芳醫院","3,000～5,000","2,000～2,500"],["北部","亞東紀念醫院","1,600～2,600","1,856"],["北部","天主教耕莘醫院","2,000～8,600","1,600"],["北部","衛福部基隆醫院","2,500","1,000～1,200"],["北部","衛福部桃園醫院","3,600～4,000","2,250"],["北部","林口長庚紀念醫院","3,000～3,500","1,500"],["北部","台大醫院新竹分院","2,500","1,000"],["北部","馬偕紀念醫院新竹院區","3,600～4,200","2,000～2,200"],["北部","衛福部苗栗醫院","1,500～3,600","1,200～1,600"],["中部","台中榮民總醫院","5,000～8,000","2,000～2,500"],["中部","澄清醫院","3,000～8,000","1,800～2,400"],["中部","中山醫院","3,000～8,000","2,500"],["中部","仁愛醫院","3,200～5,950","2,000"],["中部","中國醫藥大學附設醫院","4,800～11,900","2,500"],["中部","衛福部彰化醫院","2,000～2,500","—"],["中部","台大醫院雲林分院","2,200～3,500","1,500"],["中部","衛福部嘉義醫院","2,600","1,800"],["南部","成功大學醫學院附設醫院","5,500～8,000","1,980～2,500"],["南部","奇美醫院","3,200～5,500","1,500～1,800"],["南部","高雄榮民總醫院","2,500～11,000","1,900～2,200"],["南部","高雄醫學大學附設中和紀念醫院","3,600～11,000","2,000～2,200"],["南部","義大醫院","3,900","1,900"],["南部","高雄長庚紀念醫院","3,000～3,500","1,500"],["南部","屏東基督教醫院","2,500～4,000","900～1,200"],["南部","衛福部屏東醫院","1,000～2,300","500"],["東部","羅東博愛醫院","2,400～3,000","900～1,500"],["東部","衛福部花蓮醫院","900～1,800","300"],["東部","花蓮慈濟醫院","2,000","1,000"],["東部","衛福部台東醫院","2,000","800"]];
+let PR_UI={c:"",q:"",reg:"全部"};
+function renderPrice(){
+  const box=document.getElementById("price-box"); if(!box) return;
+  const nq=normS(PR_UI.q);
+  const hit=(cat,it)=>!nq||normS(cat.c+it[0]+it[1]+it[3]).includes(nq);
+  const tagHTML=t=>t.split("|").map(k=>PR_TAG[k]?`<span class="prtag t-${k}" title="${esc(PR_TAG[k][1])}">${PR_TAG[k][0]}</span>`:"").join("");
+  const cats=PRICE.filter(c=>(!PR_UI.c||c.k===PR_UI.c)&&c.items.some(it=>hit(c,it)));
+  const srcHTML=c=>`<p class="fine prsrc">資料來源：${c.src.map(s=>PR_SRC[s][1]?`<a href="${PR_SRC[s][1]}" target="_blank" rel="noopener">${esc(PR_SRC[s][0])}</a>`:esc(PR_SRC[s][0])).join("；")}</p>`;
+  const wards=WARD.filter(w=>(PR_UI.reg==="全部"||w[0]===PR_UI.reg)&&(!nq||normS(w[1]).includes(nq)||normS("病房").includes(nq)));
+  box.innerHTML=`<div class="pr-bar"><input type="search" id="pr-q" placeholder="搜尋，例如 單人房、看護、水晶體、標靶、植牙" value="${esc(PR_UI.q)}"></div>
+    <div class="sim-presets pr-cats"><button type="button" class="chip ${PR_UI.c?"":"on"}" data-c="">全部</button>${PRICE.map(c=>`<button type="button" class="chip ${PR_UI.c===c.k?"on":""}" data-c="${c.k}">${esc(c.c)}</button>`).join("")}</div>
+    <div class="pr-legend">${Object.entries(PR_TAG).map(([k,v])=>`<span><span class="prtag t-${k}">${v[0]}</span>${esc(v[1])}</span>`).join("")}</div>
+    ${cats.map(c=>`<section class="prcat" id="pr-${c.k}"><header><span class="ic">${CM_ICON[c.ic]||""}</span><div><h3>${esc(c.c)}</h3><p>${esc(c.lead)}</p></div></header>
+      <div class="prrows">${c.items.filter(it=>hit(c,it)).map(it=>`<div class="prrow"><div class="prn"><b>${esc(it[0])}</b>${it[3]?`<small>${esc(it[3])}</small>`:""}</div><div class="prv">${esc(it[1])}</div><div class="prt">${tagHTML(it[2])}</div></div>`).join("")}</div>
+      ${c.k==="ward"?`<details class="prward" ${PR_UI.q||PR_UI.c==="ward"?"open":""}><summary>全台 ${WARD.length} 家醫院病房差額一覽（每日）</summary><div class="sim-presets">${["全部","北部","中部","南部","東部"].map(r=>`<button type="button" class="chip ${PR_UI.reg===r?"on":""}" data-reg="${r}">${r}</button>`).join("")}</div>
+        <div class="prw-t"><div class="prw-h"><span>醫院</span><span>單人房</span><span>雙人房</span></div>${wards.map(w=>`<div class="prw-r"><span><b>${esc(w[1])}</b><small>${w[0]}</small></span><span>${esc(w[2])}</span><span>${esc(w[3])}</span></div>`).join("")||`<p class="fine">沒有符合的醫院</p>`}</div></details>`:""}
+      ${srcHTML(c)}</section>`).join("")||`<div class="empty">沒有符合的項目，換個關鍵字試試。</div>`}
+    <p class="disclaim">價格為公開資料與媒體報導整理的參考範圍，各院所實際收費依醫院公告為準；健保自付差額醫材可到健保署「自費醫材比價網」查各院價格。「保險怎麼賠」為一般原則，實際以保單條款為準。</p>`;
+  const q=document.getElementById("pr-q"); q.addEventListener("input",()=>{ PR_UI.q=q.value.trim(); const pos=q.selectionStart; renderPrice(); const q2=document.getElementById("pr-q"); q2.focus(); try{q2.setSelectionRange(pos,pos);}catch(e){} });
+  box.querySelectorAll("[data-c]").forEach(b=>b.addEventListener("click",()=>{ PR_UI.c=b.dataset.c; renderPrice(); }));
+  box.querySelectorAll("[data-reg]").forEach(b=>b.addEventListener("click",()=>{ PR_UI.reg=b.dataset.reg; renderPrice(); }));
+}
+if((location.hash.slice(1)||"")==="price") renderPrice();
 </script>
 
 </body>
