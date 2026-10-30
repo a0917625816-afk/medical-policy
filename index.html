@@ -391,6 +391,7 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 .kc{display:grid;gap:6px;min-width:0}.kamt{display:flex;align-items:center;gap:4px}.kamt small{white-space:nowrap;color:var(--muted);font-size:.8rem}.kc.kp{display:block;font-variant-numeric:tabular-nums;white-space:nowrap}.kp b{font-size:1.05rem;color:var(--accent)}
 .kx{display:flex;gap:4px;justify-content:flex-end;align-items:center}.kdel{width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--gap);font-weight:900;cursor:pointer}.kdel:hover{background:var(--gap-soft)}
 @media (max-width:700px){.khead{display:none}.krow{grid-template-columns:1fr 1fr;grid-template-areas:"n n" "p y" "m x"}.kn{grid-area:n}.kc[data-c="plan"]{grid-area:p}.kc[data-c="y"]{grid-area:y}.kp{grid-area:m;text-align:left!important}.kx{grid-area:x}}
+.kgo{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:6px}.kgo .btn{font-size:1.1rem;padding:14px 26px}.calc-srcl{display:grid;gap:4px;font-weight:700;color:var(--muted);font-size:.9rem;max-width:520px}.calc-srcl select{padding:10px 12px;border:1px solid var(--accent);border-radius:10px;font-size:1rem;background:var(--surface);color:var(--ink);font-weight:700}
 .kadd{display:flex;flex-wrap:wrap;gap:10px}.kadd .btn{flex:1;min-width:220px;font-size:1.05rem;padding:14px}
 .kdlg{width:min(94vw,760px);max-width:760px}.kdlg-h{display:flex;justify-content:space-between;align-items:center}.kdlg #kp-q{font-size:1.1rem;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
 .kp-f{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.kp-f .toggle{display:inline-flex;flex-direction:row;padding:7px 12px;gap:6px}.kp-f select{padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
@@ -622,7 +623,8 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
     </div>
     <div class="intro"><h2 style="font-size:1.3rem">1. 先選一個客戶真的會遇到的狀況</h2><p class="lead">到「情境」分頁挑一個（有健保／自費拆解），下面的模擬會自動帶入住院天數、自費金額和手術名稱；也可以直接在第 3 步手動填。</p></div>
     <div id="scen-pick"></div>
-    <div class="intro"><h2 style="font-size:1.3rem">2. 手上有哪些保單</h2><p class="lead">從「我的保單」加入的會自動帶進來；舊保單、別家保單可以在這裡自己輸入。</p></div>
+    <div class="intro"><h2 style="font-size:1.3rem">2. 手上有哪些保單</h2><p class="lead">選「建檔」分頁建好的客戶，或用「我的保單」＋在這裡自己輸入。</p></div>
+    <div id="calc-src"></div>
     <div class="mine-list" id="cust-list"></div>
     <div class="actions"><button class="btn" type="button" id="cust-new">＋ 自己輸入保單內容</button><span class="fine" id="calc-note"></span></div>
     <div id="cust-box" class="cust-box" hidden></div>
@@ -656,7 +658,7 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 </main>
 
 <script>
-const BUILD="1793334014";
+const BUILD="1793334634";
 const TYPE_INFO = [
   {k:0,n:"住院日額",pays:"住院一天給固定金額",d:"不看花多少錢，只看住幾天。加護病房、燒燙傷病房通常另有加給。"},
   {k:1,n:"實支實付",pays:"依收據實報實銷",d:"重點看三項限額：病房費（每天）、住院雜費（每次）、手術費（每次）。"},
@@ -1487,11 +1489,23 @@ function renderSurgLook(){
 function renderCalc(){
   renderScenPick(); renderSurgLook();
   const box=document.getElementById("cust-list"); if(!box) return;
+  const src=document.getElementById("calc-src"); const kc=KC.find(x=>x.id===CALC_SRC);
+  if(src) src.innerHTML=`<label class="calc-srcl"><span>保單來源</span><select id="calc-src-sel">${KC.map(x=>`<option value="${x.id}" ${kc&&x.id===kc.id?"selected":""}>建檔客戶：${esc(kName(x))}（${x.rows.length} 張）</option>`).join("")}<option value="" ${kc?"":"selected"}>我的保單＋在這裡自己輸入</option></select></label>`;
+  const sel=document.getElementById("calc-src-sel"); if(sel) sel.addEventListener("change",()=>{ CALC_SRC=sel.value; try{localStorage.setItem(KEY+":calc-src",CALC_SRC)}catch(e){} renderCalc(); });
+  const nb=document.getElementById("cust-new"), n=document.getElementById("calc-note");
+  if(kc){
+    if(nb) nb.hidden=true; if(n) n.textContent="";
+    box.innerHTML=kc.rows.length?kc.rows.map(r=>{ const nm=r.cust?r.cust.name:P[r.i].name, co=r.cust?(r.cust.co||"自己輸入"):(CO[P[r.i].co]||P[r.i].co); return `<div class="mine-row"><span class="t"><b>${esc(nm)}</b><span>${esc(co)}${r.plan?"・"+esc(r.plan):""}${r.amt?"・"+fmtN(r.amt):""}</span></span></div>`; }).join("")+`<div class="actions"><a class="btn ghost" href="#key">回建檔修改保單 ›</a><span class="fine">${esc(kName(kc))}・${kc.age} 歲${kc.s}性</span></div>`
+      :`<div class="empty">「${esc(kName(kc))}」還沒有保單，<a href="#key">回建檔加入</a>。</div>`;
+    renderMineSim(kcList(kc,renderCalc),"calc-sim",`${esc(kName(kc))}的理賠試算：發生這些事可以領多少？`,{s:kc.s,age:kc.age});
+    return;
+  }
+  if(nb) nb.hidden=false;
   box.innerHTML=CUST.length?CUST.map(c=>{const p=custPol(c);return `<div class="mine-row"><span class="t"><b>${esc(p.name)}</b><span>${esc(p.co||"")}${p.co?"・":""}${TYPE_INFO[p.type].n}・${(c.items||[]).length} 個給付項目</span></span><button class="x" type="button" data-edit="${c.id}">修改</button><button class="x" type="button" data-rmc="${c.id}">移除</button></div>`;}).join("")
-    :`<div class="empty">還沒有自己輸入的保單。按下面的按鈕，把客戶保單上的給付項目和金額 key 進來。</div>`;
+    :`<div class="empty">還沒有自己輸入的保單。可以到「建檔」分頁替客戶建檔，或按下面的按鈕直接輸入。</div>`;
   const minePols=mine.map(id=>P.find(p=>p.vers[0].id===id)).filter(Boolean);
   const list=[...CUST.map(custPol),...minePols];
-  const n=document.getElementById("calc-note"); if(n) n.textContent=minePols.length?`「我的保單」裡的 ${minePols.length} 張也會一起算。`:"";
+  if(n) n.textContent=minePols.length?`「我的保單」裡的 ${minePols.length} 張也會一起算。`:"";
   renderMineSim(list,"calc-sim","理賠模擬：這些保單合計可以領多少？");
 }
 /* ---------- 保單比較／罐頭組合 ---------- */
@@ -1919,7 +1933,7 @@ function renderKey(){
       <div class="khead"><span>商品名稱</span><span>計劃／保額</span><span>年期</span><span class="r">年繳保費</span><span></span></div>
       <div id="k-rows"></div>
       <div class="kadd"><button type="button" class="btn" id="k-add">＋ 按我選擇商品</button><button type="button" class="btn ghost" id="k-cust">＋ 舊保單／資料庫找不到：自己輸入</button></div>
-      <div id="key-sim-map"></div><div id="key-sim"></div>
+      <div class="kgo"><button type="button" class="btn" id="k-go">完成，去理賠試算 ›</button><span class="fine">理賠試算會直接帶入這位客戶的保單、年齡和性別。</span></div>
     </div></div>`;
   const $k=id=>document.getElementById(id);
   $k("k-cl").addEventListener("change",e=>{ if(e.target.value==="__new") kcNew(""); else KCUR=e.target.value; kcSave(); renderKey(); });
@@ -1930,6 +1944,7 @@ function renderKey(){
   $k("k-del").addEventListener("click",()=>{ if(confirm(`確定刪除客戶「${kName(c)}」？`)){ KC=KC.filter(x=>x.id!==c.id); KCUR=KC[0]?KC[0].id:null; kcSave(); renderKey(); } });
   $k("k-add").addEventListener("click",()=>kPick(c));
   $k("k-cust").addEventListener("click",()=>kCustOpen(c,null));
+  $k("k-go").addEventListener("click",()=>{ CALC_SRC=c.id; try{localStorage.setItem(KEY+":calc-src",CALC_SRC)}catch(e){} location.hash="#calc"; });
   kRows(c);
 }
 /* 依公司分組，自動標主約／附約（同一家公司一張主約＋附約） */
@@ -1937,7 +1952,7 @@ function kOrder(c){ const rows=c.rows.map((r,k)=>({r,k,p:r.cust?null:P[r.i]})); 
   const groups={}; rows.forEach(x=>{(groups[co(x)]=groups[co(x)]||[]).push(x);}); return Object.entries(groups).map(([name,arr])=>({name,arr:arr.sort((a,b)=>form(a)-form(b))})); }
 async function kRows(c){
   const box=document.getElementById("k-rows"); if(!box) return;
-  if(!c.rows.length){ box.innerHTML=`<div class="empty">還沒有保單。按下面「按我選擇商品」，輸入商品名稱或保單代號就能加進來。</div>`; document.getElementById("k-tot").textContent="－"; document.getElementById("k-totn").textContent=""; renderMineSim([],"key-sim"); return; }
+  if(!c.rows.length){ box.innerHTML=`<div class="empty">還沒有保單。按下面「按我選擇商品」，輸入商品名稱或保單代號就能加進來。</div>`; document.getElementById("k-tot").textContent="－"; document.getElementById("k-totn").textContent=""; return; }
   const G=kOrder(c);
   box.innerHTML=G.map(g=>{ const mains=g.arr.filter(x=>(x.r.cust?+x.r.cust.form||0:x.p.form)===0).length, riders=g.arr.length-mains;
     const warn=riders&&!mains?`附約要掛在同公司的主約下，請加一張${esc(g.name)}的主約`:(mains>1?`同一家公司通常只有一張主約`:"");
@@ -1964,9 +1979,10 @@ async function kRows(c){
   kcSave();
   document.getElementById("k-tot").textContent=tot?fmtN(tot)+" 元":"－";
   document.getElementById("k-totn").textContent=miss?`另有 ${miss} 張無法自動算保費`:"";
-  const list=c.rows.map(r=>{ if(r.cust){ const cp=custPol(r.cust); cp._c=r.cust; return cp; } const p=Object.assign({},P[r.i]); p._cfg=r; p._save=()=>{ kcSave(); kRows(c); }; return p; });
-  renderMineSim(list,"key-sim",`${esc(kName(c))}的理賠模擬：發生這些事可以領多少？`,{s:c.s,age:c.age});
 }
+/* 理賠試算的保單來源：建檔客戶 或 我的保單＋自己輸入 */
+let CALC_SRC=""; try{CALC_SRC=localStorage.getItem(KEY+":calc-src")||""}catch(e){}
+function kcList(c,onChange){ return c.rows.map(r=>{ if(r.cust){ const cp=custPol(r.cust); cp._c=r.cust; return cp; } const p=Object.assign({},P[r.i]); p._cfg=r; p._save=()=>{ kcSave(); onChange&&onChange(); }; return p; }); }
 /* 商品挑選視窗 */
 function kPick(c){
   let dlg=document.getElementById("k-dlg"); if(!dlg){ dlg=document.createElement("dialog"); dlg.id="k-dlg"; dlg.className="rep-dlg kdlg"; document.body.appendChild(dlg); }
