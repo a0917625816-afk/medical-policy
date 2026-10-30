@@ -408,6 +408,15 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 @media (max-width:760px){.kline{grid-template-columns:1fr 1fr;grid-template-areas:"n n" "p y" "m x"}.kline .kn{grid-area:n}.kline .kf[data-c="plan"]{grid-area:p}.kline .kf[data-c="y"]{grid-area:y}.kline .kprem{grid-area:m;text-align:left}.kline .kx{grid-area:x}.kpol-sum small{display:none}}
 .kstep{font-size:.75rem;font-weight:800;color:var(--accent);letter-spacing:.06em}.kp-lock{display:inline-flex;align-items:center;gap:4px;padding:7px 12px;border-radius:10px;background:var(--accent-soft);color:var(--accent);font-weight:800}
 .kprem2{display:grid;gap:4px;font-size:.9rem;color:var(--muted)}.kprem2 input{box-sizing:border-box;padding:10px 12px;border:1px solid var(--line);border-radius:10px;font-size:1rem;background:var(--bg);color:var(--ink)}
+.ksum{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:16px 18px;display:grid;gap:12px}.ksum h3{margin:0;font-size:1.25rem}.ksum-h{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;justify-content:space-between}
+.ksc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.ksc{border-radius:14px;padding:12px 14px;display:grid;gap:6px;align-content:start;background:var(--accent-soft)}.ksc.no{background:var(--warn-soft)}
+.ksc-h{display:flex;align-items:center;gap:8px}.ksc-h .ic svg{width:26px;height:26px;stroke:var(--accent);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.ksc.no .ksc-h .ic svg{stroke:var(--warn)}.ksc-h b{flex:1;font-size:1.05rem}.ksc-h .st{font-size:.75rem;font-weight:800;color:var(--accent)}.ksc.no .ksc-h .st{color:var(--warn)}
+.ksc-l{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;padding-top:6px;border-top:1px dashed color-mix(in srgb,var(--accent) 25%,transparent)}.ksc-l>div{display:grid;min-width:0}.ksc-l span{font-size:.88rem}.ksc-l small{font-size:.74rem;color:var(--muted)}.ksc-l>b{white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--accent)}.ksc-l>b i{font-style:normal;font-size:.75rem;color:var(--muted);font-weight:400}.ksc-l.nil>b{color:var(--muted);font-weight:400}.ksc-l.nil span{color:var(--muted)}
+.kgap-list{display:grid;gap:10px}.kgap{border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:grid;gap:10px;background:var(--bg)}
+.kgap-t{display:flex;gap:12px;align-items:flex-start}.kgap-n{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--warn);color:#fff;font-weight:900}.kgap-t b{font-size:1.05rem}.kgap-t p{margin:2px 0 0;color:var(--muted);font-size:.92rem}
+.kgap-s{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding-left:40px}.kgap-s>small{width:100%;color:var(--muted);font-size:.8rem}
+.kgap-add{display:flex;align-items:center;gap:8px;text-align:left;border:1.5px dashed var(--accent);background:var(--surface);border-radius:12px;padding:8px 12px;cursor:pointer;color:var(--ink)}.kgap-add:hover{background:var(--accent-soft)}.kgap-add>span:first-child{flex:none;display:grid;place-items:center;line-height:1;width:22px;height:22px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-weight:900}.kgap-add b{display:block;font-size:.92rem}.kgap-add small{font-size:.74rem;color:var(--muted)}
 .kgrid{display:grid;grid-template-columns:240px minmax(0,1fr);gap:18px;align-items:start}@media (max-width:820px){.kgrid{grid-template-columns:1fr}}
 .kside{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;display:grid;gap:12px;box-shadow:var(--shadow);position:sticky;top:84px}@media (max-width:820px){.kside{position:static;grid-template-columns:1fr 1fr}.kside>.kside-h,.kside>.ktot,.kside>p{grid-column:1/-1}}
 .kside-h{display:flex;justify-content:space-between;align-items:baseline}.kside-h b{font-size:1.1rem}.kside label{display:grid;gap:4px;font-size:.85rem;color:var(--muted);font-weight:700}
@@ -680,7 +689,7 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 </main>
 
 <script>
-const BUILD="1793335278";
+const BUILD="1793335780";
 const TYPE_INFO = [
   {k:0,n:"住院日額",pays:"住院一天給固定金額",d:"不看花多少錢，只看住幾天。加護病房、燒燙傷病房通常另有加給。"},
   {k:1,n:"實支實付",pays:"依收據實報實銷",d:"重點看三項限額：病房費（每天）、住院雜費（每次）、手術費（每次）。"},
@@ -1968,6 +1977,7 @@ function renderKey(){
     <div class="kmain">
       <div id="k-rows"></div>
       <div class="kadd"><button type="button" class="kbig" id="k-add"><span class="kplus">＋</span><span><b>新增一張保單</b><small>先選主約，再幫它加附約</small></span></button><button type="button" class="kbig alt" id="k-cust"><span class="kplus">✎</span><span><b>自己輸入</b><small>舊保單、資料庫找不到的保單</small></span></button></div>
+      <div id="k-sum"></div>
       <div class="kgo"><button type="button" class="btn" id="k-go">完成，去理賠試算 ›</button><span class="fine">理賠試算會直接帶入這位客戶的保單、年齡和性別。</span></div>
     </div></div>`;
   const $k=id=>document.getElementById(id);
@@ -2028,6 +2038,35 @@ async function kRows(c){
   kcSave();
   document.getElementById("k-tot").textContent=tot?fmtN(tot)+" 元":"－";
   document.getElementById("k-totn").textContent=miss?`另有 ${miss} 項無法自動算保費`:"";
+  kSummary(c);
+}
+/* ---------- 建檔下方：理賠內容（隨輸入即時更新）＋建議補強的缺口 ---------- */
+const K_ROWS=[["住院醫療","bed",[["day","住院日額","元／日"],["misc","住院雜費實支實付上限","元"]]],["手術保障","knife",[["surg","住院手術（盲腸炎情境）","元"]]],["重大傷病","shield",[["cancer","癌症一次金","元"],["major","重大傷病／重大疾病一次金","元"]]],["長期照顧","home",[["ltc","長照每期給付","元／期"]]],["失能保障","chair",[["disab","第 1 級失能","元"]]],["意外保障","acc",[["acc","車禍骨折情境的意外專屬給付","元"],["accDeath","意外身故加給","元"]]],["身故","shield",[["death","身故保險金","元"]]]];
+const K_GAP_TYPES={"住院日額":[0,3],"實支實付":[1],"手術":[2],"癌症一次金":[4],"重大傷病":[5,6],"失能":[8,14],"長照":[7],"意外":[9,14]};
+const kShort=n=>n.replace(/^(臺灣|台灣|中華|三商美邦|第一金|合作金庫|法國巴黎|中國信託|英國保誠|新光|國泰|富邦|南山|全球|遠雄|台銀|臺銀|凱基|安聯|保誠|宏泰|元大|安達|友邦|保德信|台新|新安東京|明台|兆豐|和泰|華南|泰安|第一|國寶|蘇黎世|美國|康健|新光)?(人壽|產物|產險)?(保險股份有限公司)?/,"").replace(/(健康|傷害)?保險(附約|附加條款)?(\(.*?\)|（.*?）)?$/,"")||n;
+let K_SUM_SEQ=0;
+async function kSummary(c){
+  const box=document.getElementById("k-sum"); if(!box) return; const seq=++K_SUM_SEQ;
+  if(!c.rows.length){ box.innerHTML=""; return; }
+  box.innerHTML=`<section class="ksum"><h3>理賠內容</h3><p class="fine">計算中…</p></section>`;
+  const who={s:c.s,age:c.age};
+  const item=r=>r.cust?{cust:r.cust.id||"c",custObj:r.cust}:{i:r.i,plan:r.plan||"",amt:r.amt||0,y:r.y||""};
+  const per=[]; for(const r of c.rows){ const b=await bundleCalc({items:[item(r)]},who); per.push({r,M:b.M,name:r.cust?r.cust.name:P[r.i].name}); if(seq!==K_SUM_SEQ) return; }
+  const all=await bundleCalc({items:c.rows.map(item)},who); if(seq!==K_SUM_SEQ) return; const M=all.M;
+  const cards=K_ROWS.map(([t,ic,lines])=>{ const has=lines.some(([k])=>M[k]>0);
+    return `<div class="ksc ${has?"has":"no"}"><div class="ksc-h"><span class="ic">${CM_ICON[ic]||""}</span><b>${t}</b><span class="st">${has?"已納入":"尚未納入"}</span></div>${lines.map(([k,lab,u])=>{ const who2=per.filter(x=>x.M[k]>0); return `<div class="ksc-l ${M[k]>0?"":"nil"}"><div><span>${lab}</span>${who2.length?`<small>${who2.map(x=>`${esc(kShort(x.name))} ${fmtN(x.M[k])}`).join("＋")}</small>`:""}</div><b>${M[k]>0?fmtN(M[k])+` <i>${u}</i>`:"—"}</b></div>`; }).join("")}</div>`; }).join("");
+  const gaps=gapAdvice(M,null).filter(g=>K_GAP_TYPES[g[0]]);
+  const mains=kPolicies(c).filter(g=>g.main&&!g.main.r.cust);
+  const sug=gp=>{ const types=K_GAP_TYPES[gp]; const out=[];
+    for(const g of mains){ const co=P[g.main.r.i].co; const have=new Set(g.rows.map(x=>x.r.i));
+      const L=P.filter(p=>p.co===co&&!p.e&&!p.grp&&p.form!==0&&types.includes(p.type)&&!have.has(p.i)).sort((a,b)=>(b.hr-a.hr)||a.name.length-b.name.length).slice(0,2);
+      L.forEach(p=>out.push({p,g})); }
+    return out.slice(0,4); };
+  box.innerHTML=`<section class="ksum"><div class="ksum-h"><h3>理賠內容</h3><span class="fine">${c.age} 歲${c.s}性・${c.rows.length} 項保單合計，改上面的保額或計劃會即時更新</span></div><div class="ksc-grid">${cards}</div>
+    ${all.unknown?`<p class="fine">另有部分給付（例如依手術表、依實際費用）要看實際情況，未列入合計。</p>`:""}</section>
+    <section class="ksum gap"><div class="ksum-h"><h3>建議補強的缺口</h3><span class="fine">${gaps.length?`共 ${gaps.length} 項`:"主要保障都有了"}</span></div>
+    ${gaps.length?`<div class="kgap-list">${gaps.map(([k,v],gi)=>{ const s=sug(k); return `<div class="kgap"><div class="kgap-t"><span class="kgap-n">${gi+1}</span><div><b>${esc(k)}</b><p>${esc(v)}</p></div></div>${s.length?`<div class="kgap-s"><small>可以直接加在現有保單的附約：</small>${s.map(x=>`<button type="button" class="kgap-add" data-ai="${x.p.i}" data-ag="${x.g.g}"><span>＋</span><span><b>${esc(kShort(x.p.name))}</b><small>加到${esc(x.g.co)}保單${x.p.hr?"・可算保費":""}</small></span></button>`).join("")}</div>`:`<div class="kgap-s"><small>${mains.length?"現有保單的公司沒有適合的現售附約，":""}可以新增一張保單補這一塊，或到「比較」頁看組合。</small></div>`}</div>`; }).join("")}</div>`:`<p class="fine">住院、手術、癌症、重大傷病、失能、長照、意外都已經有基本保障。</p>`}</section>`;
+  box.querySelectorAll("[data-ai]").forEach(b=>b.addEventListener("click",()=>{ c.rows.push({i:+b.dataset.ai,g:b.dataset.ag}); kcSave(); kRows(c); const el=document.querySelector(`.kpol[data-g="${b.dataset.ag}"]`); if(el) el.scrollIntoView({behavior:"smooth",block:"center"}); }));
 }
 /* 理賠試算的保單來源：建檔客戶 或 我的保單＋自己輸入 */
 let CALC_SRC=""; try{CALC_SRC=localStorage.getItem(KEY+":calc-src")||""}catch(e){}
