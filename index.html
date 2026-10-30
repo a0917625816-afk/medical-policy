@@ -375,6 +375,7 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 .cust-box{border:1px solid var(--accent);border-radius:12px;padding:14px 16px;background:var(--surface);margin:10px 0}.cust-box h4{margin:14px 0 6px}.ck-row{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr) minmax(0,.8fr) auto;gap:8px;align-items:center;margin-bottom:8px}@media (max-width:700px){.ck-row{grid-template-columns:1fr 1fr}.ck-row select{grid-column:1/-1}}.ck-row input,.ck-row select{padding:7px 8px;border:1px solid var(--line);border-radius:8px;font-size:.95rem;min-width:0;width:100%}.ck-row .x{padding:6px 10px}
 .cmp-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:start}@media (max-width:900px){.cmp-grid{grid-template-columns:1fr}}.cmp-card{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);padding:14px 16px;display:grid;gap:10px}.cmp-card h3{margin:0;font-size:1.25rem}.cmp-h{display:flex;justify-content:space-between;align-items:center}.cmp-desc{margin:0;color:var(--muted);font-size:.9rem}.cmp-prem{background:var(--accent-soft);border-radius:10px;padding:10px 14px;display:grid}.cmp-prem span{font-weight:700;font-size:.85rem}.cmp-prem b{font-size:1.7rem;color:var(--accent);font-variant-numeric:tabular-nums}.cmp-comps{display:grid;gap:6px}.cmp-comp{display:flex;justify-content:space-between;gap:10px;font-size:.9rem;border-bottom:1px dashed var(--line);padding-bottom:6px}.cmp-comp small{display:block;color:var(--muted);font-size:.78rem}.cmp-comp span:last-child{white-space:nowrap;font-variant-numeric:tabular-nums}.cmp-card h4{margin:6px 0 0;font-size:1rem}.cmp-rows{display:grid;border:1px solid var(--line);border-radius:10px;overflow:hidden}.cmp-rows .sr{padding:8px 12px}.cmp-v{display:grid;gap:8px}.cmp-v h4{margin:0 0 4px}.cmp-v ul{margin:0;padding-left:18px;font-size:.9rem;line-height:1.6}.cmp-ctl label span:last-child{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.cmp-it span small{display:block;color:var(--muted);font-size:.75rem}
 #scen-cats .chip small{display:inline;margin-left:4px;font-size:.78rem}#scen-cats .chip{padding:7px 12px}
+.scen-x{margin:0;background:var(--warn-soft);color:var(--warn);border-radius:8px;padding:8px 10px;font-size:.88rem;font-weight:600}.scen-xt{font-style:normal;background:var(--warn-soft);color:var(--warn);border-radius:5px;padding:0 6px;margin-left:4px}
 .scen-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0 14px}.scen-bar input{flex:1;min-width:160px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;font-size:1rem;background:var(--surface);color:var(--ink)}.scen-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}.scen-card{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:12px 14px;display:grid;gap:6px;align-content:start}.scen-card.on{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}.scen-card h4{margin:0;font-size:1.02rem}.scen-card .d{color:var(--muted);font-size:.88rem}.scen-card .amt{display:flex;justify-content:space-between;align-items:baseline;font-size:.88rem;color:var(--muted)}.scen-card .amt b{font-size:1.25rem;color:var(--warn);font-variant-numeric:tabular-nums}.scen-card .cat{font-size:.75rem;color:var(--accent);font-weight:700}.scen-card .acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}.scen-card .acts .btn{padding:7px 12px;font-size:.9rem}.scen-detail{grid-column:1/-1}.scen-now{border:1px solid var(--accent);border-radius:12px;padding:12px 16px;background:var(--accent-soft);display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}.scen-now b{font-size:1.05rem}
 .kmain{display:grid;gap:14px;min-width:0}
 .ksaved{font-size:.78rem;color:var(--accent);font-weight:700}
@@ -689,7 +690,7 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 </main>
 
 <script>
-const BUILD="1793335780";
+const BUILD="1793336674";
 const TYPE_INFO = [
   {k:0,n:"住院日額",pays:"住院一天給固定金額",d:"不看花多少錢，只看住幾天。加護病房、燒燙傷病房通常另有加給。"},
   {k:1,n:"實支實付",pays:"依收據實報實銷",d:"重點看三項限額：病房費（每天）、住院雜費（每次）、手術費（每次）。"},
@@ -1745,6 +1746,73 @@ const SCN_SRC={
   gen:"住院天數為一般臨床常見範圍，實際依病情與醫院而定",
 };
 const SCN=[
+ {k:"implant",cat:"牙科",t:"植牙（單顆）",d:"門診・自費療程",S:{cause:"疾病",opd:4,opdFee:80000},
+  cost:[["檢查、拔牙","健保",0],["植體＋支台＋假牙冠","自費",80000]],src:["gen"],x:"植牙屬自費牙科，一般醫療險、實支實付多半不賠；因意外斷牙時，部分意外醫療險才可能給付。"},
+ {k:"wisdom",cat:"牙科",t:"拔智齒（阻生齒手術）",d:"門診手術",S:{cause:"疾病",surgOut:1,surgOutFee:2000,opd:2,surgName:"齒切除"},
+  cost:[["阻生齒手術拔除","健保",0],["3D 斷層、自費止痛／縫線","自費",2000]],src:["gen"]},
+ {k:"rootcanal",cat:"牙科",t:"根管治療＋全瓷牙冠",d:"門診 3～4 次",S:{cause:"疾病",opd:4,opdFee:15000},
+  cost:[["根管治療","健保",0],["全瓷牙冠（自費）","自費",15000]],src:["gen"],x:"牙冠屬自費牙科，醫療險通常不賠。"},
+ {k:"perio",cat:"牙科",t:"牙周病翻瓣手術",d:"門診手術",S:{cause:"疾病",surgOut:1,surgOutFee:20000,opd:3,surgName:"牙周"},
+  cost:[["牙周病統合治療、翻瓣手術","健保",0],["骨粉、再生膜、雷射（自費）","自費",20000]],src:["gen"],x:"牙科門診手術多數醫療險不賠，少數手術險條款有列牙科手術。"},
+ {k:"ortho",cat:"牙科",t:"牙齒矯正",d:"門診・療程 2 年",S:{cause:"疾病",opd:24,opdFee:120000},
+  cost:[["檢查","健保",0],["矯正器與療程（自費）","自費",120000]],src:["gen"],x:"矯正屬自費且非治療疾病，保險不賠。"},
+ {k:"tooth_acc",cat:"意外",t:"意外撞斷門牙",d:"意外・急診後植牙",S:{cause:"意外",er:1,opd:4,opdFee:80000},
+  cost:[["急診、X 光","健保",0],["植牙或牙橋（自費）","自費",80000]],src:["gen"],x:"意外醫療實支實付有些條款排除牙齒治療，要看條款。"},
+ {k:"gastro_er",cat:"日常小病",t:"急性腸胃炎 掛急診打點滴",d:"急診・不住院",S:{cause:"疾病",er:1,opd:1,opdFee:800},
+  cost:[["急診、點滴、藥物","健保",0],["急診部分負擔、掛號費","自費",800]],src:["gen"]},
+ {k:"gastro_ip",cat:"日常小病",t:"急性腸胃炎 住院",d:"住院 3 天",S:{cause:"疾病",days:3,room:2500,misc:3000,er:1,opd:1},
+  cost:[["住院診療、點滴","健保",0],["雙人房差額 2,500 × 3 天","自費",7500],["部分負擔、雜費","自費",3000]],src:["gen"]},
+ {k:"shingles",cat:"日常小病",t:"帶狀皰疹（皮蛇）住院",d:"住院 5 天",S:{cause:"疾病",days:5,room:2500,misc:8000,opd:3},
+  cost:[["住院、抗病毒藥","健保",0],["雙人房差額 2,500 × 5 天","自費",12500],["自費止痛、營養針","自費",8000]],src:["gen"]},
+ {k:"cellulitis",cat:"日常小病",t:"蜂窩性組織炎 住院",d:"住院 5 天",S:{cause:"疾病",days:5,room:2500,misc:6000,opd:2,er:1},
+  cost:[["住院、抗生素","健保",0],["雙人房差額 2,500 × 5 天","自費",12500],["雜費、敷料","自費",6000]],src:["gen"]},
+ {k:"uti",cat:"日常小病",t:"腎盂腎炎（尿路感染）住院",d:"住院 4 天",S:{cause:"疾病",days:4,room:2500,misc:5000,er:1,opd:2},
+  cost:[["住院、抗生素","健保",0],["雙人房差額 2,500 × 4 天","自費",10000],["雜費","自費",5000]],src:["gen"]},
+ {k:"gout",cat:"日常小病",t:"痛風急性發作",d:"急診＋門診",S:{cause:"疾病",er:1,opd:3,opdFee:1500},
+  cost:[["急診、藥物","健保",0],["部分負擔","自費",1500]],src:["gen"]},
+ {k:"dengue",cat:"日常小病",t:"登革熱 住院",d:"住院 5 天",S:{cause:"疾病",days:5,room:2500,misc:5000,er:1},
+  cost:[["住院診療","健保",0],["雙人房差額 2,500 × 5 天","自費",12500],["雜費","自費",5000]],src:["gen"]},
+ {k:"ankle_sprain",cat:"意外",t:"腳踝扭傷 打石膏",d:"意外・急診＋門診 4 次",S:{cause:"意外",er:1,opd:4,opdFee:3000},
+  cost:[["急診、X 光、石膏","健保",0],["護具、部分負擔","自費",3000]],src:["gen"]},
+ {k:"ankle_fx",cat:"意外",t:"腳踝骨折 開刀打鋼板",d:"意外・住院 3 天",S:{cause:"意外",days:3,room:2500,misc:8000,surgIn:1,surgFee:50000,er:1,opd:4,surgName:"骨折開放性復位"},
+  cost:[["骨折復位手術","健保",0],["自費鈦合金骨板、骨釘","自費",50000],["雙人房差額 2,500 × 3 天","自費",7500],["雜費、助行器","自費",8000]],src:["gen"]},
+ {k:"cut",cat:"意外",t:"手指切割傷 縫合",d:"意外・急診",S:{cause:"意外",er:1,surgOut:1,surgOutFee:1500,opd:2,surgName:"縫合"},
+  cost:[["急診縫合","健保",0],["美容縫線、敷料","自費",1500]],src:["gen"]},
+ {k:"dogbite",cat:"意外",t:"被狗咬傷",d:"意外・急診＋換藥",S:{cause:"意外",er:1,opd:3,opdFee:1500},
+  cost:[["清創、破傷風","健保",0],["敷料、部分負擔","自費",1500]],src:["gen"]},
+ {k:"burn_minor",cat:"意外",t:"輕微燙傷 門診換藥",d:"意外・門診 6 次",S:{cause:"意外",opd:6,opdFee:6000},
+  cost:[["門診換藥","健保",0],["人工皮、銀離子敷料","自費",6000]],src:["gen"]},
+ {k:"concussion",cat:"意外",t:"撞到頭 腦震盪住院觀察",d:"意外・住院 2 天",S:{cause:"意外",days:2,room:2500,misc:3000,er:1},
+  cost:[["急診、電腦斷層、住院觀察","健保",0],["雙人房差額 2,500 × 2 天","自費",5000],["雜費","自費",3000]],src:["gen"]},
+ {k:"sinus",cat:"常見手術",t:"慢性鼻竇炎 內視鏡手術",d:"住院 2 天",S:{cause:"疾病",days:2,room:2500,misc:6000,surgIn:1,surgFee:30000,opd:3,surgName:"鼻竇"},
+  cost:[["鼻竇內視鏡手術","健保",0],["導航、動力旋轉刀（自費）","自費",30000],["雙人房差額","自費",5000],["雜費","自費",6000]],src:["gen"]},
+ {k:"vocal",cat:"常見手術",t:"聲帶息肉 切除",d:"住院 1 天",S:{cause:"疾病",days:1,room:2500,misc:3000,surgIn:1,surgFee:20000,opd:2,surgName:"喉"},
+  cost:[["顯微喉部手術","健保",0],["雷射（自費）","自費",20000],["病房差額、雜費","自費",5500]],src:["gen"]},
+ {k:"ear_tube",cat:"兒童",t:"兒童中耳積水 置管手術",d:"住院 1 天",S:{cause:"疾病",days:1,room:2500,misc:2000,surgIn:1,surgFee:5000,opd:3,surgName:"鼓膜"},
+  cost:[["鼓膜切開置管","健保",0],["自費通氣管","自費",5000],["病房差額、雜費","自費",4500]],src:["gen"]},
+ {k:"kid_hernia",cat:"兒童",t:"兒童疝氣 腹腔鏡手術",d:"住院 1 天",S:{cause:"疾病",days:1,room:2500,misc:3000,surgIn:1,surgFee:25000,opd:2,surgName:"疝氣"},
+  cost:[["疝氣修補手術","健保",0],["腹腔鏡耗材（自費）","自費",25000],["病房差額、雜費","自費",5500]],src:["gen"]},
+ {k:"jaundice",cat:"兒童",t:"新生兒黃疸 照光住院",d:"住院 3 天",S:{cause:"疾病",days:3,room:2000,misc:2000},
+  cost:[["照光治療","健保",0],["病房差額 2,000 × 3 天","自費",6000],["雜費","自費",2000]],src:["gen"],x:"新生兒要在出生後盡早投保，有些保單對出生即有的疾病有限制。"},
+ {k:"circum",cat:"常見手術",t:"包皮環切",d:"門診手術",S:{cause:"疾病",surgOut:1,surgOutFee:8000,opd:2,surgName:"包皮"},
+  cost:[["包皮手術（有醫療必要）","健保",0],["雷射或釘槍（自費）","自費",8000]],src:["gen"]},
+ {k:"cyst",cat:"門診手術",t:"粉瘤／脂肪瘤切除",d:"門診手術",S:{cause:"疾病",surgOut:1,surgOutFee:3000,opd:2,surgName:"良性腫瘤切除"},
+  cost:[["切除手術、病理","健保",0],["美容縫線、敷料","自費",3000]],src:["gen"]},
+ {k:"nail",cat:"門診手術",t:"凍甲（甲溝炎）手術",d:"門診手術",S:{cause:"疾病",surgOut:1,surgOutFee:2000,opd:3,surgName:"甲"},
+  cost:[["部分趾甲切除","健保",0],["敷料、部分負擔","自費",2000]],src:["gen"]},
+ {k:"fibroid_hifu",cat:"婦科",t:"子宮肌瘤 海扶刀（HIFU）",d:"住院 1 天，全自費療程",S:{cause:"疾病",days:1,room:2500,misc:5000,surgIn:1,surgFee:250000,opd:3,surgName:"子宮肌瘤"},
+  cost:[["診斷、門診追蹤","健保",0],["海扶刀療程（自費）","自費",250000],["病房差額、雜費","自費",7500]],src:["gen"],x:"海扶刀多為自費，實支實付是否給付要看條款與是否住院。"},
+ {k:"bariatric",cat:"常見手術",t:"減重手術（腹腔鏡縮胃）",d:"住院 4 天",S:{cause:"疾病",days:4,room:2500,misc:15000,surgIn:1,surgFee:150000,opd:4,surgName:"胃"},
+  cost:[["符合健保條件的減重手術","健保",0],["自費釘合器、能量器械","自費",150000],["雙人房差額 2,500 × 4 天","自費",10000],["雜費、營養","自費",15000]],src:["gen"],x:"不符健保 BMI 條件時屬自費，保險通常不賠。"},
+ {k:"gerd_scope",cat:"日常小病",t:"胃食道逆流 無痛胃鏡",d:"門診檢查",S:{cause:"疾病",opd:2,opdFee:3500},
+  cost:[["胃鏡檢查","健保",0],["無痛麻醉（自費）","自費",3500]],src:["gen"],x:"門診檢查的自費麻醉，多數醫療險不賠。"},
+ {k:"lasik",cat:"自費療程（多不賠）",t:"近視雷射",d:"門診・全自費",S:{cause:"疾病",opd:2,opdFee:60000},
+  cost:[["術前檢查","自費",5000],["近視雷射手術","自費",55000]],src:["gen"],x:"近視雷射屬矯正視力的自費療程，保險不賠。"},
+ {k:"aesthetic",cat:"自費療程（多不賠）",t:"割雙眼皮／醫美",d:"門診・全自費",S:{cause:"疾病",opd:2,opdFee:50000},
+  cost:[["手術與耗材","自費",50000]],src:["gen"],x:"美容手術在醫療險除外責任內，不賠。"},
+ {k:"checkup",cat:"自費療程（多不賠）",t:"自費全身健康檢查",d:"健檢中心・全自費",S:{cause:"疾病",opdFee:20000},
+  cost:[["健檢套餐","自費",20000]],src:["gen"],x:"健康檢查不是治療，保險不賠；但檢查出疾病後的治療可以申請。"},
+
  {k:"polyp",cat:"門診手術",t:"大腸鏡息肉切除",d:"門診或住院 1 天，自費止血夾",S:{cause:"疾病",surgOut:1,surgOutFee:15000,opd:2,surgName:"大腸息肉切除"},
   cost:[["大腸鏡檢查、息肉切除","健保",0],["無痛麻醉、止血夾、黏膜下注射（自費）","自費",15000]],src:["gen"]},
  {k:"ureter",cat:"常見手術",t:"腎結石 輸尿管鏡雷射碎石",d:"住院 2 天，自費軟式輸尿管鏡",S:{cause:"疾病",days:2,room:2500,misc:8000,surgIn:1,surgFee:50000,opd:2,surgName:"輸尿管鏡碎石"},
@@ -1883,7 +1951,7 @@ const SCN=[
 ];
 function scenCost(sc){ return (sc.cost||[]).filter(c=>c[1]==="自費").reduce((a,c)=>a+c[2],0); }
 function scenApply(k){ const sc=SCN.find(s=>s.k===k); if(!sc) return; SIM=Object.assign({},SIM_DEF,sc.S,{sc:k}); simSave(); }
-function scenCardHTML(sc){ const self=scenCost(sc); return `<div class="scen-cost"><div class="scen-h"><b>${esc(sc.t)}</b><span>${esc(sc.d)}</span></div>
+function scenCardHTML(sc){ const self=scenCost(sc); return `<div class="scen-cost"><div class="scen-h"><b>${esc(sc.t)}</b><span>${esc(sc.d)}</span></div>${sc.x?`<p class="scen-x">⚠ ${esc(sc.x)}</p>`:""}
   <div class="scen-rows">${sc.cost.map(c=>`<div class="sr ${c[1]==="自費"?"on":"off"}"><div class="sr-n">${esc(c[0])}</div><div class="sr-a">${c[1]==="自費"?fmtN(c[2])+" 元":"健保給付"}</div></div>`).join("")}</div>
   <div class="scen-total"><span>這次預估自費合計</span><b>${fmtN(self)} 元</b></div>
   <p class="fine">參考來源：${(sc.src||[]).map(s=>esc(SCN_SRC[s]||s)).join("；")}。金額為參考中間值，實際依醫院、病情與選用醫材而定。</p></div>`; }
@@ -1930,7 +1998,7 @@ function renderScen(){
   const nq=normS(SCN_UI.q);
   const L=SCN.filter(s=>(SCN_UI.cat==="全部"||s.cat===SCN_UI.cat)&&(!nq||normS(s.t+s.d+s.cat+s.cost.map(c=>c[0]).join("")).includes(nq)));
   document.getElementById("scen-n").textContent=`${L.length} 個情境`;
-  grid.innerHTML=L.length?L.map(s=>`<div class="scen-card ${SIM.sc===s.k?"on":""}" data-k="${s.k}"><span class="cat">${esc(s.cat)}</span><h4>${esc(s.t)}</h4><div class="d">${esc(s.d)}</div><div class="amt"><span>預估自費</span><b>${fmtN(scenCost(s))} 元</b></div><div class="acts"><button type="button" class="btn" data-use="${s.k}">用這個情境試算</button><button type="button" class="btn ghost" data-open="${s.k}">費用拆解</button></div></div>`).join("")
+  grid.innerHTML=L.length?L.map(s=>`<div class="scen-card ${SIM.sc===s.k?"on":""}" data-k="${s.k}"><span class="cat">${esc(s.cat)}${s.x?` <i class="scen-xt">多數不賠</i>`:""}</span><h4>${esc(s.t)}</h4><div class="d">${esc(s.d)}</div><div class="amt"><span>預估自費</span><b>${fmtN(scenCost(s))} 元</b></div><div class="acts"><button type="button" class="btn" data-use="${s.k}">用這個情境試算</button><button type="button" class="btn ghost" data-open="${s.k}">費用拆解</button></div></div>`).join("")
     :`<div class="empty">沒有符合的情境，換個關鍵字試試。</div>`;
   grid.querySelectorAll("[data-use]").forEach(b=>b.addEventListener("click",()=>{scenApply(b.dataset.use); location.hash="#calc";}));
   grid.querySelectorAll("[data-open]").forEach(b=>b.addEventListener("click",()=>{
