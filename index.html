@@ -376,6 +376,38 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 .cmp-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:start}@media (max-width:900px){.cmp-grid{grid-template-columns:1fr}}.cmp-card{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);padding:14px 16px;display:grid;gap:10px}.cmp-card h3{margin:0;font-size:1.25rem}.cmp-h{display:flex;justify-content:space-between;align-items:center}.cmp-desc{margin:0;color:var(--muted);font-size:.9rem}.cmp-prem{background:var(--accent-soft);border-radius:10px;padding:10px 14px;display:grid}.cmp-prem span{font-weight:700;font-size:.85rem}.cmp-prem b{font-size:1.7rem;color:var(--accent);font-variant-numeric:tabular-nums}.cmp-comps{display:grid;gap:6px}.cmp-comp{display:flex;justify-content:space-between;gap:10px;font-size:.9rem;border-bottom:1px dashed var(--line);padding-bottom:6px}.cmp-comp small{display:block;color:var(--muted);font-size:.78rem}.cmp-comp span:last-child{white-space:nowrap;font-variant-numeric:tabular-nums}.cmp-card h4{margin:6px 0 0;font-size:1rem}.cmp-rows{display:grid;border:1px solid var(--line);border-radius:10px;overflow:hidden}.cmp-rows .sr{padding:8px 12px}.cmp-v{display:grid;gap:8px}.cmp-v h4{margin:0 0 4px}.cmp-v ul{margin:0;padding-left:18px;font-size:.9rem;line-height:1.6}.cmp-ctl label span:last-child{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.cmp-it span small{display:block;color:var(--muted);font-size:.75rem}
 #scen-cats .chip small{display:inline;margin-left:4px;font-size:.78rem}#scen-cats .chip{padding:7px 12px}
 .scen-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0 14px}.scen-bar input{flex:1;min-width:160px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;font-size:1rem;background:var(--surface);color:var(--ink)}.scen-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}.scen-card{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:12px 14px;display:grid;gap:6px;align-content:start}.scen-card.on{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}.scen-card h4{margin:0;font-size:1.02rem}.scen-card .d{color:var(--muted);font-size:.88rem}.scen-card .amt{display:flex;justify-content:space-between;align-items:baseline;font-size:.88rem;color:var(--muted)}.scen-card .amt b{font-size:1.25rem;color:var(--warn);font-variant-numeric:tabular-nums}.scen-card .cat{font-size:.75rem;color:var(--accent);font-weight:700}.scen-card .acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}.scen-card .acts .btn{padding:7px 12px;font-size:.9rem}.scen-detail{grid-column:1/-1}.scen-now{border:1px solid var(--accent);border-radius:12px;padding:12px 16px;background:var(--accent-soft);display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}.scen-now b{font-size:1.05rem}
+.kmain{display:grid;gap:14px;min-width:0}
+.ksaved{font-size:.78rem;color:var(--accent);font-weight:700}
+.kempty{display:grid;gap:6px;text-align:center;padding:34px 20px;border:2px dashed var(--line);border-radius:18px;background:var(--surface);color:var(--muted)}.kempty b{font-size:1.15rem;color:var(--ink)}
+.kpol{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+.kpol-h{display:flex;align-items:center;gap:12px;padding:12px 16px;background:linear-gradient(180deg,var(--accent-soft),var(--surface))}
+.kbadge{flex:none;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-weight:900;font-size:1.25rem;color:var(--accent-ink);background:linear-gradient(180deg,color-mix(in srgb,var(--accent) 86%,#fff),var(--accent));box-shadow:0 3px 0 var(--accent-deep)}
+.kpol-t{display:grid;flex:1;min-width:0}.kpol-t b{font-size:1.12rem}.kpol-t small{color:var(--muted);font-size:.8rem}
+.kpol-sum{display:grid;text-align:right}.kpol-sum small{color:var(--muted);font-size:.75rem}.kpol-sum b{font-size:1.25rem;color:var(--accent);font-variant-numeric:tabular-nums;white-space:nowrap}
+.kwarn{margin:0;padding:8px 16px;background:var(--warn-soft);color:var(--warn);font-weight:700;font-size:.85rem}
+.kline{display:grid;grid-template-columns:minmax(0,2.1fr) minmax(0,1.5fr) minmax(0,1fr) 120px 76px;gap:12px;align-items:center;padding:12px 16px;border-top:1px solid var(--line);position:relative}
+.kline.rider{background:var(--bg);padding-left:38px}.kline.rider::before{content:"";position:absolute;left:20px;top:0;bottom:50%;width:10px;border-left:2px solid var(--line);border-bottom:2px solid var(--line);border-bottom-left-radius:8px}
+.kn{display:grid;gap:3px;min-width:0}.kn b{font-size:1rem;line-height:1.4}.kn small{color:var(--muted);font-size:.78rem}
+.ktag{justify-self:start;font-size:.72rem;font-weight:800;padding:1px 8px;border-radius:6px}.ktag.m{background:var(--accent);color:var(--accent-ink)}.ktag.r{background:var(--accent-soft);color:var(--accent)}
+.kf{display:grid;gap:8px;min-width:0}.kf label{display:grid;gap:3px;min-width:0}.kf small,.kprem small{font-size:.72rem;color:var(--muted);font-weight:700}
+.kf select,.kamt input{box-sizing:border-box;width:100%;min-width:0;padding:9px 10px;border:1px solid var(--line);border-radius:10px;font-size:1rem;background:var(--surface);color:var(--ink);font-weight:700}
+.kf select:focus,.kamt input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.kamt{position:relative;display:block}.kamt input{padding-right:46px}.kamt i{position:absolute;right:10px;top:50%;transform:translateY(-50%);font-style:normal;font-size:.8rem;color:var(--muted);pointer-events:none}
+.kv{font-weight:700;color:var(--muted);padding:9px 0}
+.kprem{display:grid;text-align:right;white-space:nowrap}.kprem b{font-size:1.15rem;color:var(--accent);font-variant-numeric:tabular-nums}
+.kx{display:flex;gap:6px;justify-content:flex-end;align-items:center}
+.kdel{flex:none;width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--gap);font-weight:900;cursor:pointer}.kdel:hover{background:var(--gap-soft)}.kdel.sm{width:32px;height:32px}
+.kedit{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:5px 10px;color:var(--accent);font-weight:700;cursor:pointer}
+.krider-add{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;padding:10px 16px 14px 38px;border-top:1px dashed var(--line);background:var(--bg)}
+.kplus-btn{display:inline-flex;align-items:center;gap:8px;border:1.5px dashed var(--accent);background:var(--surface);color:var(--accent);font-weight:800;border-radius:12px;padding:9px 16px;cursor:pointer;font-size:.98rem}.kplus-btn span{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-size:1rem;line-height:1}.kplus-btn:hover{background:var(--accent-soft)}
+.kadd{display:grid;grid-template-columns:1.4fr 1fr;gap:12px}@media (max-width:700px){.kadd{grid-template-columns:1fr}}
+.kbig{display:flex;align-items:center;gap:14px;text-align:left;padding:16px 18px;border-radius:16px;cursor:pointer;border:1px solid var(--accent-deep);color:var(--accent-ink);background:linear-gradient(180deg,color-mix(in srgb,var(--accent) 86%,#fff),var(--accent));box-shadow:0 4px 0 var(--accent-deep),0 10px 18px -10px rgba(0,0,0,.4)}
+.kbig:active{transform:translateY(3px);box-shadow:0 1px 0 var(--accent-deep)}.kbig b{display:block;font-size:1.12rem}.kbig small{font-size:.82rem;opacity:.85}
+.kbig .kplus{flex:none;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-size:1.4rem;font-weight:900;background:rgba(255,255,255,.22)}
+.kbig.alt{color:var(--ink);border-color:var(--line);background:linear-gradient(180deg,var(--surface),var(--soft));box-shadow:0 4px 0 var(--edge),0 10px 18px -12px rgba(0,0,0,.3)}.kbig.alt .kplus{background:var(--accent-soft);color:var(--accent)}
+@media (max-width:760px){.kline{grid-template-columns:1fr 1fr;grid-template-areas:"n n" "p y" "m x"}.kline .kn{grid-area:n}.kline .kf[data-c="plan"]{grid-area:p}.kline .kf[data-c="y"]{grid-area:y}.kline .kprem{grid-area:m;text-align:left}.kline .kx{grid-area:x}.kpol-sum small{display:none}}
+.kstep{font-size:.75rem;font-weight:800;color:var(--accent);letter-spacing:.06em}.kp-lock{display:inline-flex;align-items:center;gap:4px;padding:7px 12px;border-radius:10px;background:var(--accent-soft);color:var(--accent);font-weight:800}
+.kprem2{display:grid;gap:4px;font-size:.9rem;color:var(--muted)}.kprem2 input{box-sizing:border-box;padding:10px 12px;border:1px solid var(--line);border-radius:10px;font-size:1rem;background:var(--bg);color:var(--ink)}
 .kgrid{display:grid;grid-template-columns:240px minmax(0,1fr);gap:18px;align-items:start}@media (max-width:820px){.kgrid{grid-template-columns:1fr}}
 .kside{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;display:grid;gap:12px;box-shadow:var(--shadow);position:sticky;top:84px}@media (max-width:820px){.kside{position:static;grid-template-columns:1fr 1fr}.kside>.kside-h,.kside>.ktot,.kside>p{grid-column:1/-1}}
 .kside-h{display:flex;justify-content:space-between;align-items:baseline}.kside-h b{font-size:1.1rem}.kside label{display:grid;gap:4px;font-size:.85rem;color:var(--muted);font-weight:700}
@@ -383,24 +415,14 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 .kside input,.kside select,.krow select,.kamt input{padding:9px 10px;border:1px solid var(--line);border-radius:10px;font-size:1rem;background:var(--bg);color:var(--ink);min-width:0;width:100%}
 .kseg{display:grid;grid-template-columns:1fr 1fr;gap:6px}.kseg button{padding:9px;border-radius:10px;border:1px solid var(--line);background:linear-gradient(180deg,var(--surface),var(--soft));font-weight:700;cursor:pointer;box-shadow:0 3px 0 var(--edge);color:var(--ink)}.kseg button[aria-pressed="true"]{background:linear-gradient(180deg,color-mix(in srgb,var(--accent) 86%,#fff),var(--accent));color:var(--accent-ink);border-color:var(--accent-deep);box-shadow:0 3px 0 var(--accent-deep)}
 .ktot{background:var(--accent-soft);border-radius:12px;padding:10px 12px;display:grid}.ktot span{font-size:.85rem;font-weight:700;color:var(--muted)}.ktot b{font-size:1.6rem;color:var(--accent);font-variant-numeric:tabular-nums}.ktot small{color:var(--muted);font-size:.78rem}
-.kmain{display:grid;gap:12px;min-width:0}
-.khead,.krow{display:grid;grid-template-columns:minmax(0,2.2fr) minmax(0,1.6fr) minmax(0,1fr) 120px 72px;gap:10px;align-items:center}
-.khead{font-size:.82rem;color:var(--muted);font-weight:700;padding:0 14px}.khead .r,.krow .r{text-align:right}
-.kco{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}.kco-h{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:8px 14px;background:var(--soft);border-bottom:1px solid var(--line)}.kwarn{font-size:.82rem;color:var(--warn);font-weight:700}
-.krow{padding:10px 14px;border-top:1px solid var(--line)}.kco-h+.krow{border-top:0}.kn{display:grid;gap:2px;min-width:0}.kn b{font-size:.98rem;line-height:1.4}.kn small{color:var(--muted);font-size:.78rem}.kn .fl{justify-self:start}
-.kc{display:grid;gap:6px;min-width:0}.kamt{display:flex;align-items:center;gap:4px}.kamt small{white-space:nowrap;color:var(--muted);font-size:.8rem}.kc.kp{display:block;font-variant-numeric:tabular-nums;white-space:nowrap}.kp b{font-size:1.05rem;color:var(--accent)}
-.kx{display:flex;gap:4px;justify-content:flex-end;align-items:center}.kdel{width:34px;height:34px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--gap);font-weight:900;cursor:pointer}.kdel:hover{background:var(--gap-soft)}
-@media (max-width:700px){.khead{display:none}.krow{grid-template-columns:1fr 1fr;grid-template-areas:"n n" "p y" "m x"}.kn{grid-area:n}.kc[data-c="plan"]{grid-area:p}.kc[data-c="y"]{grid-area:y}.kp{grid-area:m;text-align:left!important}.kx{grid-area:x}}
 .kgo{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:6px}.kgo .btn{font-size:1.1rem;padding:14px 26px}.calc-srcl{display:grid;gap:4px;font-weight:700;color:var(--muted);font-size:.9rem;max-width:520px}.calc-srcl select{padding:10px 12px;border:1px solid var(--accent);border-radius:10px;font-size:1rem;background:var(--surface);color:var(--ink);font-weight:700}
-.kadd{display:flex;flex-wrap:wrap;gap:10px}.kadd .btn{flex:1;min-width:220px;font-size:1.05rem;padding:14px}
 .kdlg{width:min(94vw,760px);max-width:760px}.kdlg-h{display:flex;justify-content:space-between;align-items:center}.kdlg #kp-q{font-size:1.1rem;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
 .kp-f{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.kp-f .toggle{display:inline-flex;flex-direction:row;padding:7px 12px;gap:6px}.kp-f select{padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
 .kp-list{display:grid;gap:6px;max-height:55vh;overflow:auto}.kp-it{display:flex;justify-content:space-between;gap:10px;align-items:center;text-align:left;border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:10px 12px;cursor:pointer;color:var(--ink)}.kp-it:hover{border-color:var(--accent);background:var(--accent-soft)}.kp-it b{display:block;font-size:1rem}.kp-it small{color:var(--muted);font-size:.8rem}.kp-tag{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}
-.kprem{display:grid;gap:4px;font-size:.9rem;color:var(--muted)}.kprem input{padding:10px 12px;border:1px solid var(--line);border-radius:10px;font-size:1rem;background:var(--bg);color:var(--ink)}
 .cmp-top{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:20px;align-items:start}@media (max-width:980px){.cmp-top{grid-template-columns:1fr}}
 .cmap{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px 20px 16px;box-shadow:var(--shadow);display:grid;gap:14px;container-type:inline-size}
 .cmap-h{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.cmap-fix{display:grid;gap:8px}.cmap-fix .fx{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;justify-content:space-between;border:1px solid var(--line);border-radius:12px;padding:10px 14px;background:var(--bg)}.cmap-fix .fx b{font-size:1.02rem}.cmap-fix .fx .cov{font-size:.85rem;color:var(--muted)}.cmap-fix .fx.best{border-color:var(--accent);background:var(--accent-soft)}.cmap-fix .fx .pr{font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap}.cmap-h h3{font-size:1.6rem}.cmap-now{background:var(--accent-soft);color:var(--accent);border-radius:99px;padding:5px 14px;font-size:.88rem;font-weight:700}.cmap-now b{color:var(--ink)}
-.cmap-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(190px,.8fr) minmax(0,1fr);grid-template-rows:auto auto;gap:14px 22px;align-items:stretch;position:relative}
+.cmap-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(190px,.8fr) minmax(0,1fr);grid-template-rows:auto auto auto;gap:14px 22px;align-items:stretch;position:relative}.cm.l{grid-column:1}.cm.r{grid-column:3}.cm.r1{grid-row:1}.cm.r2{grid-row:2}.cm.r3{grid-row:3}
 .cm{border:1px solid var(--line);border-radius:16px;padding:16px 16px 12px;display:grid;gap:6px;align-content:start;background:var(--surface);position:relative}
 .cm.has{background:var(--accent-soft);border-color:transparent}.cm.no{background:var(--warn-soft);border-color:transparent}
 .cm .ic{width:40px;height:40px;color:var(--accent)}.cm.no .ic{color:var(--warn)}.cm .ic svg{width:40px;height:40px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
@@ -408,10 +430,10 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 .cm p{color:var(--muted);font-size:.92rem;min-height:2.8em}.cm .amt{font-weight:800;font-variant-numeric:tabular-nums;font-size:1rem;color:var(--ink)}
 .cm .go{justify-self:stretch;background:var(--surface);border:0;border-radius:10px;padding:8px;font-weight:700;color:var(--accent);cursor:pointer;margin-top:4px}.cm .go:hover{background:var(--bg)}
 .cm::after{content:"";position:absolute;top:50%;width:22px;height:2px;background:var(--line)}.cm.l::after{right:-22px}.cm.r::after{left:-22px}
-.cm-c{grid-column:2;grid-row:1/3;align-self:center;background:var(--surface);border:2px solid var(--accent);border-radius:18px;overflow:hidden;text-align:center;box-shadow:var(--shadow)}
+.cm-c{grid-column:2;grid-row:1/4;align-self:center;background:var(--surface);border:2px solid var(--accent);border-radius:18px;overflow:hidden;text-align:center;box-shadow:var(--shadow)}
 .cm-c h4{margin:0;background:var(--accent);color:var(--accent-ink);padding:12px;font-size:1.3rem}.cm-c .p{padding:16px 12px}.cm-c .p span{display:block;font-weight:700;color:var(--muted);font-size:.9rem}.cm-c .p b{display:block;font-size:2.1rem;color:var(--accent);font-variant-numeric:tabular-nums;line-height:1.15}.cm-c .p b small{font-size:1rem;margin-right:4px}.cm-c .p .fine{display:block;margin-top:4px}
-@container (max-width:680px){.cmap-grid{grid-template-columns:1fr 1fr}.cm-c{grid-column:1/-1;grid-row:1}.cm::after{display:none}.cm p{min-height:0}}
-@media (max-width:640px){.cmap-grid{grid-template-columns:1fr 1fr}.cm-c{grid-column:1/-1;grid-row:1}.cm::after{display:none}.cm p{min-height:0}}
+@container (max-width:680px){.cmap-grid{grid-template-columns:1fr 1fr}.cm.l,.cm.r{grid-column:auto;grid-row:auto}.cm-c{grid-column:1/-1;grid-row:1}.cm::after{display:none}.cm p{min-height:0}}
+@media (max-width:640px){.cmap-grid{grid-template-columns:1fr 1fr}.cm.l,.cm.r{grid-column:auto;grid-row:auto}.cm-c{grid-column:1/-1;grid-row:1}.cm::after{display:none}.cm p{min-height:0}}
 .cmap-sc{display:grid;gap:8px}.cmap-sc>span{text-align:center;color:var(--muted);font-size:.9rem;display:flex;align-items:center;gap:12px}.cmap-sc>span::before,.cmap-sc>span::after{content:"";flex:1;height:1px;background:var(--line)}
 .cmap-sc .row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
 .scb{border:1px solid var(--line);border-radius:14px;padding:10px 12px;background:var(--surface);text-align:left;cursor:pointer;display:grid;gap:2px}.scb b{font-size:1rem}.scb span{font-size:.78rem;color:var(--muted)}.scb[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}.scb[aria-pressed="true"] span{color:var(--accent-ink);opacity:.85}
@@ -658,7 +680,7 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 </main>
 
 <script>
-const BUILD="1793334634";
+const BUILD="1793335278";
 const TYPE_INFO = [
   {k:0,n:"住院日額",pays:"住院一天給固定金額",d:"不看花多少錢，只看住幾天。加護病房、燒燙傷病房通常另有加給。"},
   {k:1,n:"實支實付",pays:"依收據實報實銷",d:"重點看三項限額：病房費（每天）、住院雜費（每次）、手術費（每次）。"},
@@ -1312,6 +1334,7 @@ function simItem(b,A,S,pol,X){
   return skip("這個情境無法自動判斷，請看條款");
 }
 function simRun(X,st,S,pol){
+  if(pol&&/批註條款/.test(pol.name||"")) return {rows:(X&&X.ben||[]).map(b=>({b,A:null,pay:0,calc:"",note:"批註條款是調整其他保單的限額或條件，不單獨計算",kind:"skip"})),total:0,per:0,unknown:[],note:""};
   const rows=[]; const bens=X&&X.ben||[];
   X._st=st;
   bens.forEach(b=>{b.ei=!!(X.either&&/日額保險金選擇權|日額選擇|轉換.*日額|日額保險金$/.test(b.n)&&!/^住院日額/.test(b.n)); const f=benFreq(b); const A=itemAmount(b,st,f,bens); b._ded=(b.dv&&st.pi>=0&&b.dv[st.pi])||0; rows.push(simItem(b,A,S,pol,X));});
@@ -1530,9 +1553,9 @@ function bundleRuleCheck(comps){
 let CMP=null; try{CMP=JSON.parse(localStorage.getItem(CMP_KEY))}catch(e){}
 if(!CMP||!CMP.b) CMP={s:"男",age:30,b:JSON.parse(JSON.stringify(BUNDLE_PRESETS))};
 function cmpSave(){try{localStorage.setItem(CMP_KEY,JSON.stringify(CMP))}catch(e){}}
-const CMP_METRICS=[["prem","年繳保費合計","元",true],["day","住院一天的定額給付（日額類合計）","元／日"],["misc","住院雜費實支實付上限","元"],["surg","住院手術給付（盲腸炎情境）","元"],["cancer","癌症一次金","元"],["major","重大傷病／重疾一次金","元"],["disab","第 1 級失能給付","元"],["ltc","長照每期給付","元／期"],["death","身故保險金","元"]];
+const CMP_METRICS=[["prem","年繳保費合計","元",true],["acc","意外醫療（車禍骨折情境的意外專屬給付）","元"],["accDeath","意外身故加給","元"],["day","住院一天的定額給付（日額類合計）","元／日"],["misc","住院雜費實支實付上限","元"],["surg","住院手術給付（盲腸炎情境）","元"],["cancer","癌症一次金","元"],["major","重大傷病／重疾一次金","元"],["disab","第 1 級失能給付","元"],["ltc","長照每期給付","元／期"],["death","身故保險金","元"]];
 async function bundleCalc(b,who){ who=who||{s:CMP.s,age:CMP.age};
-  const comps=[]; let prem=0; const tot={}; SIM_PRESETS.forEach(p=>tot[p.k]=0); const M={day:0,misc:0,surg:0,cancer:0,major:0,disab:0,ltc:0,death:0}; let unknown=0;
+  const comps=[]; let prem=0; const tot={}; SIM_PRESETS.forEach(p=>tot[p.k]=0); const M={day:0,misc:0,surg:0,cancer:0,major:0,disab:0,ltc:0,death:0,acc:0,accDeath:0}; let unknown=0;
   for(const it of b.items||[]){
     let X,R,pol,st;
     if(it.cust){ const c=it.custObj||CUST.find(x=>x.id===it.cust); if(!c) continue; X=custX(c); pol=custPol(c); st={s:who.s,age:who.age,y:"",plan:"自訂",pi:0,amt:0,unit:false,prem:0,yrs:0}; }
@@ -1543,8 +1566,10 @@ async function bundleCalc(b,who){ who=who||{s:CMP.s,age:CMP.age};
     comps.push({form:pol.cust?(+(it.custObj||CUST.find(x=>x.id===it.cust)||{}).form||0):(pol.form||0),coKey:pol.cust?((it.custObj||CUST.find(x=>x.id===it.cust)||{}).co||"自訂"):pol.co,name:pol.name,co:pol.cust?(pol.co||"自己輸入"):(CO[pol.co]||pol.co),prem:pr,cfg:[st.plan&&st.plan!=="自訂"?st.plan:"",st.amt?fmtN(st.amt)+(st.unit?" 單位":" 元"):"",st.y||""].filter(Boolean).join("・"),i:it.i,cust:it.cust});
     for(const p of SIM_PRESETS){ const res=simRun(X,st,Object.assign({},SIM_DEF,p.S),pol); tot[p.k]+=res.total+(p.k==="ltc"?0:0); unknown+=res.unknown.length;
       for(const r of res.rows){ if(p.k==="appx"){ if(r.kind==="雜費"&&r.A) M.misc+=r.A; if(r.kind==="手術") M.surg+=r.pay; } if(p.k==="cancer"&&r.kind==="癌一") M.cancer+=r.pay; if(p.k==="stroke"&&r.kind==="重疾") M.major+=r.pay; if(p.k==="ltc"){ if(r.kind==="失能") M.disab+=r.pay; if(r.periodic) M.ltc+=r.pay; } } }
-    const d1=simRun(X,st,Object.assign({},SIM_DEF,{days:1}),pol); for(const r of d1.rows) if(["住院","癌住","加護"].includes(r.kind)&&!/實支|自費/.test(r.calc)) M.day+=r.pay;
+    const d1=simRun(X,st,Object.assign({},SIM_DEF,{days:1}),pol); for(const r of d1.rows) if(["住院","癌住","加護"].includes(r.kind)&&!/實支|自費/.test(r.calc)&&benFreq(r.b)==="每日"&&!/費用|雜費/.test(r.b.n)) M.day+=r.pay;
     const dd=simRun(X,st,Object.assign({},SIM_DEF,{death:1}),pol); for(const r of dd.rows) if(r.kind==="死亡") M.death+=r.pay;
+    { const car=SIM_PRESETS.find(z=>z.k==="car"); const a1=simRun(X,st,Object.assign({},SIM_DEF,car.S),pol).total, a0=simRun(X,st,Object.assign({},SIM_DEF,car.S,{cause:"疾病"}),pol).total; if(a1>a0) M.acc+=a1-a0;
+      const ad=simRun(X,st,Object.assign({},SIM_DEF,{cause:"意外",death:1}),pol).total; if(ad>dd.total) M.accDeath+=ad-dd.total; }
   }
   const rule=bundleRuleCheck(comps.filter(c=>c.prem!=null||c.form!=null));
   return {comps,prem,tot,M,unknown,rule};
@@ -1559,17 +1584,19 @@ function cmpVerdict(results){
   SIM_PRESETS.forEach(p=>metric(p.k,`「${p.t}」情境可領`,r=>r.tot[p.k]));
   return out.map(o=>({good:o.good.slice(0,6),bad:o.bad.slice(0,6)}));
 }
-const CM_ICON={bed:`<svg viewBox="0 0 24 24"><path d="M3 19V7"/><path d="M3 12h18v7"/><path d="M3 16h18"/><path d="M7 12V9h5v3"/></svg>`,knife:`<svg viewBox="0 0 24 24"><path d="M20 4 8 16l-4 4 4-1L20 7z"/><path d="M13 9l2 2"/><path d="M4 20l1-4"/></svg>`,shield:`<svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6z"/><path d="m9 12 2 2 4-4"/></svg>`,chair:`<svg viewBox="0 0 24 24"><circle cx="9" cy="17" r="4"/><path d="M9 13V6h5l2 5h3l2 6"/><circle cx="14" cy="3.5" r="1.5"/></svg>`};
+const CM_ICON={acc:`<svg viewBox="0 0 24 24"><path d="M5 17h14l-1.5-5.5A2 2 0 0 0 15.6 10H8.4a2 2 0 0 0-1.9 1.5z"/><circle cx="7.5" cy="17.5" r="1.8"/><circle cx="16.5" cy="17.5" r="1.8"/><path d="M12 3v4M9.5 5h5"/></svg>`,home:`<svg viewBox="0 0 24 24"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/><path d="M12 17s-3-1.8-3-3.6A1.6 1.6 0 0 1 12 12a1.6 1.6 0 0 1 3 .4c0 1.8-3 3.6-3 3.6z"/></svg>`,bed:`<svg viewBox="0 0 24 24"><path d="M3 19V7"/><path d="M3 12h18v7"/><path d="M3 16h18"/><path d="M7 12V9h5v3"/></svg>`,knife:`<svg viewBox="0 0 24 24"><path d="M20 4 8 16l-4 4 4-1L20 7z"/><path d="M13 9l2 2"/><path d="M4 20l1-4"/></svg>`,shield:`<svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6z"/><path d="m9 12 2 2 4-4"/></svg>`,chair:`<svg viewBox="0 0 24 24"><circle cx="9" cy="17" r="4"/><path d="M9 13V6h5l2 5h3l2 6"/><circle cx="14" cy="3.5" r="1.5"/></svg>`};
 let LAST_CMP=null;
 /* 四格保障地圖（比較頁、我的保單、理賠試算共用） */
 function cmapCards(M){ const f=fmtN; return [
-    {cls:"l",ic:"bed",t:"住院醫療",key:"hosp",has:M.day>0||M.misc>0,d:"住院日額、實支實付雜費、病房費差額",amt:[M.day>0?`日額 ${f(M.day)} 元／日`:"",M.misc>0?`雜費上限 ${f(M.misc)} 元`:""].filter(Boolean).join("・")},
-    {cls:"r",ic:"knife",t:"手術保障",key:"surg",has:M.surg>0,d:"住院手術、門診手術、特定手術給付",amt:M.surg>0?`盲腸炎手術情境可領 ${f(M.surg)} 元`:""},
-    {cls:"l",ic:"shield",t:"重大傷病",key:"major",has:M.major>0||M.cancer>0,d:"癌症、重大傷病一次金或分期給付",amt:[M.cancer>0?`癌症一次金 ${f(M.cancer)} 元`:"",M.major>0?`重大傷病 ${f(M.major)} 元`:""].filter(Boolean).join("・")},
-    {cls:"r",ic:"chair",t:"長照失能",key:"ltc",has:M.ltc>0||M.disab>0,d:"長期照顧、失能扶助、生活照護相關保障",amt:[M.disab>0?`第 1 級失能 ${f(M.disab)} 元`:"",M.ltc>0?`長照每期 ${f(M.ltc)} 元`:""].filter(Boolean).join("・")}]; }
+    {cls:"l",row:1,ic:"bed",t:"住院醫療",key:"hosp",has:M.day>0||M.misc>0,d:"住院日額、實支實付雜費、病房費差額",amt:[M.day>0?`日額 ${f(M.day)} 元／日`:"",M.misc>0?`雜費上限 ${f(M.misc)} 元`:""].filter(Boolean).join("・")},
+    {cls:"r",row:1,ic:"knife",t:"手術保障",key:"surg",has:M.surg>0,d:"住院手術、門診手術、特定手術給付",amt:M.surg>0?`盲腸炎手術情境可領 ${f(M.surg)} 元`:""},
+    {cls:"l",row:2,ic:"shield",t:"重大傷病",key:"major",has:M.major>0||M.cancer>0,d:"癌症、重大傷病一次金或分期給付",amt:[M.cancer>0?`癌症一次金 ${f(M.cancer)} 元`:"",M.major>0?`重大傷病 ${f(M.major)} 元`:""].filter(Boolean).join("・")},
+    {cls:"r",row:2,ic:"home",t:"長期照顧",key:"ltc",has:M.ltc>0,d:"長照狀態時每月或每期給付的照護費",amt:M.ltc>0?`長照每期 ${f(M.ltc)} 元`:""},
+    {cls:"l",row:3,ic:"chair",t:"失能保障",key:"disab",has:M.disab>0,d:"失能一次金、失能扶助金，依失能等級給付",amt:M.disab>0?`第 1 級失能 ${f(M.disab)} 元`:""},
+    {cls:"r",row:3,ic:"acc",t:"意外保障",key:"acc",has:(M.acc||0)>0||(M.accDeath||0)>0,d:"意外醫療實支、意外住院、骨折、意外身故",amt:[(M.acc||0)>0?`車禍骨折情境多領 ${f(M.acc)} 元`:"",(M.accDeath||0)>0?`意外身故加給 ${f(M.accDeath)} 元`:""].filter(Boolean).join("・")}]; }
 function cmapGridHTML(M,centerHTML,o){ o=o||{}; const cards=cmapCards(M);
-  const cm=c=>`<div class="cm ${c.has?"has":"no"} ${c.cls}"><span class="ic">${CM_ICON[c.ic]}</span><h4>${c.t}</h4><span class="st">${c.has?"已納入":"尚未納入"}</span><p>${c.d}</p>${c.amt?`<span class="amt">${c.amt}</span>`:`<span class="amt fine">${o.noText||"目前沒有這類保障"}</span>`}${o.go!=null?`<button type="button" class="go" data-go="${o.go}">查看明細 ›</button>`:""}</div>`;
-  return `<div class="cmap-grid">${cm(cards[0])}<div class="cm-c">${centerHTML}</div>${cm(cards[1])}${cm(cards[2])}${cm(cards[3])}</div>`; }
+  const cm=c=>`<div class="cm ${c.has?"has":"no"} ${c.cls} r${c.row}"><span class="ic">${CM_ICON[c.ic]}</span><h4>${c.t}</h4><span class="st">${c.has?"已納入":"尚未納入"}</span><p>${c.d}</p>${c.amt?`<span class="amt">${c.amt}</span>`:`<span class="amt fine">${o.noText||"目前沒有這類保障"}</span>`}${o.go!=null?`<button type="button" class="go" data-go="${o.go}">查看明細 ›</button>`:""}</div>`;
+  return `<div class="cmap-grid">${cards.map(cm).join("")}<div class="cm-c">${centerHTML}</div></div>`; }
 /* 我的保單／理賠試算用：地圖＋「建議補哪一組」 */
 async function renderMineMap(boxId,list,r,who){ who=who||{s:CMP.s,age:CMP.age};
   const el=document.getElementById(boxId+"-map"); if(!el) return;
@@ -1864,6 +1891,7 @@ function gapAdvice(M,extra){
   if(!(M.major>0)) out.push(["重大傷病","沒有重大傷病／重大疾病一次金，中風、心肌梗塞、洗腎的長期花費沒有保障。建議至少 100 萬。"]);
   else if(M.major<1000000) out.push(["重大傷病",`重大傷病一次金 ${f(M.major)} 元偏低，建議補到 100 萬以上。`]);
   if(!(M.disab>0)) out.push(["失能","沒有失能保險金。失能後不只醫療費，還有長期的生活與照護支出，建議第 1 級失能至少 300 萬。"]);
+  if(!((M.acc||0)>0)) out.push(["意外","沒有意外醫療或意外住院給付。車禍、跌倒骨折的自費骨材、復健只能靠一般醫療險，建議加意外險（意外實支 5～10 萬、骨折與意外住院日額）。"]);
   if(!(M.ltc>0)) out.push(["長照","沒有長照給付。需要長期照顧時每月約 3～6 萬的看護費是最長期的負擔，建議每月 2～3 萬。"]);
   if(extra&&extra.gap>0) out.unshift(["這次情境的缺口",`這次自費約 ${f(extra.cost)} 元，保單合計可領約 ${f(extra.pay)} 元，還差 ${f(extra.gap)} 元要自己付。`]);
   return out;
@@ -1905,21 +1933,29 @@ function renderScen(){
 
 if((location.hash.slice(1)||"")==="scen") renderScen();
 
-/* ---------- 建檔：業務員自由 key 保單（一頁完成） ---------- */
+/* ---------- 建檔：業務員自由 key 保單 ---------- */
 const KC_KEY=KEY+":clients", KC_CUR=KEY+":client-cur";
 let KC=[]; try{KC=JSON.parse(localStorage.getItem(KC_KEY))||[]}catch(e){}
 let KCUR=null; try{KCUR=localStorage.getItem(KC_CUR)}catch(e){}
-function kcSave(){ try{localStorage.setItem(KC_KEY,JSON.stringify(KC)); localStorage.setItem(KC_CUR,KCUR||"");}catch(e){} const t=document.getElementById("k-saved"); if(t){t.textContent="已自動儲存"; clearTimeout(kcSave._t); kcSave._t=setTimeout(()=>{t.textContent="";},1500);} }
+function kcSave(){ try{localStorage.setItem(KC_KEY,JSON.stringify(KC)); localStorage.setItem(KC_CUR,KCUR||"");}catch(e){} const t=document.getElementById("k-saved"); if(t){t.textContent="✓ 已自動儲存"; clearTimeout(kcSave._t); kcSave._t=setTimeout(()=>{t.textContent="";},1500);} }
 function kcNew(name){ const c={id:"k"+Date.now().toString(36),name:name||"",s:"男",age:30,rows:[]}; KC.unshift(c); KCUR=c.id; kcSave(); return c; }
 function kcCur(){ let c=KC.find(x=>x.id===KCUR); if(!c) c=KC[0]||kcNew(""); KCUR=c.id; return c; }
 const kName=c=>c.name||"未命名客戶";
+const kgid=()=>"g"+Date.now().toString(36)+Math.random().toString(36).slice(2,5);
+const kForm=r=>r.cust?(+r.cust.form||0):(P[r.i]?P[r.i].form:0);
+const kCoKey=r=>r.cust?("自:"+(r.cust.co||"自己輸入")):(P[r.i]?P[r.i].co:"");
+const kCoName=r=>r.cust?(r.cust.co||"自己輸入"):(CO[P[r.i].co]||P[r.i].co);
+/* 舊資料沒有保單分組：依公司歸到同一張保單 */
+function kMigrate(c){ const byCo={}; for(const r of c.rows){ if(r.g) continue; const k=kCoKey(r); if(r.cust&&!+r.cust.form){ r.g=kgid(); continue; } r.g=byCo[k]||(byCo[k]=kgid()); } }
+function kPolicies(c){ kMigrate(c); const G=[]; c.rows.forEach((r,k)=>{ let g=G.find(x=>x.g===r.g); if(!g){ g={g:r.g,rows:[]}; G.push(g);} g.rows.push({r,k}); });
+  for(const g of G){ g.rows.sort((a,b)=>kForm(a.r)-kForm(b.r)); g.main=g.rows.find(x=>kForm(x.r)===0); g.co=kCoName((g.main||g.rows[0]).r); g.coKey=kCoKey((g.main||g.rows[0]).r); } return G; }
 
 function renderKey(){
   const box=document.getElementById("key-box"); if(!box||!P.length) return;
   const c=kcCur();
   box.innerHTML=`<div class="kgrid">
     <aside class="kside">
-      <div class="kside-h"><b>客戶資料</b><span class="fine" id="k-saved"></span></div>
+      <div class="kside-h"><b>客戶資料</b><span class="ksaved" id="k-saved"></span></div>
       <label><span>客戶</span><select id="k-cl">${KC.map(x=>`<option value="${x.id}" ${x.id===c.id?"selected":""}>${esc(kName(x))}（${x.rows.length} 張）</option>`).join("")}<option value="__new">＋ 新增客戶</option></select></label>
       <label><span>姓名</span><input type="text" id="k-name" value="${esc(c.name)}" placeholder="例如 王小明"></label>
       <label><span>投保年齡</span><input type="number" inputmode="numeric" id="k-age" min="0" max="100" value="${c.age}"></label>
@@ -1930,93 +1966,106 @@ function renderKey(){
       <p class="fine">資料只存在這台裝置，會自動儲存。</p>
     </aside>
     <div class="kmain">
-      <div class="khead"><span>商品名稱</span><span>計劃／保額</span><span>年期</span><span class="r">年繳保費</span><span></span></div>
       <div id="k-rows"></div>
-      <div class="kadd"><button type="button" class="btn" id="k-add">＋ 按我選擇商品</button><button type="button" class="btn ghost" id="k-cust">＋ 舊保單／資料庫找不到：自己輸入</button></div>
+      <div class="kadd"><button type="button" class="kbig" id="k-add"><span class="kplus">＋</span><span><b>新增一張保單</b><small>先選主約，再幫它加附約</small></span></button><button type="button" class="kbig alt" id="k-cust"><span class="kplus">✎</span><span><b>自己輸入</b><small>舊保單、資料庫找不到的保單</small></span></button></div>
       <div class="kgo"><button type="button" class="btn" id="k-go">完成，去理賠試算 ›</button><span class="fine">理賠試算會直接帶入這位客戶的保單、年齡和性別。</span></div>
     </div></div>`;
   const $k=id=>document.getElementById(id);
   $k("k-cl").addEventListener("change",e=>{ if(e.target.value==="__new") kcNew(""); else KCUR=e.target.value; kcSave(); renderKey(); });
-  $k("k-name").addEventListener("input",e=>{ c.name=e.target.value.trim(); kcSave(); const o=$k("k-cl").querySelector(`option[value="${c.id}"]`); if(o) o.textContent=`${kName(c)}（${c.rows.length} 張）`; });
+  $k("k-name").addEventListener("input",e=>{ c.name=e.target.value.trim(); kcSave(); kClOpt(c); });
   $k("k-age").addEventListener("change",e=>{ c.age=Math.max(0,Math.min(100,+e.target.value||30)); kcSave(); kRows(c); });
   box.querySelectorAll(".kseg button").forEach(b=>b.addEventListener("click",()=>{ c.s=b.dataset.s; box.querySelectorAll(".kseg button").forEach(x=>x.setAttribute("aria-pressed",x===b)); kcSave(); kRows(c); }));
-  $k("k-clear").addEventListener("click",()=>{ if(!c.rows.length) return; if(confirm(`確定清除「${kName(c)}」的 ${c.rows.length} 張保單？`)){ c.rows=[]; kcSave(); kRows(c); } });
+  $k("k-clear").addEventListener("click",()=>{ if(!c.rows.length) return; if(confirm(`確定清除「${kName(c)}」的全部保單？`)){ c.rows=[]; kcSave(); kRows(c); } });
   $k("k-del").addEventListener("click",()=>{ if(confirm(`確定刪除客戶「${kName(c)}」？`)){ KC=KC.filter(x=>x.id!==c.id); KCUR=KC[0]?KC[0].id:null; kcSave(); renderKey(); } });
-  $k("k-add").addEventListener("click",()=>kPick(c));
+  $k("k-add").addEventListener("click",()=>kPick(c,{}));
   $k("k-cust").addEventListener("click",()=>kCustOpen(c,null));
   $k("k-go").addEventListener("click",()=>{ CALC_SRC=c.id; try{localStorage.setItem(KEY+":calc-src",CALC_SRC)}catch(e){} location.hash="#calc"; });
   kRows(c);
 }
-/* 依公司分組，自動標主約／附約（同一家公司一張主約＋附約） */
-function kOrder(c){ const rows=c.rows.map((r,k)=>({r,k,p:r.cust?null:P[r.i]})); const co=x=>x.r.cust?(x.r.cust.co||"自己輸入"):(CO[x.p.co]||x.p.co); const form=x=>x.r.cust?(+x.r.cust.form||0):x.p.form;
-  const groups={}; rows.forEach(x=>{(groups[co(x)]=groups[co(x)]||[]).push(x);}); return Object.entries(groups).map(([name,arr])=>({name,arr:arr.sort((a,b)=>form(a)-form(b))})); }
+function kClOpt(c){ const o=document.querySelector(`#k-cl option[value="${c.id}"]`); if(o) o.textContent=`${kName(c)}（${c.rows.length} 張）`; }
+const kInitial=s=>(s||"?").replace(/^(臺灣|台灣)/,"台")[0];
 async function kRows(c){
   const box=document.getElementById("k-rows"); if(!box) return;
-  if(!c.rows.length){ box.innerHTML=`<div class="empty">還沒有保單。按下面「按我選擇商品」，輸入商品名稱或保單代號就能加進來。</div>`; document.getElementById("k-tot").textContent="－"; document.getElementById("k-totn").textContent=""; return; }
-  const G=kOrder(c);
-  box.innerHTML=G.map(g=>{ const mains=g.arr.filter(x=>(x.r.cust?+x.r.cust.form||0:x.p.form)===0).length, riders=g.arr.length-mains;
-    const warn=riders&&!mains?`附約要掛在同公司的主約下，請加一張${esc(g.name)}的主約`:(mains>1?`同一家公司通常只有一張主約`:"");
-    return `<div class="kco"><div class="kco-h"><b>${esc(g.name)}</b>${warn?`<span class="kwarn">⚠ ${warn}</span>`:""}</div>${g.arr.map(x=>`<div class="krow" data-k="${x.k}"><div class="kn"><i class="fl">${FORM_LAB[x.r.cust?+x.r.cust.form||0:x.p.form]||"主約"}</i><b>${esc(x.r.cust?x.r.cust.name:x.p.name)}</b><small>${x.r.cust?`自己輸入・${(x.r.cust.items||[]).length} 個給付項目`:TYPE_INFO[x.p.type].n}</small></div><div class="kc" data-c="plan"></div><div class="kc" data-c="y"></div><div class="kc r kp" data-c="prem">…</div><div class="kx">${x.r.cust?`<button type="button" class="x" data-ed="${x.k}">修改</button>`:""}<button type="button" class="kdel" data-rm="${x.k}" aria-label="刪除">✕</button></div></div>`).join("")}</div>`; }).join("");
+  kClOpt(c);
+  if(!c.rows.length){ box.innerHTML=`<div class="kempty"><b>還沒有保單</b><span>按下面「新增一張保單」，輸入商品名稱或保單代號，先選主約；選好後可以在那張保單下面加附約。</span></div>`; document.getElementById("k-tot").textContent="－"; document.getElementById("k-totn").textContent=""; return; }
+  const G=kPolicies(c);
+  box.innerHTML=G.map((g,gi)=>{ const noMain=!g.main;
+    return `<section class="kpol" data-g="${g.g}">
+      <header class="kpol-h"><span class="kbadge">${esc(kInitial(g.co))}</span><div class="kpol-t"><b>${esc(g.co)}</b><small>保單 ${gi+1}・${g.main?"主約":"沒有主約"}${g.rows.length>1?`＋${g.rows.length-(g.main?1:0)} 張附約`:""}</small></div><div class="kpol-sum"><small>這張保單年繳</small><b data-gsum>…</b></div><button type="button" class="kdel" data-rmg="${g.g}" title="刪除整張保單" aria-label="刪除整張保單">✕</button></header>
+      ${noMain?`<p class="kwarn">⚠ 附約要掛在同公司的主約下，請刪除後重新從主約開始選</p>`:""}
+      ${g.rows.map(x=>`<div class="kline ${kForm(x.r)===0?"main":"rider"}" data-k="${x.k}">
+        <div class="kn"><span class="ktag ${kForm(x.r)===0?"m":"r"}">${FORM_LAB[kForm(x.r)]||"主約"}</span><b>${esc(x.r.cust?x.r.cust.name:P[x.r.i].name)}</b><small>${x.r.cust?`自己輸入・${(x.r.cust.items||[]).length} 個給付項目`:TYPE_INFO[P[x.r.i].type].n}</small></div>
+        <div class="kf" data-c="plan"></div><div class="kf" data-c="y"></div>
+        <div class="kprem"><small>年繳保費</small><span data-c="prem">…</span></div>
+        <div class="kx">${x.r.cust?`<button type="button" class="kedit" data-ed="${x.k}">修改</button>`:""}${kForm(x.r)!==0||g.rows.length===1?`<button type="button" class="kdel sm" data-rm="${x.k}" aria-label="刪除">✕</button>`:""}</div></div>`).join("")}
+      ${g.main&&!g.main.r.cust?`<div class="krider-add"><button type="button" class="kplus-btn" data-addr="${g.g}"><span>＋</span> 加${esc(g.co)}的附約</button><button type="button" class="linkbtn" data-addrc="${g.g}">找不到？自己輸入附約</button></div>`:""}
+    </section>`; }).join("");
   box.querySelectorAll("[data-rm]").forEach(b=>b.addEventListener("click",()=>{ c.rows.splice(+b.dataset.rm,1); kcSave(); kRows(c); }));
+  box.querySelectorAll("[data-rmg]").forEach(b=>b.addEventListener("click",()=>{ const g=b.dataset.rmg; const n=c.rows.filter(r=>r.g===g).length; if(n>1&&!confirm(`這張保單有 ${n} 項（主約＋附約），確定整張刪除？`)) return; c.rows=c.rows.filter(r=>r.g!==g); kcSave(); kRows(c); }));
   box.querySelectorAll("[data-ed]").forEach(b=>b.addEventListener("click",()=>kCustOpen(c,+b.dataset.ed)));
+  box.querySelectorAll("[data-addr]").forEach(b=>b.addEventListener("click",()=>{ const g=G.find(x=>x.g===b.dataset.addr); kPick(c,{g:g.g,co:g.coKey,coName:g.co}); }));
+  box.querySelectorAll("[data-addrc]").forEach(b=>b.addEventListener("click",()=>{ const g=G.find(x=>x.g===b.dataset.addrc); kCustOpen(c,null,{g:g.g,co:g.co}); }));
   let tot=0, miss=0;
-  for(const g of G) for(const x of g.arr){
-    const el=box.querySelector(`.krow[data-k="${x.k}"]`); if(!el) continue;
-    if(x.r.cust){ el.querySelector('[data-c="plan"]').innerHTML=`<span class="fine">依輸入金額</span>`; el.querySelector('[data-c="prem"]').innerHTML=x.r.cust.prem?fmtN(x.r.cust.prem)+" 元":`<span class="fine">—</span>`; tot+=+x.r.cust.prem||0; continue; }
-    const p=x.p, n=Math.floor(p.i/200); const X=p.hd?(await loadShard(n)||{})[p.i]:null; const R=p.hr?((await loadRate(n))||{})[p.i]:null;
-    if(!document.body.contains(el)) return;
-    const {st,plans,needAmt}=mineSt(p,X,R,{s:c.s,age:c.age,plan:x.r.plan||"",amt:x.r.amt||0,y:x.r.y||""});
-    if(!x.r.plan&&st.plan) x.r.plan=st.plan; if(!x.r.amt&&st.amt&&needAmt) x.r.amt=st.amt;
-    const ys=R&&R.c?[...new Set(R.c.map(z=>z.y).filter(Boolean))]:[];
-    if(!x.r.y&&ys.length) x.r.y=st.y||ys[0];
-    const unitLab=st.unit?"單位":(R&&/日額/.test(R.u))||(!R&&guessUnit(X)==="日額")?"日額":"保額";
-    el.querySelector('[data-c="plan"]').innerHTML=`${plans.length?`<select data-f="plan">${plans.map(v=>`<option ${v===x.r.plan?"selected":""}>${esc(v)}</option>`).join("")}</select>`:""}${needAmt?`<span class="kamt"><input type="number" inputmode="numeric" data-f="amt" value="${x.r.amt||""}" aria-label="${unitLab}"><small>${unitLab==="單位"?"單位":unitLab==="日額"?"元／日":"元"}</small></span>`:""}${!plans.length&&!needAmt?`<span class="fine">依條款</span>`:""}`;
-    el.querySelector('[data-c="y"]').innerHTML=ys.length>1?`<select data-f="y">${ys.map(v=>`<option ${v===x.r.y?"selected":""}>${esc(v)}</option>`).join("")}</select>`:`<span class="fine">${esc(ys[0]||(p.term===1?"一年期":"—"))}</span>`;
-    el.querySelector('[data-c="prem"]').innerHTML=st.prem>0?`<b>${fmtN(st.prem)}</b> 元`:`<span class="fine">${R?"不在投保年齡":"無費率表"}</span>`;
-    if(st.prem>0) tot+=st.prem; else miss++;
-    el.querySelectorAll("[data-f]").forEach(inp=>inp.addEventListener("change",()=>{ const f=inp.dataset.f; x.r[f]=f==="amt"?(+inp.value||0):inp.value; kcSave(); kRows(c); }));
+  for(const g of G){ let gs=0, gmiss=0;
+    for(const x of g.rows){
+      const el=box.querySelector(`.kline[data-k="${x.k}"]`); if(!el) continue;
+      if(x.r.cust){ el.querySelector('[data-c="plan"]').innerHTML=`<label><small>給付</small><span class="kv">依輸入金額</span></label>`; el.querySelector('[data-c="y"]').innerHTML=""; const pr=+x.r.cust.prem||0; el.querySelector('[data-c="prem"]').innerHTML=pr?`<b>${fmtN(pr)}</b> 元`:`<span class="fine">未填</span>`; gs+=pr; tot+=pr; continue; }
+      const p=P[x.r.i], n=Math.floor(p.i/200); const X=p.hd?(await loadShard(n)||{})[p.i]:null; const R=p.hr?((await loadRate(n))||{})[p.i]:null;
+      if(!document.body.contains(el)) return;
+      const {st,plans,needAmt}=mineSt(p,X,R,{s:c.s,age:c.age,plan:x.r.plan||"",amt:x.r.amt||0,y:x.r.y||""});
+      if(!x.r.plan&&st.plan) x.r.plan=st.plan; if(!x.r.amt&&st.amt&&needAmt) x.r.amt=st.amt;
+      const ys=R&&R.c?[...new Set(R.c.map(z=>z.y).filter(Boolean))]:[];
+      if(!x.r.y&&ys.length) x.r.y=st.y||ys[0];
+      const unitLab=st.unit?"單位":((R&&/日額/.test(R.u))||guessUnit(X)==="日額"?"日額":"保額");
+      el.querySelector('[data-c="plan"]').innerHTML=`${plans.length?`<label><small>計劃別</small><select data-f="plan">${plans.map(v=>`<option ${v===x.r.plan?"selected":""}>${esc(v)}</option>`).join("")}</select></label>`:""}${needAmt?`<label><small>${unitLab}</small><span class="kamt"><input type="number" inputmode="numeric" data-f="amt" value="${x.r.amt||""}"><i>${unitLab==="單位"?"單位":unitLab==="日額"?"元/日":"元"}</i></span></label>`:""}${!plans.length&&!needAmt?`<label><small>給付</small><span class="kv">依條款</span></label>`:""}`;
+      el.querySelector('[data-c="y"]').innerHTML=`<label><small>年期</small>${ys.length>1?`<select data-f="y">${ys.map(v=>`<option ${v===x.r.y?"selected":""}>${esc(v)}</option>`).join("")}</select>`:`<span class="kv">${esc(ys[0]||(p.term===1?"一年期":"—"))}</span>`}</label>`;
+      el.querySelector('[data-c="prem"]').innerHTML=st.prem>0?`<b>${fmtN(st.prem)}</b> 元`:`<span class="fine">${R?"不在投保年齡":"無費率表"}</span>`;
+      if(st.prem>0){ tot+=st.prem; gs+=st.prem; } else { miss++; gmiss++; }
+      el.querySelectorAll("[data-f]").forEach(inp=>inp.addEventListener("change",()=>{ const f=inp.dataset.f; x.r[f]=f==="amt"?(+inp.value||0):inp.value; kcSave(); kRows(c); }));
+    }
+    const gsEl=box.querySelector(`.kpol[data-g="${g.g}"] [data-gsum]`); if(gsEl) gsEl.textContent=gs?fmtN(gs)+" 元":"—";
   }
   kcSave();
   document.getElementById("k-tot").textContent=tot?fmtN(tot)+" 元":"－";
-  document.getElementById("k-totn").textContent=miss?`另有 ${miss} 張無法自動算保費`:"";
+  document.getElementById("k-totn").textContent=miss?`另有 ${miss} 項無法自動算保費`:"";
 }
 /* 理賠試算的保單來源：建檔客戶 或 我的保單＋自己輸入 */
 let CALC_SRC=""; try{CALC_SRC=localStorage.getItem(KEY+":calc-src")||""}catch(e){}
 function kcList(c,onChange){ return c.rows.map(r=>{ if(r.cust){ const cp=custPol(r.cust); cp._c=r.cust; return cp; } const p=Object.assign({},P[r.i]); p._cfg=r; p._save=()=>{ kcSave(); onChange&&onChange(); }; return p; }); }
-/* 商品挑選視窗 */
-function kPick(c){
+/* 商品挑選視窗：o={} 選主約；o={g,co,coName} 在這張保單加附約（公司鎖定） */
+function kPick(c,o){
+  const rider=!!o.g;
   let dlg=document.getElementById("k-dlg"); if(!dlg){ dlg=document.createElement("dialog"); dlg.id="k-dlg"; dlg.className="rep-dlg kdlg"; document.body.appendChild(dlg); }
-  const cos=[...new Set(P.filter(p=>!p.e).map(p=>p.co))].map(k=>[k,CO[k]||k]).sort((a,b)=>a[1].localeCompare(b[1],"zh-Hant"));
-  dlg.innerHTML=`<div class="rep-form"><div class="kdlg-h"><h3>選擇商品</h3><button type="button" class="kdel" id="kp-x" aria-label="關閉">✕</button></div>
-    <input type="search" id="kp-q" placeholder="輸入商品名稱關鍵字或保單代號，例如 真心安、HSB、實支" autocomplete="off">
-    <div class="kp-f"><select id="kp-co"><option value="">全部公司</option>${cos.map(([k,n])=>`<option value="${k}">${esc(n)}</option>`).join("")}</select>
-    <select id="kp-form"><option value="">主約＋附約</option><option value="0">只看主約</option><option value="1">只看附約</option></select>
-    <label class="toggle"><input type="checkbox" id="kp-old"> 含已停售</label></div>
+  const cos=[...new Set(P.filter(p=>!p.e&&p.form===0).map(p=>p.co))].map(k=>[k,CO[k]||k]).sort((a,b)=>a[1].localeCompare(b[1],"zh-Hant"));
+  dlg.innerHTML=`<div class="rep-form"><div class="kdlg-h"><div><span class="kstep">${rider?"加附約":"第 1 步：選主約"}</span><h3>${rider?`${esc(o.coName)}的附約`:"選擇主約"}</h3></div><button type="button" class="kdel" id="kp-x" aria-label="關閉">✕</button></div>
+    <input type="search" id="kp-q" placeholder="${rider?"輸入附約名稱關鍵字，例如 實支、手術、癌症":"輸入商品名稱或保單代號，例如 真心安、HSB"}" autocomplete="off">
+    <div class="kp-f">${rider?`<span class="kp-lock">🔒 ${esc(o.coName)}</span>`:`<select id="kp-co"><option value="">全部公司</option>${cos.map(([k,n])=>`<option value="${k}">${esc(n)}</option>`).join("")}</select>`}
+    <label class="toggle"><input type="checkbox" id="kp-old"> 含已停售</label><span class="fine" id="kp-n"></span></div>
     <div class="kp-list" id="kp-list"></div></div>`;
-  const draw=()=>{ const q=dlg.querySelector("#kp-q").value.trim(), co=dlg.querySelector("#kp-co").value, fm=dlg.querySelector("#kp-form").value, old=dlg.querySelector("#kp-old").checked;
-    const nq=q.toUpperCase();
-    let L=P.filter(p=>(old||!p.e)&&!p.grp&&(!co||p.co===co)&&(fm===""||(fm==="0"?p.form===0:p.form!==0))&&(!q||p.name.includes(q)||p.codes.some(cd=>cd.toUpperCase().startsWith(nq))));
-    L.sort((a,b)=>(b.hr-a.hr)||(a.e?1:0)-(b.e?1:0));
-    const tot=L.length; L=L.slice(0,60);
-    dlg.querySelector("#kp-list").innerHTML=(q||co)?(L.length?L.map(p=>`<button type="button" class="kp-it" data-i="${p.i}"><span><b>${esc(p.name)}</b><small>${esc(CO[p.co]||p.co)}・${FORM_LAB[p.form]||"主約"}・${TYPE_INFO[p.type].n}${p.codes.length?"・"+esc(p.codes.slice(0,2).join("/")):""}</small></span><span class="kp-tag">${p.e?`<span class="pill off">已停售</span>`:""}${p.hr?`<span class="pill on">可算保費</span>`:""}</span></button>`).join("")+(tot>60?`<p class="fine">還有 ${tot-60} 張，請輸入更精確的名稱</p>`:""):`<div class="empty">找不到。舊保單或外商保單可以關掉視窗，按「自己輸入」。</div>`):`<p class="fine">先輸入商品名稱、保單代號，或選一家公司。</p>`;
-    dlg.querySelectorAll(".kp-it").forEach(b=>b.addEventListener("click",()=>{ c.rows.push({i:+b.dataset.i}); kcSave(); dlg.close(); kRows(c); const o=document.querySelector(`#k-cl option[value="${c.id}"]`); if(o) o.textContent=`${kName(c)}（${c.rows.length} 張）`; }));
+  const draw=()=>{ const q=dlg.querySelector("#kp-q").value.trim(), co=rider?o.co:(dlg.querySelector("#kp-co").value), old=dlg.querySelector("#kp-old").checked; const nq=q.toUpperCase();
+    let L=P.filter(p=>(old||!p.e)&&!p.grp&&(!co||p.co===co)&&(rider?p.form!==0:p.form===0)&&(!q||p.name.includes(q)||TYPE_INFO[p.type].n.includes(q)||p.codes.some(cd=>cd.toUpperCase().startsWith(nq))));
+    L.sort((a,b)=>(b.hr-a.hr)||((a.e?1:0)-(b.e?1:0))||a.name.length-b.name.length);
+    const tot=L.length; dlg.querySelector("#kp-n").textContent=(q||co)?`${tot} 張`:""; L=L.slice(0,80);
+    dlg.querySelector("#kp-list").innerHTML=(q||co)?(L.length?L.map(p=>`<button type="button" class="kp-it" data-i="${p.i}"><span><b>${esc(p.name)}</b><small>${rider?"":esc(CO[p.co]||p.co)+"・"}${FORM_LAB[p.form]||"主約"}・${TYPE_INFO[p.type].n}${p.codes.length?"・"+esc(p.codes.slice(0,2).join("/")):""}</small></span><span class="kp-tag">${p.e?`<span class="pill off">已停售</span>`:""}${p.hr?`<span class="pill on">可算保費</span>`:""}</span></button>`).join("")+(tot>80?`<p class="fine">還有 ${tot-80} 張，請輸入更精確的名稱</p>`:""):`<div class="empty">找不到。舊保單可以關掉視窗，用「自己輸入」。</div>`):`<p class="fine">輸入商品名稱、保單代號，或先選一家公司。</p>`;
+    dlg.querySelectorAll(".kp-it").forEach(b=>b.addEventListener("click",()=>{ c.rows.push({i:+b.dataset.i,g:rider?o.g:kgid()}); kcSave(); dlg.close(); kRows(c); }));
   };
-  ["kp-q","kp-co","kp-form","kp-old"].forEach(id=>dlg.querySelector("#"+id).addEventListener("input",draw));
+  dlg.querySelector("#kp-q").addEventListener("input",draw); dlg.querySelector("#kp-old").addEventListener("input",draw); if(!rider) dlg.querySelector("#kp-co").addEventListener("input",draw);
   dlg.querySelector("#kp-x").addEventListener("click",()=>dlg.close());
   draw(); dlg.showModal(); setTimeout(()=>dlg.querySelector("#kp-q").focus(),50);
 }
-/* 自己輸入（沿用理賠試算的自訂保單表單） */
-function kCustOpen(c,k){
+/* 自己輸入（沿用理賠試算的自訂保單表單）；rider={g,co} 時是加在某張保單下的附約 */
+function kCustOpen(c,k,rider){
   const cb=document.getElementById("cust-box"); if(cb){cb.hidden=true;cb.innerHTML="";}
   let dlg=document.getElementById("kc-dlg"); if(!dlg){ dlg=document.createElement("dialog"); dlg.id="kc-dlg"; dlg.className="rep-dlg kdlg"; document.body.appendChild(dlg); }
-  const cur=k!=null?c.rows[k].cust:null;
-  dlg.innerHTML=`<div class="rep-form"><div class="kdlg-h"><h3>${cur?"修改":"自己輸入"}保單</h3><button type="button" class="kdel" id="kc-x" aria-label="關閉">✕</button></div>${custFormHTML(cur)}<label class="kprem"><span>年繳保費（選填，照保單上的金額）</span><input type="number" inputmode="numeric" id="kc-prem" value="${cur&&cur.prem||""}"></label></div>`;
+  const cur=k!=null?c.rows[k].cust:(rider?{name:"",co:rider.co,type:0,form:1,items:[]}:null);
+  dlg.innerHTML=`<div class="rep-form"><div class="kdlg-h"><h3>${k!=null?"修改":"自己輸入"}${rider?"附約":"保單"}</h3><button type="button" class="kdel" id="kc-x" aria-label="關閉">✕</button></div>${custFormHTML(cur)}<label class="kprem2"><span>年繳保費（選填，照保單上的金額）</span><input type="number" inputmode="numeric" id="kc-prem" value="${cur&&cur.prem||""}"></label></div>`;
   if(!cur||!cur.items||!cur.items.length) custRowAdd({k:0});
   dlg.querySelector("#ck-add").addEventListener("click",()=>custRowAdd({k:0}));
   dlg.querySelector("#ck-cancel").addEventListener("click",()=>dlg.close());
   dlg.querySelector("#kc-x").addEventListener("click",()=>dlg.close());
-  dlg.addEventListener("click",e=>{const d=e.target.closest("[data-del]"); if(d) d.closest(".ck-row").remove();});
-  dlg.querySelector("#cust-form").addEventListener("submit",e=>{ e.preventDefault(); const c2=custRead(); if(!c2.items.length){alert("至少要填一個有金額的給付項目");return;} c2.prem=+dlg.querySelector("#kc-prem").value||0; if(k!=null) c.rows[k]={cust:c2}; else c.rows.push({cust:c2}); kcSave(); dlg.close(); kRows(c); });
+  dlg.onclick=e=>{const d=e.target.closest("[data-del]"); if(d) d.closest(".ck-row").remove();};
+  dlg.querySelector("#cust-form").addEventListener("submit",e=>{ e.preventDefault(); const c2=custRead(); if(!c2.items.length){alert("至少要填一個有金額的給付項目");return;} c2.prem=+dlg.querySelector("#kc-prem").value||0;
+    if(k!=null) c.rows[k]={cust:c2,g:c.rows[k].g}; else c.rows.push({cust:c2,g:rider?rider.g:kgid()}); kcSave(); dlg.close(); kRows(c); });
   dlg.showModal();
 }
 if((location.hash.slice(1)||"")==="key") renderKey();
