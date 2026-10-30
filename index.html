@@ -708,7 +708,7 @@ section[data-view="price"]{gap:18px}
 </main>
 
 <script>
-const BUILD="1793338898";
+const BUILD="1793339384";
 const TYPE_INFO = [
   {k:0,n:"住院日額",pays:"住院一天給固定金額",d:"不看花多少錢，只看住幾天。加護病房、燒燙傷病房通常另有加給。"},
   {k:1,n:"實支實付",pays:"依收據實報實銷",d:"重點看三項限額：病房費（每天）、住院雜費（每次）、手術費（每次）。"},
@@ -1217,7 +1217,7 @@ route();
 
 /* ---------- 理賠模擬器 ---------- */
 const SIM_KEY=KEY+":sim", CFG_KEY=KEY+":cfg";
-const SIM_DEF={cause:"疾病",days:0,icu:0,burn:0,room:0,misc:0,surgIn:0,surgFee:0,surgOut:0,surgOutFee:0,opd:0,er:0,cancer:0,stage:"重度",major:0,disab:0,ltc:0,death:0,surgName:"",surgMult:0,opdFee:0,sc:""};
+const SIM_DEF={cause:"疾病",days:0,icu:0,burn:0,room:0,misc:0,surgIn:0,surgFee:0,surgOut:0,surgOutFee:0,opd:0,er:0,cancer:0,stage:"重度",major:0,disab:0,ltc:0,death:0,surgName:"",surgMult:0,opdFee:0,fxSite:"",sc:""};
 const SSH={};
 function loadSurg(n){ if(!SSH[n]) SSH[n]=fetch(`s/${n}.json?v=${BUILD}`).then(r=>r.ok?r.json():null).catch(()=>null); return SSH[n]; }
 const normS=s=>String(s||"").replace(/[\s（）()「」、，,.．·‧\-－/／]/g,"").toLowerCase();
@@ -1232,7 +1232,7 @@ function defAmt(p,R,X){ if(R&&R.b===1) return 1; if((R&&/日額/.test(R.u))||(R&
 function guessUnit(X){ const b=X&&X.ben||[]; let d=0,a=0; for(const x of b){ for(const z of (x.r||[])){ if(/^日額 ×/.test(z)) d++; else if(/^保額/.test(z)||z==="給付保額") a++; } if(/住院日額|日額保險金/.test(x.n)) d++; } return d>a?"日額":"保額"; }
 const SIM_PRESETS=[
   {k:"appx",t:"盲腸炎住院開刀",d:"疾病・住院 4 天、住院手術 1 次、自費約 5 萬",S:{cause:"疾病",days:4,room:2500,misc:30000,surgIn:1,surgFee:20000,opd:2,er:1,surgName:"闌尾切除"}},
-  {k:"car",t:"車禍骨折住院",d:"意外・住院 7 天（加護 2 天）、手術 1 次",S:{cause:"意外",days:7,icu:2,room:3000,misc:40000,surgIn:1,surgFee:30000,opd:3,er:1,surgName:"骨折復位"}},
+  {k:"car",t:"車禍骨折住院",d:"意外・住院 7 天（加護 2 天）、手術 1 次",S:{cause:"意外",days:7,icu:2,room:3000,misc:40000,surgIn:1,surgFee:30000,opd:3,er:1,surgName:"骨折復位",fxSite:"脛骨"}},
   {k:"cancer",t:"初次罹患癌症",d:"確診癌症・住院 10 天、手術 1 次、門診治療 6 次",S:{cause:"疾病",cancer:1,days:10,room:3000,misc:80000,surgIn:1,surgFee:50000,opd:6}},
   {k:"cataract",t:"白內障門診手術",d:"門診手術 1 次、自費水晶體 6 萬，未住院",S:{cause:"疾病",surgOut:1,surgOutFee:60000,opd:2,surgName:"白內障"}},
   {k:"stroke",t:"中風（重大傷病）",d:"重大傷病・住院 20 天（加護 5 天）",S:{cause:"疾病",major:1,days:20,icu:5,room:2500,misc:60000,opd:4}},
@@ -1281,6 +1281,13 @@ function simItem(b,A,S,pol,X){
   const skip=(note,kind)=>{R.note=note;R.kind=kind||"skip";return R;};
   const need=(kind)=>{R.kind=kind;R.note="金額無法自動換算";return R;};
   const pay=(v,calc,kind)=>{R.pay=Math.max(0,Math.round(v));R.calc=calc;R.kind=kind;return R;};
+  if(b.fx){ if(S.cause!=="意外") return skip("意外受傷才給付");
+    const site=normS(S.fxSite||""); if(!site) return skip("請在情境填「骨折／脫臼部位」");
+    const isDis=/脫臼/.test(n); if(isDis&&!(S.surgIn>0)) return skip("需施行脫臼開放性復位術");
+    const e=b.fx.find(([nm])=>{const a=normS(nm); return a.includes(site)||site.includes(a.replace(/[〈（(].*$/,""))||a.split(/[、或及]/).some(z=>z&&(z.includes(site)||site.includes(z)));});
+    if(!e) return skip(`${isDis?"脫臼":"骨折"}別表沒有「${S.fxSite}」`);
+    const st0=X._st||{}; const base=st0.unit?null:(st0.amt||0); if(!base) return need("骨折");
+    const v=b.fxu==="%"?base*e[1]/100:base*e[1]; return pay(v,`${e[0]} ${e[1]}${b.fxu==="%"?"%":" 倍"}：保額 ${fmtN(base)} 元 × ${e[1]}${b.fxu==="%"?"%":" 倍"}`,"骨折"); }
   const accItem=/意外|傷害|骨折|脫臼|創傷|食物中毒/.test(n)||pol.type===9;
   const byDay=r.includes("按住院天數計")&&!/前後門診|門診/.test(n);
   if(/海外|國外|旅遊|旅行/.test(n)) return skip("海外就醫才適用");
@@ -1387,6 +1394,7 @@ function simFormHTML(id){
     <div class="sim-grid">
       <label class="sim-cause"><span>事故原因</span><span class="q-sex" role="group"><button type="button" data-cause="疾病" aria-pressed="${S.cause!=="意外"}">疾病</button><button type="button" data-cause="意外" aria-pressed="${S.cause==="意外"}">意外</button></span></label>
       ${SIM_FIELDS.map(([k,l,u])=>`<label><span>${l}</span><span><input type="number" inputmode="numeric" min="0" data-sim="${k}" value="${S[k]||0}"> ${u}</span></label>`).join("")}
+      <label class="sim-surg"><span>骨折／脫臼部位（意外險骨折、脫臼別表用，例如 脛骨、股骨、肋骨、肩關節）</span><span><input type="text" data-sim="fxSite" placeholder="例如 脛骨、股骨、橈骨、肋骨" value="${esc(S.fxSite||"")}"></span></label>
       <label class="sim-surg"><span>手術名稱（有倍數表的保單會用來算手術給付）</span><span><input type="text" data-sim="surgName" list="${id}-surglist" placeholder="例如 闌尾切除、白內障" value="${esc(S.surgName||"")}"><datalist id="${id}-surglist"></datalist></span></label>
       <label><span>手術倍數（自己輸入的倍數制保單用）</span><span><input type="number" inputmode="numeric" step="0.5" min="0" data-sim="surgMult" value="${S.surgMult||0}"> 倍</span></label>
       ${SIM_FLAGS.map(([k,l])=>`<label class="sim-flag"><input type="checkbox" data-sim="${k}" ${S[k]?"checked":""}> ${l}</label>`+(k==="cancer"?`<label class="sim-flag"><span>癌症程度</span><select data-sim="stage"><option value="重度" ${S.stage!=="初期"?"selected":""}>重度（侵襲性）</option><option value="初期" ${S.stage==="初期"?"selected":""}>初期／輕度（原位癌）</option></select></label>`:"")).join("")}
@@ -1397,6 +1405,7 @@ function simDesc(S){
   const a=[S.cause==="意外"?"意外":"疾病"];
   if(S.cancer) a.push("初次確診癌症（"+(S.stage==="初期"?"初期／輕度":"重度")+"）"); if(S.major) a.push("重大傷病"); if(S.disab) a.push(`第 ${S.disab} 級失能`); if(S.ltc) a.push("長照狀態"); if(S.death) a.push("身故");
   if(S.days) a.push(`住院 ${S.days} 天`+(S.icu?`（加護 ${S.icu} 天）`:"")+(S.burn?`（燒燙傷病房 ${S.burn} 天）`:""));
+  if(S.fxSite) a.push(`${S.fxSite}骨折／脫臼`);
   if(S.surgIn) a.push(`住院手術 ${S.surgIn} 次`+(S.surgName?`（${S.surgName}）`:"")); if(S.surgOut) a.push(`門診手術 ${S.surgOut} 次`); if(S.opd) a.push(`門診 ${S.opd} 次`); if(S.er) a.push(`急診 ${S.er} 次`);
   const exp=S.room*S.days+S.misc+S.surgFee+S.surgOutFee+(S.opdFee||0); if(exp) a.push(`自費約 ${fmtN(exp)} 元`);
   return a.join("・");
@@ -1406,7 +1415,7 @@ function simWire(root,onChange){
   const sel=root.querySelector("[data-scen]"); if(sel) sel.addEventListener("change",()=>{ if(!sel.value){SIM.sc="";simSave();syncScen();onChange();return;} scenApply(sel.value); root.querySelectorAll("[data-sim]").forEach(e=>{const v=SIM[e.dataset.sim]; if(e.type==="checkbox") e.checked=!!v; else e.value=v||(e.dataset.sim==="stage"?"重度":0);}); root.querySelectorAll("[data-cause]").forEach(e=>e.setAttribute("aria-pressed",e.dataset.cause===SIM.cause)); syncScen(); onChange(); });
   root.querySelectorAll("[data-preset]").forEach(b=>b.addEventListener("click",()=>{const k=b.dataset.preset; SIM=Object.assign({},SIM_DEF,k==="clear"?{}:SIM_PRESETS.find(p=>p.k===k).S); simSave(); syncScen(); root.querySelectorAll("[data-sim]").forEach(e=>{const v=SIM[e.dataset.sim]; if(e.type==="checkbox") e.checked=!!v; else e.value=v||0;}); root.querySelectorAll("[data-cause]").forEach(e=>e.setAttribute("aria-pressed",e.dataset.cause===SIM.cause)); onChange();}));
   root.querySelectorAll("[data-cause]").forEach(b=>b.addEventListener("click",()=>{SIM.cause=b.dataset.cause; root.querySelectorAll("[data-cause]").forEach(e=>e.setAttribute("aria-pressed",e.dataset.cause===SIM.cause)); simSave(); onChange();}));
-  root.querySelectorAll("[data-sim]").forEach(e=>e.addEventListener("input",()=>{const k=e.dataset.sim; SIM[k]=e.type==="checkbox"?(e.checked?1:0):((k==="stage"||k==="surgName")?e.value:Math.max(0,+e.value||0)); if(k!=="surgMult"){SIM.sc=""; const bx=root.querySelector("[data-scenbox]"); if(bx) bx.innerHTML=""; const sl=root.querySelector("[data-scen]"); if(sl) sl.value="";} if(k==="icu"||k==="burn"){if(SIM.icu+SIM.burn>SIM.days){SIM.days=SIM.icu+SIM.burn; const d=root.querySelector('[data-sim="days"]'); if(d) d.value=SIM.days;}} if(k==="days"&&SIM.icu+SIM.burn>SIM.days){SIM.icu=Math.min(SIM.icu,SIM.days);SIM.burn=Math.max(0,Math.min(SIM.burn,SIM.days-SIM.icu)); root.querySelector('[data-sim="icu"]').value=SIM.icu; root.querySelector('[data-sim="burn"]').value=SIM.burn;} simSave(); onChange();}));
+  root.querySelectorAll("[data-sim]").forEach(e=>e.addEventListener("input",()=>{const k=e.dataset.sim; SIM[k]=e.type==="checkbox"?(e.checked?1:0):((k==="stage"||k==="surgName"||k==="fxSite")?e.value:Math.max(0,+e.value||0)); if(k!=="surgMult"){SIM.sc=""; const bx=root.querySelector("[data-scenbox]"); if(bx) bx.innerHTML=""; const sl=root.querySelector("[data-scen]"); if(sl) sl.value="";} if(k==="icu"||k==="burn"){if(SIM.icu+SIM.burn>SIM.days){SIM.days=SIM.icu+SIM.burn; const d=root.querySelector('[data-sim="days"]'); if(d) d.value=SIM.days;}} if(k==="days"&&SIM.icu+SIM.burn>SIM.days){SIM.icu=Math.min(SIM.icu,SIM.days);SIM.burn=Math.max(0,Math.min(SIM.burn,SIM.days-SIM.icu)); root.querySelector('[data-sim="icu"]').value=SIM.icu; root.querySelector('[data-sim="burn"]').value=SIM.burn;} simSave(); onChange();}));
 }
 function simRowsHTML(res,showAll){
   const paid=res.rows.filter(r=>r.pay>0), other=res.rows.filter(r=>!(r.pay>0));
@@ -1793,7 +1802,7 @@ const SCN=[
   cost:[["住院診療","健保",0],["雙人房差額 2,500 × 5 天","自費",12500],["雜費","自費",5000]],src:["gen"]},
  {k:"ankle_sprain",cat:"意外",t:"腳踝扭傷 打石膏",d:"意外・急診＋門診 4 次",S:{cause:"意外",er:1,opd:4,opdFee:3000},
   cost:[["急診、X 光、石膏","健保",0],["護具、部分負擔","自費",3000]],src:["gen"]},
- {k:"ankle_fx",cat:"意外",t:"腳踝骨折 開刀打鋼板",d:"意外・住院 3 天",S:{cause:"意外",days:3,room:2500,misc:8000,surgIn:1,surgFee:50000,er:1,opd:4,surgName:"骨折開放性復位"},
+ {k:"ankle_fx",cat:"意外",t:"腳踝骨折 開刀打鋼板",d:"意外・住院 3 天",S:{fxSite:"脛骨",cause:"意外",days:3,room:2500,misc:8000,surgIn:1,surgFee:50000,er:1,opd:4,surgName:"骨折開放性復位"},
   cost:[["骨折復位手術","健保",0],["自費鈦合金骨板、骨釘","自費",50000],["雙人房差額 2,500 × 3 天","自費",7500],["雜費、助行器","自費",8000]],src:["gen"]},
  {k:"cut",cat:"意外",t:"手指切割傷 縫合",d:"意外・急診",S:{cause:"意外",er:1,surgOut:1,surgOutFee:1500,opd:2,surgName:"縫合"},
   cost:[["急診縫合","健保",0],["美容縫線、敷料","自費",1500]],src:["gen"]},
@@ -1902,9 +1911,9 @@ const SCN=[
   cost:[["燒燙傷病房、清創植皮","健保",0],["人工皮、生物敷料、壓力衣（自費）","自費",150000],["植皮手術自費耗材","自費",100000],["病房差額 2,500 × 20 天","自費",50000]],src:["gen"]},
  {k:"tbi",cat:"意外",t:"車禍 顱內出血 開顱手術",d:"意外・加護病房 7 天、住院共 20 天，可能失能",S:{cause:"意外",days:20,icu:7,room:2500,misc:60000,surgIn:1,surgFee:80000,opd:6,er:1,disab:3,surgName:"開顱"},
   cost:[["急診、開顱手術、加護病房、復健","健保",0],["自費止血、顱骨修補板","自費",80000],["雙人房差額 2,500 × 13 天","自費",32500],["雜費、營養品","自費",60000]],src:["gen"]},
- {k:"multi_fx",cat:"意外",t:"車禍 多處骨折（骨盆＋大腿）",d:"意外・加護病房 2 天、住院共 14 天",S:{cause:"意外",days:14,icu:2,room:2500,misc:30000,surgIn:2,surgFee:200000,opd:8,er:1,surgName:"骨折開放性復位"},
+ {k:"multi_fx",cat:"意外",t:"車禍 多處骨折（骨盆＋大腿）",d:"意外・加護病房 2 天、住院共 14 天",S:{fxSite:"股骨",cause:"意外",days:14,icu:2,room:2500,misc:30000,surgIn:2,surgFee:200000,opd:8,er:1,surgName:"骨折開放性復位"},
   cost:[["骨折復位固定手術、加護病房","健保",0],["自費骨板、骨釘、骨水泥（新型 10～20 萬／處）","自費",200000],["雙人房差額 2,500 × 12 天","自費",30000],["雜費、輪椅、復健","自費",30000]],src:["udn","gen"]},
- {k:"hip_fx",cat:"意外",t:"長輩跌倒 髖部骨折 人工關節",d:"意外・住院 7 天",S:{cause:"意外",days:7,room:2500,misc:20000,surgIn:1,surgFee:100000,opd:4,er:1,surgName:"人工髖關節"},
+ {k:"hip_fx",cat:"意外",t:"長輩跌倒 髖部骨折 人工關節",d:"意外・住院 7 天",S:{fxSite:"股骨",cause:"意外",days:7,room:2500,misc:20000,surgIn:1,surgFee:100000,opd:4,er:1,surgName:"人工髖關節"},
   cost:[["半髖或全髖置換手術","健保",0],["自費人工髖關節差額","自費",100000],["雙人房差額 2,500 × 7 天","自費",17500],["雜費、助行器、看護（未計）","自費",20000]],src:["tw","gen"]},
  {k:"pneumonia",cat:"住院",t:"成人肺炎住院",d:"住院 7 天",S:{cause:"疾病",days:7,room:2500,misc:10000,opd:2,er:1},
   cost:[["住院診療、抗生素","健保",0],["雙人房差額 2,500 × 7 天","自費",17500],["自費藥物、雜費","自費",10000]],src:["faq","gen"]},
@@ -1928,7 +1937,7 @@ const SCN=[
   cost:[["移植手術、加護病房（健保）","健保",0],["自費耗材、活體捐贈相關費用（50～100 萬）","自費",500000],["雙人房差額 2,500 × 23 天","自費",57500],["雜費、營養","自費",100000],["自費用藥","自費",200000]],src:["gen"]},
  {k:"dementia",cat:"長照",t:"失智症 需長期照顧",d:"符合長照狀態（認知障礙）、不住院",S:{cause:"疾病",ltc:1,opdFee:480000,opd:6},
   cost:[["門診、健保用藥","健保",0],["日照中心或機構每月約 3～5 萬 × 12 個月","自費",480000]],src:["gen"]},
- {k:"sci",cat:"失能",t:"脊髓損傷 下半身癱瘓",d:"意外・加護病房 5 天、住院共 30 天，第 2 級失能、長照",S:{cause:"意外",days:30,icu:5,room:2500,misc:80000,surgIn:1,surgFee:200000,opd:12,disab:2,ltc:1,opdFee:360000,surgName:"脊椎"},
+ {k:"sci",cat:"失能",t:"脊髓損傷 下半身癱瘓",d:"意外・加護病房 5 天、住院共 30 天，第 2 級失能、長照",S:{fxSite:"椎骨",cause:"意外",days:30,icu:5,room:2500,misc:80000,surgIn:1,surgFee:200000,opd:12,disab:2,ltc:1,opdFee:360000,surgName:"脊椎"},
   cost:[["脊椎手術、加護病房、復健","健保",0],["脊椎固定特材（自費）","自費",200000],["雙人房差額 2,500 × 25 天","自費",62500],["雜費、輪椅、居家改裝","自費",80000],["看護／長照每月 3 萬 × 12 個月","自費",360000]],src:["udn","gen"]},
 
  {k:"appendix",cat:"常見手術",t:"急性闌尾炎（盲腸炎）腹腔鏡手術",d:"急診後當天開刀，住院 3 天",S:{cause:"疾病",days:3,room:2500,misc:15000,surgIn:1,surgFee:30000,opd:2,er:1,surgName:"闌尾切除"},
@@ -1939,7 +1948,7 @@ const SCN=[
   cost:[["疝氣修補手術、麻醉","健保",0],["自費人工網膜、固定釘","自費",30000],["雙人房差額 2,500 × 2 天","自費",5000]],src:["faq","gen"]},
  {k:"hemo",cat:"常見手術",t:"痔瘡 微創手術",d:"住院 2 天",S:{cause:"疾病",days:2,room:2500,misc:5000,surgIn:1,surgFee:40000,opd:2,surgName:"痔瘡"},
   cost:[["傳統痔瘡切除","健保",0],["微創器械（環狀切除器、雷射等，自費）","自費",40000],["雙人房差額 2,500 × 2 天","自費",5000]],src:["faq","gen"]},
- {k:"fracture",cat:"意外",t:"車禍 小腿骨折 鋼板固定",d:"意外・急診、住院 5 天、自費骨板",S:{cause:"意外",days:5,room:2500,misc:20000,surgIn:1,surgFee:80000,opd:4,er:1,surgName:"骨折開放性復位"},
+ {k:"fracture",cat:"意外",t:"車禍 小腿骨折 鋼板固定",d:"意外・急診、住院 5 天、自費骨板",S:{fxSite:"橈骨",cause:"意外",days:5,room:2500,misc:20000,surgIn:1,surgFee:80000,opd:4,er:1,surgName:"骨折開放性復位"},
   cost:[["骨折復位手術、麻醉、健保骨板","健保",0],["新型自費骨板、骨釘（差額）","自費",80000],["雙人房差額 2,500 × 5 天","自費",12500],["急診、復健門診 4 次、護具","自費",20000]],src:["udn","faq","gen"]},
  {k:"cataract",cat:"門診手術",t:"白內障 多焦點人工水晶體（單眼）",d:"門診手術，不住院",S:{cause:"疾病",surgOut:1,surgOutFee:70000,opd:2,surgName:"白內障"},
   cost:[["白內障超音波乳化手術、健保基本水晶體","健保",0],["多焦點人工水晶體差額（單眼）","自費",70000],["術前術後門診","自費",1000]],src:["tw","faq"]},
