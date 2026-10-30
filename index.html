@@ -630,7 +630,7 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 </main>
 
 <script>
-const BUILD="1793333171";
+const BUILD="1793333267";
 const TYPE_INFO = [
   {k:0,n:"住院日額",pays:"住院一天給固定金額",d:"不看花多少錢，只看住幾天。加護病房、燒燙傷病房通常另有加給。"},
   {k:1,n:"實支實付",pays:"依收據實報實銷",d:"重點看三項限額：病房費（每天）、住院雜費（每次）、手術費（每次）。"},
@@ -1622,16 +1622,13 @@ function buildReport(boxId){
   const L=LAST_SIM; if(!L) return;
   let dlg=document.getElementById("rep-dlg");
   if(!dlg){ dlg=document.createElement("dialog"); dlg.id="rep-dlg"; dlg.className="rep-dlg"; document.body.appendChild(dlg); }
-  const ag=agentGet();
   dlg.innerHTML=`<form method="dialog" class="rep-form"><h3>產生客戶建議報告</h3>
     <label><span>客戶稱呼</span><input type="text" id="rp-name" placeholder="例如 王先生（可留空）"></label>
-    <label><span>業務員姓名</span><input type="text" id="rp-agent" value="${esc(ag.name||"")}" placeholder="會印在報告最後"></label>
-    <label><span>電話／LINE ID</span><input type="text" id="rp-tel" value="${esc(ag.tel||"")}" placeholder="例如 0912-345-678"></label>
     <label><span>一句話給客戶的建議（選填）</span><input type="text" id="rp-note" placeholder="例如 建議先補實支實付與癌症一次金"></label>
-    <p class="fine">報告會用瀏覽器的列印功能產生，選「儲存為 PDF」即可。業務員資料會記在這台裝置。</p>
+    <p class="fine">報告會用瀏覽器的列印功能產生，選「儲存為 PDF」即可。</p>
     <div class="actions"><button type="button" class="btn" id="rp-go">產生報告</button><button type="button" class="btn ghost" id="rp-x">取消</button></div></form>`;
   dlg.querySelector("#rp-x").addEventListener("click",()=>dlg.close());
-  dlg.querySelector("#rp-go").addEventListener("click",()=>{ const a={name:dlg.querySelector("#rp-agent").value.trim(),tel:dlg.querySelector("#rp-tel").value.trim()}; try{localStorage.setItem(AGENT_KEY,JSON.stringify(a))}catch(e){} dlg.close(); reportPrint(boxId,dlg.querySelector("#rp-name").value.trim(),a,dlg.querySelector("#rp-note").value.trim()); });
+  dlg.querySelector("#rp-go").addEventListener("click",()=>{ dlg.close(); reportPrint(boxId,dlg.querySelector("#rp-name").value.trim(),{},dlg.querySelector("#rp-note").value.trim()); });
   dlg.showModal();
 }
 function reportPrint(boxId,name,ag,note){
