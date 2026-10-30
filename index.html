@@ -401,7 +401,8 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 .cmp-detail{border:1px solid var(--line);border-radius:16px;background:var(--surface);padding:12px 18px}.cmp-detail>summary{cursor:pointer;font-weight:800;font-size:1.1rem;color:var(--accent)}.cmp-detail[open]>summary{margin-bottom:12px}
 .rules{border:1px solid var(--line);border-radius:12px;padding:10px 16px;background:var(--surface);margin-bottom:12px}.rules>summary{cursor:pointer;font-weight:700;color:var(--accent)}.rules ul{margin:8px 0 4px;padding-left:20px;line-height:1.7;font-size:.95rem}.cmp-warn p{margin:4px 0;background:var(--warn-soft);border-left:3px solid var(--warn);padding:6px 10px;border-radius:6px;font-size:.9rem}.cmp-co{display:grid;gap:4px;margin-bottom:8px}.cmp-co>b{font-size:.85rem;color:var(--muted)}.cmp-comp.rider{padding-left:14px}.cmp-comp i,.fl{font-style:normal;font-size:.72rem;background:var(--accent-soft);border-radius:5px;padding:1px 6px;margin-right:6px;vertical-align:middle}
 .scen-cat h4{margin:10px 0 6px;font-size:.95rem;color:var(--muted)}.chip small{display:block;font-weight:400;font-size:.72rem;color:var(--muted)}.chip.on{background:var(--accent);color:var(--accent-ink)}.chip.on small{color:var(--accent-ink);opacity:.85}.scen-sel{appearance:auto;max-width:100%;font-size:.9rem}.scen-cost{border:1px solid var(--accent);border-radius:12px;padding:12px 16px;background:var(--surface);display:grid;gap:8px}.scen-h b{display:block;font-size:1.05rem}.scen-h span{color:var(--muted);font-size:.9rem}.scen-rows{display:grid;border:1px solid var(--line);border-radius:10px;overflow:hidden}.scen-total{display:flex;justify-content:space-between;align-items:baseline;background:var(--warn-soft);border-radius:8px;padding:8px 12px}.scen-total b{font-size:1.4rem;color:var(--warn);font-variant-numeric:tabular-nums}.adv h3{font-size:1.15rem;margin:14px 0 8px}
-#report{display:none}@media print{body.printing>*:not(#report){display:none!important}body.printing #report{display:block}#report .report{font:15px/1.6 "Noto Sans TC",system-ui,sans-serif;color:#000;background:#fff;padding:0 8mm}#report h1{font-size:22px;margin:0 0 4px}#report h2{font-size:17px;margin:18px 0 6px;border-left:4px solid #333;padding-left:8px}#report .rep-meta{color:#555;margin:0 0 10px}#report .rep-tbl{width:100%;border-collapse:collapse;font-size:14px}#report .rep-tbl th,#report .rep-tbl td{border:1px solid #999;padding:6px 8px;text-align:left;vertical-align:top}#report .rep-tbl td:last-child{text-align:right;white-space:nowrap}#report .rep-tbl .tot td{font-weight:700;background:#eee}#report .rep-sub{color:#555;font-size:12px;margin-top:4px}#report .rep-adv li{margin-bottom:6px}#report .rep-fine{font-size:11px;color:#555;margin-top:16px}@page{margin:14mm}}
+.rep-dlg{border:0;border-radius:16px;padding:0;max-width:min(92vw,520px);box-shadow:var(--shadow);background:var(--surface);color:var(--ink)}.rep-dlg::backdrop{background:rgba(0,0,0,.45)}.rep-form{padding:20px 22px;display:grid;gap:12px}.rep-form h3{margin:0}.rep-form label{display:grid;gap:4px;font-size:.9rem;color:var(--muted)}.rep-form input{padding:10px 12px;border:1px solid var(--line);border-radius:10px;font-size:1rem;background:var(--bg);color:var(--ink)}
+#report{display:none}@media print{body.printing{background:#fff!important;background-image:none!important}body.printing>*:not(#report){display:none!important}body.printing #report{display:block}#report .report{font:15px/1.6 "Noto Sans TC",system-ui,sans-serif;color:#000;background:#fff;padding:0 8mm}#report h1{font-size:22px;margin:0 0 4px}#report h2{font-size:17px;margin:18px 0 6px;border-left:4px solid #333;padding-left:8px}#report .rep-meta{color:#555;margin:0 0 10px}#report .rep-tbl{width:100%;border-collapse:collapse;font-size:14px}#report .rep-tbl th,#report .rep-tbl td{border:1px solid #999;padding:6px 8px;text-align:left;vertical-align:top}#report .rep-tbl td:last-child{text-align:right;white-space:nowrap}#report .rep-tbl .tot td{font-weight:700;background:#eee}#report .rep-sub{color:#555;font-size:12px;margin-top:4px}#report .rep-adv li{margin-bottom:6px}#report .rep-fine{font-size:11px;color:#555;margin-top:16px}#report .rep-map{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}#report .rep-cell{border:1px solid #999;border-radius:8px;padding:8px 10px;display:grid;gap:2px}#report .rep-cell.has{background:#e8f3ef}#report .rep-cell.no{background:#fbf0dc}#report .rep-cell b{font-size:15px}#report .rep-cell span{font-size:13px}#report .rep-cell small{font-size:12px;color:#444}#report .rep-note{border-left:4px solid #2a7a72;padding:6px 10px;background:#f2f7f6;margin:8px 0;font-size:15px}#report .rep-agent{margin-top:14px;font-weight:700;font-size:15px}@page{margin:14mm}}
 .surg-tbl{border:1px solid var(--line);border-radius:12px;padding:10px 16px;background:var(--surface)}.surg-tbl>summary{cursor:pointer;font-weight:700;color:var(--accent)}.surg-tbl>summary small{display:block;font-weight:400;color:var(--muted);font-size:.85em}.surg-tbl input[type=search]{width:100%;max-width:28em;margin:10px 0;padding:8px 10px;border:1px solid var(--line);border-radius:8px;font-size:1rem}
 .ben-h{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:4px}
 .ben-h h3{margin:0}
@@ -626,7 +627,7 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 </main>
 
 <script>
-const BUILD="1793330146";
+const BUILD="1793332768";
 const TYPE_INFO = [
   {k:0,n:"住院日額",pays:"住院一天給固定金額",d:"不看花多少錢，只看住幾天。加護病房、燒燙傷病房通常另有加給。"},
   {k:1,n:"實支實付",pays:"依收據實報實銷",d:"重點看三項限額：病房費（每天）、住院雜費（每次）、手術費（每次）。"},
@@ -1491,6 +1492,7 @@ async function renderMineMap(boxId,list,r){
   for(const b of BUNDLE_PRESETS){ const rb=await bundleCalc(b); const cards=cmapCards(rb.M); const cov=miss.filter(c=>cards.find(x=>x.key===c.key).has); res.push({b,rb,cov}); }
   if(!fx||!document.getElementById(boxId+"-fix")) return;
   const full=res.filter(x=>x.cov.length===miss.length).sort((a,b)=>a.rb.prem-b.rb.prem); const best=full[0]||res.sort((a,b)=>b.cov.length-a.cov.length||a.rb.prem-b.rb.prem)[0];
+  if(LAST_SIM) LAST_SIM.fix={res,best,miss};
   fx.innerHTML=`<h4 style="margin:6px 0 0">缺的部分可以怎麼補（${CMP.age} 歲${CMP.s}性試算）</h4>`+res.map(x=>`<div class="fx ${x===best?"best":""}"><span><b>${esc(x.b.name)}</b>${x===best?` <span class="pill on">建議</span>`:""}<span class="cov">補得到：${x.cov.length?x.cov.map(c=>c.t).join("、"):"—"}${x.cov.length<miss.length?`（還缺 ${miss.filter(c=>!x.cov.includes(c)).map(c=>c.t).join("、")}）`:""}</span></span><span class="pr">NT$ ${fmtN(x.rb.prem)}<small class="fine"> ／年</small></span></div>`).join("")+`<div class="actions"><a class="btn ghost" href="#cmp" data-sel="${BUNDLE_PRESETS.indexOf(best.b)}">到比較頁看這幾組 ›</a><span class="fine">組合是示意搭配，實際投保條件依各公司規定。</span></div>`;
   fx.querySelector("[data-sel]").addEventListener("click",()=>{CMP.sel=+fx.querySelector("[data-sel]").dataset.sel; cmpSave();});
 }
@@ -1565,18 +1567,45 @@ function cmpDecode(s){ try{ s=s.replace(/-/g,"+").replace(/_/g,"/"); const j=JSO
 let LAST_SIM=null;
 function simSelfCost(){ const sc=SIM.sc&&SCN.find(s=>s.k===SIM.sc); if(sc) return scenCost(sc); return SIM.room*SIM.days+SIM.misc+SIM.surgFee+SIM.surgOutFee+(SIM.opdFee||0); }
 async function calcAdvice(list){ const b={items:list.map(p=>p.cust?{cust:p.id}:{i:p.i,plan:(CFG[p.vers[0].id]||{}).plan||"",amt:(CFG[p.vers[0].id]||{}).amt||0})}; const saveS=CMP.s,saveA=CMP.age; const r=await bundleCalc(b); return r; }
+const AGENT_KEY="mpe-agent";
+function agentGet(){ try{ return JSON.parse(localStorage.getItem(AGENT_KEY))||{} }catch(e){ return {} } }
 function buildReport(boxId){
-  const L=LAST_SIM; if(!L) return; const name=prompt("客戶稱呼（會印在報告上，可留空）","")||""; const sc=SCN.find(s=>s.k===SIM.sc);
+  const L=LAST_SIM; if(!L) return;
+  let dlg=document.getElementById("rep-dlg");
+  if(!dlg){ dlg=document.createElement("dialog"); dlg.id="rep-dlg"; dlg.className="rep-dlg"; document.body.appendChild(dlg); }
+  const ag=agentGet();
+  dlg.innerHTML=`<form method="dialog" class="rep-form"><h3>產生客戶建議報告</h3>
+    <label><span>客戶稱呼</span><input type="text" id="rp-name" placeholder="例如 王先生（可留空）"></label>
+    <label><span>業務員姓名</span><input type="text" id="rp-agent" value="${esc(ag.name||"")}" placeholder="會印在報告最後"></label>
+    <label><span>電話／LINE ID</span><input type="text" id="rp-tel" value="${esc(ag.tel||"")}" placeholder="例如 0912-345-678"></label>
+    <label><span>一句話給客戶的建議（選填）</span><input type="text" id="rp-note" placeholder="例如 建議先補實支實付與癌症一次金"></label>
+    <p class="fine">報告會用瀏覽器的列印功能產生，選「儲存為 PDF」即可。業務員資料會記在這台裝置。</p>
+    <div class="actions"><button type="button" class="btn" id="rp-go">產生報告</button><button type="button" class="btn ghost" id="rp-x">取消</button></div></form>`;
+  dlg.querySelector("#rp-x").addEventListener("click",()=>dlg.close());
+  dlg.querySelector("#rp-go").addEventListener("click",()=>{ const a={name:dlg.querySelector("#rp-agent").value.trim(),tel:dlg.querySelector("#rp-tel").value.trim()}; try{localStorage.setItem(AGENT_KEY,JSON.stringify(a))}catch(e){} dlg.close(); reportPrint(boxId,dlg.querySelector("#rp-name").value.trim(),a,dlg.querySelector("#rp-note").value.trim()); });
+  dlg.showModal();
+}
+function reportPrint(boxId,name,ag,note){
+  const L=LAST_SIM; const sc=SCN.find(s=>s.k===SIM.sc);
   const rows=[...document.querySelectorAll(`#${boxId} .msp`)].map(d=>({t:d.querySelector(".msp-h b").textContent, a:d.querySelector(".msp-a").textContent, rows:[...d.querySelectorAll(".sr.on")].map(r=>r.innerText.replace(/\n/g," ／ "))}));
   const adv=L.M?gapAdvice(L.M,{cost:L.selfCost,pay:L.grand,gap:L.selfCost-L.grand}):[];
   const today=new Date(); const dateStr=`${today.getFullYear()-1911}/${String(today.getMonth()+1).padStart(2,"0")}/${String(today.getDate()).padStart(2,"0")}`;
-  const html=`<article class="report"><h1>醫療保障健診與理賠試算建議</h1><p class="rep-meta">${name?esc(name)+"　":""}日期：民國 ${dateStr}</p>
-    <h2>一、假設情境${sc?`：${esc(sc.t)}`:""}</h2><p>${esc(simDesc(SIM))}</p>${sc?`<table class="rep-tbl"><tr><th>項目</th><th>健保／自費</th><th>金額</th></tr>${sc.cost.map(c=>`<tr><td>${esc(c[0])}</td><td>${c[1]}</td><td>${c[1]==="自費"?fmtN(c[2])+" 元":"—"}</td></tr>`).join("")}<tr class="tot"><td colspan="2">預估自費合計</td><td>${fmtN(L.selfCost)} 元</td></tr></table>`:(L.selfCost?`<p>預估自費合計 ${fmtN(L.selfCost)} 元。</p>`:"")}
-    <h2>二、手上保單可以領多少</h2><table class="rep-tbl"><tr><th>保單</th><th>可領（約）</th></tr>${rows.map(r=>`<tr><td>${esc(r.t)}${r.rows.length?`<div class="rep-sub">${r.rows.map(x=>esc(x)).join("<br>")}</div>`:""}</td><td>${esc(r.a)}</td></tr>`).join("")}<tr class="tot"><td>合計可領</td><td>${fmtN(L.grand)} 元${L.per?`（另每期 ${fmtN(L.per)} 元）`:""}</td></tr>${L.selfCost?`<tr class="tot"><td>${L.grand>=L.selfCost?"保單足以支付這次自費":"這次還要自己付"}</td><td>${L.grand>=L.selfCost?"—":fmtN(L.selfCost-L.grand)+" 元"}</td></tr>`:""}</table>
-    <h2>三、保障缺口與建議</h2>${adv.length?`<ol class="rep-adv">${adv.map(([k,v])=>`<li><b>${esc(k)}</b>：${esc(v)}</li>`).join("")}</ol>`:"<p>以目前情境來看，主要保障都有。</p>"}
-    <h2>四、保障內容總覽</h2>${L.M?`<table class="rep-tbl">${CMP_METRICS.filter(m=>m[0]!=="prem").map(([k,lab,u])=>`<tr><td>${esc(lab)}</td><td>${L.M[k]>0?fmtN(L.M[k])+" "+u:"—"}</td></tr>`).join("")}</table>`:""}
-    <p class="rep-fine">${sc?`費用參考來源：${(sc.src||[]).map(s=>esc(SCN_SRC[s]||s)).join("；")}。`:""}理賠金額依各保單條款與輸入的保額自動換算，實支實付以自費金額與限額取較低者；實際理賠以條款、收據與保險公司審核為準。本報告僅供規劃參考，不構成投保建議或保證。</p></article>`;
-  let rep=document.getElementById("report"); if(!rep){rep=document.createElement("div"); rep.id="report"; document.body.appendChild(rep);} rep.innerHTML=html; document.body.classList.add("printing"); window.print(); setTimeout(()=>document.body.classList.remove("printing"),1000);
+  const cards=L.M?cmapCards(L.M):null;
+  const mapHTML=cards?`<div class="rep-map">${cards.map(c=>`<div class="rep-cell ${c.has?"has":"no"}"><b>${c.t}</b><span>${c.has?"✓ 已納入":"！ 尚未納入"}</span><small>${c.amt||c.d}</small></div>`).join("")}</div>`:"";
+  const fix=L.fix; let fixHTML="";
+  if(fix&&fix.miss.length){ fixHTML=`<h2>五、建議補強的組合（${CMP.age} 歲${CMP.s}性試算）</h2><p>目前缺少：${fix.miss.map(c=>c.t).join("、")}。</p><table class="rep-tbl"><tr><th>組合</th><th>可以補到</th><th>年繳保費</th></tr>${fix.res.map(x=>`<tr${x===fix.best?' class="tot"':''}><td>${esc(x.b.name)}${x===fix.best?"（建議）":""}</td><td>${x.cov.length?x.cov.map(c=>c.t).join("、"):"—"}</td><td>${fmtN(x.rb.prem)} 元</td></tr>`).join("")}</table>
+    <p class="rep-sub">「${esc(fix.best.b.name)}」內容：${fix.best.rb.comps.map(c=>`${esc(c.name)}（${esc(c.co||"")}${c.prem!=null?"，年繳 "+fmtN(c.prem)+" 元":""}）`).join("；")}。組合為示意搭配，實際投保條件、保額與保費依各公司核保與費率為準。</p>`; }
+  const html=`<article class="report"><h1>醫療保障健診與理賠試算建議</h1><p class="rep-meta">${name?esc(name)+"　":""}日期：民國 ${dateStr}${ag.name?`　製作：${esc(ag.name)}`:""}</p>
+    ${note?`<p class="rep-note">${esc(note)}</p>`:""}
+    <h2>一、目前的保障地圖</h2>${mapHTML}<p class="rep-sub">共 ${L.list.length} 張保單${L.adv&&L.adv.prem>0?`，可算出的年繳保費合計約 ${fmtN(L.adv.prem)} 元`:""}。</p>
+    <h2>二、假設情境${sc?`：${esc(sc.t)}`:""}</h2><p>${esc(simDesc(SIM))}</p>${sc?`<table class="rep-tbl"><tr><th>項目</th><th>健保／自費</th><th>金額</th></tr>${sc.cost.map(c=>`<tr><td>${esc(c[0])}</td><td>${c[1]}</td><td>${c[1]==="自費"?fmtN(c[2])+" 元":"—"}</td></tr>`).join("")}<tr class="tot"><td colspan="2">預估自費合計</td><td>${fmtN(scenCost(sc))} 元</td></tr></table>`:""}
+    <h2>三、手上保單可以領多少</h2><table class="rep-tbl"><tr><th>保單</th><th>可領（約）</th></tr>${rows.map(r=>`<tr><td>${esc(r.t)}${r.rows.length?`<div class="rep-sub">${r.rows.map(x=>esc(x)).join("<br>")}</div>`:""}</td><td>${esc(r.a)}</td></tr>`).join("")}<tr class="tot"><td>合計可領</td><td>${fmtN(L.grand)} 元${L.per?`（另每期 ${fmtN(L.per)} 元）`:""}</td></tr>${L.selfCost?`<tr class="tot"><td>這次預估自費 ${fmtN(L.selfCost)} 元，缺口</td><td>${fmtN(Math.max(0,L.selfCost-L.grand))} 元</td></tr>`:""}</table>
+    <h2>四、保障缺口與建議</h2>${adv.length?`<ol class="rep-adv">${adv.map(([k,v])=>`<li><b>${esc(k)}</b>：${esc(v)}</li>`).join("")}</ol>`:"<p>以目前情境來看，主要保障都有。</p>"}
+    ${fixHTML}
+    <h2>${fixHTML?"六":"五"}、保障內容總覽</h2>${L.M?`<table class="rep-tbl">${CMP_METRICS.filter(m=>m[0]!=="prem").map(([k,lab,u])=>`<tr><td>${esc(lab)}</td><td>${L.M[k]>0?fmtN(L.M[k])+" "+u:"—"}</td></tr>`).join("")}</table>`:""}
+    ${ag.name||ag.tel?`<p class="rep-agent">有任何問題歡迎聯絡：${esc(ag.name||"")}${ag.tel?"　"+esc(ag.tel):""}</p>`:""}
+    <p class="rep-fine">${sc?`費用參考來源：${(sc.src||[]).map(s=>esc(SCN_SRC[s]||s)).join("；")}。`:""}理賠金額依各保單條款與輸入的保額自動換算，實支實付以自費金額與限額取較低者；實際理賠以條款、收據與保險公司審核為準。本報告僅供規劃參考，不構成要約或承諾。</p></article>`;
+  let rep=document.getElementById("report"); if(!rep){rep=document.createElement("div"); rep.id="report"; document.body.appendChild(rep);} rep.innerHTML=html; document.body.classList.add("printing"); const done=()=>document.body.classList.remove("printing"); addEventListener("afterprint",done,{once:true}); setTimeout(()=>{ window.print(); setTimeout(done,4000); },50);
 }
 
 /* ---------- 真實情境庫：台灣常見治療的健保／自費拆解 ---------- */
