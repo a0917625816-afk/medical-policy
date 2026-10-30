@@ -281,6 +281,7 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 .calc-f label{display:grid;gap:4px;font-size:.85rem;font-weight:700}
 .calc-f input,.calc-f select{padding:9px 10px;border:1.5px solid var(--line);border-radius:8px;background:var(--surface);font-size:1rem;color:var(--ink);min-width:0}
 .calc-out{display:grid;gap:6px}
+.cl-bar{display:flex;gap:8px;margin:8px 0}.cl-bar input{flex:1;min-width:0;padding:10px 12px;border:1px solid var(--line);border-radius:10px;font-size:1rem;background:var(--surface);color:var(--ink)}.cl-out{margin-top:10px}.cl-list{display:grid;gap:8px}.cl-art{border:1px solid var(--line);border-radius:10px;background:var(--surface)}.cl-art>summary{cursor:pointer;padding:10px 14px;font-weight:700}.cl-body{padding:0 14px 12px;font-size:.93rem;line-height:1.8;color:var(--ink)}.cl-more{margin-top:6px}.cl-more>summary{cursor:pointer;color:var(--accent);font-size:.85rem}
 .q-chart{grid-column:1/-1}.q-chart:empty{display:none}
 .pchart{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:grid;gap:6px}.pchart-h{display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 12px;font-size:.92rem}.pchart-h span{color:var(--muted)}.pchart-h span b{color:var(--accent)}.pchart svg{width:100%;height:auto;display:block}.pchart .ln{fill:none;stroke:var(--accent);stroke-width:3;stroke-linejoin:round}.pchart .gl{stroke:var(--line);stroke-width:1}.pchart .tk{font-size:12px;fill:var(--muted)}.pchart .dot{fill:var(--warn);stroke:var(--surface);stroke-width:2}.pchart .cur{font-size:12px;font-weight:700;fill:var(--ink)}
 .calc-r{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;background:var(--surface);border-radius:8px;padding:10px 14px}
@@ -629,7 +630,7 @@ mark.hl{background:#fde2e1;color:#9b1c1c;border-radius:3px;padding:0 2px;font-we
 </main>
 
 <script>
-const BUILD="1793332892";
+const BUILD="1793333171";
 const TYPE_INFO = [
   {k:0,n:"住院日額",pays:"住院一天給固定金額",d:"不看花多少錢，只看住幾天。加護病房、燒燙傷病房通常另有加給。"},
   {k:1,n:"實支實付",pays:"依收據實報實銷",d:"重點看三項限額：病房費（每天）、住院雜費（每次）、手術費（每次）。"},
@@ -710,7 +711,7 @@ const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(mine))}catch(e){}};
 fetch("policies.json?v="+BUILD).then(r=>r.json()).then(rows=>{
   P=rows.map((r,i)=>{const vers=r[6].split(";").map(v=>{const [id,s,e]=v.split(",");return {id,s,e:e||null}});
     const last=vers[vers.length-1];
-    return {i,co:r[0],name:r[1],type:r[2],form:r[3],term:r[4],grp:r[5],vers,s:vers[0].s,e:last.e,codes:r[7]?r[7].split(" "):[],hd:!!r[8],life:!!r[9],hr:!!r[10],
+    return {i,co:r[0],name:r[1],type:r[2],form:r[3],term:r[4],grp:r[5],vers,s:vers[0].s,e:last.e,codes:r[7]?r[7].split(" "):[],hd:!!r[8],life:!!r[9],hr:!!r[10],hc:!!r[11],
       key:(r[1]+(CO[r[0]]||"")+" "+(r[7]||"")+" "+vers.map(v=>v.id).join(" ")).toLowerCase()}});
   boot();
 }).catch(()=>{$("#count").textContent="保單資料載入失敗，請重新整理頁面。";$("#ver-tag").textContent="載入失敗"});
@@ -815,6 +816,28 @@ function wireCalc(p,R,x){
       const days=b.r.includes("按住院天數計")?"／每日":""; d.querySelector("summary").insertAdjacentHTML("beforeend",`<span class="amt">約 ${fmtN(a)} 元${days}</span>`);});
   };
   el.querySelectorAll("input,select").forEach(e=>e.addEventListener("input",run)); run();
+}
+/* ---------- 條款原文快查 ---------- */
+const CL={}; function loadClause(i){ if(!CL[i]) CL[i]=fetch(`c/${i}.json?v=${BUILD}`).then(r=>r.ok?r.json():null).catch(()=>null); return CL[i]; }
+const CL_CHIPS=[["除外責任","除外"],["等待期","三十日|30 日|三十天|九十日|90 日|等待期"],["既往症","既往|投保前|已有之"],["住院定義","「住院」"],["手術定義","「手術」"],["保證續保","保證續保|續保"],["理賠文件","申領|檢具|收據"],["契約終止","終止"],["復效","復效"],["日間住院","日間"]];
+function hlText(t,re){ return esc(t).replace(re,m=>`<mark class="hl">${m}</mark>`); }
+function renderClauses(p){
+  const box=document.getElementById("clause-box"); if(!box) return;
+  box.innerHTML=`<h3>條款原文快查</h3><p class="fine">輸入關鍵字，直接找出條款裡的那一段（資料來源：保發中心登錄的現售條款，版本 ${esc(p.vers[p.vers.length-1].id)}）。</p>
+    <div class="cl-bar"><input type="search" id="cl-q" placeholder="例如 除外、等待期、既往症、日間住院、副本"><button type="button" class="btn ghost" id="cl-go">查</button></div>
+    <div class="sim-presets" id="cl-chips">${CL_CHIPS.map(c=>`<button type="button" class="chip" data-q="${esc(c[1])}" data-l="${esc(c[0])}">${c[0]}</button>`).join("")}</div>
+    <div id="cl-out" class="cl-out"><p class="fine">載入條款中…</p></div>`;
+  let data=null;
+  const show=(q,label)=>{ const out=document.getElementById("cl-out"); if(!data){out.innerHTML=`<p class="fine">這張保單的條款原文還沒整理。</p>`;return;}
+    if(!q){ out.innerHTML=`<div class="cl-list">${data.a.map((x,k)=>`<details class="cl-art"><summary>${esc(x[0])}</summary><div class="cl-body">${esc(x[1]).replace(/\n/g,"<br>")}</div></details>`).join("")}</div>`; return; }
+    let re; try{ re=new RegExp(q.replace(/\s+/g,"|"),"g"); }catch(e){ re=new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"),"g"); }
+    const hits=data.a.filter(x=>re.test(x[0]+x[1])); re.lastIndex=0;
+    out.innerHTML=hits.length?`<p class="fine">找到 ${hits.length} 條與「${esc(label||q)}」有關的條文</p><div class="cl-list">${hits.map(x=>{const paras=x[1].split("\n"); re.lastIndex=0; const tm=re.test(x[0]); const keep=tm?paras:paras.filter(t=>{re.lastIndex=0;return re.test(t)}); const body=(keep.length?keep:paras.slice(0,3)).map(t=>{re.lastIndex=0;return hlText(t,re)}).join("<br>"); return `<details class="cl-art" open><summary>${(()=>{re.lastIndex=0;return hlText(x[0],re)})()}</summary><div class="cl-body">${body}${keep.length&&keep.length<paras.length?`<details class="cl-more"><summary>看整條</summary>${esc(x[1]).replace(/\n/g,"<br>")}</details>`:""}</div></details>`;}).join("")}</div>`
+      :`<div class="empty">條款裡找不到「${esc(label||q)}」，試試別的寫法。</div>`; };
+  loadClause(p.i).then(d=>{ data=d; show("",""); });
+  const q=document.getElementById("cl-q"); const go=()=>show(q.value.trim(),q.value.trim());
+  document.getElementById("cl-go").addEventListener("click",go); q.addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();go();}}); q.addEventListener("input",()=>{ if(!q.value.trim()) show("",""); });
+  box.querySelectorAll("#cl-chips .chip").forEach(b=>b.addEventListener("click",()=>{ q.value=b.dataset.l; box.querySelectorAll("#cl-chips .chip").forEach(x=>x.classList.toggle("on",x===b)); show(b.dataset.q,b.dataset.l); }));
 }
 /* ---------- 保費隨年齡曲線 ---------- */
 function premSeries(col,toPrem){ const pts=[]; for(let a=0;a<=100;a++){ const r=ageKey(col.a,a); if(r==null) continue; const v=toPrem(r); if(v==null) continue; pts.push([a,v]); } return pts; }
@@ -1047,6 +1070,7 @@ function renderDetail(i){
         ${p.vers.length===1?`<div><h3>商品代號</h3><p class="pid">${p.vers[0].id}</p><p class="fine">銷售期間 ${fmtD(p.vers[0].s)} ～ ${p.vers[0].e?fmtD(p.vers[0].e):"現在"}</p></div>`:`<details class="vers-d" id="vers-d"><summary>版本紀錄（共 ${p.vers.length} 版）<small>舊保單才需要看：輸入投保日期，找出你的那一版</small></summary>
           <div class="finddate"><label for="dt">投保日期（民國）</label><input id="dt" inputmode="numeric" placeholder="例如 105/03/12" autocomplete="off"><span id="dt-out" class="fine" aria-live="polite"></span></div>
           <div class="vers" id="vers">${p.vers.map((v,k)=>`<div data-k="${k}" class="${k===p.vers.length-1?"cur":""}"><span>${k===0?"初版":"第 "+k+" 次修訂"}<br><span class="pid">${v.id}</span></span><span>${fmtD(v.s)} ～ ${v.e?fmtD(v.e):"現在"}</span></div>`).join("")}</div></details>`}
+        ${p.hc?`<div id="clause-box"></div>`:""}
         <div><h3>查看官方條款</h3>
           <ol class="how">
             <li>打開保險事業發展中心「<a href="https://insprod.tii.org.tw/Query.aspx" target="_blank" rel="noopener">保險商品查詢</a>」</li>
@@ -1068,6 +1092,7 @@ function renderDetail(i){
     out.textContent=`你的是「${k===0?"初版":"第 "+k+" 次修訂"}」。`+(k!==p.vers.length-1?"上面的條款重點是依較新的版本整理，細節可能和你的版本不同。":"");
   });
   $("#share").addEventListener("click",()=>copyText(location.href,$("#share-out"),"已複製連結，可以貼到 LINE 傳給客戶。"));
+  if(p.hc) renderClauses(p);
   $("#cp").addEventListener("click",e=>{const b=e.currentTarget; navigator.clipboard.writeText(p.name).then(()=>b.textContent="已複製",()=>b.textContent=p.name);});
   if(!has) $("#add").addEventListener("click",e=>{mine.push(p.vers[0].id);save();if(CUR_ST){CFG[p.vers[0].id]={plan:CUR_ST.plan||"",amt:CUR_ST.amt||0,s:CUR_ST.s||"男",age:CUR_ST.age||30,y:CUR_ST.y||""};cfgSave();}const b=e.currentTarget;b.textContent="已加入，查看我的保單 →";b.onclick=()=>{location.hash="mine"}},{once:true});
   return true;
