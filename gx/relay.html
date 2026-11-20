@@ -1,0 +1,4 @@
+<!doctype html><meta charset="utf-8"><body>relay<script>
+window.addEventListener('message',async e=>{if(!e.data||!e.data.id)return;try{const t=await (await fetch(e.data.id+'.txt')).text();e.source.postMessage({id:e.data.id,t},'https://chatgpt.com')}catch(x){e.source.postMessage({id:e.data.id,err:String(x)},'https://chatgpt.com')}});
+if(window.opener)window.opener.postMessage({ready:1},'https://chatgpt.com');
+</script>
