@@ -16,7 +16,7 @@ for ln in open(fin, encoding='utf-8'):
     if len(p) < 2 or not re.match(r'^[\d.]+$', p[1]): continue
     n = re.sub('^' + co, '', p[0].strip())
     th.append({'n': norm(n), 'k': key(n), 'a': '年金' in n, 'r': float(p[1]), 's': len(p) > 2 and p[2] == 's'})
-rows = [r for r in json.load(open(f'{R}/v/list.json'))['rows'] if r[0] == co and r[5] == '未停售' and '利' in r[3]]
+rows = [r for r in json.load(open(f'{R}/v/list.json'))['rows'] if r[0] == co and r[5] == '未停售' and ('利' in r[3] or '利率變動' in r[1])]
 D = json.load(open(f'{R}/v/decl.json'))
 got, miss = 0, []
 for r in rows:

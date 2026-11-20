@@ -16,4 +16,5 @@
 - 第一金人壽 https://www.firstlife.com.tw/FirstWeb/ProductRateChange ：文字「第一金人壽XXX\t代碼\t2.85%」（全形英文字要 NFKC）
 - 合作金庫人壽 https://my.tcb-life.com.tw/interest-rate ：文字「代碼\t名稱\t2026/11\t4.23%」，按「下一頁」
 - 臺銀人壽 https://www.twfhclife.com.tw/商品專區/宣告利率/ ：年度表格，取當月欄
-- 安聯人壽、安達人壽：尚未找到官網逐張公告頁（待補）
+- 安達人壽：每張商品一份 PDF，https://life.chubb.com/content/dam/chubb-sites/life-chubb-com/tw-zh/documents/<商品拼音>_declared_rate.pdf（mei_mei_de、mei_mei_de_yi、jin_duo_mei、mei_mei_you、chao_mei_de、mei_mei_xin_yi），在 life.chubb.com 頁面 fetch 後存「下載」資料夾、pdftotext 取「115 年 11 月 4.25%」
+- 安聯人壽：尚未找到官網逐張公告頁（待補）
