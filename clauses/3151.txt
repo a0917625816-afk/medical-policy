@@ -1,0 +1,183 @@
+      101/07/20            101212
+          103/05/30                         103   01
+          22                 10202131810
+                      0800-087-999
+     02 2388-7676
+        www.globallife.com.tw
+      E-mail   services@globallife.com.tw
+
+
+
+
+RK        1
+1   90
+2             90
+3             90
+4
+
+
+
+
+1
+2       3
+3     40mmHg
+4   8mmHg
+5           8mmHg
+6
+
+
+
+
+1
+2
+3
+
+
+
+
+                   WHO
+
+1                             focal segmental
+2                             diffuse
+3                        membranous
+4                                  glomerulosclerosis or end stage
+
+
+
+
+1
+2
+
+3
+
+
+         RK              2
+4
+
+
+
+
+    1
+    2
+
+    3
+
+
+    4
+
+
+
+
+    1
+    2
+    3
+    4
+
+
+
+
+    1
+
+    2                                     0.02
+    3
+
+        (1)
+        (2)                        a.500 b.1000 c.2000   d.4000     Hertz
+                                   a b c d dB                     1/6 a 2b
+              2c   d        80dB
+
+    4
+
+
+
+
+                       RK             3
+1
+2
+3
+
+
+
+
+1
+2
+
+
+
+
+1
+
+2
+
+    (1)
+    (2)
+    (3)
+    (4)
+    (5)
+    (6)
+
+
+
+
+    1      2mg/dL
+    2
+    3
+
+
+
+
+          RK        4
+RK   5
+RK   6
+RK   7
+1
+2
+
+
+            100.03.25                  1002660067
+
+
+
+
+    ICD-9-CM
+     2001
+                        20%
+                                  20   29%
+      948.2
+                        Burn of 20-29% of body surface
+                                  30   39%
+      948.3
+                        Burn of 30-39% of body surface
+                                  40   49%
+      948.4
+                        Burn of 40-49% of body surface
+                                  50   59%
+      948.5
+                        Burn of 50-59% of body surface
+                                  60   69%
+      948.6
+                        Burn of 60-69% of body surface
+                                  70   79%
+      948.7
+                        Burn of 70-79% of body surface
+                                  80   89%
+      948.8
+                        Burn of 80-89% of body surface
+                                  90   99%
+      948.9
+                        Burn of 90% or more of body surface
+
+
+
+       940
+                        Burn confined to eye and adnexa
+
+
+      941.5             Burn of face and head, deep necrosis of underlying tissue   deep third degree
+                        with loss of a body part
+
+
+
+
+                                              RK              8
+

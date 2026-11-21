@@ -1,0 +1,108 @@
+    新光產物個人旅行綜合保險附加旅行平安保險（標準型）
+             特定事故傷害醫療保險金附加條款
+【給付項目】特定事故傷害醫療保險金
+
+                          109.01.20(109)新產精發字第 031 號函備查
+
+第一條 承保範圍
+茲經雙方同意，於要保人投保新光產物個人旅行綜合保險附加旅行平安保險（標準型）（以
+下簡稱主保險契約）後，加繳保險費，投保新光產物個人旅行綜合保險附加旅行平安保險（標
+準型）特定事故傷害醫療保險金附加條款（以下簡稱本附加條款），對於被保險人於本附加
+條款有效期間內因遭受特定事故，自特定事故發生日起一百八十日內，經登記合格的醫院或
+診所治療者，本公司就其實際醫療費用，超過全民健康保險給付部分，給付「特定事故傷害
+醫療保險金」
+     。但超過一百八十日繼續治療者，受益人若能證明被保險人之治療與該特定事故
+具有因果關係者，不在此限。
+前項同一次特定事故的給付總額不得超過保險單所記載的「每次特定事故傷害醫療保險金限
+額」
+ 。倘被保險人各項醫療費用未經全民健康保險分擔給付，本公司依被保險人實際支付之各
+項費用之百分之七十給付，惟仍以前述保險金契約約定之限額為限。
+前項所稱「特定事故」
+         ，係指因參加附表一所列之特定活動所遭受之意外傷害事故及附表二所
+列之事故。
+
+
+第二條 活動變更之理賠處理
+被保險人發生承保事故時實際從事之活動與要保時載明於要保書上之活動不符時，本公司按其
+實收保險費與應收保險費之比例折算保險金之給付。
+
+
+第三條 特定事故傷害醫療保險金的申領
+受益人申領「特定事故傷害醫療保險金」時應檢具下列文件：
+一、保險金申請書。
+二、醫療診斷書或住院證明；但必要時本公司得要求提供特定事故證明文件。
+三、醫療費用收據。
+四、受益人之身分證明。
+受益人申領保險金時，本公司基於審核保險金之需要，得徵詢其他醫師之醫學專業意見，並
+得經受益人同意調閱被保險人之就醫相關資料。因此所生之費用由本公司負擔。
+
+第四條 特定事故傷害醫療保險金受益人之指定
+特定事故傷害醫療保險金的受益人，為被保險人本人，本公司不受理其指定或變更。
+
+
+
+第五條 條款之適用
+                     1
+本附加條款所記載事項，如與主保險契約牴觸時，依本附加條款規定辦理，其他事項仍適用
+主保險契約之規定。
+
+
+
+
+附表一 特定活動表
+  類別                                   活動項目
+ 第一類      滑翔傘(翼)、輕航機、飛行傘、拖曳傘、高空跳傘、高空彈跳、熱氣球、攀岩/冰、馬術、武
+          術比賽、潛水、浮潛、風浪板、水上摩托車、滑水、滑雪、雪車、溯溪、泛舟
+ 第二類      路跑、馬拉松、游泳、自行車、鐵人競賽或其他第一類以外之活動
+
+
+
+
+附表二 特定事故表
+ ICD 編碼                               名稱(中英對照)
+  071     RABIES 狂犬病
+ 370.24   PHOTOKERATITIS 光害性角膜炎(電焊眼、雪盲)
+  991     EFFECTS OF REDUCED TEMPERATURE 溫度降低之影響
+  991.0   FROSTBITE OF FACE 面部凍傷
+  991.1   FROSTBITE OF HAND 手凍傷
+  991.2   FROSTBITE OF FOOT 足凍傷
+  991.3   FROSTBITE OF OTHER AND UNSPECIFIED SITES 其他凍傷
+  991.4   IMMERSION FOOT 足浸病(戰壕足)
+  991.5   CHILBLAINS 凍瘡
+  991.6   HYPOTHERMIA 溫度過低(低體溫、失溫)
+          OTHER SPECIFIED EFFECTS OF REDUCED TEMPERATURE
+  991.8
+          溫度降低之其他特定影響
+  991.9   EFFECTS OF REDUCED TEMPERATURE, UNSPECIFIED 溫度降低之影響
+  992     EFFECT OF HEAT AND LIGHT 熱及光之影響
+  992.0   HEAT STROKE AND SUNSTROKE 中暑
+  992.1   HEAT SYNCOPE 熱暈厥
+  992.2   HEAT CRAMPS 熱痙攣
+  992.3   HEAT EXHAUSTION, ANHYDROTIC 缺水性中熱衰竭
+  992.4   HEAT EXHAUSTION DUE TO SALT DEPLETION 鹽分缺乏所致之中熱衰竭
+  992.5   HEAT EXHAUSTION, UNSPECIFIED 中熱衰竭
+  992.6   HEAT FATIGUE, TRANSIENT 暫時性熱疲勞
+  992.7   HEAT EDEMA 熱水腫
+
+
+                                  2
+992.8   OTHER SPECIFIED HEAT EFFECTS 其他特定之熱影響
+992.9   EFFECT OF HEAT AND LIGHT, UNSPECIFIED 熱及光之影響
+993     EFFECTS OF AIR PRESSURE 氣壓之影響
+993.0   BAROTRAUMA, OTITIC 耳的氣壓傷
+993.1   BAROTRAUMA, SINUS 鼻竇氣壓傷
+        OTHER AND UNSPECIFIED EFFECTS OF HIGH ALTITUDE
+993.2
+        高空所致之其他影響(高山病)
+993.3   CAISSON DISEASE 潛水夫病
+        EFFECTS OF AIR PRESSURE CAUSE BY EXPLOSION
+993.4
+        爆炸所致氣壓之影響
+993.8   OTHER SPECIFIED EFFECTS OF AIR PRESSURE 氣壓之其他特定影響
+993.9   UNSPECIFIED EFFECTS OF AIR PRESSURE 氣壓之影響
+
+
+
+
+                                3
+

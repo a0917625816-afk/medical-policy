@@ -1,0 +1,1273 @@
+  國泰人壽 Hen 享鍾意重大傷病定期健康保險
+                  內容摘要
+一、當事人
+
+ 要保人及國泰人壽保險股份有限公司（以下簡稱本公司）
+
+二、契約重要內容
+
+ 契約的解釋
+        （一）名詞定義（第 2 條）
+
+ 保障的範圍
+        （一）保險期間及給付內容（第 3 條）
+        （二）保險事故的通知、請求保險金應備文件與協力義務
+           （第 4 條）
+        （三）除外責任及不保事項（第 6 條、第 7 條）
+
+ 契約的效力
+        （一）契約撤銷權（第 8 條）
+        （二）保險責任的開始與契約效力停止、恢復及終止事由
+           （第 9 條至第 11 條、第 13 條、第 14 條）
+        （三）告知義務與契約解除權（第 12 條）
+
+ 保全的申請
+        （一）保險金額的變更（第 16 條）
+        （二）要保人住所變更通知義務（第 18 條）
+
+ 其他約定
+        （一）期滿保證更約權及限制（第 20 條）
+        （二）請求權消滅時效（第 21 條）
+
+
+
+
+                  第1頁，共28頁
+    國泰人壽 Hen 享鍾意重大傷病定期健康保險
+
+主要給付項目：
+    給付項目                      給付金額
+
+   重大傷病保險金         保險金額              同時符合時，
+
+ 初次罹患特定癌症保險金     保險金額 ╳ 2     只給付「初次罹患特定癌症保險金」
+
+  無理賠回饋保險金             年繳應繳保險費總額 ╳ 10%
+
+※各給付項目的條件及限制，詳參第 3 條約定。
+
+
+
+注意事項：
+一、本保險「重大傷病」等待期間為 30 日，本公司對「重大傷病」應負的保險責任，自契
+  約生效日起持續有效第 31 日或自復效日開始。但屬附表「重大傷病範圍」項目中之
+  「一、需積極或長期治療之癌症」者等待期間為 90 日，本公司對該項目應負的保險責
+  任，自契約生效日起持續有效第 91 日或自復效日開始，詳請參閱契約條款
+二、本保險「特定癌症」等待期間為 90 日，本公司對「特定癌症」應負的保險責任，自契
+  約生效日起持續有效第 91 日或自復效日開始，詳請參閱契約條款
+三、本保險重大傷病範圍為「全民健康保險重大傷病範圍」，但不包含以下項目：
+  （一）遺傳性凝血因子缺乏
+  （二）先天性新陳代謝異常疾病
+  （三）心、肺、胃腸、腎臟、神經、骨骼系統等之先天性畸形及染色體異常
+  （四）先天性免疫不全症
+  （五）職業病
+  （六）先天性肌肉萎縮症
+  （七）外皮之先天畸形
+  （八）早產兒所引起之神經、肌肉、骨骼、心臟、肺臟等之併發症
+四、被保險人須具備有效的全民健康保險被保險人身分，才能向「全民健康保險保險人」申
+  請重大傷病證明；取得證明後，始得向本公司申請重大傷病保險金
+五、被保險人經醫師首次診斷為重大傷病，並取得「全民健康保險保險人」核發之重大傷病
+  證明，才符合重大傷病保險金申領資格
+六、被保險人於投保前曾經取得或投保時正在申請全民健康保險保險人核定重大傷病證明
+
+
+                   第2頁，共28頁
+  者，或投保前曾經符合屬由診治醫師逕行認定，免向全民健康保險保險人申請重大傷病
+  證明，而得免除全民健保部分負擔之資格者，本公司不負給付「重大傷病保險金」的責
+  任
+七、本保險因費率計算考慮脫退率，故無解約金
+八、申訴電話：市話免費撥打 0800-036-599、付費撥打 02-2162-6201
+  傳真：0800-211-568
+  電子信箱（E-mail）：service@cathaylife.com.tw
+
+
+                               核    准     文     號
+                                 中 華 民 國 1 07 年 12 月 27 日 依 107 年 09 月 17 日 金 管 保 壽 字 第 107 04937 510 號 函 修 正
+                                 中華民國 108 年 12 月 31 日依 108 年 04 月 09 日金管保壽字第 10804904941 號函修正
+                                 中華民國 108 年 12 月 31 日依 108 年 06 月 13 日金管保壽字第 10804933330 號函修正
+
+
+                               備    查     文     號
+                                   中華民國 107 年 03 月 29 日國壽字第 107030735 號
+                                   中華民國 109 年 07 月 01 日國壽字第 109070149 號
+
+
+
+
+                           第3頁，共28頁
+契約的解釋
+第1條       本保險單條款、要保書、批註及其他約定書，都是本保險契約（以下簡稱本契約）
+保險契約的構成   的構成部分。
+          本契約的解釋，應探求契約當事人的真正意思，不侷限於所使用的文字；如果解釋
+          上有意義不明或疑問時，應以有利於被保險人的解釋為原則。
+
+第2條       本契約名詞定義如下：
+名詞定義      一、「初次診斷確定罹患重大傷病」：指被保險人在本契約生效日前未曾經醫院醫
+            師診斷確定屬於「重大傷病範圍」項目之一，而自本契約生效日起持續有效第
+            31 日或自復效日開始，初次罹患並經醫院醫師診斷確定而屬「重大傷病範圍」
+            項目之一者。但是附表「重大傷病範圍」項目中之「一、需積極或長期治療之
+            癌症」者，以本契約生效日起持續有效第 91 日或自復效日開始，初次罹患並經
+            醫院醫師診斷確定為限。
+            被保險人因遭受意外傷害事故所致重大傷病者，不受前述等待期間的限制。
+          二、「意外傷害事故」：指不是由疾病引起的外來突發事故。
+          三、「重大傷病範圍」：指中央衛生主管機關公告實施之「全民健康保險保險對象
+            免自行負擔費用辦法」附表「全民健康保險重大傷病範圍」中所載之項目，如
+            本契約附表，但排除下列項目：
+            （一）遺傳性凝血因子缺乏。
+            （二）先天性新陳代謝異常疾病。
+            （三）心、肺、胃腸、腎臟、神經、骨骼系統等之先天性畸形及染色體異常。
+            （四）先天性免疫不全症。
+            （五）職業病。
+            （六）先天性肌肉萎縮症。
+            （七）外皮之先天畸形。
+            （八）早產兒所引起之神經、肌肉、骨骼、心臟、肺臟等之併發症。
+            其後「重大傷病範圍」所載之項目如有變動，則以中央衛生主管機關最新公告
+            之項目為準。「重大傷病範圍」，包含本契約「訂立時」及「有效期間內被保
+            險人診斷確定當時」由中央衛生主管機關公告之重大傷病項目。
+          四、「全民健康保險保險人」：係指依全民健康保險法負責全民健康保險相關業務
+            的保險人。
+          五、「初次診斷確定罹患特定癌症」：指被保險人在本契約生效日前未曾罹患「癌
+            症」，而自本契約生效日持續有效第 91 日或自復效日起，始經醫院醫師診斷確
+            定第一次罹患「特定癌症」。
+          六、「癌症」：指組織細胞有惡性細胞不斷生長、擴張及對組織侵害的特性之惡性
+            腫瘤或惡性白血球過多症，經病理檢驗確定符合最近採用之「國際疾病傷害及
+            死因分類標準」版本歸屬於惡性腫瘤或原位癌之疾病。
+          七、「特定癌症」：指歸屬於第六款「癌症」中惡性腫瘤之下列項目之一者(不含原
+            位癌)。
+            （一）胃惡性腫瘤。
+            （二）結腸惡性腫瘤。
+            （三）肝及肝內膽管惡性腫瘤。
+            （四）胰惡性腫瘤。
+            （五）氣管惡性腫瘤。
+            （六）支氣管及肺惡性腫瘤。
+            （七）腦惡性腫瘤。
+          八、「醫院」：指依照醫療法規定領有開業執照並設有病房收治病人之公、私立及
+
+
+                    第4頁，共28頁
+          醫療法人醫院。
+        九、「區域醫院」：指經中央衛生主管機關依醫療法評鑑為「區域醫院」之醫療機
+          構。
+        十、「醫師」：指領有醫師證書及執業證書，合法執業者。
+        十一、「保險金額」：指保險單所記載本契約的保險金額，如果該金額有辦理變更
+           時，以變更後的金額為準。
+        十二、「年繳應繳保險費總額」：指保險期間屆滿時的保險金額（以 10 萬元為單
+           位），乘以本契約（不含其他附約）年繳方式的標準體費率，再乘以繳費年
+           期後所得數額。
+           舉例：假設保險金額為 10 萬元（即 1 單位），年繳費率為每單位 200 元，
+              繳費年期為 10 年。
+              年繳應繳保險費總額：1 ╳ 200 ╳ 10=2,000（元）
+
+
+
+保障的範圍
+第3條     本契約保險期間為 10 年。被保險人在本契約有效期間內，符合下表所列給付項目的
+保險範圍    給付條件時，本公司按照約定給付保險金：
+
+         給付項目       給付條件         給付金額         給付限制
+                符合「初次診斷確定罹患重               1. 「 重 大 傷 病 保
+                大傷病」，且已依中央衛生                  險金」及「初
+         重大傷病   主管機關所公告實施的「全                  次罹患特定癌
+          保險金   民健康保險保險對象免自行     保險金額         症保險金」兩
+          ①②③   負擔費用辦法」規定，取得                  者合計以給付
+                全民健康保險保險人核發的                  1 次為限。
+                重大傷病證明                     2. 被 保 險 人 同 時
+                                              符合「重大傷
+                                              病保險金」及
+                                              「初次罹患特
+         初次罹患                                 定癌症保險
+         特定癌症   符合「初次診斷確定罹患特                  金」的給付條
+                                保險金額 ╳ 2
+          保險金   定癌症」                          件時，本公司
+           ①④
+                                              將給付「初次
+                                              罹患特定癌症
+                                              保險金」。
+         無理賠回饋 第 10 保險單年度末仍生存    年繳應繳
+          保險金  且不曾符合本項目以外其他     保險費總額
+           ⑤   給付項目的給付條件         ╳ 10%
+
+         ①本契約當期已繳付的未到期保險費將不予退還。
+         ②被保險人取得「重大傷病」證明時，本契約效力已停止或終止者，本公司仍按
+          約定給付「重大傷病保險金」。
+         ③被保險人如果在本契約有效期間內，喪失全民健康保險被保險人資格，須先申
+          請加保全民健康保險後，才可以申領「重大傷病保險金」。
+         ④被保險人身故時如果符合「初次罹患特定癌症保險金」的給付條件但未提出申
+          領者，本公司仍給付「初次罹患特定癌症保險金」。
+         ⑤如果本公司在給付「無理賠回饋保險金」後，發現被保險人符合其他給付項目
+          的給付條件時，被保險人應返還「無理賠回饋保險金」或自應給付保險金中扣
+          回。
+
+
+                   第5頁，共28頁
+第4條        受益人申領各項保險金時，應檢具下列文件：
+保險事故的通知與
+給付項目的申領     給付項目                   申領文件
+                    1.保險單或其謄本。
+                    2.保險金申請書。
+            重大傷病
+                    3.重大傷病診斷書。②③
+             保險金
+              ①     4.全民健康保險保險人核發之「重大傷病」證明文件正本，本公
+                      司驗證後返還。②③④
+                    5.受益人的身分證明。
+                    1.保險單或其謄本。
+            初次罹患
+            特定癌症    2.保險金申請書。
+             保險金    3.醫療診斷書及病理切片檢查、血液學或其他相關檢驗報告。
+              ①
+                    4.受益人的身分證明。
+                    1.保險單或其謄本。
+            無理賠回饋
+                    2.保險金申請書。
+             保險金
+                    3.受益人的身分證明。
+            ① 本公司基於審核保險金之需要，得徵詢其他醫師之醫學專業意見，並得經受益
+              人同意調閱被保險人之就醫相關資料。因此所生之費用由本公司負擔，但是不
+              會因此延展本公司依約定應給付的期限。
+            ②本契約生效後，被保險人因全民健康保險保險人變更或調整「全民健康保險重
+             大傷病範圍」，導致原可符合的項目因此無法取得「重大傷病」證明文件時，
+             可以備齊下列文件替代第 3 點與第 4 點的文件：
+             一、一家「區域醫院」層級以上（含）之醫療院所開立且符合投保當時「全民
+               健康保險重大傷病範圍」之診斷書。
+             二、當次「重大傷病」病歷摘要。
+            ③被保險人於「重大傷病」證明文件核發前身故導致無法取得「重大傷病」證明
+             文件時，可以備齊下列文件替代第 3 點與第 4 點的文件：
+             一、被保險人診斷確定屬於「重大傷病」而獲准核退醫療費用之單據或一家
+               「區域醫院」層級以上（含）之醫療院所開立符合投保當時「全民健康保
+               險重大傷病範圍」的診斷書。
+             二、當次「重大傷病」病歷摘要。
+            ④如被保險人的「重大傷病」是由診治醫師直接認定，免向全民健康保險保險人
+             申請「重大傷病」證明文件時，可以備齊下列文件替代之：
+             一、「重大傷病」病歷摘要。
+             二、「重大傷病」醫療費用收據。
+           要保人或被保險人為醫師時，於申領「重大傷病保險金」或「初次罹患特定癌症
+           保險金」時，不得為被保險人出具診斷書、病歷摘要或各項診斷證明文件。
+           要保人或受益人應在知悉保險事故發生後 10 日內通知本公司，並儘速檢具所需文
+           件向本公司申請給付保險金。本公司應在收齊所需文件後 15 日內給付保險金。但
+           因可歸責於本公司的事由導致未能在前述約定期限內給付者，應按年利率 10%加計
+           利息給付。
+
+第5條        本公司給付各項保險金時，如果要保人有欠繳保險費未還清，本公司可以先抵銷欠
+欠繳保險費的扣除   繳保險費後，給付其餘額。
+
+
+
+
+                      第6頁，共28頁
+第6條         被保險人因下列原因所致之「重大傷病」者，本公司不負給付「重大傷病保險金」
+除外責任        的責任：
+            一、被保險人之故意行為（包括自殺及自殺未遂）。
+            二、被保險人之犯罪行為。
+            三、被保險人非法施用防制毒品相關法令所稱之毒品。
+
+第7條         被保險人如果有下列情形之一時，本契約自始無效，本公司不給付「重大傷病保險
+不保事項        金」，僅無息退還已繳保險費予要保人：
+            一、被保險人在投保前曾經取得全民健康保險保險人核給的重大傷病證明。
+            二、被保險人在投保前曾經符合屬由診治醫師逕行認定，免向全民健康保險保險人
+              申請重大傷病證明，而得免除全民健保部分負擔的資格。
+            三、被保險人在投保時已在申請全民健康保險保險人核發重大傷病證明中。
+
+
+
+契約的效力
+第8條         要保人在保險單送達的隔日起算 10 日內，可以用書面或其他約定方式檢同保險單向
+契約撤銷權       本公司撤銷本契約。
+            要保人依前項方式行使撤銷本契約的權利時，撤銷的效力自要保人書面或其他約定
+            方式的意思表示到達隔日上午 0 時起開始生效，本契約的效力自始無效，本公司應
+            無息退還要保人所繳保險費；本契約撤銷生效後所發生的保險事故，本公司不負保
+            險責任。但是在契約撤銷生效前，本契約仍然有效，如果發生保險事故，本公司仍
+            應負保險責任。
+
+第9條         本契約生效日自本公司同意承保並收取第 1 期保險費時開始，本公司並應發給保險
+契約生效日、保險    單作為承保的憑證。
+責任的開始及交付    本公司如果在同意承保前，預收相當於第 1 期保險費的金額時，以同意承保時溯自
+保險費         預收相當於第 1 期保險費金額之日為本契約的生效日。
+            本公司對本契約應負的保險責任始期依下列約定辦理。但是因為意外事故所導致
+            者，以本契約的生效日為保險責任始期：
+            一、重大傷病保險金：
+              自契約生效日起持續有效第 31 日或自復效日開始。但屬附表「重大傷病範圍」
+              項目中之「一、需積極或長期治療之癌症」者，以本契約生效日起持續有效第
+              91 日或自復效日開始。
+            二、初次罹患特定癌症保險金：
+              自契約生效日起持續有效第 91 日或自復效日開始。
+
+第 10 條      分期繳納的第 2 期以後保險費，應按照本契約所約定的交付方法及日期，向本公司
+第 2 期以後保險   所在地或指定地點交付，或由本公司派員前往收取，並交付本公司開發之憑證。第 2
+費的交付方式、寬    期以後的分期保險費到期未交付時，約定以年繳或半年繳者，自本公司催告到達隔
+限期間的計算及契    日起算 30 日內為寬限期間；以月繳或季繳者，則不為催告，自保險單所記載交付日
+約效力的停止      期的隔日起算 30 日為寬限期間。
+            約定以金融機構轉帳或其他方式交付第 2 期以後的分期保險費者，當本公司知悉不
+            能受領保險費時，應催告要保人交付保險費，自催告到達隔日起算 30 日內為寬限期
+            間。
+            要保人如果超過寬限期間仍未交付保險費時，本契約自寬限期間終了隔日開始停止
+            效力。如果在寬限期間內發生保險事故時，本公司仍依約負保險責任。
+
+
+
+
+                      第7頁，共28頁
+                             30日寬限期間          本契約
+                                             效力停止
+
+
+           欠繳保險費      本公司                要保人
+                      催告到              仍未償付保險費
+                      達隔日
+
+第 11 條     本契約停止效力後，要保人可以在停效日起算 2 年內，申請復效。但是保險期間屆
+本契約效力的恢復   滿後，不可申請復效。
+           要保人在停效日起算 6 個月內提出前項復效申請，並經要保人清償保險費扣除停效
+           期間的危險保險費後的餘額時，本契約自隔日上午 0 時起開始恢復效力。
+           要保人在停效日起算 6 個月後才提出第 1 項復效申請時，本公司可以在要保人復效
+           申請送達本公司之日起算 5 日內要求要保人提供被保險人的可保證明。要保人如果
+           沒有在 10 日內交齊本公司要求提供的可保證明，本公司可以退回該次復效申請。
+           被保險人的危險程度有重大變更已達到拒絕承保程度時，本公司可以拒絕復效申
+           請。
+           本公司未於第 3 項約定期限內要求要保人提供可保證明，或於收齊可保證明後的 15
+           日內不表示拒絕復效時，視為同意復效，並經要保人清償第 2 項所約定的金額後，
+           本契約自隔日上午 0 時起開始恢復效力。
+           要保人依第 3 項提出復效申請時，除有同項後段或第 4 項的情形外，於交齊可保證
+           明，並清償第 2 項所約定的金額後，本契約自隔日上午 0 時起開始恢復效力。
+           基於保戶服務，本公司於保險契約停止效力後至得申請復效之期限屆滿前 3 個月，
+           將以書面、電子郵件、簡訊或其他約定方式擇一通知要保人有行使第 1 項申請復效
+           之權利，並載明要保人未於第 1 項約定期限屆滿前恢復保單效力者，契約效力將自
+           第 1 項約定期限屆滿之日翌日上午 0 時起終止，以提醒要保人注意。
+           本公司已依要保人最後留於本公司之前項聯絡資料發出通知，視為已完成前項之通
+           知。
+           第 1 項約定期限屆滿時，本契約效力即行終止。
+
+                            2年內申請復效
+                   6個月內
+                                                    本契約
+                                                   效力終止
+
+                無需可保證明        本公司可以要求可保證明
+             停效日                                 要保人
+                                                 未復效
+
+第 12 條     要保人或被保險人在訂立本契約時，對於本公司要保書書面詢問的告知事項應據實
+告知義務與本契約   說明，如果有隱匿或遺漏不為說明，或為不實的說明，足以變更或減少本公司對於
+的解除        危險的估計者，本公司可以解除契約，就算保險事故發生後亦同。但是危險的發生
+           未基於要保人或被保險人說明或未說明的事實時，不在此限。
+           前項解除契約的權利，自本公司知悉有解除的原因後，經過 1 個月不行使而消滅；
+           或自契約訂立後，經過 2 年不行使而消滅。
+
+第 13 條     要保人可以隨時終止本契約。
+契約的終止（一）   前項契約的終止，從本公司收到要保人書面或其他約定方式通知時，開始生效。
+           要保人依第 1 項約定終止本契約時，如果留有未到期保險費，本公司應從當期已繳
+           保險費扣除按日數比例計算已經過期間之保險費後，將其未到期保險費無息退還要
+           保人。
+
+                      第8頁，共28頁
+第 14 條     本契約有下列情形之一時，其效力即行終止：
+契約的終止（二）   一、被保險人重大傷病初次診斷確定日（本公司按第 3 條約定給付保險金）。
+           二、被保險人罹患特定癌症初次診斷確定日（本公司按第 3 條約定給付保險金）。
+           三、被保險人身故日。
+           四、本契約保險期間屆滿（第 10 保險單年度終了）。
+           本契約因為被保險人身故而終止時，如果留有未到期保險費，本公司應從當期已繳
+           保險費扣除按日數比例計算已經過期間之保險費後，將其未到期保險費無息退還要
+           保人。
+
+第 15 條     要保人在申請投保時，應將被保險人出生年月日在要保書填明。被保險人投保時的
+年齡的計算及錯誤   保險年齡，以足歲計算，但未滿 1 歲的零數超過 6 個月者，加算 1 歲，之後必須經
+的處理        過 1 個保險單年度保險年齡才會加計 1 歲。
+           被保險人的投保年齡發生錯誤時，依下列約定辦理：
+           一、真實投保年齡超過本契約保險費率表所載最高年齡時，本契約無效，其已繳保
+               險費無息退還要保人。
+           二、因投保年齡的錯誤，造成保險費溢繳時，本公司將無息退還溢繳部分的保險
+               費。但在發生保險事故後才發覺且錯誤是發生在本公司時，本公司將按原繳保
+               險費與應繳保險費的比例提高保險金額，而不退還溢繳部分的保險費。
+           三、因投保年齡的錯誤，造成保險費短繳時，要保人可以選擇補繳短繳的保險費或
+               按照所付的保險費與被保險人的真實年齡比例減少保險金額。但在發生保險事
+               故後才發覺且錯誤不可歸責於本公司時，要保人不得要求補繳短繳的保險費。
+           前項第 1 款、第 2 款前段情形，當錯誤原因歸責於本公司時，應加計利息退還保險
+           費，利息按民法第 203 條法定週年利率計算。
+                      實際年齡：17 歲 7 個月（未滿１歲零數大於６個月）
+                       投保時的保險年齡：18 歲（17 足歲加算１歲）
+
+
+                          保險年齡18歲 保險年齡19歲        保險年齡20歲    ․․․
+
+                                                             ․
+             90.1.1    107.8.1    108.8.1    109.8.1    110.8.1
+                                                             ․
+           被保險人出生     契約生效日      第1保險單      第2保險單      第3保險單
+                                  週年日        週年日        週年日
+
+
+保全的申請
+第 16 條     要保人在本契約有效期間內，可以申請減少保險金額，但是減額後的保險金額，不
+保險金額的減少    可以低於本保險最低承保金額，其減少部分按照第 13 條契約終止的約定處理。
+
+第 17 條     本契約各項保險金的受益人為被保險人本人，本公司不受理指定及變更。
+受益人        被保險人身故時，如本契約保險金尚未給付或未完全給付，本公司將給付予被保險
+           人的法定繼承人。
+           前項法定繼承人的順序及應得保險金的比例適用民法繼承編相關規定。
+
+第 18 條     要保人的住所有變更時，應立即以書面或其他約定方式通知本公司。
+變更住所       要保人不為前項通知時，本公司得以本契約所載要保人的最後住所發送各項通知。
+
+第 19 條     本契約內容的變更，或記載事項的增刪，應經要保人與本公司雙方書面或其他約定
+批註         方式同意，並由本公司即予批註或發給批註書。
+
+
+
+
+                        第9頁，共28頁
+其他約定
+第 20 條     本契約保險期間屆滿後起算 3 個月內，除有下列情形外，要保人可以不檢具被保險
+期滿保證更約權及   人可保證明，以書面或其他約定方式向本公司申請更約為本公司指定的同類型主
+限制         約，本公司不得拒絕：
+           一、本契約尚有欠繳保險費未還清。
+           二、本契約停效。
+           三、本契約於保險期間屆滿前終止。
+           要保人未於前項約定期間內申請更約者，視同放棄更約的權利，嗣後不得再向本公
+           司主張。
+           更約後的應繳保險費，按原契約的同意承保條件、更約後契約的保險費率及更約生
+           效當時被保險人的年齡計算。但是更約後的保險金額不可以超過原契約的保險金
+           額。
+
+第 21 條     由本契約所生的權利，自得為請求之日起，經過 2 年不行使而消滅。
+時效
+
+第 22 條     因本契約涉訟時，同意以要保人住所地的地方法院為第一審管轄法院，要保人的住
+管轄法院       所在中華民國境外時，以本公司總公司所在地的地方法院為第一審管轄法院。但不
+           得排除消費者保護法第 47 條及民事訴訟法第 436 條之 9 小額訴訟管轄法院的適
+           用。
+
+
+
+
+                     第10頁，共28頁
+附表
+附表：全民健康保險重大傷病範圍
+
+                                                  中央衛生主管機關於 104.12.22 更新自 105.1.1 起適用
+   ICD-10-CM/PCS碼
+                             重大傷病項目                         英文疾病名稱                       承保與否
+        2014 年版
+                      一、需積極或長期治療之癌症。                                                      承保
+C73                   (一)甲狀腺惡性腫瘤               Malignant neoplasm of thyroid gland
+C00.0-C06.9、C09.0-    (二)口腔、口咽及下咽惡性腫瘤第         Malignant neoplasm of oral
+C10.9、C12-C14.8         一期                     cavity,oropharynx and hypopharynx
+                                               stage I
+C50.011-C50.929       (三)乳房惡性腫瘤第一期             Malignant neoplasm of breast stage I
+C53.0-C53.9、C55       (四)子宮頸惡性腫瘤第一期            Malignant neoplasm of cervix uteri
+                                               stage I
+C00.0-C96.9           (五)除(一)~(四)之其他惡性腫瘤       Other malignant neoplasm
+(不含C73、C94.4、C94.6)
+                      二、遺傳性凝血因子缺乏。                                                       不承保
+D66                   (一)遺傳性第Ⅷ凝血因子缺乏症          Hereditary factor VIII deficiency
+D67                   (二)遺傳性第Ⅸ凝血因子缺乏症          Hereditary factor IX deficiency
+D68.1                 (三)遺傳性第XI凝血因子缺乏症         Hereditary factor XI deficiency
+D68.2                 (四)其他遺傳性凝血因子缺乏症          Hereditary deficiency of other clotting
+                                               factors
+                      三、嚴重溶血性及再生不良性貧血                                                     承保
+                        ﹝血紅素未經治療，成人經常
+                        低於 8gm/dl以下，新生兒經
+                        常低於 12gm/dl以下者﹞。
+D55.0-D58.9           (一)遺傳性溶血性貧血              Hereditary hemolytic anemias
+D59.0-D59.9           (二)後天性溶血性貧血              Acquired hemolytic anemias
+D46.4、D60.0-D60.9、    (三)再生不良性貧血               Aplastic anemias
+D61.01-D61.9
+                      四、慢性腎衰竭﹝尿毒症﹞，必須                                                     承保
+                        接受定期透析治療者。
+N18.5、N18.6           (一)慢性腎臟疾病                Chronic kidney disease
+I12.0                 (二)高血壓性慢性腎臟病伴有第五         Hypertensive chronic kidney disease
+                        期慢性腎病或末期腎病             with stage 5 chronic kidney disease or
+                                               end stage renal disease
+I13.11、I13.2          (三)高血壓性心臟及慢性腎臟病伴         Hypertensive heart and chronic
+                        有心臟衰竭及第五期慢性腎病          kidney disease with heart failure and
+                        或末期腎病(高血壓性心臟及慢 with stage 5 chronic kidney disease, or
+                        性腎臟病未伴有心臟衰竭合併          end stage renal disease
+                        第五期慢性腎病或末期腎病)          (Hypertensive heart and chronic
+                                               kidney disease without heart failure,
+                                               with stage 5 chronic kidney disease, or
+                                               end stage renal disease)
+                      五、需終身治療之全身性自體免疫                                                     承保
+                        症候群。
+M32.0-M32.9           (一)全身性紅斑狼瘡               Systemic lupus erythematosus (SLE)
+M34.0-M34.9           (二)全身性硬化症                Systemic sclerosis
+
+
+                                      第11頁，共28頁
+   ICD-10-CM/PCS碼
+                                   重大傷病項目                         英文疾病名稱                 承保與否
+         2014 年版
+M05.70-M06.09、            (三)類風濕關節炎﹝符合 1987 美國 Rheumatoid arthritis
+M06.20-M06.39、              風濕病學院修訂之診斷標準，          (Rheumatoid arthritis juvenile)
+M06.80-M06.89、              含青年型類風濕關節炎﹞
+M06.9、M08.00-M08.99
+M33.20-M33.29             (四)多發性肌炎                 Polymyositis
+M33.00-M33.19、            (五)皮多肌炎                  Dermatopolymyositis
+M33.90-M33.99、M36.0
+                          (六)血管炎                   Vasculitis
+M30.0、M30.2、M30.8          1.結節狀多動脈炎               Polyarteritis nodosa
+M31.0                      2.過敏性血管炎                Hypersensitivity angiitis
+M31.30、M31.31              3.韋格納氏肉芽腫               Wegener’s granulomatosis
+M31.5、M31.6                4.巨細胞動脈炎                Giant cell arteritis
+I73.1                      5.血栓閉鎖性血管炎              Thromboangiitis
+                                                   obliterans(Buerger’s disease)
+M31.4                      6.主動脈弓症候群               Aortic arch syndrome (Takayasu)
+M30.3                      7.皮膚粘膜淋巴結綜合症(川崎病) Kawasaki disease
+M35.2                      8.貝賽特氏病                 Behcet’s disease
+L10.0-L10.9               (七)天孢瘡                   Pemphigus
+M35.00-M35.09             (八)乾燥症                   Sicca syndrome
+K50.00-K50.919            (九)克隆氏症                  Crohn’s disease
+K51.00-K51.919            (十)慢性潰瘍性結腸炎              Ulcerative colitis
+                          六、慢性精神病﹝符合以下診斷，                                                 承保
+                             而病情已經慢性化者，除第
+                             (一)項外，限由精神科專科醫
+                             師所開具之診斷書並加註專科
+                             醫師證號﹞
+F01.50    、   F01.51   、 (一)失智症(具器質性病態)【限由精 Unspecified dementia
+F03.90、F03.91               神科或神經科專科醫師開具之
+                            診斷書並加註專科醫師證號】
+F05                       (二)生理狀況所致之譫妄             Delirium due to known physiological
+                                                   condition
+F02.80、F02.81、F06.0、 (三)其他生理狀況所致之其他精神              Other mental disorders due to known
+F06.1、F06.8                 疾患                     physiological condition
+F20.0-F20.9、F25.0-F25.9 (四)思覺失調症                   Schizophrenia
+F30.10-F30.13、F30.2-      (五)情感性疾患                 Affective disorders
+F30.9、F31.0-F31.9、
+F32.2-F32.9、F33.2-F33.9
+F22                       (六)妄想性疾患                 Delusional disorders
+                          (七)廣泛性發展疾患               Pervasive developmental disorders
+F84.0                      1.自閉性疾患                 Autistic disorder
+F84.3                      2.其他兒童期崩解疾患             Other childhood disintegrative
+                                                   disorder
+F84.5、F84.8                3.其他廣泛性發展疾患(含亞斯伯 Other pervasive developmental
+                            格症候群)                  disorders(Asperger's syndrome)
+F84.9                      4.未明示之廣泛性發展疾患           Pervasive developmental
+                                                   disorder,unspecified
+
+
+
+
+                                          第12頁，共28頁
+   ICD-10-CM/PCS碼
+                                重大傷病項目                    英文疾病名稱                      承保與否
+         2014 年版
+                       七、先天性新陳代謝異常疾病                                                  不承保
+                         ﹝G6PD代謝異常除外﹞
+E00.0-E00.9 、 E03.0 、 (一)先天性缺碘症候群(含先天性甲 Congenital iodine-deficiency
+E03.1                    狀腺低下)               syndrome(Congenital
+                                             hypothyroidism)
+E10.10-E10.9           (二)胰島素依賴型糖尿病          Type 1 diabetes mellitus
+E23.2                  (三)尿崩症                Diabetes insipidus
+E25.0-E25.9            (四)腎上腺性生殖器疾患          Adrenogenital disorders
+E70.0-E71.2、E72.00-    (五)氨基酸輸送與代謝之失調        Disorders of amino-acid transport and
+E72.51、E72.59、E72.8、                         metabolism
+E72.9
+E74.00-E74.09          (六)肝糖儲藏疾病             Glycogen storage disease
+E74.20-E74.29          (七)半乳糖血症              Galactosemia
+E78.1                  (八)純高三酸甘油酯血症          Pure hyperglyceridemia
+E88.1                  (九)脂質失養症              Lipodystrophy
+E75.21-E75.22、E75.240- (十)神經脂質代謝疾患           Disorders of sphingolipid metabolism
+E75.249、E75.3、E77.0-
+E77.9
+E75.6、E78.70、E78.9     (十一)脂質代謝疾患            Disorders of lipoid metabolism
+E83.00-E83.09          (十二)銅代謝疾患             Disorders of copper metabolism
+E20.1、E83.50-E83.59、   (十三)鈣代謝疾患             Disorders of calcium metabolism
+E83.81
+D81.3、D81.5、E79.1-     (十四)嘌呤及嘧啶代謝疾患         Disorders of purine and pyrimidine
+E79.9                                        metabolism
+E76.01-E76.9           (十五)葡萄糖胺聚合醣代謝疾患       Disorders of glycosaminoglycan
+                                             metabolism
+E71.310-E71.548、       (十六)其他特定之新陳代謝疾患       Other specified disorders of
+E80.3、E88.40-E88.89、                         metabolism
+H49.811-H49.819
+E88.9                  (十七)新陳代謝疾患            Metabolic disorder, unspecified
+                       八、心、肺、胃腸、腎臟、神經、                                                不承保
+                         骨骼系統等之先天性畸形及染
+                         色體異常
+Q00.0-Q00.2            (一)無腦症及類似畸形           Anencephaly and similar
+                                             malformations
+G90.1、Q01.0-Q04.9、     (二)神經系統之其他先天性畸形       Other congenital anomalies of
+Q06.0-Q06.9、Q07.8、                           nervous system
+Q07.9
+Q20.0-Q24.9            (三)先天性心球﹝胚胎﹞及心臟中      Bulbus cordis anomalies and
+                         隔閉合之畸形或心臟之其他先       anomalies of cardiac septal closure or
+                         天性畸形                other congenital anomalies of heart
+Q25.0-Q28.9            (四)循環系統之其他先天性畸形       Other congenital anomalies of
+                                             circulatory system
+Q33.0                  (五)先天性肺囊腫             Congenital cystic lung
+Q33.3、Q33.6            (六)肺缺乏症形成不全及形成異常      Agenesis, hypoplasia and dysplasia of
+                                             lung
+
+
+                                     第13頁，共28頁
+   ICD-10-CM/PCS碼
+                               重大傷病項目                         英文疾病名稱                     承保與否
+         2014 年版
+Q33.8、Q33.9             (七)肺之其他畸形                Other congenital malformations of
+                                                 lung
+Q41.0-Q45.9             (八)消化系統之其他先天性畸形          Other congenital anomalies of
+                                                 digestive system
+Q60.0-Q60.6             (九)腎無發育及腎其他縮減缺陷          Renal agenesis and other reduction
+                                                 defects of kidney
+Q61.00-Q61.9            (十)腎囊腫性疾病                Cystic kidney disease
+Q62.0-Q62.39            (十一)先天性腎盂及輸尿管之阻塞         Congenital Obstructive defects of
+                           性缺陷                   renal pelvis and ureter
+Q63.0-Q63.9             (十二)先天性腎其他畸形             Other congenital malformations
+                                                 of kidney
+Q77.0-Q77.2、Q77.4、      (十三)骨軟骨發育不良伴有管狀骨         Osteochondrodysplasia with defects
+Q77.5、Q77.7-Q77.9、         及脊椎生長缺陷               of growth of tubular bones and spine
+Q78.4
+Q90.0-Q99.1、Q99.8、      (十四)染色體異常                Chromosomal abnormalities
+Q99.9
+Q35.1-Q35.7 、 Q36.0- (十五)先天性畸形唇顎裂﹝限需多            Congenital cleft palate and cleft lip
+Q37.9                      次手術治療及語言復健者﹞
+                        九、燒燙傷面積達全身百分之二十                                                   承保
+                          以上；或顏面燒燙傷合併五官
+                          功能障礙者。
+T31.20-T31.99、T32.20-   (一)體表面積之大於 20%之燒傷        Burn of >20% of total body surface
+T32.99
+                        (二)顏面燒燙傷
+T26.00XA-T26.92XA        1.眼及其附屬器官之燒傷            Burn confined to eye and adnexa
+(第 7 位碼須為A)
+T20.30XA-T20.39XA、       2.臉及頭之燒傷，深部組織壞死         Burn of face and head, deep necrosis
+T20.70XA-T20.79XA         (深三度)，伴有身體部位損害。 of underlying tissue (deep third
+(第 7 位碼須為A)                                      degree) with loss of a body part
+                        十、接受腎臟、心臟、肺臟、肝                                                    承保
+                          臟、骨髓、胰臟及小腸移植後
+                          之追蹤治療。
+Z94.0                   (一)腎臟移植手術後之追蹤治療          Kidney transplant status
+Z94.1                   (二)心臟移植手術後之追蹤治療          Heart transplant status
+Z94.2                   (三)肺臟移植手術後之追蹤治療          Lung transplant status
+Z94.4                   (四)肝臟移植手術後之追蹤治療          Liver transplant status
+Z94.81、Z94.84           (五)骨髓移植手術後之追蹤治療          Bone transplant status
+Z94.83                  (六)胰臟移植手術後之追蹤治療          Pancreas transplant status
+Z94.82                  (七)小腸移植手術後之追蹤治療          Intestine transplant status
+T86.10-T86.19           (八)腎臟移植併發症               Complication of kidney transplant
+T86.40-T86.49           (九)肝臟移植併發症               Complication of liver transplant
+T86.20-T86.23、T86.290- (十)心臟移植併發症                Complication of heart transplant
+T86.298
+T86.810-T86.819         (十一)肺臟移植併發症              Complication of lung transplant
+
+
+
+
+                                        第14頁，共28頁
+   ICD-10-CM/PCS碼
+                             重大傷病項目                         英文疾病名稱                        承保與否
+         2014 年版
+T86.00-T86.09       (十二)骨髓移植併發症                Complication of bone marrow
+                                               transplant
+T86.890-T86.899     (十三)胰臟移植併發症                Complication of pancreas transplant
+T86.850-T86.859     (十四)小腸移植併發症                Complication of intestine transplant
+                    十一、小兒麻痺、腦性麻痺所引起                                                        承保
+                         之神經、肌肉、骨骼、肺臟
+                         等之併發症者(其身心障礙等
+                         級在中度以上者)。
+A80.0-A80.2、        (一)急性脊髓灰白質炎併有其他麻           Acute poliomyelitis with other
+A80.30-A80.39          痺者                      paralysis
+
+
+G80.0-G80.2 、 G80.4- (二)嬰兒腦性麻痺                 Cerebral palsy
+G80.9
+(G82.20-G82.54、G83.0- (三)其他麻痺性徵候群(急性脊髓灰 Other paralytic syndromes ( late
+G83.9)+(B91、G14)       白質炎之後期影響併有提及麻           effects of acute poliomyelitis )
+                       痺性徵候群)
+T07                 十二、重大創傷且其嚴重程度到達 Major trauma rated 16 or above on                      承保
+                         創傷嚴重程度分數十六分以 the severity scale
+                         上者(INJURY SEVERITY    (INJURY SEVERITY SCORE ≧16)
+                         SCORE ≧16)
+                         (※植物人狀態不可以ISS計算)
+Z99.11              十三、因呼吸衰竭需長期使用呼吸 Long-term mechanical ventilation,                      承保
+                         器符合下列任一項者：            defined as one of the following:
+                    (一)使用侵襲性呼吸輔助器二十一           1.Invasive mechanical ventilation for
+                       天以上者                     21 or more days.
+                    (二)使用侵襲性呼吸輔助器改善            2.Invasive mechanical ventilation
+                       後，改用非侵襲性陽壓呼吸治            followed by non-invasive ventilation,
+                       療總計二十一天以上者               with a total duration of 21 or more
+                                                days.
+                    (三)使用侵襲性呼吸輔助器後改用           3.Invasive mechanical ventilation
+                       負壓呼吸輔助器總計二十一天            followed by negative pressure
+                       以上者                      ventilation, with a total duration of
+                                                21 or more days.
+                    (四)特殊疾病(末期心衰竭、慢性呼 4.Specific diseases, e.g., End stage
+                       吸道疾病、原發性神經原肌肉            heart failure, chronic pulmonary
+                       病變、慢性換氣不足症候群)而           diseases, primary neuromuscular
+                       須使用非侵襲性陽壓呼吸治療            diseases, chronic hypoventilation
+                       總計二十一天以上者。               syndrome, which require non-
+                                                invasive ventilation for 21 or more
+                                                days.
+                    以上天數計算須符合連續使用定義
+                    原則
+                    十四                                                                     承保
+E41                 (一)因腸道大量切除或失去功能引           Patients suffering from severe
+                       起之嚴重營養不良者，給予全           malnutrition due to major
+                       靜脈營養已超過三十天，且病           enterectomy, intestinal failure already
+                       情已達穩定狀態，口攝飲食仍           on a fully intravenous diet for 30 days,
+
+
+                                      第15頁，共28頁
+   ICD-10-CM/PCS碼
+                                 重大傷病項目                  英文疾病名稱                      承保與否
+        2014 年版
+                          無法提供足量營養者。        and unable to obtain sufficient
+                                            nutrition through an oral diet
+E43                     (二)其他慢性疾病之嚴重營養不良    Patients suffering from severe
+                          者，給予全靜脈營養已超過三     malnutrition due to other chronic
+                          十天，且病情已達穩定狀態，     disease already on a fully intravenous
+                          口攝飲食仍無法提供足量營養     diet for 30 days, and unable to obtain
+                          者。                sufficient nutrition through an oral
+                                            diet
+                        十五、因潛水、或減壓不當引起之                                               承保
+                           嚴重型減壓病或空氣栓塞
+                           症，伴有呼吸、循環或神經
+                           系統之併發症且需長期治療
+                           者。
+T70.3XXA                (一)減壓病              Decompression sickness
+T79.0XXA                (二)空氣栓塞症            Air embolism
+G70.00、G70.01           十六、重症肌無力症           Myasthenia gravis                         承保
+                        十七、先天性免疫不全症                                                  不承保
+D80.1、D80.6、D80.8、      (一)免疫缺乏症伴有主要抗體缺陷    Immunodeficiency with
+D80.9                                       predominantly antibody defects
+D81.0-D81.2、D81.4、      (二)複合性免疫缺乏症         Combined immunodeficiencies
+D81.6、D81.7、D81.89、
+D81.9
+D82.0-D82.9             (三)與其他重大缺陷相關的免疫     Immunodeficiency associated with
+                          缺乏症               other major defects
+D83.0-D83.9             (四)常見多樣性免疫缺乏症       Common variable immunodeficiency
+D84.0-D84.9             (五)其他免疫缺乏症          Other immunodeficiencies
+                        十八、脊髓損傷或病變所引起之神                                               承保
+                           經、肌肉、皮膚、骨骼、心
+                           肺、泌尿及腸胃等之併發症
+                           者(其身心障礙等級在中度以
+                           上者)
+(S12.000A-S12.9XXA)+    (一)脊柱骨折，伴有脊髓病灶      Fracture of vertebral column with
+﹝(S14.101A-S14.159A)、                       spinal cord injury
+(S24.101A-S24.159A)、
+(S34.101A-S34.139A)﹞
+(第 7 碼均須為A)
+S14.101A-S14.159A、      (二)無明顯脊椎損傷之脊髓傷害     Spinal cord injury without evidence of
+S24.101A-S24.159A、                          spinal bone injury
+S34.101A-S34.139A
+(第 7 碼均須為A)
+G32.0、G95.0、G95.11-     (三)其他脊髓病變           Other disease of spinal cord
+G95.89、G95.9、G99.2
+                        十九、職業病              Occupational disease                     不承保
+                        (以勞工保險條例第三十四條第一項
+                        規定之職業病種類表所載職業病範
+
+
+
+
+                                      第16頁，共28頁
+      ICD-10-CM/PCS碼
+                                 重大傷病項目                       英文疾病名稱                      承保與否
+         2014 年版
+                        圍為限；適用對象限已退休之未具
+                        勞工保險被保險人身份之保險對
+                        象；具勞工保險被保險人身份者，
+                        應依勞工保險職業病就醫規定辦
+                        理，亦免自行負擔部分醫療費用)
+J60                     (一)煤礦工人塵肺症               Coalworker's pneumoconiosis
+                                                 pneumoconiosis
+J61                     (二)石綿沉著症                 Asbestosis
+J62.0、J62.8             (三)其他矽石或矽鹽所致之塵肺症         Pneumoconiosis due to other silica or
+                                                 silicates
+J63.0-J63.6             (四)其他無機性塵埃所致之塵肺症         Pneumoconiosis due to other
+                                                 inorganic dust
+J64、J65                 (五)塵肺症                   Pneumoconiosis
+                        二十、急性腦血管疾病(限急性發作 Cerebrovascular disease (acute stage)             承保
+                            後一個月內)
+I60.00-I60.9            (一)蜘蛛膜下腔出血               Subarachnoid hemorrhage
+I61.0-I62.9             (二)腦內出血                  Intracerebral hemorrhage
+I63.00-I63.9            (三)腦梗塞                   Cerebral infarction
+G45.0-G45.2、G45.4-      (四)其他腦血管疾病               Other cerebrovascular disease
+G46.8、I67.0-I67.2、
+I67.4-I67.7、I67.81、
+I67.82、I67.841-
+I67.848、I67.89、I67.9、
+I68.0、I68.8
+G35                     二十一、多發性硬化症               Multiple sclerosis                        承保
+G71.0、G71.2             二十二、先天性肌肉萎縮症             Congenital muscular dystrophy            不承保
+                        二十三、外皮之先天畸形              Congenital anomalies integument          不承保
+Q81.0-Q81.9、Q82.8、      (一)先天性水泡性表皮鬆懈症           Congenital epidermolysis bullosa
+Q82.9
+Q84.9                   (二)皮膚先天性畸形               Congenital malformation of
+                                                 integument, unspecified
+Q80.0-Q80.9             (三)先天性魚鱗癬(穿山甲症)          Congenital ichthyosis
+A30.0-A30.9             二十四、漢生病                  Leprosy(Hansen’s disease)                 承保
+K70.2-K70.31、           二十五、肝硬化症，併有下列情形 Liver cirrhosis with complication                  承保
+K74.1-K74.69                  之一者：
+                        (一)腹水無法控制                Ascites with poor control
+                        (二)食道或胃靜脈曲張出血            Esophageal or gastric varices bleeding
+                        (三)肝昏迷或肝代償不全             Hepatic coma or liver
+                                                 dyscompensated
+                        二十六、早產兒所引起之神經、肌                                                   不承保
+                              肉、骨骼、心臟、肺臟等
+                              之併發症。
+P07.10                  (一)早產兒出生後三個月內因神          Neurological, muscular, skeletal,
+                          經、肌肉、骨骼、心臟、肺臟          cardiac or pulmonary complications
+                          (含支氣管)等之併發症住院者         due to premature infants to have
+                                                 admission care within three months
+
+
+                                        第17頁，共28頁
+   ICD-10-CM/PCS碼
+                             重大傷病項目                            英文疾病名稱                     承保與否
+         2014 年版
+                                                  birth.
+P07.20               (二)早產兒出生滿三個月後，經身             Neurological, muscular, skeletal,
+                       心障礙等級評鑑為中度以上，              cardiac or pulmonary complications
+                       領有社政單位核發之身心障礙              due to premature infants certified to
+                       手冊者                        have moderate impairments three
+                                                  months of age.
+T57.0X1A、T57.0X2A、   二十七、砷及其化合物之毒性作用 Toxic effect of arsenic and its                       承保
+T57.0X3A、T57.0X4A          (烏腳病)                  compounds (black foot disease)
+G12.20-G12.29        二十八、運動神經元疾病其身心障 Motor neuron disease                                  承保
+                           礙等級在中度以上或須使
+                           用呼吸器者【惟經神經內
+                           科專科醫師診斷為肌萎縮
+                           性側索硬化症者
+                           (AMYOTROPHIC
+                           LATERAL SCLEROSIS
+                           ICD-10-CM   G12.21)，
+                           不受其身心障礙等級在中
+                           度以上或須使用呼吸器之
+                           限制】。
+A81.00-A81.09        二十九、庫賈氏病                     Creutzfeldt-Jakob disease                承保
+                     三十、經本部公告之罕見疾病，但 Rare disease                                          承保
+                         已列屬前二十九類者除外。
+註：「經本部公告之罕見疾病」項目請詳見下方「罕見疾病分類序號彙總表」。
+
+
+
+
+                                       第18頁，共28頁
+                                       罕見疾病分類序號彙總表
+                                                                          中央衛生主管機關於 104.12.22 更新
+分類序號      中文病名                   英文病名(縮寫)                                                ICD-10-CM
+A.先天性代謝異常
+◎ A1 尿素循環代謝異常 Urea cycle disorders （高血氨症）
+A1   01   先天性尿素循環代謝障礙            Congenital Urea cycle disorders                         E72.20
+     02   瓜胺酸血症                  Citrullinemia                                           E72.23
+     03   乙醯榖胺酸合成酶缺乏症            Nitroacetylglutamate        synthetase    deficiency,NAG E72.29
+                                 synthetase deficiency
+     04   鳥胺酸氨甲醯基轉移酶缺乏症 Ornithine transcarbamylase deficiency                            E72.4
+     05   高鳥胺酸血症-高氨血症-高瓜 Hyperornithinemia-Hyperammonemia-Homocitrullinuria              E72.4
+          胺酸血症症候群                Syndrome
+◎ A2 胺基酸/有機酸代謝異常 Amino acid metabolic disorders / Organic acidemias
+A2   01   胺基酸代謝疾病                Amino acid metabolic disorders(Aminoacidopathies)       E72.8
+     02   高胱胺酸血症                 Homocystinuria                                          E72.11
+     03   高甲硫胺酸血症                Hypermethioninemia                                      E72.19
+     04   非酮性高甘胺酸血症              Nonketotic hyperglycinemia                              E72.51
+     05   苯酮尿症                   Phenylketouria                                          E70.0
+     06   四氫基喋呤缺乏症               Tetrahydrobiopterin deficiency                          E70.1
+     07   遺傳性高酪胺酸血症              Hereditary tyrosinemia                                  E70.21
+     08   楓糖尿症                   Maple syrup urine disease                               E71.0
+     09   有機酸血症                  Organic acidemias                                       E71.118
+     10   異戊酸血症                  Isovaleric academia                                     E71.110
+     11   戊二酸尿症，第一型、第二型 Glutaric aciduria typeⅠ、Ⅱ                                        typeⅠ：E72.3
+                                                                                         typeⅡ：
+                                                                                         E71.313
+     12   丙酸血症                   Propionic academia                                      E71.121
+     13   甲基丙二酸血症                Methylmalonic acidemia                                  E71.120
+     14   3-氫基-3-甲基戊二酸血症         3-Hydroxy-3-methyl-glutaric acidemia                    E71.118
+     15   典型苯酮尿症合併蔗糖酶同麥 PAH type PKU combine with Sucrase-isomaltase deficiency E74.31+E70.0
+          芽糖酶缺乏症
+     16   高離氨基酸血症                Hyperlysinemia                                          E72.3
+     17   組胺酸血症                  Histidinemia                                            E70.41
+     18   三甲基巴豆醯輔酶A羧化酵素 3-Methylcrotonyl-CoA carboxylase deficiency                      E71.19
+          缺乏症
+     19   多發性羧化酶缺乏症              Multiple carboxylase deficiency                         D81.819
+     20   高脯胺酸血症                 Hyperprolinemia                                         E72.59
+     21   芳香族L-胺基酸類脫羧基酶缺 Aromatic L-amino acid decarboxylase deficiency                  E70.9
+          乏症
+     22   酪胺酸羥化酶缺乏症              Tyrosine hydroxylase deficiency                         E70.20
+◎ A3 脂質儲積
+A3   01   高雪氏症                   Gaucher’s disease                                       E75.22
+     02   GM1/GM2 神經節苷脂儲積症 GM1/GM2 gangliosidosis                                        GM1：E75.19
+
+
+                                           第19頁，共28頁
+分類序號      中文病名                     英文病名(縮寫)                                            ICD-10-CM
+                                                                                       GM2：E75.00
+     03   Fabry 氏症                 Fabry disease                                       E75.21
+     04   Niemann-Pick 氏 症 ， 鞘 髓 磷 Niemann-Pick disease                                type A：
+          脂儲積症                                                                         E75.240
+                                                                                       type B：E75.241
+                                                                                       type C：
+                                                                                       E75.242
+                                                                                       type D：
+                                                                                       E75.243
+                                                                                       other：E75.248
+                                                                                       unspedified：
+                                                                                       E75.249
+     05   MLD症候群                   Metachromatic Leukodystrophy（MLD）                   E75.25
+     06   球細胞腦白質失養症                Globoid Cell Leukodystrophy (Krabbe’s    disease)   E75.23
+◎ A4 碳水化合物代謝異常
+A4   01   半乳糖血症                    Galactosemia                                        E74.21
+     02   肝醣儲積症                    Glycogen storage disease                            type 0：E74.09
+                                                                                       typeⅠ：E74.01
+                                                                                       type Ⅱ：
+                                                                                       E74.02
+                                                                                       type Ⅲ：
+                                                                                       E74.03
+                                                                                       type Ⅳ：
+                                                                                       E74.09
+                                                                                       type Ⅴ：
+                                                                                       E74.04
+                                                                                       type Ⅵ-Ⅸ：
+                                                                                       E74.09
+                                                                                       Von Gierke's ：
+                                                                                       E74.01
+     03   腦血管屏障葡萄糖輸送缺陷             Glut（Glucose Transport）1 deficiency syndrome        E74.8
+◎ A5 脂肪酸氧化異常
+A5   01   脂肪酸氧化作用缺陷                Fatty acid oxidation defect                         E71.30
+                                                                                       E71.310
+                                                                                       E71.311
+                                                                                       E71.312
+                                                                                       E71.313
+                                                                                       E71.314
+                                                                                       E71.318
+                                                                                       E71.32
+                                                                                       E71.39
+     02   原發性肉鹼缺乏症                 Carnitine deficiency syndrome, primary              E71.41
+
+
+
+
+                                             第20頁，共28頁
+分類序號      中文病名                  英文病名(縮寫)                                                ICD-10-CM
+     03   中鏈脂肪酸去氫酵素缺乏症          Medium-chain acyl-coenzyme A dehydrogenase deficiency E71.311
+                                （MCAD）
+     04   短鏈脂肪酸去氫酶缺乏症           Short-chain acyl-CoA dehydrogenase deficiency           E71.312
+◎ A6 粒線體代謝異常
+A6   01   粒線體缺陷                 Mitochondrial defect                                    E88.40
+     02   Kearns-Sayre 氏症候群     Kearns-Sayre syndrome                                   H49.811
+                                                                                        H49.812
+                                                                                        H49.813
+                                                                                        H49.819
+     03   Leigh 氏童年期腦脊髓病變       Leigh disease                                           G31.82
+     04   MELAS症候群              MELAS                                                   E88.41
+     05   MNGIE    症      候   群 Mitochondrial    Neurogastrointestinal   Encephalopathy E88.89
+          粒線體性神經胃腸腦病變症候 Syndrome
+          群
+     06   丙酮酸鹽脫氫酶缺乏症            Pyruvate dehydrogenase deficiency                       E74.4
+     07   巴氏症候群                 Barth Syndrome                                          E78.71
+◎ A7 溶小體代謝異常
+A7   01   胱胺酸血症                 Cystinosis                                              E72.04
+     02   黏多醣症                  Mucopolysaccharidoses                                   E76.3
+     03   岩藻糖代謝異常（儲積症）          Fucosidosis                                             E77.1
+     04   涎酸酵素缺乏症               Sialidosis                                              E77.1
+     05   黏脂質症                  Mucolipidosis                                           typeⅠ：E77.1
+                                                                                        type Ⅱ、Ⅲ：
+                                                                                        E77.0
+                                                                                        type Ⅳ：
+                                                                                        E75.11
+     06   神經元蠟樣脂褐質儲積症           Neuronal ceroid lipofuscinosis                          E75.4
+◎ A8 膽固醇及脂質代謝異常Cholesterol and Lipid metabolism
+A8   01   同合子家族性高膽固醇血症          Homozygous familial hypercholesterolemia                E78.0
+     02   家族性高乳糜微粒血症            Familial Hyperchylomicronemia                           E78.3
+     03   豆固醇血症 〈植物性〉           Sitosterolemia                                          E78.0
+◎ A9 礦物離子缺陷
+A9   01   威爾森氏症                 Wilson’s disease                                        E83.01
+     02   Menkes 症候群            Menkes syndrome                                         E83.09
+     03   鉬輔酶缺乏症                Molybdenum cofactor deficiency                          E61.5
+◎ A10 過氧化體代謝異常代謝異常
+A10 01    Zellweger氏症候群         Zellweger syndrome                                      E71.510
+     02   腎上腺腦白質失養症             Adrenoleukodystrophy                                    E71.511
+                                                                                        E71.520
+                                                                                        E71.521
+                                                                                        E71.528
+                                                                                        E71.529
+
+
+                                             第21頁，共28頁
+分類序號      中文病名                     英文病名(縮寫)                                        ICD-10-CM
+     03   肢近端型點狀軟骨發育不良             Rhizomelic Chondrodysplasia Punctata            E71.540
+◎ A11 其他代謝異常
+A11 01    紫質症                      Porphyria                                       E80.20
+                                                                                   E80.21
+                                                                                   E80.29
+     02   Lesch-Nyhan氏症候群          Lesch-Nyhan syndrome                            E79.1
+     03   亞硫酸鹽氧化酶缺乏                Sulfite oxidase deficiency                      E72.19
+     04   碳水化合缺乏醣蛋白症候群             Carbohydrate-deficiency glycoprotein syndrome   E77.8
+     05   臭魚症                      Trimethylaminuria                               E72.52
+     06   先天性全身脂質營養不良症             Congenital generalized lipodystrophy            E88.1
+     07   腦腱性黃瘤症                   Cerebrotendinous Xanthomatosis                  E75.5
+     08   低磷酸酯酶症                   Hypophosphatasia                                E83.39
+                                                                                   E83.31
+     09   Beta硫解酶缺乏症               Beta-Ketothiolase Deficiency                    E71.19
+B 腦部或神經系統病變
+B1   01   多發性硬化症                   Multiple sclerosis                              G35
+     02   肌萎縮性側索硬化症                Amyotrophic lateral sclerosis (ALS)             G12.21
+     03   共濟失調微血管擴張症候群             Ataxia telangiectasia                           G11.3
+     04   亨丁頓氏舞蹈症                  Huntington disease(又稱Huntington's chorea)       G10
+     05   瑞特氏症候群                   Rett syndrome                                   F84.2
+     06   脊髓性肌肉萎縮症                 Spinal muscular atrophy                         G12.9
+     07   脊髓小腦退化性動作協調障礙 Spinocerebellar ataxia                                     G11.1
+     08   結節性硬化症                   Tuberous sclerosis                              Q85.1
+     09   先天性痛不敏感症合併無汗症 Congenital insensitivity to pain with anhidrosis（CIPA）     L74.4
+     10   神經纖維瘤症候群第二型              Neurofibromatosis type Ⅱ                        Q85.02
+     11   Alexander 氏病             Alexander disease                               E75.29
+     12   僵體症候群                    Stiffperson syndrome                            G25.82
+     13   遺傳性痙攣性下身麻痺               Hereditary spastic paraplegia                   G11.4
+     14   Joubert氏症候群 （家族性小 Joubert syndrome                                       Q04.3
+          腦蚓部發育不全）
+     15   Pelizaeus-Merzbacher 氏 症 Pelizaeus-Merzbacher Disease                    E75.29
+          （慢性兒童型腦硬化症）
+     16   Charcot Maire Tooth氏症(進 Charcot Marie Tooth Disease                      G60.0
+          行性神經性腓骨萎縮症)
+     17   甘迺迪氏症(脊髓延髓性肌肉萎 Kennedy Disease                                           G12.20
+          縮症)                                                                      G12.21
+                                                                                   G12.22
+                                                                                   G12.29
+     18   家族性澱粉樣多發性神經病變 Familial Amyloidotic Polyneuropathy                        E85.1
+     19   Moebius症候群               Moebius syndrome                                Q87.0
+     20   Mcleod症候群                Mcleod syndrome                                 J43.0
+
+
+
+                                               第22頁，共28頁
+分類序號      中文病名                    英文病名(縮寫)                                                    ICD-10-CM
+     21   Aicardi-Goutieres症候群    Aicardi-Goutieres syndrome                                  G31.89
+     22   普洛提斯症候群                 Proteus Syndrome                                            Q87.3
+     23   MECP2 綜合症候群             Methyl CpG binding protein 2 Duplication Syndrome           Q99.8
+                                  （MECP2 Duplication Syndrome）
+     24   腦肋小頜症候群                 Cerebro-Costo-Mandibular Syndrome                           Q87.89
+C 呼吸循環系統病變
+C1   01   特發性嬰兒動脈硬化症              Idiopathic Infantile Arterial Calcification                 Q28.8
+     02   囊狀纖維化症                  Cystic fibrosis                                             E84.9
+     03   原發性肺動脈高壓                Primary PulmonaryHypertensionPPH                            I27.0
+     04   Holt-Oram氏症候群           Holt-Oram Syndrome                                          Q87.2
+     05   Andersen 氏 症 候 群 （ 心 節 律 Andersen syndrome                                          E74.09
+          障礙暨週期性麻痺症候群；鉀
+          離子通道病變）
+     06   遺傳性出血性血管擴張症             Hereditary Hemorrhagic Telangiectasia                       I78.0
+     07   窒息性胸腔失養症                Asphyxiating thoracic dystrophy                             Q77.2
+     08   先天性中樞性換氣不足症候群 Congenital Central Hypoventilation Syndrome                           G47.35
+
+
+D 消化系統病變
+D1   01   進行性家族性肝內膽汁滯留症 Progressive intrahepatic cholestasis,PFIC                             K83.1
+     02   先天性膽酸合成障礙               Inborn errors of bile acid synthesis                        E78.70
+     03   α1-抗胰蛋白酶缺乏症             α1- Antitrypsin     deficiency                              E88.01
+     04   先天性Cajal氏間質細胞增生合 Congenital Interstitial Cell of Cajal Hyperplasia with Q43.8
+          併腸道神經元發育異常              Neuronal Intestinal Dysplasia
+     05   阿拉吉歐症候群                 Alagille Syndrome                                           Q44.7
+E 腎臟泌尿系統病變
+E1   01   Lowe 氏症候群               Lowe syndrome                                               E72.03
+     02   Bartter氏症候群             Bartter’s syndrome                                          E26.81
+     03   體染色體隱性多囊性腎臟疾病 Autosomal recessive polycystic kidney disease                         Q61.19
+F 皮膚病變
+F1   01   遺傳性表皮分解性水泡症             Hereditary epidermolysis bullosa                            Q81.9
+     02   層狀魚鱗癬（自體隱性遺傳型) Lchthyosis, lamellar recessive                                       Q80.2
+     03   膠膜兒                     Collodion baby                                              Q80.2
+     04   斑色魚鱗癬                   Harlequin ichthyosis                                        Q80.4
+     05   水泡型先天性魚鱗癬樣紅皮症 Bullous                Congenital          ichthyosiform   erythoderma Q80.3
+          （表皮鬆解性角化過度症）            （epidermolytic hyperkeratosis）
+     06   外胚層增生不良症                Ectodermal Dysplasias                                       Q82.4
+     07   Meleda島病                Meleda disease                                              Q82.8
+     08   Darier氏症（毛囊角化病）         Darier’s disease                                            Q82.8
+     09   先天性角化不全症                Dyskeratosis      Congenita                                 Q82.8
+     10   皮膚過度角化症雅司病              Diffuse Non-epidermolytic Palmoplantar Keratoderma type Q82.8
+                                  Unna-Thost
+
+
+
+                                            第23頁，共28頁
+分類序號      中文病名                  英文病名(縮寫)                                 ICD-10-CM
+     11   色素失調症                 Incontinentia Pigmenti                   Q82.3
+     12   Netherton症候群          Netherton Syndrome                       Q80.3
+G 肌肉病變
+G1   01   裘馨氏肌肉失養症              Duchenne muscular dystrophy              G71.0
+     02   Nemaline線狀肌肉病變        Nemaline Rod Myopathy                    G71.2
+     03   Schwartz Jampel氏症候群   Schwartz Jampel syndrome                 G71.13
+     04   肌肉強直症                 Myotonic dystrophy                       G71.11
+     05   面肩胛肱肌失養症              Facioscapulohumeral muscular dystrophy   G71.0
+     06   肌小管病變                 Myotubular Myopathy                      G71.2
+     07   貝克型肌肉失養症              Becker Muscular Dystrophy                G71.0
+     08   Freeman-Sheldon氏症候群   Freeman-Sheldon syndrome                 Q87.0
+     09   肢帶型肌失養症               Limb-girdle muscular dystrophy           G71.0
+H 骨及軟骨病變
+H1   01   軟骨發育不全症               Achondroplasia                           Q77.4
+     02   成骨不全症                 Osteogenesis imperfecta                  Q78.0
+     03   原發性變形性骨炎              Primary Paget disease                    M88.0
+                                                                         M88.1
+                                                                         M88.811
+                                                                         M88.812
+                                                                         M88.819
+                                                                         M88.821
+                                                                         M88.822
+                                                                         M88.829
+                                                                         M88.831
+                                                                         M88.832
+                                                                         M88.839
+                                                                         M88.841
+                                                                         M88.842
+                                                                         M88.849
+                                                                         M88.851
+                                                                         M88.852
+                                                                         M88.859
+                                                                         M88.861
+                                                                         M88.862
+                                                                         M88.869
+                                                                         M88.871
+                                                                         M88.872
+                                                                         M88.879
+                                                                         M88.88
+                                                                         M88.89
+                                                                         M88.9
+     04   鎖骨顱骨發育異常              Cleidocraninal dysplasia                 Q74.0
+
+
+
+                                         第24頁，共28頁
+分類序號   中文病名       英文病名(縮寫)                                    ICD-10-CM
+  05   進行性骨化性肌炎   Fibrodysplasia Ossificans Progressiva       M61.10
+                                                              M61.111
+                                                              M61.112
+                                                              M61.119
+                                                              M61.121
+                                                              M61.122
+                                                              M61.129
+                                                              M61.131
+                                                              M61.132
+                                                              M61.139
+                                                              M61.141
+                                                              M61.142
+                                                              M61.143
+                                                              M61.144
+                                                              M61.145
+                                                              M61.146
+                                                              M61.151
+                                                              M61.152
+                                                              M61.159
+                                                              M61.161
+                                                              M61.162
+                                                              M61.169
+                                                              M61.171
+                                                              M61.172
+                                                              M61.173
+                                                              M61.174
+                                                              M61.175
+                                                              M61.176
+                                                              M61.177
+                                                              M61.178
+                                                              M61.179
+                                                              M61.18
+                                                              M61.19
+  06   裂手裂足症      Split-hand/ Split-foot malformation（SHFM）   Q71.60
+                                                              Q71.61
+                                                              Q71.62
+                                                              Q71.63
+                                                              Q72.70
+                                                              Q72.71
+                                                              Q72.72
+                                                              Q72.73
+  07   骨質石化症      Osteopetrosis                               Q78.2
+  08   假性軟骨發育不全   Pseudoachondroplastic dysplasia             Q77.8
+
+
+
+                            第25頁，共28頁
+分類序號      中文病名                    英文病名(縮寫)                                           ICD-10-CM
+     09   多發性骨骺發育不全症              Multiple Epiphyseal Dysplasia                      Q78.3
+I 結締組織病變
+I1   01   先天結締組織異常第四型             Ehlers Danlos syndromeⅣ                            Q79.6
+J 血液疾病
+J1   01   重型海洋性貧血                 Thalassemia major                                  D56.0
+                                                                                     D56.1
+     02   血小板無力症                  Thrombasthenia                                     D69.1
+     03   同基因合子蛋白質C缺乏症            Homozygous proetin C     deficiency                D68.59
+     04   陣發性夜間血紅素尿症              Paroxysmal Nocturnal Hemoglobinuria                D59.5
+     05   非典型性尿毒溶血症候群             Atypical Hemolytic Uremic Syndrome                 D59.3
+K 免疫疾病
+K1   01   原發性慢性肉芽腫病               Chronic primary granulomatous disease              D71
+     02   先天性高免疫球蛋白E症候群           Congenital Hyper IgE syndrome                      D82.4
+     03   布魯頓氏低免疫球蛋白血症            Bruton’s agammaglobulinemia                        D80.0
+     04   Wiskott- Aldrich氏症候群    Wiskott- Aldrich Syndrome                          D82.0
+     05   嚴重複合型免疫缺乏症              Severe combined immunodeficiency                   D81.0
+                                                                                     D81.1
+                                                                                     D81.2
+                                                                                     D81.9
+     06   補體成份 8 缺乏症              Complement Component 8 deficiency                  D84.1
+     07   IPEX 症候群                IPEX Syndrome                                      E31.0
+     08   高免疫球蛋白M症候群              Hyper-IgM syndrome                                 D80.5
+     09   γ 干擾素受體 1 缺陷            Interferon γ receptor 1 deficiency                 D84.8
+L 內分泌疾病
+L1   01   Kenny-Caffey氏症候群        Kenny-Caffey syndrome                              Q87.1
+     02   假性副甲狀腺低能症               Pseudohypoparathyroidism                           E20.1
+     03   性連遺傳型低磷酸鹽佝僂症            X-linked hypophosphatemic rickets                  E83.31
+     04   Laron 氏侏儒症候群            Laron syndrome（Laron Dwarfism）                     E34.3
+     05   Bardet-Biedl氏症候群        Bardet-Biedl syndrome                              Q87.89
+     06   Alstrom氏症候群             Alsrtom Syndrome                                   Q87.89
+     07   持續性幼兒型胰島素過度分泌 Persistent hyperinsulinemic hypoglycemia of infancy (PHHI) E16.1
+          低血糖症
+     08   Wolfram氏症候群             Wolfram syndrome，DIDMOAD                           E88.9
+     09   McCune Albright氏症候群     McCune Albright syndrome                           Q78.1
+     10   短指發育不良及性別顛倒             Campomelic dysplasia with autosomal sex reversal   Q99.8
+     11   腎上腺皮促素抗性                ACTH resistance                                    E27.49
+     12   1α-羥化酶缺乏症候群             1α-hydroxylase deficiency                          E25.0
+     13   先天性腎上腺發育不全              Congenital adrenal hypoplasia                      Q89.1
+     14   Kallmann氏症候群            Kallmann syndrome                                  E23.0
+M 先天畸形症候群
+M1   01   Aarskog-Scott氏症候群       Aarskog-Scott syndrome                             Q87.1
+
+
+
+                                            第26頁，共28頁
+分類序號      中文病名                    英文病名(縮寫)                                                ICD-10-CM
+     02   瓦登伯格氏症候群                Waardenburg syndrome                                    E70.8
+     03   愛伯特氏症                   Apert syndrome                                          Q87.0
+     04   Smith-Lemli-Opitz氏症候群   Smith-Lemli-Opitz syndrome                              E78.72
+     05   Larsen氏症候群（顎裂-先天 Larsen syndrome                                                Q74.8
+          性脫位症候群）
+     06   Beckwith Wiedemann氏症候 Beckwith Wiedemann syndrome                               Q87.3
+          群
+     07   Crouzon氏症候群             Crouzon syndrome                                        Q75.1
+     08   Fraser氏症候群              Fraser syndrome                                         Q87.0
+     09   多發性翼狀膜症候群               Multiple pterygium syndrome                             Q79.8
+     10   Cornelia de Lange氏症候群   Cornelia de Lange syndrome                              Q87.1
+     11   海勒曼-史德萊夫氏症候群            Hallerman-Streiff Syndrome                              Q87.0
+     12   歌舞伎症候群                  Kabuki syndrome                                         Q89.8
+     13   耳-齶-指（趾）症候群             Oto-Palato-Digital syndrome                             Q87.0
+     14   Conradi-Hunermann 氏 症 候 Conradi-Hunermann syndrome                              Q77.3
+          群
+     15   Treacher Collins氏症候群    Treacher Collins Syndrome                               Q75.4
+     16   Robinow氏症候群             Robinow Syndrome                                        Q87.1
+     17   Pfeiffer氏症候群            Pfeiffer syndrome                                       Q87.0
+     18   泛酸鹽激酶關聯之神經退化性 Pantothenate               Kinase   Associated   Neurodegeneration G23.0
+          疾病                      （PKAN）
+     19   指（趾）甲髕骨症候群              Nail-Patella Syndrome                                   Q87.2
+     20   CFC症候群                  Cardiofaciocutaneous Syndrome                           Q87.89
+     21   Peters-Plus症候群          Peters-Plus syndrome                                    Q13.4
+     22   Nager症候群                Nager Syndrome                                          Q75.4
+     23   CHARGE症候群               CHARGE Syndrome                                         Q89.8
+N 染色體異常
+N1   01   Angelman氏症候群            Angelman syndrome                                       Q93.5
+     02   DiGeorge’s症候群           DiGeorge’s syndrome                                     D82.1
+     03   Prader-Willi氏症候群        Prader-Willi syndrome                                   Q87.1
+     04   威爾姆氏腫瘤、無虹膜、性器 W A G R syndrome（Wilms’ tumor-Aniridia-Genitourinary Q87.89
+          異常、智能障礙症候群（W A Anomalies-mental Retardation）
+          G R症候群）
+     05   Miller Dieker 症候群       Miller Dieker syndrome                                  Q93.88
+     06   Rubinstein-Taybi氏症候群    Rubinstein-Taybi syndrome                               Q87.2
+     07   威廉斯氏症候群                 Williams Syndrome                                       Q93.89
+     08   Von Hippel-Lindau症候群    Von Hippel-Lindau disease                               Q85.8
+     09   Branchio-Oto-Renal 症候群 Branchio-Oto-Renal Syndrome（BOR Syndrome）                Q87.89
+          （BOR 症候群）
+Z 其他未分類或不明原因
+Z1   01   Cockayne氏症候群            Cockayne syndrome                                       Q87.1
+
+
+
+                                           第27頁，共28頁
+分類序號   中文病名             英文病名(縮寫)                               ICD-10-CM
+  02   早老症              Hutchinson Gilford progeria syndrome   E34.8
+  03   髮-肝-腸症候群         Tricho-hepato-enteric syndrome         Q89.7
+  04   Stargardt ’s氏症   Stargardt’s disease                    H35.50
+  05   隱匿性黃斑部失養症        Occult Macular Dystrophy ;OMD          H35.50
+
+
+
+
+                                 第28頁，共28頁
+

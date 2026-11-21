@@ -1,0 +1,1384 @@
+NGHS1131001 1/26
+商品代號：NGHS
+
+
+         富邦人壽團體一年定期住院醫療費用定額給付健康保險
+【給付項目：住院醫療日額保險金、加護病房保險金、手術保險金、手術看護保險金、特定手
+      術出院療養金、雜費保險金及長期住院補助金】
+ 本商品經本公司合格簽署人員檢視其內容業已符合一般精算原則及保險法令，惟為確保權益
+ ，基於保險公司與消費者衡平對等原則，消費者仍應詳加閱讀保險單條款與相關文件，審慎
+ 選擇保險商品。本商品如有虛偽不實或違法情事，應由本公司及負責人依法負責。
+ 投保後解約或不繼續繳費可能不利消費者，請慎選符合需求之保險商品。
+ 保險契約各項權利義務皆詳列於保單條款，消費者務必詳加閱讀了解。
+   90.07.25 台財保第 900706840 號函核准                    91.12.31 安忠精字第 91066 號函備查
+   92.12.31 安忠精字第 92052 號函備查                       95.01.06 金管保三字第 09402133930 號函
+   96.08.31 安俊精字第 96036 號函備查                       97.05.30 安俊精字第 97028 號函備查
+   98.04.27 金管保三字第 09802546540 號                   98.06.01 富壽商品字第 098002 號函備查
+   101.10.25 富壽商精字第 1010002870 號函備查                103.05.01依103.01.22金管保壽字第10202131810號函修正
+   104.08.04 依 104.06.24 金管保壽字第 10402049830 號函修正   109.01.01依108.04.09金管保壽字第10804904941號函修正
+   111.12.02 依 111.08.30 金管保壽字第 1110445485 號函修正    112.02.10富壽商精字第1120000022號函備查
+   113.10.01 依 113.06.28 金管保壽字第 11304207572 號函修正
+                                                   免費申訴電話：0809-000550
+                                                   傳真：02-88098660
+                                                   電子信箱（E-mail）  ：ho531.life@fubon.com
+
+【保險契約的構成】
+第 一 條 本保險單條款、附著之要保書、被保險人名冊、批註及其他約定書，均為本保險契約（以下簡稱本契
+      約）的構成部分。
+      本契約的解釋，應探求契約當事人的真意，不得拘泥於所用文字；如有疑義時，以作有利於被保險人
+      的解釋為原則。
+
+【名詞定義】
+第 二 條 本契約所使用之名詞，其定義如下：
+      一、「要保人」係指要保單位。
+      二、「員工」係指要保單位所聘僱領有固定薪金的正式員工，且具備本公司與要保人所約定的條件者。
+      三、「團體」係指具有五人以上員工之下列團體：
+        (１)有一定雇主之員工團體。
+        (２)依法成立之士、農、工、商業合作社、協會、職業工會、聯合團體或聯盟所組成之團體。
+        (３)債權、債務人團體。
+        (４)依規定得參加公務人員保險、勞工保險、軍人保險或依勞動基準法規定參加退休金計劃之團體。
+        (５)中央及地方民意代表所組成之團體。
+        (６)凡非屬以上所列而具有法人資格之團體。
+      四、「被保險人」係指本契約所附被保險人名冊內所載之員工。
+      五、
+       「配偶」係指要保時與被保險人存有合法婚姻關係之夫或妻。如有變更則以保險事故發生時與被保
+         險人存有合法婚姻關係之夫或妻為準。
+      六、「子女」係指被保險人之親生子女、養子女或繼子女。
+      七、「被保家庭成員」係指被保險人或其配偶或其子女且經要保人於要保書上要約包括配偶或子女者。
+      八、「疾病」係指被保家庭成員於本契約生效日起三十天後所發生的疾病。但續保者，自續保之日
+         起發生之疾病，不受三十日之限制。如被保險人投保時之保險年齡為零歲，且罹患中央衛生主管
+         機關所公告「遺傳性疾病之新生兒先天性代謝異常疾病檢查項目」載明之應篩檢疾病者，亦不受
+         前述三十日期間之限制。
+      九、
+       「傷害」係指被保家庭成員在本契約有效期間內，由於外來突發之意外傷害事故，並以此意外傷害
+         事故為直接且單獨原因導致之身體傷害。
+      十、
+       「醫院」係指依照醫療法規定領有開業執照並設有病房收治病人之公、私立及醫療法人醫院，但不
+         包括專供療養、靜養、戒毒、戒酒、護理、養老等非以直接診治病人為目的之醫療機構。
+      十一、「住院」係指被保險人經醫師診斷其疾病或傷害必須入住醫院，且正式辦理住院手續並確實在醫
+         院接受診療者。但不包含全民健康保險法所稱之日間住院及精神衛生法所稱之日間留院/日間照
+         護。
+
+【保險期間、保險責任的開始及交付保險費】
+第 三 條 本契約保險期間為一年。
+      本公司應自同意承保並收取第一期保險費後負保險責任，並應發給保險單作為承保的憑證。
+NGHS1131001 2/26
+商品代號：NGHS
+
+
+       本公司如於同意承保前，預收相當於第一期保險費之金額時，其應付之保險責任，以同意承保時溯自
+       預收相當於第一期保險費金額時開始。但契約另有約定保險期間始日者，從其約定。
+       前項情形，在本公司為同意承保與否之意思表示前發生應予給付之保險事故時，本公司仍負保險責任
+       。
+
+【第二期以後保險費的交付、寬限期間及契約效力的停止】
+第 四 條 分期繳納的第二期以後保險費，應照本契約所載交付方法及日期，向本公司所在地或指定地點交付，
+      或由本公司派員前往收取，並交付本公司開發之憑證。
+      第二期以後分期保險費到期未交付時，年繳或半年繳者，自催告到達翌日起三十日內為寬限期間；月
+      繳或季繳者，則不另為催告，自保險單所載交付日期的翌日起三十日為寬限期間。
+      約定以金融機構轉帳或其他方式交付第二期以後的分期保險費者，本公司於知悉未能依此項約定受領
+      保險費時，應催告要保人交付保險費，自催告到達翌日起三十日內為寬限期間。
+      前二項對要保人之催告，本公司另應通知被保險人以確保其權益。對被保險人之通知，依最後留存於
+      本公司之聯絡資料，以書面、電子郵件、簡訊或其他與要保人約定方式擇一發出通知者，視為已完成。
+      逾寬限期間仍未交付者，本契約自寬限期間終了翌日起停止效力。如在寬限期間內發生保險事故時，
+      本公司仍負保險責任。但應由給付保險金內扣除本契約該被保險人欠繳保險費。
+
+【保險費的計算】
+第 五 條 本契約的保險費於本契約生效或續保時，依要保人之危險程度、每一被保家庭成員的年齡及保險計劃
+      計算保險費總和。但在本契約有效期間內因被保家庭成員異動而致保險費總額有所增減，要保人應向
+      本公司補繳其差額保費或領回其溢繳保費。
+
+【契約的續保】
+第 六 條 本契約保險期間為一年，要保人得在保險期間屆滿日的兩週前通知本公司續保，續保之始期以原契約
+      屆滿日的翌日為準，保險費依續保時的年齡並按照當時主管機關核定的費率交付。
+      本公司認為被保險團體的人數不合第九條約定或其他正當理由有拒絕續保的必要時，得不受理續保。
+      被保險人或其配偶個人之續保，於其年齡屆滿七十歲後之第一次保單週年日起終止。
+      子女個人之續保於其年齡屆滿二十三歲後之第一次保單週年日起終止。
+
+【保險範圍】
+第 七 條 被保家庭成員於本契約有效期間內，因疾病或傷害必需住院治療時，本公司依下列各款約定，給付保
+      險金：
+      一、住院醫療日額保險金：本公司自被保家庭成員住院治療日起，按投保之「住院醫療保險金日額」
+        乘以實際住院醫療日數給付「住院醫療日額保險金」。
+      二、加護病房保險金：若因病情需要，住進加護病房時，本公司另按其實際居住加護病房日數乘以「
+        住院醫療保險金日額」的兩倍，給付「加護病房保險金」。
+      三、手術保險金：被保家庭成員經醫院診斷確定為附表「外科手術表」所列「普通手術項目」之一且
+        經外科手術治療時，本公司按投保之「住院醫療保險金日額」的十倍給付「手術保險金」。
+        被保家庭成員所接受之外科手術為附表「外科手術表」所列「特定手術項目」之一者，本公司按
+        投保之「住院醫療保險金日額」的三十倍給付「手術保險金」。
+      四、手術看護保險金：被保家庭成員經醫院診斷確定為附表「外科手術表」所列「普通手術項目」之
+        一且經外科手術治療時，本公司按投保之「住院醫療保險金日額」的二十倍給付「手術看護保險
+        金」。
+        被保家庭成員所接受之外科手術為附表「外科手術表」所列「特定手術項目」之一者，本公司按
+        投保之「住院醫療保險金日額」的三十倍給付「手術看護保險金」。
+      五、特定手術出院療養金：被保家庭成員所接受之外科手術為附表「外科手術表」所列「特定手術項
+        目」之一者，本公司按投保之「住院醫療保險金日額」乘以實際住院醫療日數給付「特定手術出
+        院療養金」。
+      六、雜費保險金：本公司自被保家庭成員住院治療日起，按投保之「住院醫療保險金日額」乘以實際
+        住院醫療日數給付「雜費保險金」。
+      七、長期住院補助金：被保家庭成員住院治療時，且住院日數超過三十日時，本公司依其住院日數按
+        下列金額給付「長期住院補助金」；住院三十一日至六十日以內為「住院醫療保險金日額」的十
+        倍，住院六十一日至九十日以內為「住院醫療保險金日額」的二十倍，住院九十一日至一百八十
+        日以內為「住院醫療保險金日額」的三十倍，住院一百八十日以上為「住院醫療保險金日額」的
+        四十倍。
+
+【告知義務與本契約的解除】
+第 八 條 要保人在訂立本契約時，對於本公司要保書書面詢問的告知事項應據實說明，如有為隱匿或遺漏不為
+NGHS1131001 3/26
+商品代號：NGHS
+
+
+       說明，或為不實的說明，足以變更或減少本公司對於危險的估計者，本公司得解除契約，其保險事故
+       發生後亦同。但危險的發生未基於其說明或未說明的事實時，不在此限。
+       被保險人於要保人申請投保或加保時，對於本公司要保之相關文件(如健康聲明書等)書面詢問的告知
+       事項應據實說明，如有為隱匿或遺漏不為說明，或為不實的說明，足以變更或減少本公司對於危險的
+       估計者，本公司得解除該被保險人部份之保險契約，其保險事故發生後亦同。但危險的發生未基於其
+       說明或未說明的事實時，不在此限。
+       前二項解除權，自本公司知有解除之原因後，經過一個月不行使而消滅。
+
+【契約的終止】
+第 九 條 本契約在被保險人數少於五人，或少於有參加資格員工的百分之七十五時，本公司得終止本契約，並
+      按日數比例退還未滿期之保費。
+      保險契約之效力自通知之翌日零時起終止。終止前發生保險事故時，本公司仍負給付保險金之責任。
+      因被保險人身故致本契約效力終止時,若有已繳付而尚未滿期之保險費者,本公司應按日數比例返還
+      要保人。
+
+【危險變更的通知義務】
+第 十 條 要保人或被保險人由於工作場所、設備、業務種類或其他變更，致危險有顯著增加時要保人應於兩週
+      內通知本公司，要保人怠於通知時，對本公司因此所受之損失，應負賠償責任。
+      本公司接到通知後一個月內，得根據危險增加的程度要求增加保險費或將本契約終止。
+      危險顯著減少時，要保人或被保險人得請求本公司重新核定保費。
+
+【員工與被保家庭成員的資格限制】
+第十一條 員工參加保險時，必須在職從事正常工作。
+     員工因故於契約生效日未能正常工作時，得自恢復正常工作之日起三十日內參加本保險。逾三十日申
+     請參加者須提供健康證明文件並經本公司同意後始得參加。
+     員工之配偶及其子女於本契約生效日取得參加資格。若嗣後始成為被保險人之配偶或子女者，於成為
+     被保家庭成員之日即具有參加資格。
+
+【員工與被保家庭成員的異動及資格的喪失】
+第十二條 要保人因所屬員工被保家庭成員之異動而申請加保時，應以書面或其他約定方式通知本公司，自該員
+     工正式報到並從事正常工作之翌日零時起開始生效，如通知起保日期在後，則自該起保日零時起生效。
+     要保人因所屬員工離職、退休或其他原因停止正常工作而退保時，應以書面或其他約定方式通知本公
+     司，被保險人資格自該員工最後正常工作之翌日零時起喪失，如通知退保日期在後，則自該退保日零
+     時起喪失，其保險效力終止。
+
+【保險事故的通知與保險金的申請時間】
+第十三條 要保人或受益人應於知悉本公司應負保險責任之事故後十日內通知本公司，並於通知後儘速檢具所需
+     文件向本公司申請給付保險金。
+     本公司應於收齊前項文件後十五日內給付之。逾期本公司應按年利一分加計利息給付。但逾期事由不
+     可歸責於本公司者，不在此限。
+
+【保險金申請手續】
+第十四條 受益人申請保險金時，應檢具下列文件：
+     一、保險金申請書。
+     二、住院證明書。
+     三、診斷證明書。
+     四、接受外科手術者，應另檢具外科手術證明文件。
+     五、受益人的身分證明。
+     受益人申請保險金時，本公司基於審核保險金之需要，得對該住院之被保家庭成員的身體予以檢驗，
+     另得徵詢其他醫師之醫學專業意見，並得經受益人同意調閱該住院被保家庭成員之就醫相關資料。因
+     此所生之費用由本公司負擔。
+
+【除外責任】
+第十五條 被保家庭成員直接或間接因下列事由致成之傷害或疾病，本公司概不負給付保險金之責任。
+     一、被保家庭成員之故意行為(包括自殺或該項企圖)
+     二、被保家庭成員之犯罪行為。
+     三、精神病或精神分裂、酒精中毒、吸食或施打毒品或迷幻劑。
+     四、懷孕、流產或分娩，但因遭遇意外傷害事故所致或醫療行為必要者不在此限。
+NGHS1131001 4/26
+商品代號：NGHS
+
+
+       被保家庭成員之住院及醫療與下列情形有關時，不得申請本保險給付：
+       一、美容手術、外科整型或任何挑選手術或天生畸形矯正。
+       二、牙齒治療或手術，但由意外傷害所致者不在此限。
+       三、鑲牙裝設義齒。
+       四、體格檢查、療養、特別護理或靜養。
+       五、先天性疾病（請詳見「先天性疾病」疾病名稱明細表）
+                                。
+       六、人工受孕手術。
+
+【年齡的計算及錯誤的處理】
+第十六條 要保人在申請投保時，應將被保險人出生年月日在被保險人名冊填明。被保險人及其配偶的投保年齡，
+     以足歲計算，但是未滿一歲的零數超過六個月者加算一歲，要保人在申請投保時，應將被保險人及其
+     配偶出生年月日在要保書填明。
+     被保險人的投保年齡發生錯誤時，依下列規定辦理：
+     一、真實投保年齡較本公司保險費率表所載最高年齡為大者，該被保險人部分之保險契約效力自始無
+       效，其已繳保險費無息退還要保人。
+     二、因投保年齡的錯誤，而致溢繳保險費者，本公司無息退還溢繳部份的保險費。但在發生保險事故
+       後始發覺且其錯誤發生在本公司者，本公司按原繳保險費與應繳保險費的比例提高保險金額，而
+       不退還溢繳部分的保險費。
+     三、因投保年齡的錯誤，而致短繳保險費者，要保人得補繳短繳的保險費或按照所付的保險費與被保
+       險人的真實年齡比例減少保險金額。但在發生保險事故後始發覺且其錯誤不可歸責於本公司者，
+       要保人不得請求補繳短繳的保險費。
+     前項第一款、第二款本文情形，其錯誤原因歸責於本公司者，應加計利息退還保險費，其利息按民法
+     第二百零三條法定週年利率計算。
+
+【受益人的指定及變更】
+第十七條 本契約各項保險金的受益人為被保險人本人，本公司不受理其指定或變更。倘被保險人身故前尚有未
+     受領之保險金（不論已否申請），本公司將給付予本契約所約定之身故保險金受益人。
+
+【資料的提供】
+第十八條 要保人應保存每位被保險人的個別資料，詳錄該被保險人的姓名、性別、年齡、出生日期、身分證明
+     編號、保險終止日期，以及其他與本契約有關的資料。
+     要保人應依本公司的要求，提供前項資料。
+
+【住所變更】
+第十九條 要保人的住所變更時，應即以書面或其他約定方式通知本公司。
+     要保人不為前項通知者，本公司之各項通知，得以本契約所載要保人之最後住所發送之。
+
+【時效】
+第二十條   由本契約所生的權利，自得為請求之日起，經過兩年不行使而消滅。
+
+【批註】
+第二十一條 本契約內容的變更，或記載事項的增刪，應經要保人與本公司雙方書面或其他約定方式同意，並由
+      本公司即予批註或發給批註書。
+
+【經驗分紅】
+第二十二條 本契約之經驗分紅計算公式，詳如附表一。
+
+【保險證或保險手冊】
+第二十三條 本公司應發給每位被保險人保險證或保險手冊，載明被保險人姓名、保險商品名稱、保單號碼、保
+      險範圍、保險期間、保險金額及本公司服務電話，並註明被保險人具有撤銷其同意投保之權利。
+
+【管轄法院】
+第二十四條 因本契約涉訟者，同意以要保人住所地地方法院為第一審管轄法院，要保人之住所在中華民國境外
+       時，以臺灣臺北地方法院為第一審管轄法院。但不得排除消費者保護法第四十七條及民事訴訟法第
+       四百三十六條之九小額訴訟管轄法院之適用。
+NGHS1131001 5/26
+商品代號：NGHS
+
+
+附表:外科手術表:
+                            普通手術項目
+       a.胸腔外科                    10.股關節骨折
+         1.開胸探查術                 11.膝關節整形術
+         2.胸腔形成術－第一期             12.膝關節擴創術
+         3.胸腔形成術－第二期             13.膝關節骨折
+         4.胸腔形成術－第三期             14.下腿切斷
+         5.食道鏡檢查，合併組織切片          15.下腿擴創術
+         6.胃造廔術或空腸造廔術            16.下腿骨骨折
+         7.胃造廔術及幽門成形術            17.骨盤手術
+         8.氣胸手術                  18.鋼釘拔除術
+       b.甲狀腺外科                   19.頷骨骨折
+         1.甲狀腺囊腫或甲狀舌囊腫切除術      l.脊椎手術
+       c.乳腺外科                    1.脊椎骨折
+         1.乳腺腫瘤切除術               2.椎間板手術
+       d.膽道外科                  m.耳部
+         1.膽囊造廔術                 1.乳突鑿開術
+         2.膽囊切除術               n.鼻部
+         3.總膽管切開術                1.鼻咽瘤切除術
+       e.肝臟外科                    2.粘膜下鼻甲骨切除術
+         1.肝膿瘍引流術                3.下甲介截除術
+       f.肛門外科                    4.鼻中膈彎曲
+         1.肛門周圍膿瘍切開引流術         o.咽喉部
+         2.栓塞性外痔核切除術             1.咽部膿腫切開術
+         3.單純肛廔切除術               2.喉截開術
+         4.肛裂切除術                 3.氣管切開術
+       g.結腸直腸及小腸外科               4.扁桃腺切除術
+         1.闌尾切除術                 5.聲帶息肉
+         2.盲腸造廔術               p.眼科
+         3.人工肛門術                 1.眼內異物除去術－前房內
+         4.直腸鏡檢查術                2.眼內異物除去術－硝子體內
+         5.小腸憩室切除術               3.網膜剝離之冷凍手術
+       h.其他腹部外科                  4.網膜剝離之電氣凝固術
+         1.腹腔內膿瘍引流術              5.青光眼毛樣體剝離手術
+         2.膈下膿瘍引流術               6.青光眼虹彩切除術
+         3.骨盆腔膿瘍引流術              7.白內障瓣狀摘出術（包括囊內、囊外）
+         4.腹腔鏡手術                 8.白內障線狀摘出術
+         5.脾臟切除術                 9.倒睫矯正
+       i.神經外科                    10.淚囊切除術
+         1.頭顱穿洞術               q.泌尿科
+         2.腦室引流                  1.尿道切開術
+       j.上肢手術                    2.血液透析
+         1.上膊切除術－兩側            r.精路手術
+         2.上膊切除術－單側              1.副睪丸截除術（單側）
+         3.肩關節骨折                 2.副睪丸截除術（雙側）
+         4.肘關節整形術                3.陰囊水腫手術
+         5.肘關節骨折                 4.睪丸截除術（單側）
+         6.前臂切斷術                 5.睪丸截除術（雙側）
+         7.前臂骨折                  6.精索靜脈手術
+         8.上臂骨折                  7.疝氣
+         9.腕關節手術                 8.包皮切除術
+         10.手指切除術－單指           s.婦產科
+         11.手指切除術－多指             1.子宮附屬器切除術（包括子宮外孕手術
+         12.手指顯微縫合             ）
+       k.下肢手術                    2.子宮頸楔狀切除術
+         1.大腿切斷術－單側              3.子宮頸切斷術
+         2.大腿腿骨折                 4.部腹探查術
+         3.足部切斷術                 5.陰道囊腫切除術
+NGHS1131001 6/26
+商品代號：NGHS
+
+
+         4.足部骨折       6.子宮肌瘤摘除術
+         5.髁關節固定術     7.次全子宮切除術
+         6.髁關節整形術     8.治療性子宮頸擴括術
+         7.髁關節骨折      9.卵巢囊腫切除術
+         8.髁關節擴創術   t.其他
+         9.股關節切斷術     1.擴創與植皮
+NGHS1131001 7/26
+商品代號：NGHS
+
+
+
+                        特定手術項目
+     A.胸腔外科                  3.顱骨切除術
+       1.食道切除術               4.椎間切除術
+       2.食道瘤及囊腫切除術           5.硬腦膜外血腫清除術
+       3.胃賁門及食道切除再造術         6.腦內血腫清除術
+       4.肺葉切除及胸廓成形術          7.椎板切除術
+       5.全肺切除術               8.腦葉切除術
+       6.肺部份切除術              9.急性硬腦膜下血腫清除術
+     B.心臟和循環系統             L.上肢手術
+       1.心臟切開術和異物移除          1.肩關節固定術
+       2.心肌切除術             M.下肢手術
+       3.心肌梗塞後造成心室中膈缺損修補術    1.大腿切斷術－兩側
+       4.單一瓣膜置換術             2.股關節固定術
+       5.二個瓣膜置換術             3.股關節整形術
+       6.三個瓣膜置換術             4.膝關節固定術
+     C.甲狀腺外科                 5.骨盤切斷術
+       1.甲狀腺全部切除術            6.肘關節全置換術
+     D.乳腺外科                N.脊椎手術
+       1.乳癌根治術（標準型及修改型）      1.脊椎整形術－前方固定
+     E.消化性潰瘍外科               2.脊椎整形術－後方固定
+       1.胃近位迷走神經切斷術        O.耳部
+       2.胃亞全切除術（遠端）          1.鼓室成形術－不包括乳突鑿開術
+       3.胃全切除術               2.鼓室成形術－包括乳突鑿開術
+       4.迷走神經切斷術加胃部份切除術      3.顳骨切除術
+       5.迷走神經切斷術加幽門成形      P.鼻部
+       6.迷走神經切斷術加胃腸吻合術       1.多竇副鼻竇手術
+     F.胰臟外科                  2.全竇副鼻竇手術
+       1.胰臟腫瘤或囊腫摘除術        Q.咽喉部
+       2.胰臟空腸吻合術             1.半喉切除術
+       3.胰臟全切除術            R.眼科
+     G.膽道外科                  1.網膜剝離之鞏膜填充術
+       1.總膽管全切除術             2.網膜剝離之鞏膜切除術
+     H.肝臟外科                S.泌尿科
+       1.擴大肝葉切除術（三區域）        1.腎臟囊腫去除術
+       2.肝小葉切除術（一區域）         2.腎切除術
+       3.肝部份切除術（小於半區域）       3.腎臟固定術
+       4.肝葉切除術（二區域）          4.腎、輸尿管切除術
+     I.結腸直腸及小腸外科             5.腎部份切除術
+       1.乙狀結腸切除術             6.膀胱部份截除術
+       2.右結腸切除術              7.膀胱全部截除術
+       3.次全結腸切除術加迴腸直腸吻合術     8.體外碎石術
+       4.全結腸切除加迴腸造廔術       T.精路手術
+       5.小腸切除術加吻合術           1.前列腺切除術
+     J.其他腹部外科                2.前列腺全部切除術
+       1.腹腔腫瘤切除術           U.婦產科
+       2.後腹腔腫瘤切除術            1.子宮頸癌根除性手術
+     K.神經外科                  2.單純性子宮全摘除術（腹式、膣式）
+       1.動脈瘤手術
+       2.腦瘤切除
+註：被保險人之手術項目不同於本表所列項目時，以本表內相當程度之手術費用決定其補償金額。
+NGHS1131001 8/26
+商品代號：NGHS
+
+
+    附表一：團體經驗分紅公式
+
+
+經驗退費公式如下：
+
+Ｒ＝Ｋ×（Ｔ－Ｅ－Ｃ）－Ｃ'
+
+Ｒ   ：經驗退費
+
+Ｋ   ：分紅率
+
+Ｔ   ：當年度合併計算經驗退費之應收總保費
+
+Ｅ   ：保險公司稅捐、行政管理及其他各項費用
+
+C   ：當年度發生之理賠金額
+
+Ｃ' ：累積虧損
+NGHS1131001 9/26
+商品代號：NGHS
+
+
+「先天性疾病」疾病名稱明細表(疾病名稱前為第九版國際疾病分類代碼 ICD-9-CM)
+
+740      *ANENCEPHALUS AND SIMILAR ANOMALIES
+          無腦症及類似畸形
+740.0     ANENCEPHALUS
+          無腦症
+740.1     CRANIORACHISCHISIS
+          顱裂症
+740.2     INIENCEPHALY
+          枕骨裂露腦畸形
+741      *SPINA BIFIDA
+          脊椎裂
+741.0    *SPINA BIFIDA WITH HYDROCEPHALUS
+          脊椎裂伴有水腦症者
+741.00    SPINA BIFIDA WITH HYDROCEPHALUS,UNSPECIFIED REGION
+          脊椎裂伴有水腦症者，不確定部位
+741.01    SPINA BIFIDA WITH HYDROCEPHALUS,CERVICAL REGION
+          脊椎裂伴有水腦症者，頸部
+741.02    SPINA BIFIDA WITH HYDROCEPHALUS,DORSAL (THORACIC) REGION
+          脊椎裂伴有水腦症者，胸部
+741.03    SPINA BIFIDA WITH HYDROCEPHALUS,LUMBAR REGION
+          脊椎裂伴有水腦症者，腰部
+741.9    *SPINA BIFIDA WIHTOUT MENTION OF HYDROCEPHALUS
+          脊椎裂未提及水腦症者
+741.90    SPINA BIFIDA WIHTOUT MENTION OF HYDROCEPHALUS,UNSPECIFIED REGION
+          脊椎裂未提及水腦症者，不確定部位
+741.91    SPINA BIFIDA WITHOUT MENTION OF HYDROCEPHALUS,CERVICAL REGION
+          頸部脊椎裂未提及水腦症者
+741.92    SPINA BIFIDA WITHOUT MENTION OF HYDROCEPHALUS,DORSAL (THORACIC) REGION
+          胸部脊椎裂未提及水腦症者
+741.93    SPINA BIFIDA WITHOUT MENTION OF HYDROCEPHALUS,LUMBAR REGION
+          腰部脊椎裂未提及水腦症者
+742      *OTHER CONGENITAL ANOMALIES OF NERVOUS SYSTEM
+          神經系統之其他先天性畸形
+
+742.0     ENCEPHALOCELE
+          腦膨出症
+742.1     MICROCEPHALUS
+          小頭症
+742.2     REDUCTION DEFORMITIES OF BRAIN
+          腦突質減少畸形
+742.3     CONGENITAL HYDROCEPHALUS
+          先天性水腦症
+742.4     OTHER SPECIFIED ANOMALIES OF BRAIN
+          腦之其他明示畸形
+742.5    *OTHER SPECIFIED ANOMALIES OF SPINAL CORD
+          脊髓之其他明示畸形
+742.51    DIASTEMATOMYELIA
+          脊髓裂
+742.53    HYDROMYELIA
+          脊髓積水
+742.59    OTHER SPECIFIED ANOMALIES OF SPINAL CORD
+          脊髓之其他明示畸形
+NGHS1131001 10/26
+商品代號：NGHS
+
+
+742.8     OTHER SPECIFIED ANOMALIES OF NERVOUS SYSTEM
+          神經系統之其他明示畸形
+742.9     UNSPECIFIED ANOMALIES OF BRAIN,SPINAL CORD AND NERVOUS SYSTEM
+          腦脊髓及神經系統之未明示畸形
+743      *CONGENITAL ANOMALIES OF EYE
+          眼睛先天性畸形
+743.0    *ANOPHTHALMOS
+          無眼球症
+743.00    CLINICAL ANOPHTHALMOS UNSPECIFIED
+          未明示之臨床無眼球症
+743.03    CYSTIC EYEBALL,CONGENITAL
+          先天性眼球囊腫
+743.06    CRYPTOPHTHALMOS
+          隱眼畸形
+743.1    *MICROPHTHALMOS
+          小眼畸形
+743.10    MICROPHTHALMOS,UNSPECIFIED
+          未明示之小眼畸形
+743.11    SIMPLE MICROPHTHALMOS
+          單純性之小眼畸形
+743.12    MICROPHTHALMOS ASSOCIATED WITH OTHER ANOMALIES OF EYE AND ADNEXA
+          小眼畸形合併其他眼及其附屬器官畸形
+743.2    *BUPHTHALMOS
+          牛眼症
+743.20    BUPHTHALMOS,UNSPECIFIED
+          未明示之牛眼症
+743.21    SIMPLE BUPHTHALMOS
+          單純性牛眼症
+743.22    BUPHTHALMOS ASSOCIATED WITH OTHER OCULAR ANOMALIES
+          牛眼症合併其他眼之畸形
+743.3    *CONGENITAL CATARACT AND LENS ANOMALIES
+          先天性白內障及水晶體畸形
+743.30    CONGENITAL CATARACT,UNSPECIFIED
+          未明示之先天性白內障
+743.31    SUBCAPSULAR AND CAPSULAR CATARACT
+          先天性囊及囊下白內障
+743.32    ZONULAR AND CORTICAL CATARACT
+          先天性小帶及皮質白內障
+743.33    NUCLEAR CATARACT
+          核性白內障
+743.34    TOTAL AND SUBTOTAL CATARACT,CONGENITAL
+          先天性全部及次全部白內障
+743.35    CONGENITAL APHAKIA
+          先天性無晶狀體
+743.36    ANOMALIES OF LENS SHAPE
+          先天性水晶體形狀畸形
+743.37    CONGENITAL ECTOPIC LENS
+          先天性晶體異位
+743.39    CONGENITAL CATARACT AND LENS ANOMALIES,OTHER
+          其他先天性白內障及晶體畸形
+743.4    *COLOBOMA AND OTHER ANOMALIES OF ANTERIOR SEGMENT
+          前節缺陷及其他畸形
+743.41    ANOMALIES OF CORNEAL SIZE AND SHAPE
+NGHS1131001 11/26
+商品代號：NGHS
+
+
+          角膜大小及形狀畸形
+743.42    CORNEAL OPACITIES, INTERFERING WITH VISION,CONGENITAL
+          角膜混濁，導致視力干擾
+743.43    OTHER CORNEAL OPACITIES,CONGENITAL
+          其他先天性角膜混濁
+743.44    SPECIFIED ANOMALIES OF ANTERIOR CHAMBER,CHAMBER ANGLE,AND RELATED STRUCTURES
+          眼前房，房角及相關構造之明示畸形
+743.45    ANIRIDIA
+          無虹膜畸形
+743.46    OTHER SPECIFIED ANOMALIES OF IRIS AND CILIARY BODY
+          虹膜及睫狀體之其他明示畸形
+743.47    SPECIFIED ANOMALIES OF SCLERA
+          鞏膜之明示畸形
+743.48    MULTIPLE AND COMBINED ANOMALIES OF ANTERIOR SEGMENT
+          先天性多發及併發性前節畸形
+743.49    COLOBOMA AND OTHER ANOMALIES OF ANTERIOR SEGMENT,OTHER
+          其他前節缺陷及其他畸形
+743.5    *CONGENITAL ANOMALIES OF POSTERIOR SEGMENT
+          先天性後節畸形
+743.51    VITREOUS ANOMALIES
+          玻璃體畸形
+743.52    FUNDUS COLOBOMA
+          先天性眼底缺陷
+743.53    CONGENITAL CHORIORETINAL DEGENERATION
+          先天性脈絡膜與視網膜退化
+743.54    CONGENITAL FOLDS AND CYSTS OF POSTERIOR SEGMENT
+          先天性後節皺襞及囊腫
+743.55    CONGENITAL MACULAR CHANGES
+          先天性黃斑改變
+743.56    OTHER RETINAL CHANGES,CONGENITAL
+          其他先天性視網膜改變
+743.57    SPECIFIED ANOMALIES OF OPTIC DISC
+          明示性視盤畸形
+743.58    VASCULAR ANOMALIES
+          先天性血管畸形
+743.59    CONGENITAL ANOMALIES OF POSTERIOR SEGMENT,OTHER
+          其他先天性後節畸形
+743.6    *CONGENITAL ANOMALIES OF EYELIDS,LACRIMAL SYSTEM AND ORBIT
+          眼瞼、淚腺系統及眼眶之先天畸形
+743.61    CONGENITAL PTOSIS
+          先天性上眼瞼下垂
+743.62    CONGENITAL DEFORMITIES OF EYELIDS
+          先天性眼瞼變形
+743.63    OTHER SPECIFIED CONGENITAL ANOMALIES OF EYELID
+          眼瞼之其他明示性畸形
+743.64    SPECIFIED CONGENITAL ANOMALIES OF LACRIMAL GLAND
+          淚腺之先天性明示性畸形
+743.65    SPECIFIED CONGENITAL ANOMALIES OF LACRIMAL PASSAGES
+          淚管之先天性明示性畸形
+743.66    SPECIFIED CONGENITAL ANOMALIES OF ORBIT
+          眼眶之先天性明示性畸形
+743.69    OTHER CONGENITAL ANOMALIES OF EYELIDS,LACRIMAL SYSTEM,AND ORBIT
+          眼瞼、淚腺系統及眼眶之其他先天畸形
+NGHS1131001 12/26
+商品代號：NGHS
+
+
+743.8     OTHER SPECIFIED ANOMALIES OF EYE
+          眼睛之其他明示畸形
+743.9     UNSPECIFIED ANOMALIES OF EYE
+          未明示之眼睛畸形
+744      *CONGENITAL ANOMALIES OF EAR,FACE AND NECK
+          耳、臉及頸部之先天畸形
+744.0    *ANOMALIES OF EAR CAUSING IMPAIRMENT OF HEARING
+          耳畸形，可導致聽覺障礙者
+744.00    UNSPECIFIED ANOMALY OF EAR WITH IMPAIRMENT OF HEARING
+          未明示之耳畸形可導致聽覺障礙者
+744.01    ABSENCE OF EXTERNAL EAR
+          無外耳畸形
+744.02    OTHER ANOMALIES OF EXTERNAL EAR WITH IMPAIRMENT OF HEARING
+          其他外耳畸形，可導致聽覺障礙者
+744.03    ANOMALY OF MIDDLE EAR,EXCEPT OSSICLES
+          除耳骨外先天性中耳畸形
+744.04    ANOMALIES OF EAR OSSICLES
+          先天性耳骨畸形
+744.05    ANOMALIES OF INNER EAR
+          先天性內耳畸形
+744.09    ANOMALIES OF EAR CAUSING IMPAIRMENT OF HEARING,OTHER
+          其他先天性耳畸形，可導致聽覺障礙者
+744.1     ACCESSORY AURICLE
+          副耳廓畸形
+744.2    *OTHER SPECIFIED ANOMALIES OF EAR
+          耳之其他明示性畸形
+744.21    ABSENCE OF EAR LOBE,CONGENITAL
+          先天性耳葉缺損
+744.22    MACROTIA
+          巨耳畸形
+744.23    MICROTIA
+          小耳畸形
+744.24    SPECIFIED ANOMALIES OF EUSTACHIAN TUBE
+          先天性明示性奧氏塔琴管畸形
+744.29    OTHER SPECIFIED ANOMALIES OF EAR
+          耳之其他明示性畸形
+744.3     UNSPECIFIED ANOMALY OF EAR
+          未明示之耳畸形
+744.4    *BRANCHIAL CLEFT CYST OR FISTULA;PREAURICULAR SINUS
+          先天性鰓裂、囊腫或廔管；耳廓前竇
+744.41    BRANCHIAL CLEFT SINUS OR FISTULA
+          先天性鰓裂竇或廔管
+744.42    BRANCHIAL CLEFT CYST
+          先天性鰓裂囊腫
+744.43    CERVICAL AURICLE
+          耳廓頸部囊腫或廔管
+744.46    PREAURICULAR SINUS OR FISTULA
+          耳廓前竇或廔管
+744.47    PREAURICULAR CYST
+          耳廓前囊腫
+744.49    BRANCHIAL CLEFT CYST OR FISTULA; PREAURICULAR SINUS
+          鰓裂囊腫或廔管；耳廓前竇
+NGHS1131001 13/26
+商品代號：NGHS
+
+
+744.5     WEBBING OF NECK
+          頸部蹼翼
+744.8    *OTHER SPECIFIED ANOMALIES OF FACE AND NECK
+          臉部、頸部其他明示之畸形
+744.81    MACROCHEILIA
+          巨唇畸形
+744.82    MICROCHEILIA
+          小唇畸形
+744.83    MACROSTOMIA
+          巨口畸形
+744.84    MICROSTOMIA
+          小口畸形
+744.89    OTHER SPECIFIED ANOMALIES OF FACE AND NECK
+          其他明示性之臉、頸畸形
+744.9     UNSPECIFIED ANOMALIES OF FACE AND NECK
+          未明示之臉、頸畸形
+745      *BULBUS CORDIS ANOMALIES AND ANOMALIES OF CARDIAC SEPTAL CLOSURE
+          先天性心球（胚胎）及心臟中隔閉合之畸形
+745.0     COMMON TRUNCUS
+          共同動脈幹
+745.1    *TRANSPOSITION OF GREAT VESSELS
+          大血管轉位
+745.10    COMPLETE TRANSPOSITION OF GREAT VESSELS
+          大血管完全性轉位
+745.11    DOUBLE OUTLET RIGHT VENTRICLE
+          右心室雙重出口
+745.12    CORRECTED TRANSPOSITION OF GREAT VESSELS
+          大血管矯正性轉位
+745.19    TRANSPOSITION OF GREAT VESSELS,OTHER
+          其他大血管轉位
+745.2     TETRALOGY OF FALLOT
+          法洛氏四合症
+745.3     COMMON VENTRICLE
+          共同單一心室
+745.4     VENTRICULAR SEPTAL DEFECT
+          心室中隔缺陷
+745.5     OSTIUM SECUNDUM TYPE ATRIAL SEPTAL DEFECT
+          第二洞型心房中隔缺陷
+745.6    *ENDOCARDIAL CUSHION DEFECTS
+          心內膜墊缺陷
+745.60    ENDOCARDIAL CUSHION DEFECT,UNSPECIFIED TYPE
+          未明示性心內膜墊缺陷
+745.61    OSTIUM PRIMUM DEFECT
+          第一洞型心房中隔缺陷
+745.69    ENDOCARDIAL CUSHION DEFECTS,OTHER
+          其他心內膜墊缺陷
+745.7     COR BILOCULARE
+          兩腔心
+745.8     BULBUS CORDIS ANOMALIES AND ANOMALIES OF CARDIAC SEPTAL CLOSURE, OTHER
+          其他心球畸形及心房中隔閉合缺陷畸形
+745.9     UNSPECIFIED DEFECT OF SEPTAL CLOSURE
+          未明示之中隔閉合缺陷
+746      *OTHER CONGENITAL ANOMALIES OF HEART
+NGHS1131001 14/26
+商品代號：NGHS
+
+
+          心臟之其他先天性畸形
+746.0    *ANOMALIES OF PULMONARY VALVE
+          肺動脈瓣畸形
+746.00    ANOMALIES OF PULMONARY VALVE,UNSPECIFIED
+          未明示之肺動脈瓣畸形
+746.01    ATRESIA OF PULMONARY VALVE,CONGENITAL
+          先天性肺動脈瓣閉鎖
+746.02    STENOSIS OF PULMONARY VALVE,CONGENITAL
+          先天性肺動脈瓣狹窄
+746.09    ANOMALIES OF PULMONARY VALVE,OTHER
+          其他肺動脈瓣畸形
+746.1     TRICUSPID ATRESIA AND STENOSIS,CONGENITAL
+          三尖瓣閉鎖及狹窄，先天性
+746.2     EBSTEIN'S ANOMALY
+          愛伯斯汀畸形
+746.3     CONGENITAL STENOSIS OF AORTIC VALVE
+          主動脈瓣先天性狹窄
+746.4     CONGENITAL INSUFFICIENCY OF AORTIC VALVE
+          主動脈瓣先天性閉鎖不全
+746.5     CONGENITAL MITRAL STENOSIS
+          先天性二尖瓣狹窄
+746.6     CONGENITAL MITRAL INSUFFICIENCY
+          先天性二尖瓣閉鎖不全
+746.7     HYPOPLASTIC LEFT HEART SYNDROME
+          左心形成不全徵候群
+746.8    *OTHER SPECIFIED ANOMALIES OF HEART
+          心臟之其他明示畸形
+746.81    SUBAORTIC STENOSIS
+          下主動脈瓣狹窄
+746.82    COR TRIATRIATUM
+          三心房心臟畸形
+746.83    INFUNDIBULAR PULMONIC STENOSIS
+          漏斗部肺動脈狹窄
+746.84    OBSTRUCTIVE ANOMALIES OF HEART,NOT ELSEWHERE CLASSIFIED
+          他處未提及的阻塞性心臟畸形
+746.85    CORONARY ARTERY ANOMALY
+          冠狀動脈畸形
+746.86    CONGENITAL HEART BLOCK
+          先天性心臟傳導阻斷
+746.87    MALPOSITION OF HEART AND CARDIAC APEX
+          先天性心臟及心尖位置異常
+746.89    OTHER SPECIFIED ANOMALIES OF HEART
+          其他明示性之心臟畸形
+746.9     UNSPECIFIED ANOMALY OF HEART
+          心臟之未明示畸形
+747      *OTHER CONGENITAL ANOMALIES OF CIRCULATORY SYSTEM
+          循環系統之其他先天性畸形
+747.0     PATENT DUCTUS ARTERIOSUS
+          動脈導管未關閉
+747.1    *COARCTATION OF AORTA
+          主動脈縮窄
+747.10    COARCTATION OF AORTA (PREDUCTAL)(POSTDUCTAL)
+          主動脈縮窄，管前管後
+NGHS1131001 15/26
+商品代號：NGHS
+
+
+747.11    INTERRUPTION OF AORTIC ARCH
+          主動脈弓中斷
+747.2    *OTHER ANOMALIES OF AORTA
+          其他之主動脈畸形
+747.20    ANOMALY OF AORTA,UNSPECIFIED
+          未明示之主動脈畸形
+747.21    ANOMALIES OF AORTIC ARCH
+          主動脈弓畸形
+747.22    ATRESIA AND STENOSIS OF AORTA
+          主動脈閉鎖及狹窄
+747.29    OTHER ANOMALIES OF AORTA
+          其他主動脈畸形
+747.3     ANOMALIES OF PULMONARY ARTERY
+          肺動脈畸形
+747.4    *ANOMALIES OF GREAT VEINS
+          大靜脈畸形
+747.40    ANOMALY OF GREAT VEINS, UNSPECIFIED
+          未明示之大靜脈畸形
+747.41    TOTAL ANOMALOUS PULMONARY VENOUS CONNECTION
+          肺靜脈回流完全畸形
+747.42    PARTIAL ANOMALOUS PULMONARY VENOUS CONNECTION
+          肺靜脈回流部份畸形
+747.49    OTHER ANOMALIES OF GREAT VEINS
+          其他大靜脈畸形
+747.5     ABSENCE OR HYPOPLASIA OF UMBILICAL ARTERY
+          臍動脈缺乏或形成不全
+747.6     OTHER ANOMALIES OF PERIPHERAL VASCULAR SYSTEM
+          末梢血管系統之其他畸形
+747.8    *OTHER SPECIFIED ANOMALIES OF CIRCULATORY SYSTEM
+          循環系統之其他明示畸形
+747.81    ANOMALIES OF CEREBROVASCULAR SYSTEM
+          腦血管系統之畸形
+747.89    OTHER SPECIFIED ANOMALIES OF CIRCULATORY SYSTEM
+          其他明示性之循環系統畸形
+747.9     UNSPECIFIED ANOMALIES OF CIRCULATORY SYSTEM
+          未明示之循環系統畸形
+748      *CONGENITAL ANOMALIES OF RESPIRATORY SYSTEM
+          呼吸系統先天性畸形
+748.0     CHOANAL ATRESIA
+          鼻後孔閉鎖症
+748.1     OTHER ANOMALIES OF NOSE
+          鼻之其他畸形
+748.2     WEB OF LARYNX
+          喉部蹼翼
+748.3     OTHER ANOMALIES OF LARYNX,TRACHEA,AND BRONCHUS
+          喉、氣管及支氣管之其他畸形
+748.4     CONGENITAL CYSTIC LUNG
+          先天性肺囊腫
+748.5     AGENESIS, HYPOPLASIA AND DYSPLASIA OF LUNG
+          肺缺乏症形成不全及形成異常
+748.6    *OTHER ANOMALIES OF LUNG
+          肺之其他畸形
+748.60    ANOMALY OF LUNG,UNSPECIFIED
+NGHS1131001 16/26
+商品代號：NGHS
+
+
+          先天性之肺畸形
+748.61    CONGENITAL BRONCHIECTASIS
+          先天性支氣管擴張
+748.69    OTHER ANOMALIES OF LUNG
+          其他肺畸形
+748.8     OTHER SPECIFIED ANOMALIES OF RESPIRATORY SYSTEM
+          呼吸系統之其他明示畸形
+748.9     UNSPECIFIED ANOMALIES OF RESPIRATORY SYSTEM
+          未明示之呼吸系統畸形
+749      *CLEFT PALATE AND CLEFT LIP
+          顎裂及唇裂
+749.0    *CLEFT PALATE
+          顎裂
+749.00    CLEFT PALATE,UNSPECIFIED
+          未明示之顎裂
+749.01    COMPLETE CLEFT PALATE,UNILATERAL
+          完全顎裂，單側
+749.02    INCOMPLETE CLEFT PALATE,UNILATERAL
+          不完全顎裂，單側
+749.03    COMPLETE CLEFT PALATE,BILATERAL
+          完全顎裂，雙側
+749.04    INCOMPLETE CLEFT PALATE,BILATERAL
+          不完全顎裂，雙側
+749.1    *CLEFT LIP
+          唇裂
+749.10    CLEFT LIP,UNSPECIFIED
+          未明示之唇裂
+749.11    COMPLETE CLEFT LIP,UNILATERAL
+          完全唇裂，單側
+749.12    INCOMPLETE CLEFT LIP,UNILATERAL
+          不完全唇裂，單側
+749.13    COMPLETE CLEFT LIP,BILATERAL
+          完全唇裂，雙側
+749.14    INCOMPLETE CLEFT LIP,BILATERAL
+          不完全唇裂，雙側
+749.2    *CLEFT PALATE WITH CLEFT LIP
+          顎裂，伴有唇裂
+749.20    CLEFT PALATE WITH CLEFT LIP,UNSPECIFIED
+          未明示之顎裂伴有唇裂
+749.21    COMPLETE CLEFT PALATE WITH CLEFT LIP,UNILATERAL
+          完全顎裂伴有唇裂，單側
+749.22    UNILATERAL INCOMPLETE CLEFT PALATE WITH CLEFT LIP
+          不完全顎裂伴有唇裂，單側
+749.23    COMPLETE CLEFT PALATE WITH CLEFT LIP,BILATERAL
+          完全顎裂伴有唇裂，雙側
+749.24    INCOMPLETE CLEFT PALATE WITH CLEFT LIP,BILATERAL
+          不完全顎裂伴有唇裂，雙側
+749.25    CLEFT PALATE WITH CLEFT LIP,OTHER COMBINATION
+          顎裂伴有唇裂，其他合併型
+750      *OTHER CONGENITAL ANOMALIES OF UPPER ALIMENTARY TRACT
+          上消化道之其他先天性畸形
+750.0     TONGUE TIE
+          舌繫帶短縮
+NGHS1131001 17/26
+商品代號：NGHS
+
+
+750.1    *OTHER ANOMALIES OF TONGUE
+          舌之其他畸形
+750.10    ANOMALY OF TONGUE,UNSPECIFIED
+          未明示之舌畸形
+750.11    AGLOSSIA
+          無舌畸形
+750.12    CONGENITAL ADHESIONS OF TONGUE
+          先天性舌黏連
+750.13    FISSURE OF TONGUE
+          舌裂隙
+750.15    MACROGLOSSIA
+          巨舌畸形
+750.16    MICROGLOSSIA
+          小舌畸形
+750.19    OTHER ANOMALIES OF TONGUE
+          其他之舌畸形
+750.2    *OTHER SPECIFIED ANOMALIES OF MOUTH AND PHARYNX
+          口及咽之其他明示畸形
+750.21    ABSENCE OF SALIVARY GLAND
+          唾液腺缺乏
+750.22    ACCESSORY SALIVARY GLAND
+          副唾液腺
+750.23    ATRESIA,SALIVARY DUCT
+          唾液管閉鎖
+750.24    CONGENITAL FISTULA OF SALIVARY GLAND
+          唾液腺先天性廔管
+750.25    CONGENITAL FISTULA OF LIP
+          先天性唇廔管
+750.26    OTHER SPECIFIED ANOMALIES OF MOUTH
+          其他明示性之口畸形
+750.27    DIVERTICULUM OF PHARYNX
+          咽憩室
+750.29    OTHER SPECIFIED ANOMALIES OF PHARYNX
+          其他明示性之咽畸形
+750.3     TRACHEOESOPHAGEAL FISTULA,ESOPHAGEAL ATRESIA AND STENOSIS
+          氣管、食道廔管、食道閉鎖及狹窄
+750.4     OTHER SPECIFIED ANOMALIES OF ESOPHAGUS
+          食道之其他明示性畸形
+750.5     CONGENITAL HYPERTROPHIC PYLORIC STENOSIS
+          先天性肥大型之幽門狹窄
+750.7     OTHER SPECIFIED ANOMALIES OF STOMACH
+          胃之其他明示畸形
+750.8     OTHER SPECIFIED ANOMALIES OF UPPER ALIMENTARY TRACT
+          上消化道之其他明示畸形
+750.9     UNSPECIFIED ANOMALIES OF UPPER ALIMENTARY TRACT
+          未明示之上消化道畸形
+751      *OTHER CONGENITAL ANOMALIES OF DIGESTIVE SYSTEM
+          消化系統之其他先天畸形
+751.0     MECKEL'S DIVERTICULUM
+          美克耳憩室病
+751.1     ATRESIA AND STENOSIS OF SMALL INTESTINE
+          小腸之閉鎖及狹窄
+751.2     ATRESIA AND STENOSIS OF LARGE INTESTINE,RECTUM AND ANAL CANAL
+NGHS1131001 18/26
+商品代號：NGHS
+
+
+          大腸、直腸及肛門管之閉鎖及狹窄
+751.3     HIRSCHSPRUNG'S DISEASE AND OTHER CONGENITAL FUNCTIONAL DISORDERS OF COLON
+          赫普隆症及結腸之其他先天性功能性疾患
+751.4     ANOMALIES OF INTESTINAL FIXATION
+          腸固定畸形
+751.5     OTHER ANOMALIES OF INTESTINE
+          腸之其他畸形
+751.6    *ANOMALIES OF GALLBLADDER,BILE DUCTS,AND LIVER
+          膽囊、囊管及肝之畸形
+751.60    ANOMALY OF GALLBLADDER,BILE DUCTS,AND LIVER,UNSPECIFIED
+          未明示之膽囊、膽管及肝之畸形
+751.61    BILIARY ATRESIA
+          膽道閉鎖
+751.62    CONGENITAL CYSTIC DISEASE OF LIVER
+          肝之先天性囊腫疾病
+751.69    OTHER ANOMALIES OF GALLBLADDER,BILE DUCTS,AND LIVER
+          未明示之膽囊、膽道及肝之其他畸形
+751.7     ANOMALIES OF PANCREAS
+          胰臟畸形
+751.8     OTHER SPECIFIED ANOMALIES OF DIGESTIVE SYSTEM
+          消化系統之其他明示畸形
+751.9     UNSPECIFIED ANOMALIES OF DIGESTIVE SYSTEM
+          未明示之消化系統畸形
+752      *CONGENITAL ANOMALIES OF GENITAL ORGANS
+          生殖器官先天畸形
+752.0     ANOMALIES OF OVARIES
+          卵巢畸形
+752.1     ANOMALIES OF FALLOPIAN TUBES AND BROAD LIGAMENTS
+          輸卵管及廣韌帶畸形
+752.10   *ANOMALY OF FALLOPIAN TUBES AND BROAD LIGAMENTS,UNSPECIFIED
+          未明示之輸卵管及廣韌帶畸形
+752.11    EMBRYONIC CYST OF FALLOPIAN TUBES AND BROAD LIGAMENTS
+          輸卵管及廣韌帶胚胎囊腫
+752.19    ANOMALIES OF FALLOPIAN TUBES AND BROAD LIGAMENTS,OTHER
+          其他之輸卵管及廣韌帶畸形
+752.2     DOUBLING OF UTERUS
+          雙子宮
+752.3     OTHER ANOMALIES OF UTERUS
+          子宮之其他畸形
+752.4    *ANOMALIES OF CERVIX,VAGINA,AND EXTERNAL FEMALE GENITALIA
+          子宮頸、陰道及外女生殖器之畸形
+752.40    ANOMALY OF CERVIX,VAGINA,AND EXTERNAL FEMALE GENITALIA,UNSPECIFIED
+          未明示之子宮頸、陰道及外女生殖器畸形
+752.41    EMBRYONIC CYST OF CERVIX,VAGINA,AND EXTERNAL FEMALE GENITALIA
+          子宮頸、陰道及外女生殖器之胚胎囊腫
+752.42    IMPERFORATE HYMEN
+          處女膜閉鎖
+752.49    OTHER ANOMALIES OF CERVIX,VAGINA,AND EXTERNAL FEMALE GENITALIA
+          子宮頸、陰道及外女生殖器之其他畸形
+752.5     UNDESCENDED TESTICLE
+          睪丸未降
+752.6     HYPOSPADIAS AND EPISPADIAS
+          尿道下裂及尿道上裂
+NGHS1131001 19/26
+商品代號：NGHS
+
+
+
+
+752.7     INDETERMINATE SEX AND PSEUDOHERMAPHRODITISM
+          性別未決症及假性陰陽人症
+752.8     OTHER SPECIFIED ANOMALIES OF GENITAL ORGANS
+          生殖器官之其他明示畸形
+752.9     UNSPECIFIED ANOMALY OF GENITAL ORGANS
+          生殖器官之其他未明示畸形
+753      *CONGENITAL ANOMALIES OF URINARY SYSTEM
+          泌尿系統先天畸形
+753.0     RENAL AGENESIS AND DYSGENESIS
+          腎缺失症及形成異常
+753.1    *CYSTIC KIDNEY DISEASE
+          囊腫性腎病
+753.10    CYSTIC KIDNEY DISEASE,UNSPECIFIED
+          囊腫性腎病,未明示者
+753.11    CONGENITAL SINGLE RENAL CYST
+          先天性單腎囊腫
+753.12    POLYCYSTIC KIDNEY,UNSPECIFIED TYPE
+          多囊性腎,未明示型
+753.13    POLYCYSTIC KIDNEY,AUTOSOMAL DOMINANT
+          多囊性腎,顯性染色體
+753.14    POLYCYSTIC KIDNEY,AUTOSOMAL RECESSIVE
+          多囊性腎,性染色體
+753.15    RENAL DYSPLASIA
+          腎發育不良
+753.16    MEDULLARY CYSTIC KIDNEY
+          腎髓質囊腫
+753.17    MEDULLARY SPONGE KIDNEY
+          腎髓質海綿狀畸形
+753.19    OTHER SPECIFIED CYSTIC KIDNEY DISEASE
+          其他囊腫性腎病
+753.2     OBSTRUCTIVE DEFECTS OF RENAL PELVIS AND URETER
+          腎盂及輸尿管之阻塞性缺陷
+753.3     OTHER SPECIFIED ANOMALIES OF KIDNEY
+          腎之其他明示畸形
+753.4     OTHER SPECIFIED ANOMALIES OF URETER
+          輸尿管之其他明示畸形
+753.5     EXSTROPHY OF URINARY BLADDER
+          膀胱內壁外翻
+753.6     ATRESIA AND STENOSIS OF URETHRA AND BLADDER NECK
+          尿道及膀胱頸之閉鎖及狹窄
+753.7     ANOMALIES OF URACHUS
+          臍尿管畸形
+753.8     OTHER SPECIFIED ANOMALIES OF BLADDER AND URETHRA
+          膀胱及尿道之其他明示畸形
+753.9     UNSPECIFIED ANOMALIES OF URINARY SYSTEM
+          未明示之泌尿系統畸形
+754      *CERTAIN CONGENITAL MUSCULOSKELETAL DEFORMITIES
+          先天性肌肉骨骼變形
+754.0     CERTAIN CONGENITAL MUSCULOSKELETAL DEFORMITIES OF SKULL,FACE,AND JAW
+          頭顱、面部及頷骨之先天性肌肉骨骼變形
+754.1     CERTAIN CONGENITAL MUSCULOSKELETAL DEFORMITIES OF STERNOCLEIDOMASTOID MUSCLE
+          胸鎖乳突肌之肌肉骨骼變形
+NGHS1131001 20/26
+商品代號：NGHS
+
+
+754.2     CERTAIN CONGENITAL MUSCULOSKELETAL DEFORMITIES OF SPINE
+          脊椎之先天性肌肉骨骼變形
+754.3    *CONGENITAL DISLOCATION OF HIP
+          髖骨先天性脫臼
+754.30    CONGENITAL DISLOCATION OF HIP,UNILATERAL
+          髖骨先天性脫臼，單側
+754.31    CONGENITAL DISLOCATION OF HIP,BILATERAL
+          髖骨先天性脫臼，雙側
+754.32    CONGENITAL SUBLUXATION OF HIP,UNILATERAL
+          髖骨先天性半脫位，單側
+754.33    CONGENITAL SUBLUXATION OF HIP,BILATERAL
+          髖骨先天性半脫位，雙側
+754.35    CONGENITAL DISLOCATION OF ONE HIP WITH SUBLUXATION OF OTHER HIP
+          髖骨先天性脫臼合併對側髖關節半脫位
+754.4    *CONGENITAL GENU RECURVATUM AND BOWING OF LONG BONES OF LEG
+          先天性膝反曲及腿之長骨彎曲
+754.40    GENU RECURVATUM
+          膝反曲
+754.41    CONGENITAL DISLOCATION OF KNEE (WITH GENU RECURVATUM)
+          先天性膝反曲合併脫位
+754.42    CONGENITAL BOWING OF FEMUR
+          先天性弓形腿，股骨
+754.43    CONGENITAL BOWING OF TIBIA AND FIBULA
+          先天性脛骨、腓骨弓形畸形
+754.44    CONGENITAL BOWING OF UNSPECIFIED LONG BONES OF LEG
+          先天性未明示之長骨弓形畸形
+754.5    *VARUS DEFORMITIES OF FEET
+          足內翻變形
+754.50    TALIPES VARUS
+          內翻足畸形
+754.51    TALIPES EQUINOVARUS
+          馬蹄內翻足畸形
+754.52    METATARSUS PRIMUS VARUS
+          第一蹠骨內翻畸形
+754.53    METATARSUS VARUS
+          蹠骨內翻畸形
+754.59    VARUS DEFORMITIES OF FEET,OTHER
+          內翻足之其他畸形
+754.6    *VALGUS DEFORMITIES OF FEET
+          足外翻變形
+754.60    TALIPES VALGUS
+          外翻足
+754.61    CONGENITAL PES PLANUS
+          先天性平板足
+754.62    TALIPES CALCANEOVALGUS
+          跟骨與脛骨外翻畸形
+754.69    VALGUS DEFORMITIES OF FEET,OTHER
+          外翻足之其他畸形
+754.7    *OTHER DEFORMITIES OF FEET
+          足其他畸形
+754.70    TALIPES,UNSPECIFIED
+          未明示之足畸形
+754.71    TALIPES CAVUS
+NGHS1131001 21/26
+商品代號：NGHS
+
+
+          空凹足畸形
+
+754.79    OTHER DEFORMITIES OF FEET
+          足其他畸形
+754.8    *OTHER SPECIFIED NONTERATOGENIC ANOMALIES
+          其他明示之畸形
+754.81    PECTUS EXCAVATUM
+          漏斗胸
+754.82    PECTUS CARINATUM
+          雞胸
+754.89    OTHER SPECIFIED NONTERATOGENIC ANOMALIES
+          其他畸形
+755      *OTHER CONGENITAL ANOMALIES OF LIMBS
+          四肢之其他先天畸形
+755.0    *POLYDACTYLY
+          多指（趾）畸形
+755.00    POLYDACTYLY,UNSPECIFIED DIGITS
+          未明示指之多指畸形
+755.01    POLYDACTYLY OF FINGERS
+          手指多指畸形
+755.02    POLYDACTYLY OF TOES
+          腳趾多趾畸形
+755.1    *SYNDACTYLY
+          指（趾）融合畸形
+755.10    SYNDACTYLY OF MULTIPLE AND UNSPECIFIED SITES
+          未明示部位之多發性指融合畸形
+755.11    SYNDACTYLY OF FINGERS WITHOUT FUSION OF BONE
+          手指融合畸形，不含骨併連
+755.12    SYNDACTYLY OF FINGERS WITH FUSION OF BONE
+          手指融合畸形合併骨併連
+755.13    SYNDACTYLY OF TOES WITHOUT FUSION OF BONE
+          腳趾融合畸形，不含骨併連
+755.14    SYNDACTYLY OF TOES WITH FUSION OF BONE
+          腳趾融合畸形合併骨併連
+755.2    *REDUCTION DEFORMITIES OF UPPER LIMB
+          上肢減損畸形
+755.20    REDUCTION DEFORMITIES OF UPPER LIMB,UNSPECIFIED
+          上肢未明示之減損畸形
+755.21    TRANSVERSE DEFICIENCY OF UPPER LIMB
+          上肢之橫斷缺損畸形
+755.22    LONGITUDINAL DEFICIENCY OF UPPER LIMB,NOT ELSEWHERE CLASSIFIED
+          他處未分類之上肢縱長缺損
+755.23    LONGITUDINAL DEFICIENCY,COMBINED,INVOLVING HUMERUS,RADIUS,AND ULNA (COMPLETE OR INCOMPLETE)
+          上肢之縱長缺損，包括肱骨、尺骨、橈骨（完全或不完全）
+755.24    LONGITUDINAL DEFICIENCY,HUMERAL,COMPLETE OR PARTIAL (WITH OR WITHOUT DISTAL DEFICIENCIES,
+          INCOMPLETE)
+          肱骨之縱長缺損，完全或部份（包括或不包括遠端的不完全缺損）
+755.25    LONGITUDINAL DEFICIENCY,RADIOULNAR,COMPLETE OR PARTIAL (WITH OR WITHOUT DISTAL DEFICIENCIES,
+          INCOMPLETE)
+          尺橈骨之縱長缺損，完全或部份（包括或不包括遠端的不完全缺損）
+755.26    LONGITUDINAL DEFICIENCY,RADIAL,COMPLETE OR PARTIAL (WITH OR WITHOUTDISTAL
+          DEFICIENCIES,INCOMPLETE)
+          尺骨之縱長缺損，完全或部份（包括或不包括遠端的不完全缺損）
+NGHS1131001 22/26
+商品代號：NGHS
+
+
+755.27    LONGITUDINAL DEFICIENCY,ULNAR,COMPLETE OR PARTIAL (WITH OR WITHOUT DISTAL DEFICIENCIES,
+          INCOMPLETE)
+          橈骨之縱長缺損，完全或部份（包括或不包括遠端的不完全缺損）
+755.28    LONGITUDINAL DEFICIENCY,CARPALS OR METACARPALS,COMPLETE OR PARTIAL (WITH OR WITHOUT
+          INCOMPLETE PHALANGEAL DEFICIENCY)
+          掌骨或前掌骨之縱長缺損，完全或部份（包括或不包括指骨不完全缺損）
+755.29    LONGITUDINAL DEFICIENCY,PHALANGES,COMPLETE OR PARTIAL
+          指骨之縱長缺損，完全或部份
+755.3    *REDUCTION DEFORMITIES OF LOWER LIMB
+          下肢減損畸形
+755.30    REDUCTION DEFORMITY OF LOWER LIMB,UNSPECIFIED
+          未明示下肢減損畸形
+755.31    TRANSVERSE DEFICIENCY OF LOWER LIMB
+          下肢之橫斷缺損畸形
+755.32    LONGITUDINAL DEFICIENCY OF LOWER LIMB,NOT ELSEWHERE CLASSIFIED
+          他處未分類之下肢縱長缺損
+755.33    LONGITUDINAL DEFICIENCY,COMBINED,INVOLVING FEMUR,TIBIA,AND FIBULA (COMPLETE OR INCOMPLETE)
+          下肢之縱長缺損，包括股骨、脛骨、腓骨（完全或不完全）
+755.34    LONGITUDINAL DEFICIENCY,FEMORAL,COMPLETE OR PARITAL(WITH OR WITHOUT DISTAL
+          DEFICIENCIES,INCOMPLETE)
+          股骨之縱長缺損，完全或不完全（包括或不包括遠端的不完全缺損）
+755.35    LONGITUDINAL DEFICIENCY,TIBIOFIBULAR,COMPLETE OR PARITAL(WITH OR WITHOUT DISTAL
+          DEFICIENCIES,INCOMPLETE)
+          脛、腓骨之縱長缺損，完全或不完全（包括或不包括遠端的不完全缺損）
+755.36    LONGITUDINAL DEFICIENCY,TIBIA,COMPLETE OR PARITAL(WITH OR WITHOUT DISTAL
+          DEFICIENCIES,INCOMPLETE)
+          脛骨之縱長缺損，完全或不完全（包括或不包括遠端的不完全缺損）
+755.37    LONGITUDINAL DEFICIENCY,FIBULAR,COMPLETE OR PARITAL(WITH OR WITHOUT DISTAL
+          DEFICIENCIES,INCOMPLETE)
+          腓骨之縱長缺損，完全或不完全（包括或不包括遠端的不完全缺損）
+755.38    LONGITUDINAL DEFICIENCY,TARSALS OR METATARSALS,COMPLETE OR PARTIAL (WITH OR WITHOUT
+          INCOMPLETE PHALANGEAL DEFICIENCY)
+          腳掌骨或腳前掌骨之縱長缺損，完全或不完全（包括或不包括趾骨的不完全缺損）
+755.39    LONGITUDINAL DEFICIENCY,PHALANGES,COMPLETE OR PARTIAL
+          趾骨之縱長缺損，完全或部份
+755.4     REDUCTION DEFORMITIES,UNSPECIFIED LIMB
+          上下肢未明示的減損畸形
+755.5    *OTHER ANOMALIES OF UPPER LIMB,INCLUDING SHOULDER GIRDLE
+          上肢之其他畸形，包括肩胛部
+755.50    ANOMALY OF UPPER LIMB,UNSPECIFIED
+          未明示之上肢畸形
+755.51    CONGENITAL DEFORMITY OF CLAVICLE
+          先天性鎖骨畸形
+755.52    CONGENITAL ELEVATION OF SCAPULA
+          先天性肩胛骨提高
+755.53    RADIOULNAR SYNOSTOSIS
+          橈骨與尺骨骨性接合
+755.54    MADELUNG'S DEFORMITY
+          馬特隆氏變形
+755.55    ACROCEPHLOSYNDACTYLY
+          尖頭併指畸形
+755.56    ACCESSORY CARPAL BONES
+          副腕骨畸形
+NGHS1131001 23/26
+商品代號：NGHS
+
+
+755.57    MACRODACTYLIA (FINGERS)
+          巨指畸形（手指）
+755.58    CLEFT HAND,CONGENITAL
+          裂手畸形
+755.59    OTHER ANOMALIES OF UPPER LIMB,INCLUDING SHOULDER GIRDLE
+          上肢之其他畸形，包括肩胛部
+755.6    *OTHER ANOMALIES OF LOWER LIMB,INCLUDING PELVIC GIRDLE
+          下肢之其他畸形，包括骨盆部
+755.60    UNSPECIFIED ANOMALY OF LOWER LIMB
+          未明示之下肢畸形
+755.61    COXA VALGA,CONGENITAL
+          先天性髖外翻
+755.62    COXA VARA,CONGENITAL
+          先天性髖內翻
+755.63    OTHER CONGENITAL DEFORMITY OF HIP (JOINT)
+          其他先天性髖關節畸形
+755.64    CONGENITAL DEFORMITY OF KNEE (JOINT)
+          先天性膝關節畸形
+755.65    MACRODACTYLIA OF TOES
+          巨指畸形(腳趾)
+755.66    OTHER ANOMALIES OF TOES
+          其他腳指畸形
+755.67    ANOMALIES OF FOOT,NOT ELSEWHERE CLASSIFIED
+          腳畸形,未在別處歸類
+755.69    OTHER ANOMALIES OF LOWER LIMB,INCLUDING PELVIC GIRDLE
+          其他下肢畸形，包括骨盆部
+755.8     OTHER SPECIFIED ANOMALIES OF UNSPECIFIED LIMB
+          未明示肢體之其他明示畸形
+755.9     UNSPECIFIED ANOMALIES OF UNSPECIFIED LIMB
+          未明示肢體之未明示畸形
+756      *OTHER CONGENITAL MUSCULOSKELETAL ANOMALIES
+          其他先天性肌肉骨骼畸形
+756.0     ANOMALIES OF SKULL AND FACE BONES
+          頭顱及面骨畸形
+756.1    *ANOMALIES OF SPINE
+          脊椎畸形
+756.10    ANOMALIES OF SPINE,UNSPECIFIED
+          未明示之脊椎畸形
+756.11    SPONDYLOLYSIS,LUMBOSACRAL REGION
+          脊椎崩解，腰與胝部
+756.12    SPONDYLOLISTHESIS
+          脊椎滑脫症
+756.13    ABSENCE OF VERTEBRA,CONGENITAL
+          先天性無椎骨
+756.14    HEMIVERTEBRA
+          半椎骨
+756.15    FUSION OF SPINE (VERTEBRA),CONGENITAL
+          先天性脊椎融合
+756.16    KLIPPEL-FEIL SYNDROME
+          關節炎性全身假癱瘓症候群
+756.17    SPINA BIFIDA OCCULTA
+          隱性裂脊柱
+756.19    ANOMALIES OF SPINE, OTHER
+NGHS1131001 24/26
+商品代號：NGHS
+
+
+          其他脊椎畸形
+756.2     CERVICAL RIB
+          頸肋
+756.3     OTHER ANOMALIES OF RIBS AND STERNUM
+          肋骨及胸骨之其他畸形
+756.4     CHONDRODYSTROPHY
+          軟骨形成異常
+756.5    *OSTEODYSTROPHIES
+          骨形成異常
+756.50    OSTEODYSTROPHY,UNSPECIFIED
+          未明示之骨形成異常
+756.51    OSTEOGENESIS IMPERFECTA
+          骨發生不全
+756.52    OSTEOPETROSIS
+          骨質石化病
+756.53    OSTEOPOIKILOSIS
+          全身骨脆弱性硬化
+756.54    POLYOSTOTIC FIBROUS DYSPLASIA OF BONE
+          多發性骨質纖維化變性
+756.55    CHONDROECTODERMAL DYSPLASIA
+          軟骨外胚層變性
+756.56    MULTIPLE EPIPHYSEAL DYSPLASIA
+          多發性骨 變性
+756.59    OSTEODYSTROPHIES,OTHER
+          其他骨發育不良
+756.6     ANOMALIES OF DIAPHRAGM
+          橫隔畸形
+756.7     ANOMALIES OF ABDOMINAL WALL
+          腹壁畸形
+756.8    *OTHER SPECIFIED ANOMALIES OF MUSCLE,TENDON,FASCIA,AND CONNECTIVE TISSUE
+          肌肉、肌腱、肌膜及結締組織之其他明示畸形
+756.81    ABSENCE OF MUSCLE AND TENDON
+          先天性無肌肉及肌腱
+756.82    ACCESSORY MUSCLE
+          副肌肉
+756.83    EHLERS-DANLOS SYNDROME
+          EHLERS-DANLOS 症候群
+756.89    OTHER SPECIFIED ANOMALIES OF MUSCLE,TENDON,FASCIA,AND CONNECTIVE TISSUE
+          肌肉、肌腱、肌膜及結締組織之其他明示畸形
+756.9     OTHER AND UNSPECIFIED ANOMALIES OF MUSCULOSKELETAL SYSTEM
+          其他未明示性肌肉骨骼系統畸形
+757      *CONGENITAL ANOMALIES OF THE INTEGUMENT
+          外皮之先天畸形
+757.0     HEREDITARY EDEMA OF LEGS
+          下肢之遺傳性水腫
+757.1     ICHTHYOSIS CONGENITA
+          先天性魚鱗癬
+757.2     DERMATOGLYPHIC ANOMALIES
+          指（趾）掌（蹠）紋畸形
+757.3    *OTHER SPECIFIED ANOMALIES OF SKIN
+          皮膚之其他明示畸形
+757.31    CONGENITAL ECTODERMAL DYSPLASIA
+          先天性皮膚外胚層發育不良
+NGHS1131001 25/26
+商品代號：NGHS
+
+
+757.32    VASCULAR HAMARTOMAS
+          血管迷走瘤
+757.33    CONGENITAL PIGMENTARY ANOMALIES OF SKIN
+          先天性皮膚色素畸形
+757.39    OTHER SPECIFIED ANOMALIES OF SKIN
+          其他明示性之皮膚違常
+757.4     SPECIFIED ANOMALIES OF HAIR
+          毛髮之明示性畸形
+757.5     SPECIFIED ANOMALIES OF NAILS
+          指（趾）甲之明示性畸形
+757.6     SPECIFIED ANOMALIES OF BREAST
+          乳房之明示畸形
+757.8     OTHER SPECIFIED ANOMALIES OF THE INTEGUMENT
+          外皮之其他明示畸形
+757.9     UNSPECIFIED ANOMALIES OF THE INTEGUMENT
+          未明示之外皮畸形
+758      *CHROMOSOMAL ANOMALIES
+          染色體異常
+758.0     DOWN'S SYNDROME
+          唐氏症候群
+758.1     PATAU'S SYNDROME
+          派脫症候群
+758.2     EDWARDS' SYNDROME
+          愛德華症候群
+758.3     AUTOSOMAL DELETION SYNDROMES
+          體染色體部份缺失症候群
+758.4     BALANCED AUTOSOMAL TRANSLOCATION IN NORMAL INDIVIDUAL
+          正常個體之平衡性體染色體移位
+758.5     OTHER CONDITIONS DUE TO AUTOSOMAL ANOMALIES
+          體染色體異常所致之其他病態
+758.6     GONADAL DYSGENESIS
+          生殖腺體形成異常
+758.7     KLINEFELTER'S SYNDROME
+          克萊恩費爾症候群
+758.8     OTHER CONDITIONS DUE TO SEX CHROMOSOME ANOMALIES
+          性染色體異常所致之其他病態
+758.9     CONDITONS DUE TO ANOMALY OF UNSPECIFIED CHROMOSOME
+          未明示染色體異常所致之病態
+759      *OTHER AND UNSPECIFIED CONGENITAL ANOMALIES
+          其他及未明示之先天異常
+759.0     ANOMALIES OF SPLEEN
+          脾臟異常
+759.1     ANOMALIES OF ADRENAL GLAND
+          腎上腺異常
+759.2     ANOMALIES OF OTHER ENDOCRINE GLANDS
+          其他內分泌腺異常
+759.3     SITUS INVERSUS
+          易側畸形（內臟）
+759.4     CONJOINED TWINS
+          連體嬰
+759.5     TUBEROUS SCLEROSIS
+          結節硬化症
+759.6     OTHER HAMARTOSES,NOT ELSEWHERE CLASSIFIED
+NGHS1131001 26/26
+商品代號：NGHS
+
+
+          其他缺陷症，他處未歸類者
+759.7     MULTIPLE CONGENITAL ANOMALIES,SO DESCRIBED
+          多發性先天畸形
+759.8    *OTHER SPECIFIED ANOMALIES
+          其他明示畸形
+759.81    PRADER-WILLI SYNDROME
+          PRADER-WILLI 症候群
+759.82    MARFAN SYNDROME
+          MARFAN 症候群
+759.89    OTHER SPECIFIED ANOMALIES
+          其他明示畸形
+759.9     CONGENITAL ANOMALY,UNSPECIFIED
+          先天畸形未明示者
+

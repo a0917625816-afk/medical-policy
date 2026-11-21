@@ -1,0 +1,200 @@
+        0800 021200          89.2.24        0890750174
+
+www.chinalife.com.tw         92.1.15        0910713278
+
+                             95.6.28   95        0782
+
+
+
+
+                       -1-
+10%
+
+
+
+
+      -2-
+-3-
+(           )
+
+
+
+
+                    (                 )
+
+
+
+
+1.         ………………………………………………………………………………………………
+2.         ………………………………………………………………………………………………
+3.         ………………………………………………………………………………………………
+4.               …………………………………………………………………………………
+5.    ………………………………………………………………………………………………………
+6.    …………………………………………………………………………………………………
+7.         …………………………………………………………………………………………
+8.       ………………………………………………………………………………………………
+9.       ………………………………………………………………………………………………
+10.    (            )…………………………………………………………………………
+11.                      ……………………………………………………………..
+12.       ………………………………………………………………………………………………..
+13.    …………………………………………………………………………………………………….
+14.         …………………………………………………………………………………………….
+15.             …………………………………………………………………………………...
+16.         …………………………………………………………………………………………..
+17.             …………………………………………………………………………………..
+18.    …………………………………………………………………………………………………..
+19.         …………………………………………………………………………………………..
+20.        ……………………………………………………………………………………………..
+
+
+
+
+                        -4-
+-5-
+ 1.
+      1
+      2
+      3
+2.
+      1
+      2
+      3
+3.
+4.
+
+5.
+6.    1
+      2
+      3
+
+7.
+8.
+9.
+      1
+      2                                  hertz   a   b   c   d   dB
+          a   2b   2c   d   80dB
+10.
+
+11.
+      1
+      2
+12.
+
+
+
+
+                                   -6-
+-7-
+(   )
+(   )
+
+                   10-19%             (948.10       10-19%           10%
+            BURN OF 10-19% OF BODY SURFACE , LESS THAN 10% OR UNSPECIFIED THIRD DEGREE
+    948.1
+               )
+            BURN OF 10-19% OF BODY SURFACE
+                   20-29%             (948.20       20-29%           10%
+            BURN OF 20-29% OF BODY SURFACE , LESS THAN 10% OR UNSPECIFIED THIRD DEGREE
+    948.2
+               )
+            BURN OF 20-29% OF BODY SURFACE
+                   30-39%             (948.30       30-39%           10%
+            BURN OF 30-39% OF BODY SURFACE , LESS THAN 10% OR UNSPECIFIED THIRD DEGREE
+    948.3
+               )
+            BURN OF 30-39% OF BODY SURFACE
+                   40-49%             (948.40       40-49%           10%
+            BURN OF 40-49% OF BODY SURFACE , LESS THAN 10% OR UNSPECIFIED THIRD DEGREE
+    948.4
+               )
+            BURN OF 40-49% OF BODY SURFACE
+                   50-59%             (948.50       50-59%           10%
+            BURN OF 50-59% OF BODY SURFACE , LESS THAN 10% OR UNSPECIFIED THIRD DEGREE
+    948.5
+               )
+            BURN OF 50-59% OF BODY SURFACE
+                   60-69%             (948.60       60-69%           10%
+            BURN OF 60-69% OF BODY SURFACE , LESS THAN 10% OR UNSPECIFIED THIRD DEGREE
+    948.6
+               )
+            BURN OF 60-69% OF BODY SURFACE
+                   70-79%             (948.70       70-79%           10%
+            BURN OF 70-79% OF BODY SURFACE , LESS THAN 10% OR UNSPECIFIED THIRD DEGREE
+    948.7
+               )
+            BURN OF 70-79% OF BODY SURFACE
+                   80-89%             (948.80       80-89%           10%
+            BURN OF 80-89% OF BODY SURFACE , LESS THAN 10% OR UNSPECIFIED THIRD DEGREE
+    948.8
+               )
+            BURN OF 80-89% OF BODY SURFACE
+                   90-99%             (948.90       90-99%           10%
+            BURN OF 90-99% OF BODY SURFACE , LESS THAN 10% OR UNSPECIFIED THIRD DEGREE
+    948.9
+               )
+            BURN OF 90-99% OF BODY SURFACE
+
+(   )
+
+    940
+            BURN CONFINED TO EYE AND ADNEXA
+                                    (     )
+    941.5   BURN OF FACE AND HEAD. DEEP NECROSIS OF UNDERLYING TISSUE
+            (DEEP THIRD DEGREE ) WITH LOSS OF A BODY PART
+
+
+
+
+                                        -8-
+1.
+      12   11   10   9   8   7         6   5   4   3   2   1   1
+
+
+
+
+     100% 95% 90% 85% 80% 75% 65% 55% 45% 35% 25% 15% 5%
+
+2.
+      6    5    4    3   2   1
+
+
+
+
+     100% 90% 85% 65% 50% 30%
+
+3.
+      3    2    1
+
+
+
+
+     100% 85% 55%
+
+
+
+
+                                 -9-
+R = K × (G − G × e1 − G × e2 − Z × θ − (1 − Z ) × θ ′ − G × V ) − θ ′′
+                 R
+                 K
+                 G
+                 E                  = [e1 + e2 + V ] + [(1 − Z ) × (θ ′ − θ ) / G ]
+                             e1
+                             e2             (                                    )
+                              V
+
+
+
+                              Z
+                                         (R/M)                     R
+                                                                   M
+                             θ
+                             θ′
+                                      C G                         C
+                             θ ′′
+
+
+
+
+                                                    - 10 -
+
