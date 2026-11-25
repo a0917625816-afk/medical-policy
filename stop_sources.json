@@ -1,9 +1,9 @@
 {
- "_doc": "各公司官網清單網址（2026-11-25 由 GPT 搜尋＋待巡查實測）。type: stopped=官方停售清單（可直接判 stop）；current=官方現售清單（網站標現售但不在此清單→只判 check，除非第二來源也說停售）；stopped_partial=歷史部分停售；current_partial/list_unk=只能參考。公司代碼 co 為保發中心商品 id 前 3 碼（請巡查時以 policies.json 實際代碼核對修正）。中國信託已併入台灣、台新已併入新光。",
+ "_doc": "各公司官網清單網址（2026-11-25 由 GPT 搜尋＋待巡查實測）。type: stopped=官方停售清單（可直接判 stop）；current=官方現售清單（網站標現售但不在此清單→只判 check，除非第二來源也說停售）；stopped_partial=歷史部分停售；current_partial/list_unk=只能參考。公司代碼 co 為保發中心商品 id 前 3 碼（2026-11-25 已依 policies.json 修正：臺銀201、國泰204、遠雄216、宏泰217、安聯218、郵政220、第一金221、合庫222、安達256、友邦257）。中國信託已併入台灣、台新已併入新光。",
  "secondary": "商品分析網站 insureanalyze（各家 pdtlist 的 PdtStop；需使用者提供登入連結）、富邦行動辦公室現售清單（需使用者在 Edge 登入）；兩者都是次要來源。",
  "sources": [
   {
-   "co": "201",
+   "co": "204",
    "name": "國泰",
    "type": "list_unk",
    "url": "https://www.cathaylife.com.tw/official/laws-policies/public-info/info-insurance",
@@ -73,18 +73,18 @@
    "note": "資訊公開，需點選"
   },
   {
-   "co": "217",
+   "co": "216",
    "name": "遠雄",
    "type": "current",
    "url": "https://www.fglife.com.tw/initGoodsTermsO.html",
-   "note": "保單條款專區－現售"
+   "note": "保單條款專區－現售（2026-11-25 巡查可用，同上操作）"
   },
   {
-   "co": "217",
+   "co": "216",
    "name": "遠雄",
    "type": "stopped",
    "url": "https://www.fglife.com.tw/initGoodsTermsC.html",
-   "note": "保單條款專區－停售"
+   "note": "保單條款專區－停售（2026-11-25 巡查可用；類別下拉 #sel 1~7/GROUP＋主約/附約切換）"
   },
   {
    "co": "203",
@@ -96,72 +96,72 @@
   {
    "co": "261",
    "name": "元大",
-   "type": "current",
+   "type": "list_unk",
    "url": "https://www.yuantalife.com.tw/products/features/",
-   "note": "商品列表（有代碼）"
+   "note": "2026-11-25 巡查：此頁為「特色專區」，非完整現售清單，不可用來判定；需另找完整商品清單"
   },
   {
-   "co": "216",
+   "co": "257",
    "name": "友邦",
    "type": "list_unk",
    "url": "https://www.aia.com.tw/zh-tw/help-and-support/important-info/clauses",
    "note": "條款目錄，未分狀態"
   },
   {
-   "co": "218",
+   "co": "217",
    "name": "宏泰",
    "type": "list_unk",
    "url": "https://www.hontai.com.tw/18pages/info",
    "note": "資訊公開入口，未驗證"
   },
   {
-   "co": "221",
+   "co": "218",
    "name": "安聯",
    "type": "current",
    "url": "https://es.allianz.com.tw/customer/companyInfo/publicInfo/open-0414.aspx",
-   "note": "公司現行銷售商品"
+   "note": "公司現行銷售商品（契約條款清單，2026-11-25 巡查可用、完整）"
   },
   {
-   "co": "257",
+   "co": "221",
    "name": "第一金",
    "type": "list_unk",
    "url": "https://www.firstlife.com.tw/FirstWeb/file/DOCUMENT/10423",
    "note": "核准/備查日期表"
   },
   {
-   "co": "256",
+   "co": "222",
    "name": "合作金庫",
    "type": "list_unk",
    "url": "https://my.tcb-life.com.tw/api/assets/b6e70b59-b408-4ba9-951f-ac0399719e10/JV_Info_1_20260102.pdf",
    "note": "核准/備查日期表，檔名會換版"
   },
   {
-   "co": "222",
+   "co": "201",
    "name": "臺銀",
    "type": "stopped",
    "url": "https://www.twfhclife.com.tw/%E5%95%86%E5%93%81%E5%B0%88%E5%8D%80/%E5%81%9C%E5%94%AE%E5%95%86%E5%93%81/",
-   "note": "停售商品公告（有停售日）"
+   "note": "停售商品公告（文字公告，有停售日；2026-11-25 巡查可用）"
   },
   {
-   "co": "220",
+   "co": "256",
    "name": "安達",
    "type": "current",
    "url": "https://life.chubb.com/tw-zh/products.html",
    "note": "商品目錄"
   },
   {
-   "co": "220",
+   "co": "256",
    "name": "安達",
    "type": "stopped",
    "url": "https://life.chubb.com/tw-zh/products/discontinued/traditional-products.html",
-   "note": "已停售（傳統型）"
+   "note": "已停售（傳統型）；2026-11-25 巡查可用"
   },
   {
-   "co": "220",
+   "co": "256",
    "name": "安達",
    "type": "stopped",
    "url": "https://life.chubb.com/tw-zh/products/discontinued/riders.html",
-   "note": "已停售（附約）"
+   "note": "已停售（附約）；2026-11-25 巡查可用"
   },
   {
    "co": "267",
@@ -171,18 +171,18 @@
    "note": "核准/備查日期表"
   },
   {
-   "co": "252",
+   "co": "220",
    "name": "中華郵政",
    "type": "current",
    "url": "https://www.post.gov.tw/post/internet/Insurance/index.jsp?ID=4010104",
    "note": "現售"
   },
   {
-   "co": "252",
+   "co": "220",
    "name": "中華郵政",
    "type": "stopped",
    "url": "https://www.post.gov.tw/post/internet/Insurance/index.jsp?ID=4010101",
-   "note": "停售（有停售日）"
+   "note": "停售（有停售日；2026-11-25 巡查可用）"
   }
  ]
 }
