@@ -1,0 +1,50 @@
+name: 資料異地備份（Cloudflare R2）
+# 每天把整個儲存庫（含全部歷史紀錄）打包成一個 git bundle，上傳到 Cloudflare R2 私人儲存空間
+# 燈塔：放在同一個 R2 儲存空間的 pharos/ 底下；pharos/daily/ 保留 7 天（儲存庫較大，控制在免費額度內）；每月 1 日另存 monthly/年-月.bundle 長期保存
+on:
+  schedule:
+    - cron: '23 19 * * *'   # 台灣時間每天 03:23
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: backup
+  cancel-in-progress: false
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 檢查備份鑰匙
+        id: chk
+        env:
+          K: ${{ secrets.R2_ACCESS_KEY_ID }}
+        run: if [ -z "$K" ]; then echo "還沒設定 R2 鑰匙，先略過"; echo "ok=0" >> $GITHUB_OUTPUT; else echo "ok=1" >> $GITHUB_OUTPUT; fi
+      - uses: actions/checkout@v4
+        if: steps.chk.outputs.ok == '1'
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: 打包並上傳
+        if: steps.chk.outputs.ok == '1'
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+          EP: https://11e5c3987ad382be8512ca56b4e638f8.r2.cloudflarestorage.com
+          BK: cashflow-backup
+        run: |
+          set -e
+          D=$(TZ=Asia/Taipei date +%F); M=$(TZ=Asia/Taipei date +%Y-%m); DAY=$(TZ=Asia/Taipei date +%d)
+          git bundle create /tmp/repo.bundle --all
+          git bundle verify /tmp/repo.bundle >/dev/null
+          SZ=$(stat -c%s /tmp/repo.bundle); SHA=$(sha256sum /tmp/repo.bundle | cut -c1-64)
+          echo "大小 $SZ bytes，sha256 $SHA，最新版本 $(git rev-parse --short HEAD)"
+          aws s3 cp /tmp/repo.bundle "s3://$BK/pharos/daily/$D.bundle" --endpoint-url "$EP" --only-show-errors
+          printf '{"date":"%s","commit":"%s","bytes":%s,"sha256":"%s"}\n' "$D" "$(git rev-parse HEAD)" "$SZ" "$SHA" > /tmp/latest.json
+          aws s3 cp /tmp/latest.json "s3://$BK/pharos/latest.json" --endpoint-url "$EP" --only-show-errors
+          if [ "$DAY" = "01" ] || ! aws s3 ls "s3://$BK/pharos/monthly/$M.bundle" --endpoint-url "$EP" >/dev/null 2>&1; then
+            aws s3 cp /tmp/repo.bundle "s3://$BK/pharos/monthly/$M.bundle" --endpoint-url "$EP" --only-show-errors; echo "已存每月備份 $M"
+          fi
+          # 驗證：把剛上傳的檔案下載回來比對
+          aws s3 cp "s3://$BK/pharos/daily/$D.bundle" /tmp/check.bundle --endpoint-url "$EP" --only-show-errors
+          [ "$(sha256sum /tmp/check.bundle | cut -c1-64)" = "$SHA" ] && echo "備份完成並驗證無誤：pharos/daily/$D.bundle"

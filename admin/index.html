@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>站長後台</title>
+<link rel="stylesheet" href="/account/member.css">
+</head>
+<body>
+<div class="adm" id="adm" hidden>
+  <nav class="side">
+    <a class="logo" href="/"><span class="mark"><i></i><i></i><i></i></span><span><b id="brand">　</b><small>站長後台</small></span></a>
+    <button class="nav" data-go="overview">🏠 總覽</button>
+    <button class="nav" data-go="users">👥 會員管理</button>
+    <button class="nav" data-go="invites">🎁 夥伴與邀請碼</button>
+    <button class="nav" data-go="report">📊 報表</button>
+    <button class="nav" data-go="settings">⚙️ 設定</button>
+    <button class="nav" data-go="audit">📝 操作紀錄</button>
+    <div class="foot"><span id="who"></span><br><a href="/account/">我的帳號</a>・<a href="/">回網站</a></div>
+  </nav>
+  <main class="main" id="main"></main>
+</div>
+<p class="muted center" id="loading" style="padding:60px 0">載入中…</p>
+
+<div class="drawer" id="drawer" hidden><div class="panel" id="panel"></div></div>
+<div id="toast" class="toast" hidden></div>
+
+<script src="/account/member.js"></script>
+<script>
+(() => {
+const $ = (s, r = document) => r.querySelector(s);
+const E = M.esc;
+const main = $('#main');
+let CFG = null;
+const ROLE = { admin: ['站長', 'gold'], partner: ['夥伴', 'blue'], member: ['會員', 'gray'] };
+const STATE = { admin: ['站長', 'gold'], partner: ['免費', 'blue'], paid: ['已付費', 'green'], unpaid: ['未付費', 'gray'], expired: ['已到期', 'red'], disabled: ['已停用', 'red'] };
+const badge = ([t, c]) => `<span class="badge sm ${c}">${t}</span>`;
+const site = location.origin;
+
+function lockbar() {
+  return CFG.lock ? '' : `<div class="lockbar">🔓 目前<b>尚未上鎖</b>：網站所有人都能免費使用。這裡的帳號、付款與分潤紀錄照常運作，等你決定開始收費那天再上鎖。</div>`;
+}
+
+// ---------------- 總覽 ----------------
+async function overview() {
+  const d = await M.api('/api/admin/overview');
+  const max = Math.max(1, ...d.trend.map((t) => t.a));
+  main.innerHTML = `
+  <div class="head"><h1>🏠 總覽</h1><span class="muted">${E(d.today)}</span></div>
+  ${lockbar()}
+  <div class="kpis">
+    <div class="kpi gold"><div class="l">本月收入</div><div class="n">${M.money(d.revenue)}</div><div class="l">扣分潤後 ${M.money(d.revenue - d.share_owed)}</div></div>
+    <div class="kpi"><div class="l">付費會員</div><div class="n">${d.paid}</div><div class="l">未付費／到期 ${d.unpaid} 人</div></div>
+    <div class="kpi"><div class="l">夥伴（免費）</div><div class="n">${d.partners}</div><div class="l">停用 ${d.disabled} 人</div></div>
+    <div class="kpi"><div class="l">本月新加入</div><div class="n">${d.new_this_month}</div></div>
+    <div class="kpi"><div class="l">近 30 天到期沒續</div><div class="n">${d.churn_30d}</div></div>
+    <div class="kpi"><div class="l">本月應付推廣分潤</div><div class="n">${M.money(d.share_owed)}</div></div>
+  </div>
+  <div class="grid2">
+    <div class="card"><h2>每月收入</h2>${d.trend.length ? `<div class="bars">${d.trend.map((t) => `<div class="b"><small>${(t.a / 1000).toFixed(1)}k</small><i style="height:${Math.round((t.a / max) * 120)}px"></i><span>${E(t.m.slice(5))}月</span></div>`).join('')}</div>` : '<p class="empty">還沒有付款紀錄</p>'}</div>
+    <div class="card"><h2>7 天內到期</h2><ul class="list">${d.expiring.length ? d.expiring.map((u) => `<li><span>${E(u.name)}<br><small class="muted">${E(u.login)}</small></span><b>${E(u.paid_until)}</b></li>`).join('') : '<li class="muted">沒有</li>'}</ul></div>
+  </div>
+  <div class="card" style="margin-top:16px"><h2>最新加入</h2><ul class="list">${d.recent.length ? d.recent.map((u) => `<li><span>${E(u.name)} ${badge(ROLE[u.role])}<br><small class="muted">${E(u.login)}${u.invite_code ? '・邀請碼 ' + E(u.invite_code) : ''}</small></span><small class="muted">${M.when(u.created_at)}</small></li>`).join('') : '<li class="muted">還沒有人</li>'}</ul></div>`;
+}
+
+// ---------------- 會員 ----------------
+let uq = '', urole = '';
+async function users() {
+  main.innerHTML = `
+  <div class="head"><h1>👥 會員管理</h1><div class="row" style="flex:0"><button class="btn gold" id="add-p">＋ 新增夥伴</button><button class="btn" id="add-m">＋ 新增會員</button></div></div>
+  ${lockbar()}
+  <div class="toolbar"><input id="q" placeholder="搜尋姓名、帳號、邀請碼" value="${E(uq)}"><select id="r"><option value="">全部身分</option><option value="member">會員</option><option value="partner">夥伴</option><option value="admin">站長</option></select></div>
+  <div class="card"><div class="tblwrap"><table class="tbl"><thead><tr><th>姓名</th><th>帳號</th><th>身分</th><th>狀態</th><th>到期日</th><th>裝置</th><th>邀請碼</th><th>最後登入</th></tr></thead><tbody id="tb"><tr><td colspan="8" class="empty">載入中…</td></tr></tbody></table></div></div>`;
+  $('#r').value = urole;
+  const load = async () => {
+    const d = await M.api(`/api/admin/users?q=${encodeURIComponent(uq)}&role=${urole}`);
+    $('#tb').innerHTML = d.users.length ? d.users.map((u) => `<tr class="click" data-id="${u.id}"><td><b>${E(u.name) || '—'}</b>${u.note ? `<br><small class="muted">${E(u.note)}</small>` : ''}</td><td>${E(u.login)}</td><td>${badge(ROLE[u.role])}</td><td>${badge(STATE[u.state])}</td><td>${E(u.paid_until || '—')}</td><td>${u.devices}/3</td><td>${E(u.invite_code || '—')}</td><td><small>${M.when(u.last_login)}</small></td></tr>`).join('') : '<tr><td colspan="8" class="empty">找不到符合的會員</td></tr>';
+  };
+  let t; $('#q').oninput = (e) => { uq = e.target.value; clearTimeout(t); t = setTimeout(load, 300); };
+  $('#r').onchange = (e) => { urole = e.target.value; load(); };
+  $('#tb').onclick = (e) => { const tr = e.target.closest('tr[data-id]'); if (tr) userDrawer(+tr.dataset.id, load); };
+  $('#add-p').onclick = () => addUser('partner', load);
+  $('#add-m').onclick = () => addUser('member', load);
+  load();
+}
+
+function openDrawer(html) { $('#panel').innerHTML = html; $('#drawer').hidden = false; }
+function closeDrawer() { $('#drawer').hidden = true; }
+$('#drawer').onclick = (e) => { if (e.target.id === 'drawer' || e.target.dataset.close !== undefined) closeDrawer(); };
+
+function credBox(u, pw, title) {
+  const msg = `${CFG.brand} 帳號已開好\n網址：${site}/account/\n帳號：${u.login}\n臨時密碼：${pw}\n第一次登入後請改成自己的密碼。`;
+  return `<h2>${title}</h2><p class="muted">臨時密碼只顯示這一次，請直接複製下面整段傳給對方（LINE）。</p><div class="secret">${E(pw)}</div><p></p><div class="copybox" id="cmsg">${E(msg)}</div><p></p><div class="row"><button class="btn gold" id="cp">複製整段訊息</button><button class="btn" data-close>完成</button></div>`;
+}
+function bindCopy() { const b = $('#cp'); if (b) b.onclick = async () => { try { await navigator.clipboard.writeText($('#cmsg').textContent); M.toast('已複製'); } catch { M.toast('請長按文字手動複製'); } }; }
+
+function addUser(role, reload) {
+  openDrawer(`<div class="head"><h1>${role === 'partner' ? '新增夥伴（免費）' : '新增會員'}</h1><button class="btn sm ghost" data-close>✕</button></div>
+  <form id="f-add" class="card"><label>姓名<input name="name" required></label><label>帳號（手機號碼或 Email）<input name="login" required></label><label>備註（選填）<input name="note" placeholder="例如：富六團隊、某通訊處"></label><input type="hidden" name="role" value="${role}"><button class="btn gold">建立帳號</button><p class="err" data-err></p></form>
+  <p class="hint">也可以不用一個一個建：到「夥伴與邀請碼」產生夥伴邀請碼，讓夥伴自己註冊。</p>`);
+  M.form('#f-add', async (v) => { const r = await M.api('/api/admin/users', v); $('#panel').innerHTML = `<div class="card">${credBox(r.user, r.temp_password, '帳號已建立 ✅')}</div>`; bindCopy(); reload(); });
+}
+
+async function userDrawer(id, reload) {
+  const d = await M.api(`/api/admin/users/${id}/detail`);
+  const u = d.user, admin = u.role === 'admin';
+  const P = CFG.prices;
+  openDrawer(`
+  <div class="head"><h1>${E(u.name) || '會員'}</h1><button class="btn sm ghost" data-close>✕</button></div>
+  <div class="card"><dl class="kv">
+    <dt>帳號</dt><dd>${E(u.login)}</dd>
+    <dt>身分</dt><dd>${badge(ROLE[u.role])} ${badge(STATE[u.state])}</dd>
+    <dt>到期日</dt><dd>${E(u.paid_until || '—')}</dd>
+    <dt>方案</dt><dd>${M.planName(u.plan)}</dd>
+    <dt>邀請碼</dt><dd>${E(u.invite_code || '—')}</dd>
+    <dt>加入</dt><dd>${M.day(u.created_at)}</dd>
+    <dt>最後登入</dt><dd>${M.when(u.last_login)}</dd>
+  </dl></div>
+  ${admin ? '' : `
+  ${u.role === 'member' ? `<form class="card" id="f-pay"><h2>登記付款</h2>
+    <div class="row"><label>方案<select name="plan"><option value="month">月繳</option><option value="year">年繳</option><option value="team">處經理團購（年繳）</option></select></label>
+    <label>月數<input name="months" type="number" min="1" max="36" value="1"></label>
+    <label>金額<input name="amount" type="number" min="0" value="${P.month}"></label></div>
+    <label>備註<input name="note" placeholder="例如：轉帳末五碼"></label>
+    <input type="hidden" name="user_id" value="${u.id}">
+    <button class="btn gold">登記並延長到期日</button><p class="err" data-err></p>
+    <p class="hint">綠界串好後，刷卡會自動登記，不用手動。</p></form>` : ''}
+  <div class="card"><h2>操作</h2><div class="row">
+    ${u.status === 'active' ? '<button class="btn red" data-act="disable">停用（立刻登出）</button>' : '<button class="btn" data-act="enable">恢復使用</button>'}
+    <button class="btn" data-act="reset_password">重設密碼</button>
+    <button class="btn" data-act="logout_all">登出所有裝置</button>
+    <button class="btn" data-act="role" data-role="${u.role === 'partner' ? 'member' : 'partner'}">改成${u.role === 'partner' ? '一般會員' : '夥伴（免費）'}</button>
+  </div>
+  <label style="margin-top:14px">備註<input id="note" value="${E(u.note)}" placeholder="只有你看得到"></label><button class="btn sm" id="save-note">儲存備註</button></div>`}
+  <div class="card"><h2>裝置（${d.devices.length}/3）</h2><ul class="list">${d.devices.length ? d.devices.map((v) => `<li><span>${E(v.device)}</span><small class="muted">${M.when(v.last_seen)}</small></li>`).join('') : '<li class="muted">目前沒有登入中的裝置</li>'}</ul></div>
+  <div class="card"><h2>付款紀錄</h2><ul class="list">${d.payments.length ? d.payments.map((p) => `<li><span>${E(p.period_from)} ～ ${E(p.period_to)}<br><small class="muted">${M.planName(p.plan)}・${M.day(p.created_at)}${p.share_amount ? `・分潤 ${M.money(p.share_amount)}` : ''}${p.note ? '・' + E(p.note) : ''}</small></span><span><b>${M.money(p.amount)}</b> ${p.refunded ? '<span class="badge sm red">已退款</span>' : `<button class="btn sm ghost" data-refund="${p.id}">退款</button>`}</span></li>`).join('') : '<li class="muted">沒有</li>'}</ul></div>`);
+  const f = $('#f-pay');
+  if (f) {
+    const sync = () => { const pl = f.plan.value; if (pl === 'year' || pl === 'team') { f.months.value = 12; f.amount.value = pl === 'team' ? P.team : P.year; } else { f.months.value = 1; f.amount.value = P.month; } };
+    f.plan.onchange = sync;
+    f.months.oninput = () => { if (f.plan.value === 'month') f.amount.value = P.month * (+f.months.value || 1); };
+    M.form('#f-pay', async (v) => { const r = await M.api('/api/admin/payments', v); M.toast(`已登記，到期日延到 ${r.paid_until}`); reload(); userDrawer(id, reload); });
+  }
+  $('#panel').onclick = async (e) => {
+    const b = e.target.closest('button'); if (!b) return;
+    try {
+      if (b.dataset.act) {
+        const a = b.dataset.act;
+        if (a === 'disable' && !confirmInline(b, '確定停用？再按一次')) return;
+        if (a === 'reset_password' && !confirmInline(b, '確定重設？再按一次')) return;
+        const r = await M.api(`/api/admin/users/${id}`, { action: a, role: b.dataset.role });
+        if (r.temp_password) { $('#panel').innerHTML = `<div class="card">${credBox(r.user, r.temp_password, '密碼已重設')}</div>`; bindCopy(); reload(); return; }
+        M.toast('已完成'); reload(); userDrawer(id, reload);
+      } else if (b.dataset.refund) {
+        if (!confirmInline(b, '確定退款？再按一次')) return;
+        const r = await M.api(`/api/admin/payments/${b.dataset.refund}/refund`, {});
+        M.toast('已標記退款，到期日改為 ' + (r.paid_until || '無')); reload(); userDrawer(id, reload);
+      } else if (b.id === 'save-note') {
+        await M.api(`/api/admin/users/${id}`, { action: 'note', note: $('#note').value }); M.toast('備註已儲存'); reload();
+      }
+    } catch (x) { M.alert(x); }
+  };
+}
+// 重要操作要按兩次（不跳出瀏覽器對話框）
+function confirmInline(b, txt) {
+  if (b.dataset.armed) return true;
+  b.dataset.armed = 1; const old = b.textContent; b.textContent = txt;
+  setTimeout(() => { delete b.dataset.armed; b.textContent = old; }, 4000);
+  return false;
+}
+
+// ---------------- 邀請碼 ----------------
+async function invites() {
+  const d = await M.api('/api/admin/invites');
+  const link = (c) => `${site}/account/?code=${encodeURIComponent(c)}`;
+  main.innerHTML = `
+  <div class="head"><h1>🎁 夥伴與邀請碼</h1></div>
+  <div class="grid2">
+    <form class="card" id="f-pt"><h2>夥伴邀請碼（免費使用）</h2><p class="hint" style="margin-top:0">給你的團隊夥伴。用這個碼註冊的人自動成為夥伴，全部功能免費。</p><p></p>
+      <label>給誰用<input name="owner" placeholder="例如：富六團隊"></label>
+      <label>最多幾人可用（空白＝不限）<input name="max_uses" type="number" min="1"></label>
+      <input type="hidden" name="kind" value="partner"><button class="btn gold">產生夥伴邀請碼</button><p class="err" data-err></p></form>
+    <form class="card" id="f-pr"><h2>推廣邀請碼（付費會員，分潤給推廣者）</h2><p class="hint" style="margin-top:0">給幫你推廣的人（例如通訊處經理、講師）。用這個碼註冊的會員每次付款，系統自動算分潤給推廣者。</p><p></p>
+      <label>推廣者<input name="owner" required placeholder="例如：王經理"></label>
+      <div class="row"><label>分潤 %<input name="share_pct" type="number" min="0" max="90" value="20" required></label><label>自訂代碼（選填）<input name="code" placeholder="例如 WANG20"></label></div>
+      <input type="hidden" name="kind" value="promo"><button class="btn gold">產生推廣邀請碼</button><p class="err" data-err></p></form>
+  </div>
+  <div class="card" style="margin-top:16px"><h2>所有邀請碼 <small class="muted">（${E(d.month)} 本月數字）</small></h2><div class="tblwrap"><table class="tbl"><thead><tr><th>代碼</th><th>類型</th><th>給誰</th><th>分潤</th><th>已註冊</th><th>付費中</th><th>本月營收</th><th>本月分潤</th><th>累計分潤</th><th>狀態</th><th></th></tr></thead><tbody>
+  ${d.invites.length ? d.invites.map((i) => `<tr><td><b>${E(i.code)}</b></td><td>${i.kind === 'partner' ? badge(['夥伴', 'blue']) : badge(['推廣', 'gold'])}</td><td>${E(i.owner) || '—'}</td><td>${i.kind === 'promo' ? i.share_pct + '%' : '—'}</td><td>${i.members}${i.max_uses ? ' / ' + i.max_uses : ''}</td><td>${i.kind === 'promo' ? i.paying : '—'}</td><td>${i.kind === 'promo' ? M.money(i.month_rev) : '—'}</td><td>${i.kind === 'promo' ? M.money(i.month_share) : '—'}</td><td>${i.kind === 'promo' ? M.money(i.total_share) : '—'}</td><td>${i.active ? badge(['使用中', 'green']) : badge(['已關閉', 'gray'])}</td><td style="white-space:nowrap"><button class="btn sm" data-copy="${E(link(i.code))}">複製註冊連結</button> <button class="btn sm ghost" data-tog="${E(i.code)}">${i.active ? '關閉' : '開啟'}</button></td></tr>`).join('') : '<tr><td colspan="11" class="empty">還沒有邀請碼</td></tr>'}
+  </tbody></table></div><p class="hint">把「註冊連結」傳給對方，點開就會自動帶入邀請碼。關閉後已註冊的人不受影響，只是新的人不能再用。</p></div>`;
+  const made = async (v) => { const r = await M.api('/api/admin/invites', v); M.toast('已產生 ' + r.code); invites(); };
+  M.form('#f-pt', made); M.form('#f-pr', made);
+  main.onclick = async (e) => {
+    const b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.copy) { try { await navigator.clipboard.writeText(b.dataset.copy); M.toast('註冊連結已複製'); } catch { M.toast(b.dataset.copy); } }
+    if (b.dataset.tog) { await M.api(`/api/admin/invites/${b.dataset.tog}`, { action: 'toggle' }).catch(M.alert); invites(); }
+  };
+}
+
+// ---------------- 報表 ----------------
+async function report(mon) {
+  const d = await M.api('/api/admin/report' + (mon ? '?month=' + mon : ''));
+  main.innerHTML = `
+  <div class="head"><h1>📊 報表</h1><div class="row" style="flex:0"><input type="month" id="mon" value="${E(d.month)}" style="margin:0"><a class="btn" href="/api/admin/report?month=${E(d.month)}&format=csv">下載 Excel（CSV）</a></div></div>
+  <div class="kpis">
+    <div class="kpi gold"><div class="l">${E(d.month)} 收入</div><div class="n">${M.money(d.total)}</div><div class="l">${d.count} 筆</div></div>
+    <div class="kpi"><div class="l">應付推廣分潤</div><div class="n">${M.money(d.shares)}</div></div>
+    <div class="kpi"><div class="l">實收（扣分潤）</div><div class="n">${M.money(d.net)}</div><div class="l">退款 ${M.money(d.refunds)}</div></div>
+  </div>
+  <div class="card"><h2>推廣者分潤</h2><div class="tblwrap"><table class="tbl"><thead><tr><th>推廣者</th><th>代碼</th><th>筆數</th><th>帶來營收</th><th>應付分潤</th></tr></thead><tbody>
+  ${d.promo.length ? d.promo.map((p) => `<tr><td>${E(p.owner)}</td><td>${E(p.code)}</td><td>${p.n}</td><td>${M.money(p.revenue)}</td><td><b>${M.money(p.share)}</b></td></tr>`).join('') : '<tr><td colspan="5" class="empty">這個月沒有推廣分潤</td></tr>'}
+  </tbody></table></div></div>
+  <div class="card"><h2>付款明細</h2><div class="tblwrap"><table class="tbl"><thead><tr><th>日期</th><th>姓名</th><th>方案</th><th>期間</th><th>金額</th><th>分潤</th><th>備註</th></tr></thead><tbody>
+  ${d.payments.length ? d.payments.map((p) => `<tr><td>${M.day(p.created_at)}</td><td>${E(p.name)}<br><small class="muted">${E(p.login)}</small></td><td>${M.planName(p.plan)}</td><td><small>${E(p.period_from)}～${E(p.period_to)}</small></td><td>${M.money(p.amount)}${p.refunded ? ' <span class="badge sm red">退款</span>' : ''}</td><td>${p.share_amount ? M.money(p.share_amount) : '—'}</td><td><small>${E(p.note)}</small></td></tr>`).join('') : '<tr><td colspan="7" class="empty">這個月沒有付款</td></tr>'}
+  </tbody></table></div></div>`;
+  $('#mon').onchange = (e) => report(e.target.value);
+}
+
+// ---------------- 設定 ----------------
+async function settings() {
+  const { settings: s } = await M.api('/api/admin/settings');
+  main.innerHTML = `
+  <div class="head"><h1>⚙️ 設定</h1></div>
+  <form class="card" id="f-set"><h2>品牌與價格</h2>
+    <label>網站名稱（登入頁、會員頁、通知都會用這個）<input name="brand" value="${E(s.brand)}" maxlength="30"></label>
+    <div class="row"><label>月繳<input name="price_month" type="number" value="${E(s.price_month)}"></label><label>年繳<input name="price_year" type="number" value="${E(s.price_year)}"></label><label>處經理團購（每人每年）<input name="price_team" type="number" value="${E(s.price_team)}"></label></div>
+    <button class="btn gold">儲存</button><p class="err" data-err></p></form>
+  <div class="card"><h2>收費狀態</h2><dl class="kv">
+    <dt>上鎖</dt><dd>${s.lock === '1' ? badge(['已上鎖', 'green']) : badge(['尚未上鎖（全部免費開放）', 'gray'])}</dd>
+    <dt>線上付款</dt><dd>${badge(['尚未串接綠界', 'gray'])}　目前由你手動登記</dd>
+    <dt>裝置上限</dt><dd>每個帳號 3 台（站長不限）</dd>
+    <dt>免重新登入</dt><dd>90 天（有在用就會自動延長）</dd>
+  </dl><p class="hint">上鎖與綠界都要等你決定開始收費時再開，開之前會先跟你確認。</p></div>`;
+  M.form('#f-set', async (v) => { const r = await M.api('/api/admin/settings', v); CFG.brand = r.settings.brand; CFG.prices = { month: +r.settings.price_month, year: +r.settings.price_year, team: +r.settings.price_team }; M.brand(CFG.brand); M.toast('已儲存'); });
+}
+
+// ---------------- 操作紀錄 ----------------
+const ACT = { setup: '建立站長', signup: '註冊', create_user: '新增帳號', user_disable: '停用', user_enable: '恢復', user_role: '改身分', user_note: '改備註', user_logout_all: '登出所有裝置', user_reset_password: '重設密碼', user_paid_until: '改到期日', payment: '登記付款', refund: '退款', invite_create: '產生邀請碼', invite_toggle: '開關邀請碼', invite_share: '改分潤', settings: '改設定' };
+async function audit() {
+  const d = await M.api('/api/admin/audit');
+  main.innerHTML = `<div class="head"><h1>📝 操作紀錄</h1><span class="muted">最近 200 筆</span></div>
+  <div class="card"><div class="tblwrap"><table class="tbl"><thead><tr><th>時間</th><th>誰</th><th>做了什麼</th><th>對象</th><th>內容</th></tr></thead><tbody>
+  ${d.audit.map((a) => `<tr><td><small>${new Date(a.at).toLocaleString('zh-TW')}</small></td><td>${E(a.actor_name || '—')}</td><td>${E(ACT[a.action] || a.action)}</td><td>${E(a.target)}</td><td><small>${E(a.detail)}</small></td></tr>`).join('')}
+  </tbody></table></div></div>`;
+}
+
+const PAGES = { overview, users, invites, report, settings, audit };
+async function go(name) {
+  if (!PAGES[name]) name = 'overview';
+  document.querySelectorAll('.nav').forEach((n) => n.classList.toggle('on', n.dataset.go === name));
+  main.onclick = null;
+  if (location.hash.slice(1) !== name) history.replaceState(null, '', '#' + name);
+  try { await PAGES[name](); } catch (e) { if (e.status === 401) return toLogin(); main.innerHTML = `<p class="err">${E(e.message)}</p>`; }
+  window.scrollTo(0, 0);
+}
+const toLogin = () => (location.href = '/account/?next=' + encodeURIComponent('/admin/' + location.hash));
+document.querySelectorAll('.nav').forEach((n) => (n.onclick = () => go(n.dataset.go)));
+
+(async () => {
+  try {
+    CFG = await M.api('/api/config');
+    const me = await M.api('/api/me');
+    if (me.user.role !== 'admin') { $('#loading').innerHTML = '這裡只有站長可以進入。<br><a href="/account/">回會員中心</a>'; return; }
+    CFG.prices = me.prices;
+    M.brand(CFG.brand);
+    $('#who').textContent = me.user.name;
+    $('#loading').hidden = true; $('#adm').hidden = false;
+    go(location.hash.slice(1));
+  } catch (e) {
+    if (e.status === 401) return toLogin();
+    $('#loading').textContent = e.message;
+  }
+})();
+})();
+</script>
+</body>
+</html>
