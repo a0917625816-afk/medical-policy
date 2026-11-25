@@ -1,1 +1,188 @@
-{"_doc":"各壽險公司官網現售／停售商品清單網址（待第一次巡查前由 GPT 搜尋結果建立）","sources":[]}
+{
+ "_doc": "各公司官網清單網址（2026-11-25 由 GPT 搜尋＋待巡查實測）。type: stopped=官方停售清單（可直接判 stop）；current=官方現售清單（網站標現售但不在此清單→只判 check，除非第二來源也說停售）；stopped_partial=歷史部分停售；current_partial/list_unk=只能參考。公司代碼 co 為保發中心商品 id 前 3 碼（請巡查時以 policies.json 實際代碼核對修正）。中國信託已併入台灣、台新已併入新光。",
+ "secondary": "商品分析網站 insureanalyze（各家 pdtlist 的 PdtStop；需使用者提供登入連結）、富邦行動辦公室現售清單（需使用者在 Edge 登入）；兩者都是次要來源。",
+ "sources": [
+  {
+   "co": "201",
+   "name": "國泰",
+   "type": "list_unk",
+   "url": "https://www.cathaylife.com.tw/official/laws-policies/public-info/info-insurance",
+   "note": "資訊公開商品資訊，未確認現售/停售分類"
+  },
+  {
+   "co": "209",
+   "name": "富邦",
+   "type": "list_unk",
+   "url": "https://www.fubon.com/life/investor/public-info1?c=commodity",
+   "note": "需點選；另可用富邦行動辦公室現售清單（需使用者登入）"
+  },
+  {
+   "co": "206",
+   "name": "南山",
+   "type": "current",
+   "url": "https://www.nanshanlife.com.tw/nanshanlife/portal-api/File/948",
+   "note": "保險商品成本分析 PDF（現售候選，有代碼）"
+  },
+  {
+   "co": "206",
+   "name": "南山",
+   "type": "stopped_partial",
+   "url": "https://www.nanshanlife.com.tw/nanshanlife/portal-api/File/965",
+   "note": "2005 停售公告，歷史"
+  },
+  {
+   "co": "208",
+   "name": "新光",
+   "type": "list_unk",
+   "url": "https://www.skl.com.tw/65732b6f14.html",
+   "note": "資訊公開入口，GPT 開啟逾時，未驗證"
+  },
+  {
+   "co": "202",
+   "name": "台灣",
+   "type": "current_partial",
+   "url": "https://www.taiwanlife.com/product-personal-life-TermLife",
+   "note": "分類入口，不完整"
+  },
+  {
+   "co": "205",
+   "name": "凱基",
+   "type": "list_unk",
+   "url": "https://www.kgilife.com.tw/zh-tw/-/media/files/kgil/footer/corp/publicinfo/piinsurance-products/date_pd1.pdf",
+   "note": "核准/備查日期表，非銷售狀態"
+  },
+  {
+   "co": "205",
+   "name": "凱基",
+   "type": "stopped_partial",
+   "url": "https://www.kgilife.com.tw/zh-tw/footer/corp/publicinfo/material-information/discontinued-products",
+   "note": "原瑞泰歷史停售"
+  },
+  {
+   "co": "264",
+   "name": "全球",
+   "type": "current",
+   "url": "https://www.transglobe.com.tw/product-overall.html",
+   "note": "商品總覽（動態頁）"
+  },
+  {
+   "co": "211",
+   "name": "三商美邦",
+   "type": "list_unk",
+   "url": "https://www.mli.com.tw/sites/mliportal/about/info-publication&selectInfo=4",
+   "note": "資訊公開，需點選"
+  },
+  {
+   "co": "217",
+   "name": "遠雄",
+   "type": "current",
+   "url": "https://www.fglife.com.tw/initGoodsTermsO.html",
+   "note": "保單條款專區－現售"
+  },
+  {
+   "co": "217",
+   "name": "遠雄",
+   "type": "stopped",
+   "url": "https://www.fglife.com.tw/initGoodsTermsC.html",
+   "note": "保單條款專區－停售"
+  },
+  {
+   "co": "203",
+   "name": "保誠",
+   "type": "list_unk",
+   "url": "https://www.pcalife.com.tw/content/dam/prudential-aem-lbu/pcalt/zh_TW/public-info/pdd_info5-1.pdf",
+   "note": "核准/備查日期表"
+  },
+  {
+   "co": "261",
+   "name": "元大",
+   "type": "current",
+   "url": "https://www.yuantalife.com.tw/products/features/",
+   "note": "商品列表（有代碼）"
+  },
+  {
+   "co": "216",
+   "name": "友邦",
+   "type": "list_unk",
+   "url": "https://www.aia.com.tw/zh-tw/help-and-support/important-info/clauses",
+   "note": "條款目錄，未分狀態"
+  },
+  {
+   "co": "218",
+   "name": "宏泰",
+   "type": "list_unk",
+   "url": "https://www.hontai.com.tw/18pages/info",
+   "note": "資訊公開入口，未驗證"
+  },
+  {
+   "co": "221",
+   "name": "安聯",
+   "type": "current",
+   "url": "https://es.allianz.com.tw/customer/companyInfo/publicInfo/open-0414.aspx",
+   "note": "公司現行銷售商品"
+  },
+  {
+   "co": "257",
+   "name": "第一金",
+   "type": "list_unk",
+   "url": "https://www.firstlife.com.tw/FirstWeb/file/DOCUMENT/10423",
+   "note": "核准/備查日期表"
+  },
+  {
+   "co": "256",
+   "name": "合作金庫",
+   "type": "list_unk",
+   "url": "https://my.tcb-life.com.tw/api/assets/b6e70b59-b408-4ba9-951f-ac0399719e10/JV_Info_1_20260102.pdf",
+   "note": "核准/備查日期表，檔名會換版"
+  },
+  {
+   "co": "222",
+   "name": "臺銀",
+   "type": "stopped",
+   "url": "https://www.twfhclife.com.tw/%E5%95%86%E5%93%81%E5%B0%88%E5%8D%80/%E5%81%9C%E5%94%AE%E5%95%86%E5%93%81/",
+   "note": "停售商品公告（有停售日）"
+  },
+  {
+   "co": "220",
+   "name": "安達",
+   "type": "current",
+   "url": "https://life.chubb.com/tw-zh/products.html",
+   "note": "商品目錄"
+  },
+  {
+   "co": "220",
+   "name": "安達",
+   "type": "stopped",
+   "url": "https://life.chubb.com/tw-zh/products/discontinued/traditional-products.html",
+   "note": "已停售（傳統型）"
+  },
+  {
+   "co": "220",
+   "name": "安達",
+   "type": "stopped",
+   "url": "https://life.chubb.com/tw-zh/products/discontinued/riders.html",
+   "note": "已停售（附約）"
+  },
+  {
+   "co": "267",
+   "name": "法國巴黎",
+   "type": "list_unk",
+   "url": "https://life.cardif.com.tw/documents/418719/461728/VIE_Info_1.pdf/a7b1fe95-cfbb-4cec-a4dc-c618ff9ee336?t=1794385872296",
+   "note": "核准/備查日期表"
+  },
+  {
+   "co": "252",
+   "name": "中華郵政",
+   "type": "current",
+   "url": "https://www.post.gov.tw/post/internet/Insurance/index.jsp?ID=4010104",
+   "note": "現售"
+  },
+  {
+   "co": "252",
+   "name": "中華郵政",
+   "type": "stopped",
+   "url": "https://www.post.gov.tw/post/internet/Insurance/index.jsp?ID=4010101",
+   "note": "停售（有停售日）"
+  }
+ ]
+}
