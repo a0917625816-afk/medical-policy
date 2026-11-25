@@ -16,9 +16,9 @@
 1. **合併最新內容**：把 `main` 最新的內容合併進這個分支（或反過來），確認網站功能正常。
 2. **買網域**（約一年 300～400 台幣，**先跟站長確認**）→ 在 Cloudflare 買，名稱由站長決定。
 3. **建 Cloudflare Pages 專案**：連 GitHub（只授權 medical-policy 這個儲存庫）、建置指令 `bash .github/scripts/build_site.sh`、輸出 `_site`、正式分支 `main`。
-   - 環境變數：`SITE_HOST`＝正式網域；`CANARY_ROWS`＝隱藏記號假保單（清單存在工作室，不寫進儲存庫）。
+   - 環境變數：`SITE_HOST`＝正式網域；`CANARY_ROWS`＝隱藏記號假保單（上線當天重新編 3 筆不存在的保單名稱，只放 Cloudflare 環境變數，不寫進儲存庫）。
 4. **建 D1 資料庫** `pharos-members`，綁定到 Pages 專案，變數名稱 `DB`；部署後打開 `/api/config` 確認 `needs_setup:true`。
-5. **站長自己建帳號**：到 `/account/` 輸入開通碼（開通碼另外給站長，只能用一次）。
+5. **站長自己建帳號**：上線當天重新產生一組開通碼（只把它的 sha256 寫進 `lib/member/core.js` 的 `SETUP_HASH`），開通碼直接給站長；站長到 `/account/` 輸入後自己設密碼，開通碼隨即失效。
 6. **綁定網域＋防火牆**（跟每月現金流規劃一樣）：Bot Fight Mode、擋 AI 訓練爬蟲、限流（同一 IP 10 秒內抓資料超過 120 次就擋）、擋抓取程式（python／curl／wget／headless 等）、www 轉主網域、一律 HTTPS。
 7. **舊網址搬家**：把 `launch/sender.js`（`__NEW__` 換成新網址）放進 `main` 的 index.html 最前面 → 夥伴打開舊網址會自動帶著資料搬到新網址。
 8. **儲存庫改成私人**（GitHub Pages 會停，所以一定要在第 7 步生效、確認搬家正常之後）。
