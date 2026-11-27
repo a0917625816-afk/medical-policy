@@ -42,6 +42,17 @@ for ln in txt.split('\n'):
   elif parts[0]=='DEL' and len(parts)>=2:
     e=P.setdefault(cur,{}); L=e.setdefault('_del',[]); nm=parts[1].strip()
     if nm not in L: L.append(nm); stat['del']+=1
+# 同名「先 DEL 再 NEW」＝只改標籤：轉成 FIX，保留原條款文字
+for k,e in P.items():
+  if not isinstance(e,dict) or not e.get('_del') or not e.get('_add'): continue
+  keep=[]
+  for x in e['_add']:
+    if x['n'] in e['_del'] and not x.get('d'):
+      e['_del'].remove(x['n']); ch={'r':x['r']}
+      if x.get('fc'): ch['fc']=x['fc']
+      e[x['n']]=ch
+    else: keep.append(x)
+  e['_add']=keep
 json.dump(P,open(os.path.join(H,'ben_patches.json'),'w'),ensure_ascii=False,indent=0)
 json.dump(sorted(V),open(os.path.join(H,'vf_done.json'),'w'))
 print(stat)
