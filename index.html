@@ -687,7 +687,7 @@ section[data-view="savd"],#savd-box,#sv-det,#savd-box .cx-step,#savd-box details
 :is(#report,#sheet-prev) .pp-pol-meta{display:flex;flex-wrap:wrap;gap:4px 12px;margin:6px 0;font-size:12px;color:var(--pp-muted)}
 :is(#report,#sheet-prev) .pp-pol-d{margin:4px 0 8px;font-size:13px;background:var(--pp-soft);border-radius:8px;padding:6px 10px}
 :is(#report,#sheet-prev) .pp-ben .kb-g{background:var(--pp-soft2);color:var(--pp-muted2);border-radius:6px;padding:3px 8px;font-size:12px;font-weight:700;margin:8px 0 2px}
-:is(#report,#sheet-prev) .pp-ben .kb-it{padding:4px 0;border-bottom:1px dashed var(--pp-line2);break-inside:avoid}
+:is(#report,#sheet-prev) .pp-ben .kb-it{padding:4px 0;border-bottom:1px dashed var(--pp-line2);break-inside:avoid} :is(#report,#sheet-prev) :is(.pp-keys,.pp-keys>div,.pp-cover-sum>div,.pp-sumstrip,.pp-bars,.pp-case-h,.pp-note,.pp-pol-d,li,p,tr,h6,.kb-r,.kb-it){break-inside:avoid;page-break-inside:avoid} :is(#report,#sheet-prev) :is(.pp-h2,.pp-pol-h,.pp-pol-meta,.pp-case-h,h2,h3,h4,h5,h6){break-after:avoid;page-break-after:avoid}
 :is(#report,#sheet-prev) .pp-ben .kb-r{display:flex;justify-content:space-between;gap:10px;font-size:13px}:is(#report,#sheet-prev) .pp-ben .kb-n{font-weight:600}:is(#report,#sheet-prev) .pp-ben .kb-a{white-space:nowrap;font-weight:700;color:var(--pp-ink)}
 :is(#report,#sheet-prev) .pp-ben .kb-a i{font-style:normal;font-weight:400;font-size:11px;color:var(--pp-muted)}
 :is(#report,#sheet-prev) .pp-ben .kb-d{margin:1px 0 0;font-size:11.5px;color:var(--pp-muted)}
@@ -2829,7 +2829,7 @@ if(!CMP||!CMP.b) CMP={s:"男",age:30,b:JSON.parse(JSON.stringify(BUNDLE_PRESETS)
 function cmpSave(){try{localStorage.setItem(CMP_KEY,JSON.stringify(CMP))}catch(e){}}
 const CMP_METRICS=[["prem","年繳保費合計","元",true],["acc","意外醫療（車禍骨折情境的意外專屬給付）","元"],["accDeath","意外身故加給","元"],["day","住院一天的定額給付（日額類合計）","元／日"],["misc","住院雜費實支實付上限","元"],["surg","住院手術給付（盲腸炎情境）","元"],["cancer","癌症一次金","元"],["major","重大傷病／重疾一次金","元"],["disab","第 1 級失能給付","元"],["ltc","長照每期給付","元／期"],["death","身故保險金","元"]];
 async function bundleCalc(b,who){ who=who||{s:CMP.s,age:CMP.age};
-  const comps=[]; let prem=0; const tot={}; SIM_PRESETS.forEach(p=>tot[p.k]=0); const M={day:0,misc:0,surg:0,cancer:0,major:0,mp:{},disab:0,ltc:0,death:0,acc:0,accDeath:0,accDisab:0,items:{hosp:[],surg:[],major:[],ltc:[],disab:[],acc:[]}}; let unknown=0;
+  const comps=[]; let prem=0; const tot={}; SIM_PRESETS.forEach(p=>tot[p.k]=0); const M={day:0,misc:0,surg:0,surgMax:0,accReal:0,cancer:0,major:0,mp:{},disab:0,ltc:0,death:0,acc:0,accDeath:0,accDisab:0,items:{hosp:[],surg:[],major:[],ltc:[],disab:[],acc:[]}}; let unknown=0;
   for(const it of b.items||[]){
     let X,R,pol,st;
     if(it.cust){ const c=it.custObj||CUST.find(x=>x.id===it.cust); if(!c) continue; X=custX(c); pol=custPol(c); st={s:who.s,age:who.age,y:"",plan:"自訂",pi:0,amt:0,unit:false,prem:0,yrs:0}; }
@@ -2846,6 +2846,9 @@ async function bundleCalc(b,who){ who=who||{s:CMP.s,age:CMP.age};
     { const car=SIM_PRESETS.find(z=>z.k==="car"); const a1=simRun(X,st,Object.assign({},SIM_DEF,car.S),pol).total, a0=simRun(X,st,Object.assign({},SIM_DEF,car.S,{cause:"疾病"}),pol).total; if(a1>a0) M.acc+=a1-a0;
       const ad=simRun(X,st,Object.assign({},SIM_DEF,{cause:"意外",death:1}),pol).total; if(ad>dd.total) M.accDeath+=ad-dd.total;
       const dz=simRun(X,st,Object.assign({},SIM_DEF,{disab:1}),pol).total, da=simRun(X,st,Object.assign({},SIM_DEF,{cause:"意外",disab:1}),pol).total; if(da>dz) M.accDisab+=da-dz; }
+    { let T=X&&X._surg&&X._surg.t&&X._surg.t.length?X._surg:(SURG_STD?SURG_STD["倍"]:null); let top=null; if(T) for(const z of T.t) if(!top||(+z[1]||0)>(+top[1]||0)) top=z;
+      let sv=0; try{ const sr=simRun(X,st,Object.assign({},SIM_DEF,{cause:"疾病",days:1,room:0,misc:0,surgIn:1,surgFee:1e7,opd:0,er:0,surgName:top?top[0]:"闌尾切除"}),pol); for(const r of sr.rows) if(r.kind==="手術") sv+=(+r.pay||0); }catch(e){} M.surgMax+=sv;
+      let am=0; for(const b of (X&&X.ben)||[]){ if(cmapKey(b)!=="acc") continue; const nm=b.n||""; if(!/實支|醫療費用|醫療保險金/.test(nm)||/日額|每日|住院|骨折|身故|喪葬|失能|殘廢|燒燙|手術|加護|看護/.test(nm)||benFreq(b)==="每日") continue; let A=null; try{ A=itemAmount(b,st,benFreq(b),X.ben); }catch(e){} if(A>am) am=A; } M.accReal+=am; }
   }
   const rule=bundleRuleCheck(comps.filter(c=>c.prem!=null||c.form!=null));
   return {comps,prem,tot,M,unknown,rule};
@@ -3731,13 +3734,15 @@ async function propDownload(html,fname,onp){ await propLoadH2P(); const orig=doc
   try{ if(document.fonts&&document.fonts.ready) await document.fonts.ready; await new Promise(r=>setTimeout(r,200));
     const root=off.querySelector(".pp")||off; const secs=[...root.children].filter(e=>e.offsetHeight>0); const {jsPDF}=window.jspdf; const pdf=new jsPDF({unit:"mm",format:"a4",orientation:"portrait"}); let first=true;
     for(let k=0;k<secs.length;k++){ if(onp) onp(k+1,secs.length); await new Promise(r=>setTimeout(r,30));
-      const sec=secs[k], st=sec.getBoundingClientRect().top, cssH=sec.offsetHeight, BL=d=>d!=="inline"&&d!=="none"&&d!=="contents";
-      const atoms=[...sec.querySelectorAll("*")].filter(e=>{ const d=getComputedStyle(e).display; if(!BL(d)||d==="inline-block") return false; return ![...e.children].some(c=>{ const cd=getComputedStyle(c).display; return BL(cd)&&cd!=="inline-block"; }); }).map(e=>{ const q=e.getBoundingClientRect(); return [q.top-st,q.bottom-st]; }).filter(a=>a[1]-a[0]>1);
-      const keep=new Set([...sec.querySelectorAll("h2,h3,h4,thead,.pp-h2,.pp-pol-h,.pp-pol-meta,.pp-case-h,.pp-lead")].map(e=>Math.round(e.getBoundingClientRect().bottom-st)));
-      const bps=[...new Set(atoms.map(a=>Math.round(a[1])))].filter(y=>y>0&&y<cssH&&!keep.has(y)&&!atoms.some(([a,b])=>a<y-1.5&&y<b-1.5)).sort((a,b)=>a-b);
+      const sec=secs[k], st=sec.getBoundingClientRect().top, cssH=sec.offsetHeight, pageCss=sec.offsetWidth*297/210, BL=d=>d!=="inline"&&d!=="none"&&d!=="contents";
+      const els=[...sec.querySelectorAll("*")].filter(e=>BL(getComputedStyle(e).display)); const box=e=>{ const q=e.getBoundingClientRect(); return [q.top-st,q.bottom-st]; };
+      const atoms=els.map(box).filter(([a,b])=>b-a>1&&b-a<pageCss*0.55);
+      sec.querySelectorAll("h2,h3,h4,h5,h6,thead,.pp-h2,.pp-pol-h,.pp-pol-meta,.pp-case-h,.pp-lead").forEach(h=>{ const [a,b]=box(h); let n=h.nextElementSibling; atoms.push([a,n?Math.min(box(n)[1],box(n)[0]+70):b+40]); });
+      const cands=new Set(); els.forEach(e=>{ const [a,b]=box(e); cands.add(Math.round(b+1)); cands.add(Math.round(a-1)); });
+      const bps=[...cands].filter(y=>y>0&&y<cssH&&!atoms.some(([a,b])=>a<y-0.5&&y<b+0.5)).sort((a,b)=>a-b);
       const cv=await html2canvas(sec,{scale:1.6,useCORS:true,backgroundColor:"#ffffff",logging:false}); const pw=210, ph=297, pxPerMm=cv.width/pw, pageH=Math.floor(ph*pxPerMm), r=cv.height/cssH, padT=Math.round(8*pxPerMm);
       let y=0, pg=0; while(y<cv.height-pxPerMm*6){ const avail=pageH-(pg?padT:0), lim=y+avail; let cut=cv.height<=lim?cv.height:lim;
-        if(cv.height>lim){ const cand=bps.map(b=>Math.round(b*r+4)).filter(b=>b>y+avail*0.2&&b<=lim); if(cand.length) cut=cand[cand.length-1]; }
+        if(cv.height>lim){ const cand=bps.map(b=>Math.round(b*r)).filter(b=>b>y+avail*0.15&&b<=lim); if(cand.length) cut=cand[cand.length-1]; }
         const h=cut-y, top=pg?padT:0; const c2=document.createElement("canvas"); c2.width=cv.width; c2.height=pageH; const g=c2.getContext("2d"); g.fillStyle="#fff"; g.fillRect(0,0,c2.width,pageH); g.drawImage(cv,0,y,cv.width,h,0,top,cv.width,h);
         if(!first) pdf.addPage(); first=false; pdf.addImage(c2.toDataURL("image/jpeg",0.9),"JPEG",0,0,pw,ph); c2.width=c2.height=0; y=cut; pg++; }
       cv.width=cv.height=0; }
@@ -3767,7 +3772,7 @@ async function propHTML(c,o){
   // 保障重點數字
   const item=r=>r.proj!=null?{cust:"pj",custObj:projCust(r,c.age,c.s)||{_ben:[]}}:r.cust?{cust:r.cust.id||"c",custObj:r.cust}:{i:r.i,plan:r.plan||"",amt:r.amt||0,y:r.y||"",d:r.d||""};
   let M={}; try{ M=(await bundleCalc({items:c.rows.map(item)},who)).M||{}; }catch(e){}
-  const keyN=[["住院每天（日額）",M.day,"元／日"],["住院雜費實支上限",M.misc,"元"],["住院手術（以盲腸炎計）",M.surg,"元"],["癌症一次金",M.cancer,"元"],["重大傷病／重疾",M.major,"元"],["身故保障",(M.death||0),"元"],["意外身故（含一般身故）",(M.accDeath||0)>0?(M.death||0)+(M.accDeath||0):0,"元"],["意外醫療／骨折",M.acc,"元"]].filter(x=>x[1]>0);
+  const keyN=[["住院每天（日額）",M.day,"元／日"],["住院雜費實支上限",M.misc,"元"],["住院手術（最高）",Math.max(M.surgMax||0,M.surg||0),"元"],["癌症一次金",M.cancer,"元"],["重大傷病／重疾",M.major,"元"],["身故保障",(M.death||0),"元"],["意外身故（含一般身故）",(M.accDeath||0)>0?(M.death||0)+(M.accDeath||0):0,"元"],["意外實支實付",M.accReal,"元"]].filter(x=>x[1]>0);
   // 每張保單介紹與細項
   const benAll=await kBenHTML(c); const box=document.createElement("div"); box.innerHTML=benAll; const benBy={}; box.querySelectorAll(".kb-pol").forEach(a=>{ const h=a.querySelector("h5"); const nm=h?h.firstChild.textContent.trim():""; h&&h.remove(); benBy[nm]=a.innerHTML; });
   const introH=intro.map((x,i)=>{
