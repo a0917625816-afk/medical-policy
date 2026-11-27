@@ -3736,12 +3736,13 @@ async function propDownload(html,fname,onp){ await propLoadH2P(); const orig=doc
     for(let k=0;k<secs.length;k++){ if(onp) onp(k+1,secs.length); await new Promise(r=>setTimeout(r,30));
       const sec=secs[k], st=sec.getBoundingClientRect().top, cssH=sec.offsetHeight, pageCss=sec.offsetWidth*297/210, BL=d=>d!=="inline"&&d!=="none"&&d!=="contents";
       const els=[...sec.querySelectorAll("*")].filter(e=>BL(getComputedStyle(e).display)); const box=e=>{ const q=e.getBoundingClientRect(); return [q.top-st,q.bottom-st]; };
-      const atoms=els.map(box).filter(([a,b])=>b-a>1&&b-a<pageCss*0.55);
+      const atoms=els.filter(e=>!e.matches(".pp-pol,.pp-case,.pp-ben,.kb-pol,section,table,tbody,ul,ol")).map(box).filter(([a,b])=>b-a>1&&b-a<pageCss*0.2); sec.querySelectorAll(".pp-keys,.pp-sumstrip,.pp-cover-sum,.pp-bars").forEach(e=>{ const q=box(e); if(q[1]-q[0]<pageCss*0.5) atoms.push(q); });
       sec.querySelectorAll("h2,h3,h4,h5,h6,thead,.pp-h2,.pp-pol-h,.pp-pol-meta,.pp-case-h,.pp-lead").forEach(h=>{ const [a,b]=box(h); let n=h.nextElementSibling; atoms.push([a,n?Math.min(box(n)[1],box(n)[0]+70):b+40]); });
       const cands=new Set(); els.forEach(e=>{ const [a,b]=box(e); cands.add(Math.round(b+1)); cands.add(Math.round(a-1)); });
       const bps=[...cands].filter(y=>y>0&&y<cssH&&!atoms.some(([a,b])=>a<y-0.5&&y<b+0.5)).sort((a,b)=>a-b);
       const cv=await html2canvas(sec,{scale:1.6,useCORS:true,backgroundColor:"#ffffff",logging:false}); const pw=210, ph=297, pxPerMm=cv.width/pw, pageH=Math.floor(ph*pxPerMm), r=cv.height/cssH, padT=Math.round(8*pxPerMm);
-      let y=0, pg=0; while(y<cv.height-pxPerMm*6){ const avail=pageH-(pg?padT:0), lim=y+avail; let cut=cv.height<=lim?cv.height:lim;
+      const blankFrom=y0=>{ try{ const h=cv.height-y0; if(h<=0) return true; const d=cv.getContext("2d").getImageData(0,y0,cv.width,h).data; for(let i=0;i<d.length;i+=4*7){ if(d[i]<235||d[i+1]<235||d[i+2]<235) return false; } return true; }catch(e){ return false; } };
+      let y=0, pg=0; while(y<cv.height-pxPerMm*6&&!(pg&&blankFrom(y))){ const avail=pageH-(pg?padT:0), lim=y+avail; let cut=cv.height<=lim?cv.height:lim;
         if(cv.height>lim){ const cand=bps.map(b=>Math.round(b*r)).filter(b=>b>y+avail*0.15&&b<=lim); if(cand.length) cut=cand[cand.length-1]; }
         const h=cut-y, top=pg?padT:0; const c2=document.createElement("canvas"); c2.width=cv.width; c2.height=pageH; const g=c2.getContext("2d"); g.fillStyle="#fff"; g.fillRect(0,0,c2.width,pageH); g.drawImage(cv,0,y,cv.width,h,0,top,cv.width,h);
         if(!first) pdf.addPage(); first=false; pdf.addImage(c2.toDataURL("image/jpeg",0.9),"JPEG",0,0,pw,ph); c2.width=c2.height=0; y=cut; pg++; }
