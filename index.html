@@ -3729,26 +3729,42 @@ function propDlg(c){
 function propPrint(html){ let rep=document.getElementById("report"); if(!rep){rep=document.createElement("div"); rep.id="report"; document.body.appendChild(rep);} rep.innerHTML=html; document.body.classList.add("printing"); const done=()=>document.body.classList.remove("printing"); addEventListener("afterprint",done,{once:true}); setTimeout(()=>{ window.print(); setTimeout(done,4000); },120); }
 let H2P=null; function propLoadJS(u){ return new Promise((ok,ng)=>{ const sc=document.createElement("script"); sc.src=u; sc.onload=ok; sc.onerror=()=>ng(new Error("load "+u)); document.head.appendChild(sc); }); }
 function propLoadH2P(){ if(window.html2canvas&&window.jspdf) return Promise.resolve(); if(H2P) return H2P; H2P=Promise.all([window.html2canvas?0:propLoadJS("https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"),window.jspdf?0:propLoadJS("https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js")]).catch(e=>{H2P=null;throw e;}); return H2P; }
-async function propDownload(html,fname,onp){ await propLoadH2P(); const orig=document.getElementById("sheet-prev"); if(orig) orig.id="sheet-prev-o";
+async function propDownload(html,fname,onp,printMode){ if(!printMode) await propLoadH2P(); const orig=document.getElementById("sheet-prev"); if(orig) orig.id="sheet-prev-o";
   const off=document.createElement("div"); off.id="sheet-prev"; off.style.cssText="position:fixed;left:-12000px;top:0;width:210mm;background:#fff;z-index:-1"; off.innerHTML=html; document.body.appendChild(off);
+  const out=document.createElement("div"); out.id="sheet-prev"; out.style.cssText="position:fixed;left:-24000px;top:0;width:210mm;z-index:-1";
   try{ if(document.fonts&&document.fonts.ready) await document.fonts.ready; await new Promise(r=>setTimeout(r,200));
-    const root=off.querySelector(".pp")||off; const secs=[...root.children].filter(e=>e.offsetHeight>0); const {jsPDF}=window.jspdf; const pdf=new jsPDF({unit:"mm",format:"a4",orientation:"portrait"}); let first=true;
-    for(let k=0;k<secs.length;k++){ if(onp) onp(k+1,secs.length); await new Promise(r=>setTimeout(r,30));
-      const sec=secs[k], st=sec.getBoundingClientRect().top, cssH=sec.offsetHeight, pageCss=sec.offsetWidth*297/210, BL=d=>d!=="inline"&&d!=="none"&&d!=="contents";
-      const els=[...sec.querySelectorAll("*")].filter(e=>BL(getComputedStyle(e).display)); const box=e=>{ const q=e.getBoundingClientRect(); return [q.top-st,q.bottom-st]; };
-      const atoms=els.filter(e=>!e.matches(".pp-pol,.pp-case,.pp-ben,.kb-pol,section,table,tbody,ul,ol")).map(box).filter(([a,b])=>b-a>1&&b-a<pageCss*0.2); sec.querySelectorAll(".pp-keys,.pp-sumstrip,.pp-cover-sum,.pp-bars").forEach(e=>{ const q=box(e); if(q[1]-q[0]<pageCss*0.5) atoms.push(q); });
-      sec.querySelectorAll("h2,h3,h4,h5,h6,thead,.pp-h2,.pp-pol-h,.pp-pol-meta,.pp-case-h,.pp-lead").forEach(h=>{ const [a,b]=box(h); let n=h.nextElementSibling; atoms.push([a,n?Math.min(box(n)[1],box(n)[0]+70):b+40]); });
-      const cands=new Set(); els.forEach(e=>{ const [a,b]=box(e); cands.add(Math.round(b+1)); cands.add(Math.round(a-1)); });
-      const bps=[...cands].filter(y=>y>0&&y<cssH&&!atoms.some(([a,b])=>a<y-0.5&&y<b+0.5)).sort((a,b)=>a-b);
-      const cv=await html2canvas(sec,{scale:1.6,useCORS:true,backgroundColor:"#ffffff",logging:false}); const pw=210, ph=297, pxPerMm=cv.width/pw, pageH=Math.floor(ph*pxPerMm), r=cv.height/cssH, padT=Math.round(8*pxPerMm);
-      const blankFrom=y0=>{ try{ const h=cv.height-y0; if(h<=0) return true; const d=cv.getContext("2d").getImageData(0,y0,cv.width,h).data; for(let i=0;i<d.length;i+=4*7){ if(d[i]<235||d[i+1]<235||d[i+2]<235) return false; } return true; }catch(e){ return false; } };
-      let y=0, pg=0; while(y<cv.height-pxPerMm*6&&!(pg&&blankFrom(y))){ const avail=pageH-(pg?padT:0), lim=y+avail; let cut=cv.height<=lim?cv.height:lim;
-        if(cv.height>lim){ const cand=bps.map(b=>Math.round(b*r)).filter(b=>b>y+avail*0.15&&b<=lim); if(cand.length) cut=cand[cand.length-1]; }
-        const h=cut-y, top=pg?padT:0; const c2=document.createElement("canvas"); c2.width=cv.width; c2.height=pageH; const g=c2.getContext("2d"); g.fillStyle="#fff"; g.fillRect(0,0,c2.width,pageH); g.drawImage(cv,0,y,cv.width,h,0,top,cv.width,h);
-        if(!first) pdf.addPage(); first=false; pdf.addImage(c2.toDataURL("image/jpeg",0.9),"JPEG",0,0,pw,ph); c2.width=c2.height=0; y=cut; pg++; }
-      cv.width=cv.height=0; }
+    const root=off.querySelector(".pp")||off; const secs=[...root.children].filter(e=>e.offsetHeight>0); off.id="sheet-prev-src"; document.body.appendChild(out);
+    const pages=[]; let page=null;
+    const mkPage=(cover)=>{ const el=document.createElement("div"); el.className=root.className; el.style.cssText=`width:210mm;height:297mm;box-sizing:border-box;overflow:hidden;background:#fff;margin:0;padding:${cover?"0":"11mm 10mm"};position:relative`; out.appendChild(el); page={el,used:false}; pages.push(page); return el; };
+    const fits=()=>page.el.scrollHeight<=page.el.clientHeight+1;
+    const HEAD="h1,h2,h3,h4,h5,h6,thead,.pp-h2,.pp-case-h,.pp-pol-h,.pp-pol-meta,.pp-lead";
+    const ATOM="tr,li,p,img,svg,table:not(:has(tbody>tr:nth-child(3))),.pp-keys>div,.pp-bar,.pp-case-h,.pp-pol-h,.pp-pol-meta,.pp-pol-d,.pp-note,.pp-sumstrip>div,.pp-cover-sum>div,.kb-it,.kb-r,"+HEAD;
+    const newPage=anc=>{ let p=mkPage(false); for(const a of anc){ const c=a.cloneNode(false); if(a.tagName==="TABLE"){ const th=a.querySelector(":scope>thead"); if(th) c.appendChild(th.cloneNode(true)); } p.appendChild(c); p=c; } return p; };
+    const place=(node,parent,anc)=>{ const c=node.cloneNode(true); parent.appendChild(c); if(fits()){ page.used=true; return parent; } parent.removeChild(c);
+      const kids=[...node.childNodes].filter(n=>n.nodeType===1||(n.nodeType===3&&n.textContent.trim()));
+      const split=node.nodeType===1&&kids.length>0&&kids.every(n=>n.nodeType===1)&&!node.matches(ATOM);
+      if(!split){ if(!page.used){ parent.appendChild(c); page.used=true; return parent; } const p2=newPage(anc); p2.appendChild(c); page.used=true;
+        // 標題不要單獨留在上一頁底部
+        return p2; }
+      let shell=node.cloneNode(false); parent.appendChild(shell); const A=anc.concat([node]); let cur=shell;
+      for(const k of kids){ if(k.tagName==="THEAD"&&cur.querySelector(":scope>thead")) continue; const prev=cur.lastElementChild;
+        if(prev&&prev.matches&&prev.matches(HEAD)&&page.used){ let t=k.cloneNode(false), tt=t, n=k; while(n.nodeType===1&&!n.matches(ATOM)&&n.firstElementChild){ n=n.firstElementChild; if(n.matches(ATOM)||!n.firstElementChild){ tt.appendChild(n.cloneNode(true)); break; } const z=n.cloneNode(false); tt.appendChild(z); tt=z; } if(t===tt&&!t.childNodes.length) t=k.cloneNode(true);
+          cur.appendChild(t); const ok=fits(); cur.removeChild(t);
+          if(!ok){ const hs=[prev]; let q=prev.previousElementSibling; while(q&&q.matches(HEAD)){ hs.unshift(q); q=q.previousElementSibling; } const p2=newPage(A); hs.forEach(h=>p2.appendChild(h)); cur=p2; } }
+        cur=place(k,cur,A); }
+      return cur.parentNode; };
+    for(const sec of secs){ if(sec.matches(".pp-cover")){ mkPage(true).appendChild(sec.cloneNode(true)); page.used=true; continue; } const p=mkPage(false); place(sec,p,[]); }
+    for(const pg of pages.slice()) if(!pg.el.textContent.trim()&&!pg.el.querySelector("img")){ pg.el.remove(); pages.splice(pages.indexOf(pg),1); }
+    if(printMode){ const htm=pages.map(p=>{ p.el.style.breakAfter="page"; p.el.style.pageBreakAfter="always"; return p.el.outerHTML; }).join(""); out.remove(); off.remove(); if(orig) orig.id="sheet-prev";
+      let rep=document.getElementById("report"); if(!rep){rep=document.createElement("div"); rep.id="report"; document.body.appendChild(rep);} rep.innerHTML=htm; const lp=rep.lastElementChild; if(lp){ lp.style.breakAfter="auto"; lp.style.pageBreakAfter="auto"; }
+      const ps=document.createElement("style"); ps.textContent="@page{size:A4;margin:0}@media print{body.printing{margin:0!important;padding:0!important}body.printing #report>div{box-shadow:none!important}}"; document.head.appendChild(ps);
+      document.body.classList.add("printing"); const done=()=>{ document.body.classList.remove("printing"); ps.remove(); }; addEventListener("afterprint",done,{once:true}); setTimeout(()=>{ window.print(); setTimeout(done,4000); },150); return; }
+    const {jsPDF}=window.jspdf; const pdf=new jsPDF({unit:"mm",format:"a4",orientation:"portrait"});
+    for(let k=0;k<pages.length;k++){ if(onp) onp(k+1,pages.length); await new Promise(r=>setTimeout(r,30));
+      const cv=await html2canvas(pages[k].el,{scale:1.6,useCORS:true,backgroundColor:"#ffffff",logging:false});
+      if(k) pdf.addPage(); pdf.addImage(cv.toDataURL("image/jpeg",0.9),"JPEG",0,0,210,297); cv.width=cv.height=0; }
     pdf.save(fname); }
-  finally{ off.remove(); if(orig) orig.id="sheet-prev"; } }
+  finally{ off.remove(); out.remove(); if(orig) orig.id="sheet-prev"; } }
 async function propHTML(c,o){
   const who={s:c.s,age:c.age}; const today=new Date(); const dateStr=`民國 ${today.getFullYear()-1911} 年 ${today.getMonth()+1} 月 ${today.getDate()} 日`;
   // 規劃總覽
@@ -3844,7 +3860,7 @@ function renderSheet(){
       <label><span>案例二</span><select id="sh-c2"><option value="">自動挑選</option>${opts(o.c2)}<option value="none" ${o.c2==="none"?"selected":""}>不要第二個案例</option></select></label></div>
     <div class="sh-btns"><button type="button" class="btn sh-go" id="sh-dl">⬇ 下載 PDF</button><button type="button" class="btn sh-go ghost" id="sh-print">🖨 列印</button></div>
     <p class="fine">「下載 PDF」直接存成檔案，可用 LINE 傳給客戶；「列印」接印表機。業務員資料記在這台裝置。</p>
-  </aside><div class="sh-main"><div id="sh-sum" class="sh-sum"></div><div class="sh-prev-h"><b>建議書預覽</b><small>實際分頁以列印為準</small></div><div id="sh-prev-w" class="sh-prev-w"><div id="sheet-prev"><p class="fine sh-loading">正在產生預覽…</p></div></div></div></div>`;
+  </aside><div class="sh-main"><div id="sh-sum" class="sh-sum"></div><div class="sh-prev-h"><b>建議書預覽</b><small>下載和列印會自動排成 A4 分頁</small></div><div id="sh-prev-w" class="sh-prev-w"><div id="sheet-prev"><p class="fine sh-loading">正在產生預覽…</p></div></div></div></div>`;
   const $s=id=>box.querySelector("#"+id); const cur=()=>KC.find(c=>c.id===SH_CID);
   const setName=()=>{ const c=cur(); $s("sh-name").value=c&&c.name?c.name+(c.s==="女"?" 小姐":" 先生"):""; }; setName();
   const read=()=>({name:$s("sh-name").value.trim(),ag:$s("sh-ag").value.trim(),tel:$s("sh-tel").value.trim(),note:$s("sh-note").value.trim(),c1:$s("sh-c1").value,c2:$s("sh-c2").value,theme:(box.querySelector(".sh-th.on")||{}).dataset?.th||"warm"});
@@ -3855,7 +3871,7 @@ function renderSheet(){
   box.querySelectorAll(".sh-th").forEach(b=>b.addEventListener("click",()=>{ box.querySelectorAll(".sh-th").forEach(x=>x.classList.toggle("on",x===b)); upd(); }));
   ["sh-name","sh-ag","sh-tel","sh-note"].forEach(id=>$s(id).addEventListener("input",()=>upd(600)));
   ["sh-c1","sh-c2"].forEach(id=>$s(id).addEventListener("change",()=>upd()));
-  $s("sh-print").addEventListener("click",async()=>{ const o2=read(); shSave(o2); const b=$s("sh-print"); b.disabled=true; b.textContent="產生中…"; try{ const c=cur(); await propCalcPV(c); propPrint(await propHTML(c,o2)); }finally{ b.disabled=false; b.textContent="🖨 列印"; } });
+  $s("sh-print").addEventListener("click",async()=>{ const o2=read(); shSave(o2); const b=$s("sh-print"); b.disabled=true; b.textContent="產生中…"; try{ const c=cur(); await propCalcPV(c); await propDownload(await propHTML(c,o2),"",null,true); }finally{ b.disabled=false; b.textContent="🖨 列印"; } });
   $s("sh-dl").addEventListener("click",async()=>{ const o2=read(); shSave(o2); const b=$s("sh-dl"); b.disabled=true; b.textContent="產生 PDF 中…"; try{ const c=cur(); await propCalcPV(c); const d=new Date(); const nm=(($s("sh-name").value||"").trim()||"客戶").replace(/[\\/:*?"<>|]/g,""); await propDownload(await propHTML(c,o2),`保險規劃建議書_${nm}_${d.getFullYear()-1911}${String(d.getMonth()+1).padStart(2,"0")}${String(d.getDate()).padStart(2,"0")}.pdf`,(k,n)=>{ b.textContent=`產生 PDF 中…（${k}/${n}）`; }); }catch(e){ console.error(e); toast("PDF 產生失敗，請改用「列印」→ 儲存為 PDF"); }finally{ b.disabled=false; b.textContent="⬇ 下載 PDF"; } });
   if(!box._rz){ box._rz=1; addEventListener("resize",shZoom); }
   upd();
