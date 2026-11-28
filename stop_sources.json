@@ -5,23 +5,23 @@
   {
    "co": "204",
    "name": "國泰",
-   "type": "list_unk",
+   "type": "current",
    "url": "https://www.cathaylife.com.tw/official/laws-policies/public-info/info-insurance",
-   "note": "資訊公開商品資訊，未確認現售/停售分類"
+   "note": "資訊公開→保險商品頁內「契約條款」各類清單（主約/附約/意外/團險，連結檔名即險種代號）＝現售條款；2026-11-28 巡查：網站現售 245 名稱中 235 筆相符，可用。另「保險商品及文號」為 PDF"
   },
   {
    "co": "209",
    "name": "富邦",
-   "type": "list_unk",
+   "type": "current",
    "url": "https://www.fubon.com/life/investor/public-info1?c=commodity",
-   "note": "需點選；另可用富邦行動辦公室現售清單（需使用者登入）"
+   "note": "點「02 契約條款」頁籤（富邦人壽分頁）列出 401 筆現售條款；2026-11-28 巡查可用，網站現售 309 名稱中 288 筆相符"
   },
   {
    "co": "206",
    "name": "南山",
    "type": "current",
    "url": "https://www.nanshanlife.com.tw/nanshanlife/portal-api/File/948",
-   "note": "保險商品成本分析 PDF（現售候選，有代碼）"
+   "note": "2026-11-28 巡查：948 為成本分析 PDF。契約條款 PDF：File/918（個人壽險暨健康險主約，僅約 35 筆）、File/917（團體險）；附約／傷害險不在其中，清單不完整，未判定"
   },
   {
    "co": "206",
@@ -35,14 +35,14 @@
    "name": "新光",
    "type": "list_unk",
    "url": "https://www.skl.com.tw/65732b6f14.html",
-   "note": "資訊公開入口，GPT 開啟逾時，未驗證"
+   "note": "2026-11-28 巡查：入口可開；保險商品→契約條款為 PDF（sklife_resource/leap_do/dataOpenInfo/product/29_Product_contract_terms.pdf，15頁，115年11月），字型無 ToUnicode，瀏覽器內無法解析文字"
   },
   {
    "co": "202",
    "name": "台灣",
-   "type": "current_partial",
-   "url": "https://www.taiwanlife.com/product-personal-life-TermLife",
-   "note": "分類入口，不完整"
+   "type": "list_unk",
+   "url": "https://www.taiwanlife.com/AboutUs-public-info-info-insurance",
+   "note": "2026-11-28 巡查：資訊公開→保險商品→契約條款 PDF（portal-api/File/1792，2026/11/17，503 筆）含 85 年舊商品，非現售清單，不能用「未列」判停售"
   },
   {
    "co": "205",
