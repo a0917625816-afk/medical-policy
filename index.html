@@ -1042,7 +1042,7 @@ section[data-view="savd"],#savd-box,#sv-det,#savd-box .cx-step,#savd-box details
 [data-skin="washi"] .cx-step>h3{background-color:#f2d3cc}
 [data-skin="washi"] .cx-step{position:relative;border-radius:4px;background:#fffbf2;padding-left:34px}
 [data-skin="washi"] .cx-step::after{content:"";position:absolute;left:8px;top:18px;bottom:18px;width:16px;background:radial-gradient(circle at 8px 8px,#f7f1e3 4px,#a58f73 4.5px 6px,transparent 6.5px) 0 0/16px 34px repeat-y;pointer-events:none}
-[data-skin="washi"] .cx-step::before{content:"";position:absolute;top:-9px;right:28px;width:96px;height:22px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.5) 0 2px,transparent 2px 7px),rgba(217,138,126,.6);transform:rotate(3deg)}
+[data-skin="washi"] .cx-step::before{content:"";position:absolute;top:2px;right:28px;width:96px;height:22px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.5) 0 2px,transparent 2px 7px),rgba(217,138,126,.6);transform:rotate(3deg)}
 [data-skin="washi"] nav a:nth-child(6n+1) svg{stroke:#d08a2e} [data-skin="washi"] nav a:nth-child(6n+2) svg{stroke:#4f7fa8} [data-skin="washi"] nav a:nth-child(6n+3) svg{stroke:#6e8b5e}
 [data-skin="washi"] nav a:nth-child(6n+4) svg{stroke:#c0605a} [data-skin="washi"] nav a:nth-child(6n+5) svg{stroke:#8a6bb0} [data-skin="washi"] nav a:nth-child(6n) svg{stroke:#b5874a}
 [data-skin="washi"] nav a[aria-current="page"]{background:repeating-linear-gradient(-45deg,rgba(255,255,255,.3) 0 5px,transparent 5px 10px),#cfe0b8;color:#3b3328;box-shadow:1px 2px 0 rgba(120,95,60,.12);transform:rotate(-1deg)}
@@ -1059,7 +1059,7 @@ section[data-view="savd"],#savd-box,#sv-det,#savd-box .cx-step,#savd-box details
 [data-skin="nordic"] nav{background:#efe8df}
 [data-skin="nordic"] .sec-h h2{font-weight:700;letter-spacing:.06em}
 [data-skin="nordic"] nav a[aria-current="page"]{box-shadow:none;border-color:transparent}
-@media (max-height:999px),(max-width:899px){[data-skin="comic"] .sk-side{display:block;position:fixed;left:auto;right:74px;bottom:0;width:96px;height:120px;z-index:4;pointer-events:none;background:url(skin/comic_dog.webp) no-repeat center bottom/contain}[data-skin="comic"] .sk-bub{display:none}}
+@media (max-height:999px),(max-width:899px){[data-skin="comic"] .sk-side{display:block;position:fixed;left:auto;right:196px;bottom:0;width:96px;height:120px;z-index:4;pointer-events:none;background:url(skin/comic_dog.webp) no-repeat center bottom/contain}[data-skin="comic"] .sk-bub{display:none}}
 [data-skin="nordic"] .sec-h h2::before{content:"";display:inline-block;width:20px;height:20px;margin-right:12px;vertical-align:-2px;background:linear-gradient(90deg,#9c7e66 0 4px,transparent 4px 8px,#9c7e66 8px 12px,transparent 12px 16px,#9c7e66 16px 20px);clip-path:polygon(0 50%,20% 50%,20% 100%,0 100%,0 50%,40% 50%,40% 20%,60% 20%,60% 100%,40% 100%,40% 50%,80% 50%,80% 0,100% 0,100% 100%,80% 100%)}
 [data-skin="nordic"] .kicker{letter-spacing:.2em}
 
@@ -1091,6 +1091,45 @@ section[data-view="savd"],#savd-box,#sv-det,#savd-box .cx-step,#savd-box details
 [data-skin="comic"] .sv-seg .sv-chip:nth-child(5n):not([aria-pressed="true"]){background:#fff3c4}
 [data-skin="comic"] .sv-chip{border:2.5px solid var(--ink)!important;border-radius:999px!important;box-shadow:2px 2px 0 var(--ink);font-weight:800}
 @media (max-width:899px){ :is([data-skin="washi"],[data-skin="nordic"],[data-skin="comic"]) .sk-head{opacity:.45} [data-skin="washi"] .sk-head{right:0;width:200px} [data-skin="comic"] .sec-h::after{width:48px;height:56px} }
+
+/* ===== 新風格加料：底部草叢、角色、彩色圖示、彩色按鈕 ===== */
+:is([data-skin="washi"],[data-skin="comic"]) body::after{content:"";position:fixed;left:0;right:0;bottom:0;height:64px;z-index:3;pointer-events:none;background:var(--sk-grass) repeat-x left bottom/auto 64px}
+[data-skin="washi"]{--sk-grass:url(skin/washi_grass.webp)}
+[data-skin="comic"]{--sk-grass:url(skin/comic_grass.webp)}
+@media (min-width:900px){:is([data-skin="washi"],[data-skin="comic"]) body::after{left:200px}}
+:is([data-skin="washi"],[data-skin="comic"]) main.wrap{padding-bottom:96px}
+/* 圖示底色（和紙：水彩圓斑；繪本：粗框色塊） */
+[data-skin="washi"] nav a svg{padding:4px;border-radius:46% 54% 50% 50%;box-sizing:content-box}
+[data-skin="washi"] nav a:nth-child(6n+1) svg{background:#f7e1b5} [data-skin="washi"] nav a:nth-child(6n+2) svg{background:#d6e6f2} [data-skin="washi"] nav a:nth-child(6n+3) svg{background:#dcead0}
+[data-skin="washi"] nav a:nth-child(6n+4) svg{background:#f5d6d2} [data-skin="washi"] nav a:nth-child(6n+5) svg{background:#e4dcef} [data-skin="washi"] nav a:nth-child(6n) svg{background:#f0e0c6}
+[data-skin="comic"] nav a svg{padding:4px;border:2px solid var(--ink);border-radius:9px;box-sizing:content-box;background:#fff}
+[data-skin="comic"] nav a:nth-child(6n+1) svg{background:#fff3c4} [data-skin="comic"] nav a:nth-child(6n+2) svg{background:#dff2ff} [data-skin="comic"] nav a:nth-child(6n+3) svg{background:#ffe3ea}
+[data-skin="comic"] nav a:nth-child(6n+4) svg{background:#e3f7d8} [data-skin="comic"] nav a:nth-child(6n+5) svg{background:#efe6ff} [data-skin="comic"] nav a:nth-child(6n) svg{background:#ffe9c2}
+[data-skin="comic"] nav a[aria-current="page"] svg{background:#fff}
+/* 和紙：每個篩選按鈕不同顏色的紙膠帶 */
+[data-skin="washi"] .sv-seg .sv-chip:nth-child(5n+2):not([aria-pressed="true"]),[data-skin="washi"] .rc-btns button:nth-child(5n+2):not([aria-pressed="true"]){background:repeating-linear-gradient(45deg,rgba(255,255,255,.45) 0 4px,transparent 4px 8px),#dcead0}
+[data-skin="washi"] .sv-seg .sv-chip:nth-child(5n+3):not([aria-pressed="true"]),[data-skin="washi"] .rc-btns button:nth-child(5n+3):not([aria-pressed="true"]){background:repeating-linear-gradient(45deg,rgba(255,255,255,.45) 0 4px,transparent 4px 8px),#d6e6f2}
+[data-skin="washi"] .sv-seg .sv-chip:nth-child(5n+4):not([aria-pressed="true"]),[data-skin="washi"] .rc-btns button:nth-child(5n+4):not([aria-pressed="true"]){background:repeating-linear-gradient(45deg,rgba(255,255,255,.45) 0 4px,transparent 4px 8px),#f7e1b5}
+[data-skin="washi"] .sv-seg .sv-chip:nth-child(5n):not([aria-pressed="true"]),[data-skin="washi"] .rc-btns button:nth-child(5n):not([aria-pressed="true"]){background:repeating-linear-gradient(45deg,rgba(255,255,255,.45) 0 4px,transparent 4px 8px),#e4dcef}
+[data-skin="washi"] .sv-chip{border-radius:3px!important;transform:rotate(-1deg)} [data-skin="washi"] .sv-chip:nth-child(even){transform:rotate(1deg)}
+/* 和紙：標題旁的小豬、卡片底部撕紙邊 */
+[data-skin="washi"] .sec-h{position:relative}
+[data-skin="washi"] .sec-h::after{content:"";position:absolute;right:3%;top:-4px;width:64px;height:58px;background:url(skin/washi_pig.webp) center/contain no-repeat}
+[data-skin="washi"] .cx-step{border-bottom:0;padding-bottom:28px;-webkit-mask:linear-gradient(#000 0 0) top/100% calc(100% - 8px) no-repeat,radial-gradient(circle 6px at 8px 0,#000 98%,transparent) bottom/16px 8px repeat-x;mask:linear-gradient(#000 0 0) top/100% calc(100% - 8px) no-repeat,radial-gradient(circle 6px at 8px 0,#000 98%,transparent) bottom/16px 8px repeat-x}
+[data-skin="washi"] .brand h1{text-decoration:underline wavy rgba(217,138,126,.8);text-decoration-thickness:2px;text-underline-offset:7px;background:none}
+/* 繪本：網站名稱雲朵招牌、緞帶標語、角色 */
+[data-skin="comic"] .brand{border-radius:40px;padding:8px 22px 8px 10px;position:relative}
+[data-skin="comic"] .brand::before,[data-skin="comic"] .brand::after{content:"";position:absolute;background:#fff;border:3px solid var(--ink);border-radius:50%;z-index:-1}
+[data-skin="comic"] .brand::before{width:46px;height:46px;left:26px;top:-18px;border-bottom-color:transparent;border-right-color:transparent;transform:rotate(45deg)}
+[data-skin="comic"] .brand::after{width:58px;height:58px;left:96px;top:-24px;border-bottom-color:transparent;border-left-color:transparent;transform:rotate(-45deg)}
+[data-skin="comic"] .tagline{border-radius:4px;clip-path:polygon(0 0,100% 0,96% 50%,100% 100%,0 100%,4% 50%);padding:4px 30px;background:#fff3c4}
+[data-skin="comic"] .sec-h h2::before{content:"";display:inline-block;width:38px;height:32px;margin-right:10px;vertical-align:-6px;background:url(skin/comic_coins.webp) center/contain no-repeat}
+[data-skin="comic"] .sec-h::before{content:"可用上方按鈕，快速找到想看的！";position:absolute;right:calc(4% + 74px);top:-2px;max-width:170px;background:#fff;border:2.5px solid var(--ink);border-radius:18px;padding:6px 12px;font:800 .82rem/1.35 var(--body);color:var(--ink);box-shadow:2px 2px 0 var(--ink)}
+@media (max-width:1100px){[data-skin="comic"] .sec-h::before{display:none}}
+.sk-girl{display:none}
+[data-skin="comic"] .sk-girl{display:block;position:fixed;right:76px;bottom:4px;width:110px;height:150px;z-index:4;pointer-events:none;background:url(skin/comic_girl.webp) no-repeat center bottom/contain}
+[data-skin="comic"] .sk-girl span{position:absolute;right:96px;top:4px;width:150px;background:#fff;border:2.5px solid var(--ink);border-radius:18px;padding:6px 10px;font:800 .8rem/1.35 var(--body);color:var(--ink);box-shadow:2px 2px 0 var(--ink)}
+@media (max-width:899px){[data-skin="comic"] .sk-girl{width:80px;height:110px}[data-skin="comic"] .sk-girl span{display:none}}
 /* 風格選單 */
 .skin-wrap{position:relative}
 .skin-menu{position:absolute;right:0;top:calc(100% + 6px);z-index:60;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,.18);padding:6px;min-width:190px;display:grid;gap:2px}
@@ -1584,6 +1623,7 @@ html.cd-lock{overflow:hidden}
     <div id="plan-box"></div>
   </section>
 </main>
+<div class="sk-girl" aria-hidden="true"><span>輸入基本條件，就能快速試算喔！</span></div>
 <div class="sk-side" aria-hidden="true"><span class="sk-bub">想比較保單？<br>點左邊就對了！</span></div>
 <svg class="clay-deco" viewBox="0 0 220 200" aria-hidden="true"><defs><radialGradient id="dG" cx=".4" cy=".3" r=".9"><stop offset="0" stop-color="#d7f0c8"/><stop offset="1" stop-color="#9fd18c"/></radialGradient><radialGradient id="dL" cx=".35" cy=".3" r=".85"><stop offset="0" stop-color="#efe8ff"/><stop offset="1" stop-color="#b5a3ea"/></radialGradient><radialGradient id="dY" cx=".35" cy=".3" r=".85"><stop offset="0" stop-color="#fff0b0"/><stop offset="1" stop-color="#f3bf2e"/></radialGradient><radialGradient id="dP" cx=".35" cy=".3" r=".85"><stop offset="0" stop-color="#ffd2c2"/><stop offset="1" stop-color="#f08f6e"/></radialGradient><radialGradient id="dW" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#fffaf2"/><stop offset="1" stop-color="#f0dcc2"/></radialGradient><filter id="dS" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#7a5230" flood-opacity=".25"/></filter></defs><g filter="url(#dS)"><ellipse cx="110" cy="190" rx="110" ry="26" fill="url(#dG)"/><g class="fl2"><rect x="28" y="98" width="78" height="70" rx="14" fill="url(#dW)"/><path d="M14 108 67 58l53 50c4 4 0 10-6 8L67 76 20 116c-6 2-10-4-6-8z" fill="url(#dP)"/><rect x="56" y="128" width="22" height="40" rx="8" fill="#e8b48a"/><path d="M67 122s-11-7-11-14a6 6 0 0 1 11-3.5 6 6 0 0 1 11 3.5c0 7-11 14-11 14z" fill="#ea5a6b" transform="translate(0 -18)"/></g><g class="fl"><path d="M164 70c16 0 30 6 30 6v34c0 26-18 40-30 46-12-6-30-20-30-46V76s14-6 30-6z" fill="url(#dL)"/><path d="M164 132s-14-8.5-14-17.5a7.5 7.5 0 0 1 14-4.5 7.5 7.5 0 0 1 14 4.5c0 9-14 17.5-14 17.5z" fill="#fffaf0"/></g><circle cx="128" cy="176" r="9" fill="url(#dY)"/><circle cx="196" cy="174" r="7" fill="#ff9fa8"/></g></svg>
 
